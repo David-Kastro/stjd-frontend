@@ -10,8 +10,7 @@ Este repositório contém o código-fonte do site oficial do Superior Tribunal d
 - [Instalação e Configuração](#instalação-e-configuração)
 - [Scripts Disponíveis](#scripts-disponíveis)
 - [Estrutura do Projeto](#estrutura-do-projeto)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
+
 
 ## Sobre o Projeto
 
@@ -22,8 +21,6 @@ O site do STJD fornece informações sobre o tribunal, incluindo notícias, resu
 - [Next.js](https://nextjs.org/) - Framework React para desenvolvimento de aplicações web.
 - [React](https://reactjs.org/) - Biblioteca JavaScript para construção de interfaces de usuário.
 - [TypeScript](https://www.typescriptlang.org/) - Superset do JavaScript que adiciona tipagem estática ao código.
-- [Styled Components](https://styled-components.com/) - Biblioteca para estilização de componentes em React.
-- [Axios](https://axios-http.com/) - Cliente HTTP para realizar requisições à API.
 
 ## Instalação e Configuração
 
@@ -83,16 +80,4 @@ stjd-site/
 └── package.json        # Dependências e scripts
 ```
 
-## Contribuição
 
-Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
-
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature ou correção de bug: `git checkout -b minha-feature`.
-3. Commit suas alterações: `git commit -m 'Adiciona minha nova feature'`.
-4. Faça o push para a branch: `git push origin minha-feature`.
-5. Abra um Pull Request.
-
-## Licença
-
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
