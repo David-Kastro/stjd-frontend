@@ -70,7 +70,17 @@ body {
     @apply bg-background text-foreground;
   }
 }
+body {
+  background: #d5d5d5;
+}
 
 .bg-custom-menu {
   background: linear-gradient(90deg, #e1e1e1 42%, #cec9c7 100%);
+}
+
+.bg-footer-image {
+  background-image: url("/images/bg-fundo-footer.svg");
+  background-position: 0 4rem; /* Desloca a imagem 20px para baixo */
+  background-size: cover;
+  background-repeat: no-repeat;
 }

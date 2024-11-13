@@ -1,10 +1,62 @@
+"use client";
 import Image from "next/image";
 import React from "react";
-import Logo from "@/public/images/logo-stjd.svg";
-import BgTop from "@/public/images/bg-fundo-menu.png";
+import Logo from "/public/images/logo-stjd.svg";
+import BgTop from "/public/images/bg-fundo-menu.png";
 import { Search } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
+const menus = [
+  {
+    name: "Início",
+    pathname: "/",
+  },
+  {
+    name: "Quem Somos",
+    pathname: "/quem-somos",
+  },
+  {
+    name: "Legislação",
+    pathname: "/legislacao",
+  },
+  {
+    name: "Editais",
+    pathname: "/editais",
+  },
+  {
+    name: "Resultados",
+    pathname: "/resultados",
+  },
+  {
+    name: "Acordãos",
+    pathname: "/acordaos",
+  },
+  {
+    name: "Jurisprudência",
+    pathname: "/jurisprudencia",
+  },
+  {
+    name: "Resoluções",
+    pathname: "/resolucoes",
+  },
+  {
+    name: "Notícias",
+    pathname: "/noticias",
+  },
+  {
+    name: "Galerias",
+    pathname: "/galerias",
+  },
+  {
+    name: "Contato",
+    pathname: "/contato",
+  },
+];
 
 function MenuTop() {
+  const pathname = usePathname();
+
   return (
     <div>
       <div className="w-full bg-black">
@@ -37,6 +89,28 @@ function MenuTop() {
             <Image src={BgTop} alt="BgTop" draggable={false} />
           </div>
         </div>
+      </div>
+      <div className="container mt-[1.86rem] ">
+        <div className="max-w-[99.3125rem] mx-auto w-full flex justify-between px-[1.64rem]">
+          {menus.map((menu, index) => (
+            <div
+              key={index}
+              className="pb-[1.86rem] hover:border-b-[0.125rem] hover:border-[#006A9E]"
+              style={{
+                borderBottom:
+                  pathname === menu.pathname ? "0.125rem solid #006A9E" : "",
+                fontWeight: pathname === menu.pathname ? "700" : "",
+              }}
+            >
+              <Link href={menu.pathname}>
+                <button className="inline-block py-[0.88rem] px-[1.25rem] text-[#002A3E] hover:font-bold text-[0.95769rem] leading-[0.95769rem]">
+                  {menu.name}
+                </button>
+              </Link>
+            </div>
+          ))}
+        </div>
+        <hr className="h-[0.125rem] bg-[#fff] -mt-[2px]" />
       </div>
     </div>
   );

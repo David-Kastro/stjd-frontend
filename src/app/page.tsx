@@ -1,12 +1,8 @@
-import MenuTop from "@/_components/MenuTop";
+// import MenuTop from "@/_components/MenuTop";
 import React from "react";
 
 function Home() {
-  return (
-    <div>
-      <MenuTop />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default Home;
