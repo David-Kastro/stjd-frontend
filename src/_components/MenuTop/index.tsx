@@ -72,7 +72,9 @@ function MenuTop() {
       </div>
       <div className="container mt-[1.5rem]">
         <div className="flex justify-between items-center bg-custom-menu px-8 py-5 rounded-[1.375rem] relative">
-          <Image src={Logo} alt="Logo" draggable={false} />
+          <Link href={"/"}>
+            <Image src={Logo} alt="Logo" draggable={false} />
+          </Link>
           <form className="max-w-[22.0625rem] z-10 w-full relative">
             <input
               type="text"
