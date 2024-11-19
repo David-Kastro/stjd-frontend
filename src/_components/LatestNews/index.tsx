@@ -122,6 +122,7 @@ function LatestNews() {
             <Menu className="text-[#9C9C9C]" />
           </button>
         </div>
+        <div className="absolute top-[8rem] -left-[2px] h-[2rem] w-[5px] rounded-full bg-[#BD995D]"></div>
 
         <div className="px-[2.5rem]">
           <div className="flex gap-[0.56rem] items-center">
