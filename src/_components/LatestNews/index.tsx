@@ -115,93 +115,101 @@ function LatestNews() {
   }
 
   return (
-    <div className="2xl:max-w-[50.1875rem] xl:max-w-[40.1875rem] w-full bg-[#E1E1E1] rounded-[1.375rem] pt-[2.56rem] pb-[2.19rem] relative ml-[4.69rem]">
-      <div className="absolute top-[2.12rem] right-[2.25rem]">
-        <button>
-          <Menu className="text-[#9C9C9C]" />
-        </button>
-      </div>
+    <div>
+      <div className="2xl:max-w-[50.1875rem] xl:max-w-[40.1875rem] w-full bg-[#E1E1E1] rounded-[1.375rem] pt-[2.56rem] pb-[2.19rem] relative ml-[4.69rem]">
+        <div className="absolute top-[2.12rem] right-[2.25rem]">
+          <button>
+            <Menu className="text-[#9C9C9C]" />
+          </button>
+        </div>
 
-      <div className="px-[2.5rem]">
-        <div className="flex gap-[0.56rem] items-center">
-          <Newspaper />
-          <p className="font-bold text-[1.25rem]">Últimas notícias</p>
-        </div>
-        <h1 className="text-[2.25rem] leading-[2.5rem] tracking-[0.0225rem] font-bold max-w-[40.1875rem] w-full mt-[2.94rem]">
-          Zagueiro do Cruzeiro absolvido em primeira instância
-        </h1>
-        <h2 className="mt-[1.19rem] text-[0.875rem] text-[#A1A1A1]">
-          05/11/2024 às 12h00
-        </h2>
-        <img
-          src={
-            "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg"
-          }
-          className="rounded-[1.25rem] mt-[2.88rem]"
-          alt="Image"
-        />
-        <p className="mt-[1.94rem] leading-[1.6875rem]">
-          Expulso contra o Cuiabá, João Marcelo foi denunciado e julgado por
-          praticar ato desleal ou hostil ao impedir uma oportunidade clara de
-          gol.
-        </p>
-        <button className="flex gap-[0.56rem] w-fit ml-auto mt-[2.5rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
-          Veja mais{" "}
-          <div className="rotate-180">
-            <Arrow />
+        <div className="px-[2.5rem]">
+          <div className="flex gap-[0.56rem] items-center">
+            <Newspaper />
+            <p className="font-bold text-[1.25rem]">Últimas notícias</p>
           </div>
-        </button>
-      </div>
-      <div className="mt-[4rem] flex gap-[1.31rem] items-center">
-        <hr className="w-full h-[0.125rem] bg-[#C2C2C2]" />
-        <div className="flex gap-[0.41rem] pr-[2.5rem]">
-          <button
-            onClick={handlePrevious}
-            className="h-[2.25rem] w-[2.25rem] border-[1.929px] border-solid border-[#A1A1A1] rounded-full flex items-center justify-center"
-          >
-            <Arrow color="#A1A1A1" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="h-[2.25rem] w-[2.25rem] border-[1.929px] border-solid border-[#A1A1A1] rounded-full flex items-center justify-center"
-          >
-            <Arrow color="#A1A1A1" className="rotate-180" />
+          <h1 className="text-[2.25rem] leading-[2.5rem] tracking-[0.0225rem] font-bold max-w-[40.1875rem] w-full mt-[2.94rem]">
+            Zagueiro do Cruzeiro absolvido em primeira instância
+          </h1>
+          <h2 className="mt-[1.19rem] text-[0.875rem] text-[#A1A1A1]">
+            05/11/2024 às 12h00
+          </h2>
+          <img
+            src={
+              "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg"
+            }
+            className="rounded-[1.25rem] mt-[2.88rem]"
+            alt="Image"
+          />
+          <p className="mt-[1.94rem] leading-[1.6875rem]">
+            Expulso contra o Cuiabá, João Marcelo foi denunciado e julgado por
+            praticar ato desleal ou hostil ao impedir uma oportunidade clara de
+            gol.
+          </p>
+          <button className="flex gap-[0.56rem] w-fit ml-auto mt-[2.5rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
+            Veja mais{" "}
+            <div className="rotate-180">
+              <Arrow />
+            </div>
           </button>
         </div>
-      </div>
-      <Carousel setApi={setApi} className="w-full pl-[2.81rem] mt-[3.69rem]">
-        <CarouselContent>
-          {groupedNews.map((group, groupIndex) => (
-            <CarouselItem key={groupIndex}>
-              <div className="flex flex-col gap-[2.81rem] p-4">
-                {group.map((item, index) => (
-                  <div key={index} className="flex-1">
-                    <CardNews
-                      image={item.image}
-                      title={item.title}
-                      date={item.date}
-                      textContent={item.textContent}
-                    />
-                  </div>
-                ))}
-              </div>
-            </CarouselItem>
+        <div className="mt-[4rem] flex gap-[1.31rem] items-center">
+          <hr className="w-full h-[0.125rem] bg-[#C2C2C2]" />
+          <div className="flex gap-[0.41rem] pr-[2.5rem]">
+            <button
+              onClick={handlePrevious}
+              className="h-[2.25rem] w-[2.25rem] border-[1.929px] border-solid border-[#A1A1A1] rounded-full flex items-center justify-center"
+            >
+              <Arrow color="#A1A1A1" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="h-[2.25rem] w-[2.25rem] border-[1.929px] border-solid border-[#A1A1A1] rounded-full flex items-center justify-center"
+            >
+              <Arrow color="#A1A1A1" className="rotate-180" />
+            </button>
+          </div>
+        </div>
+        <Carousel setApi={setApi} className="w-full pl-[2.81rem] mt-[3.69rem]">
+          <CarouselContent>
+            {groupedNews.map((group, groupIndex) => (
+              <CarouselItem key={groupIndex}>
+                <div className="flex flex-col gap-[2.81rem] p-4">
+                  {group.map((item, index) => (
+                    <div key={index} className="flex-1">
+                      <CardNews
+                        image={item.image}
+                        title={item.title}
+                        date={item.date}
+                        textContent={item.textContent}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+        {/* Indicadores do Status do Carousel */}
+        <div className="flex justify-center gap-2 mt-[2rem]">
+          {groupedNews.map((_, groupIndex) => (
+            <div
+              key={groupIndex}
+              className={` rounded-full h-[0.4375rem] ${
+                current === groupIndex + 1
+                  ? "bg-[#797979] w-[3.0625rem]"
+                  : "bg-[#BD995D] w-[0.625rem]"
+              }`}
+            ></div>
           ))}
-        </CarouselContent>
-      </Carousel>
-      {/* Indicadores do Status do Carousel */}
-      <div className="flex justify-center gap-2 mt-[2rem]">
-        {groupedNews.map((_, groupIndex) => (
-          <div
-            key={groupIndex}
-            className={` rounded-full h-[0.4375rem] ${
-              current === groupIndex + 1
-                ? "bg-[#797979] w-[3.0625rem]"
-                : "bg-[#BD995D] w-[0.625rem]"
-            }`}
-          ></div>
-        ))}
+        </div>
       </div>
+      <button className="flex gap-[0.56rem] w-fit ml-auto mt-[1.63rem] mb-[2.88rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
+        Veja mais{" "}
+        <div className="rotate-180">
+          <Arrow />
+        </div>
+      </button>
     </div>
   );
 }
