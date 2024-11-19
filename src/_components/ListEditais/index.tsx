@@ -10,7 +10,7 @@ function ListEditais() {
         <FileText />
         Editais
       </h1>
-      <div className="mt-[5rem] pl-[1.69rem] h-[49.5rem] relative flex items-center justify-center">
+      <div className="mt-[5rem] pl-[1.69rem] h-[50rem] relative flex items-center justify-center">
         <div className="h-full absolute right-1 z-0 w-[2px] bg-[#BFBFBF]"></div>
         <div className="h-[49.5rem] w-full  pr-[4rem]  flex flex-col gap-[2.6rem] scroll-custom-editais">
           <CardEdital />
