@@ -82,6 +82,7 @@ function MenuTop() {
               id=""
               className="w-full px-[1.25rem] py-[0.88rem] rounded-[9.375rem] text-[#000000] placeholder:text-[#000000]"
               placeholder="Procurar..."
+              required
             />
             <button className="absolute right-[1.5rem] top-0 bottom-0">
               <Search />

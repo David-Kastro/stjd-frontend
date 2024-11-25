@@ -18,7 +18,7 @@ function JudgmentGuidelines() {
     <div className="w-full">
       <div className="w-full h-[34.1875rem] bg-custom-judgment-guidelines">
         <div className="rounded-[1.375rem] w-full relative">
-          <div className="w-[5.43606rem] h-[5.43606rem] bg-[#BD995D] rounded-full flex justify-center items-center absolute -top-[1rem] -left-[1.5rem]">
+          <div className="w-[5.43606rem] h-[5.43606rem] bg-secondary rounded-full flex justify-center items-center absolute -top-[1rem] -left-[1.5rem]">
             <ArrowDownRight />
           </div>
           <div className="pt-[2.56rem] pb-[2.13rem]">
@@ -26,7 +26,7 @@ function JudgmentGuidelines() {
               Pautas de julgamento
             </h1>
           </div>
-          <hr className="w-full h-[0.125rem] bg-[#BD995D]" />
+          <hr className="w-full h-[0.125rem] bg-secondary" />
           <div className="flex">
             <div className=" max-w-[22.5975rem] w-full pl-[1.31rem] mt-[2.25rem] z-10">
               <Calendar
@@ -51,9 +51,9 @@ function JudgmentGuidelines() {
         </div>
       </div>
       <div className="mt-[4.81rem] relative flex items-center">
-        <hr className="w-full h-[0.125rem] bg-[#BD995D]" />
+        <hr className="w-full h-[0.125rem] bg-secondary" />
         <button className="absolute right-0 px-[1.44rem] py-[0.86rem] bg-white rounded-[1.375rem] flex gap-[1.22rem]">
-          <div className="p-4 rounded-full bg-[#BD995D]">
+          <div className="p-4 rounded-full bg-secondary">
             <MonitorPlay className="text-white" />
           </div>
           <div>
@@ -62,7 +62,7 @@ function JudgmentGuidelines() {
             >
               Sessão ao vivo
             </p>
-            <p className="text-[#BD995D]  text-[0.86175rem] text-left">
+            <p className="text-secondary  text-[0.86175rem] text-left">
               offline
             </p>
           </div>

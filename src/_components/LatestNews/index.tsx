@@ -9,6 +9,7 @@ import {
 } from "@/_components/ui/carousel";
 import Arrow from "@/_components/Arrow";
 import CardNews from "../CardNews";
+import { Button } from "../ui/button";
 
 const news = [
   {
@@ -122,7 +123,7 @@ function LatestNews() {
             <Menu className="text-[#9C9C9C]" />
           </button>
         </div>
-        <div className="absolute top-[8rem] -left-[2px] h-[2rem] w-[5px] rounded-full bg-[#BD995D]"></div>
+        <div className="absolute top-[8rem] -left-[2px] h-[2rem] w-[5px] rounded-full bg-secondary"></div>
 
         <div className="px-[2.5rem]">
           <div className="flex gap-[0.56rem] items-center">
@@ -147,12 +148,12 @@ function LatestNews() {
             praticar ato desleal ou hostil ao impedir uma oportunidade clara de
             gol.
           </p>
-          <button className="flex gap-[0.56rem] w-fit ml-auto mt-[2.5rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
+          <Button className="bg-transparent text-black hover:bg-transparent flex gap-[0.56rem] w-fit ml-auto mt-[2.5rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
             Veja mais{" "}
             <div className="rotate-180">
               <Arrow />
             </div>
-          </button>
+          </Button>
         </div>
         <div className="mt-[4rem] flex gap-[1.31rem] items-center">
           <hr className="w-full h-[0.125rem] bg-[#C2C2C2]" />
@@ -199,18 +200,18 @@ function LatestNews() {
               className={` rounded-full h-[0.4375rem] ${
                 current === groupIndex + 1
                   ? "bg-[#797979] w-[3.0625rem]"
-                  : "bg-[#BD995D] w-[0.625rem]"
+                  : "bg-secondary w-[0.625rem]"
               }`}
             ></div>
           ))}
         </div>
       </div>
-      <button className="flex gap-[0.56rem] w-fit ml-auto mt-[1.63rem] mb-[2.88rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
+      <Button className="bg-transparent text-black hover:bg-transparent flex gap-[0.56rem] w-fit ml-auto mt-[1.63rem] mb-[2.88rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
         Veja mais{" "}
         <div className="rotate-180">
           <Arrow />
         </div>
-      </button>
+      </Button>
     </div>
   );
 }

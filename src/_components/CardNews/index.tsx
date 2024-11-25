@@ -21,7 +21,7 @@ function CardNews({ image, title, date, textContent }: Props) {
           <h1 className="text-[1.25rem] font-bold leading-[1.3125rem] ">
             {title}
           </h1>
-          <h2 className="text-[0.875rem] mt-[0.75rem] text-[#BD995D]">
+          <h2 className="text-[0.875rem] mt-[0.75rem] text-secondary">
             {date}
           </h2>
           <p className="leading-[1.6875rem] mt-[0.88rem]"> {textContent} </p>

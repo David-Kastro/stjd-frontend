@@ -2,6 +2,7 @@ import { FileText } from "lucide-react";
 import React from "react";
 import CardEdital from "../CardEdital";
 import Arrow from "../Arrow";
+import { Button } from "../ui/button";
 
 function ListEditais() {
   return (
@@ -30,13 +31,13 @@ function ListEditais() {
           <CardEdital />
         </div>
       </div>
-      <div className="pt-[1.63rem] pb-[2.88rem] mr-1  border-r-[2px] border-[#BFBFBF]">
-        <button className="flex gap-[0.56rem] w-fit ml-auto   mr-[2.88rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
+      <div className="pt-[2.5rem] pb-[2.88rem] mr-1  border-r-[2px] border-[#BFBFBF]">
+        <Button className="bg-transparent text-black hover:bg-transparent flex gap-[0.56rem] w-fit ml-auto  mr-[2.88rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
           Veja mais{" "}
           <div className="rotate-180">
             <Arrow />
           </div>
-        </button>
+        </Button>
       </div>
     </div>
   );

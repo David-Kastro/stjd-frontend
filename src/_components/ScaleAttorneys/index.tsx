@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import LogoBlack from "/public/images/stjd-black.svg";
 import BgScalle from "/public/images/bg-card-scale.svg";
+import { Button } from "../ui/button";
 function ScaleAttorneys() {
   return (
     <section className="container">
@@ -21,9 +22,9 @@ function ScaleAttorneys() {
           <div className="absolute top-0 left-96">
             <Image src={BgScalle} alt="BgScalle" draggable={false} />
           </div>
-          <button className="rounded-[4.625rem] bg-[#000100] text-[#FFFFFF] max-w-[15.375rem] w-full py-[0.94rem] text-[1.25rem] font-bold">
+          <Button className="h-[3.75rem] rounded-[4.625rem] bg-[#000100] text-[#FFFFFF] max-w-[15.375rem] w-full py-[0.94rem] text-[1.25rem] font-bold">
             Saiba Mais
-          </button>
+          </Button>
         </div>
       </div>
     </section>

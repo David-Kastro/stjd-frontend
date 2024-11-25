@@ -40,7 +40,7 @@ function CustomCaption({ displayMonth, className }: CaptionProps) {
         onClick={handlePrevClick}
         className={cn(
           buttonVariants({ variant: "outline" }),
-          "h-[2.125rem] w-[2.125rem] rounded-[0.625rem] bg-transparent border-[2px] border-[#BD995D] hover:bg-transparent"
+          "h-[2.125rem] w-[2.125rem] rounded-[0.625rem] bg-transparent border-[2px] border-secondary hover:bg-transparent"
         )}
       >
         <ChevronLeft className="h-4 w-4" />
@@ -58,7 +58,7 @@ function CustomCaption({ displayMonth, className }: CaptionProps) {
         onClick={handleNextClick}
         className={cn(
           buttonVariants({ variant: "outline" }),
-          "h-[2.125rem] w-[2.125rem] rounded-[0.625rem] bg-transparent border-[2px] border-[#BD995D] hover:bg-transparent"
+          "h-[2.125rem] w-[2.125rem] rounded-[0.625rem] bg-transparent border-[2px] border-secondary hover:bg-transparent"
         )}
       >
         <ChevronRight className="h-4 w-4" />
@@ -89,9 +89,9 @@ function Calendar({
           "h-7 w-7 bg-transparent p-0 hover:bg-transparent"
         ),
         nav_button_previous:
-          "absolute left-1 border-[2px] border-solid border-[#BD995D]",
+          "absolute left-1 border-[2px] border-solid border-secondary",
         nav_button_next:
-          "border-[2px] border-solid border-[#BD995D] absolute right-1",
+          "border-[2px] border-solid border-secondary absolute right-1",
         table: "w-full border-collapse space-y-1",
         head_row: "flex justify-between",
         head_cell: "text-[#A1A1A1] rounded-md w-9 font-normal text-[0.8125rem]",
@@ -103,7 +103,7 @@ function Calendar({
         ),
         day_range_end: "day-range-end",
         day_selected:
-          "bg-[#BD995D] !rounded-[0.625rem] text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-[#BD995D] focus:text-[#fff]",
+          "bg-secondary !rounded-[0.625rem] text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-secondary focus:text-[#fff]",
         day_today: "",
         day_outside:
           "day-outside text-muted-foreground aria-selected:bg-accent/50 aria-selected:text-muted-foreground",

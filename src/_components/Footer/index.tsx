@@ -4,6 +4,9 @@ import React from "react";
 import BgFooter from "/public/images/bg-fundo-footer.svg";
 import LogoBlack from "/public/images/logo-stjd-black.svg";
 import { Rubik } from "next/font/google";
+import { ArrowUp } from "lucide-react";
+import { Button } from "../ui/button";
+
 // If loading a variable font, you don't need to specify the font weight
 const rubik = Rubik({
   subsets: ["latin"],
@@ -20,7 +23,7 @@ function Footer() {
       </div>
 
       <div className="bg-[#000100]">
-        <div className="container relative overflow-hidden">
+        <div className="container overflow-hidden relative">
           <div className="absolute bottom-0 -left-20">
             <Image src={BgFooter} alt="BgFooter" />
           </div>
@@ -29,19 +32,19 @@ function Footer() {
               <div className="flex">
                 <div>
                   <Link href={"/"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem]">
                       Início
                     </p>
                   </Link>
                   <Link href={"/quem-somos"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem] mt-[1.81rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem] mt-[1.81rem]">
                       Quem Somos
                     </p>
                   </Link>
                 </div>
                 <div className="ml-[6.56rem]">
                   <Link href={"/legislacao"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem]">
                       Legislação
                     </p>
                   </Link>
@@ -104,7 +107,7 @@ function Footer() {
                 </div>
                 <div className="ml-[2.81rem]">
                   <Link href={"/editais"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem]">
                       Editais
                     </p>
                   </Link>
@@ -141,14 +144,14 @@ function Footer() {
                     comissão disciplinar extraordinária
                   </p>
                   <Link href={"/jurisprudencia"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem] mt-[3.88rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem] mt-[3.88rem]">
                       Jurisprudência
                     </p>
                   </Link>
                 </div>
                 <div className="ml-[4.19rem]">
                   <Link href={"/resultados"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem]">
                       Resultados
                     </p>
                   </Link>
@@ -185,14 +188,14 @@ function Footer() {
                     comissão disciplinar extraordinária
                   </p>
                   <Link href={"/resolucoes"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem] mt-[3.88rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem] mt-[3.88rem]">
                       Resoluções
                     </p>
                   </Link>
                 </div>
                 <div className="ml-[3.88rem]">
                   <Link href={"/acordaos"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem]">
                       Acordãos
                     </p>
                   </Link>
@@ -229,23 +232,33 @@ function Footer() {
                     comissão disciplinar extraordinária
                   </p>
                   <Link href={"/noticias"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem] mt-[3.88rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem] mt-[3.88rem]">
                       Notícias
                     </p>
                   </Link>
                   <Link href={"/galerias"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem] mt-[1.56rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem] mt-[1.56rem]">
                       Galerias
                     </p>
                   </Link>
                 </div>
                 <div className="ml-[1.81rem]">
                   <Link href={"/contato"}>
-                    <p className="text-[#BD995D] font-bold text-[0.95769rem] leading-[0.95769rem]">
+                    <p className="text-secondary font-bold text-[0.95769rem] leading-[0.95769rem]">
                       Contato
                     </p>
                   </Link>
                 </div>
+              </div>
+              <div className="absolute bottom-36 right-0 flex flex-col items-center gap-[0.72rem]">
+                <a href="#">
+                  <Button className="rounded-full bg-secondary hover:bg-secondary w-[3.125rem] h-[3.125rem] flex items-center justify-center">
+                    <ArrowUp className="text-black" />
+                  </Button>
+                </a>
+                <p className="text-[0.625rem] text-white leading-[0.95769rem]">
+                  Voltar ao Topo
+                </p>
               </div>
               <hr className="h-[0.0625rem] bg-[#B8B8B8] mt-[2.88rem]" />
               <p

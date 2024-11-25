@@ -3,6 +3,7 @@ import { Users } from "lucide-react";
 import Arrow from "../Arrow";
 import Image from "next/image";
 import BgFundoMembers from "/public/images/bg-fundo-members.svg";
+import { Button } from "../ui/button";
 const members = [
   {
     cargo: "Presidente",
@@ -35,14 +36,14 @@ function Members() {
               <Users />
               Membros
             </h1>
-            <hr className="w-full h-[0.125rem] bg-[#BD995D]" />
+            <hr className="w-full h-[0.125rem] bg-secondary" />
           </div>
           <div className="px-[6.31rem] mt-[3.75rem] flex justify-between">
             {members.map((member, index) => (
               <div key={index} className="max-w-[10.4375rem]">
                 <div className="w-full">
                   <img src={member.foto} alt={member.nome} className="w-full" />
-                  <p className="text-[#BD995D] font-bold mt-[1.5rem] leading-[1.03rem]">
+                  <p className="text-secondary font-bold mt-[1.5rem] leading-[1.03rem]">
                     {member.cargo}
                   </p>
                   <h2 className="uppercase font-bold text-[#3A3A3C] leading-[1.21rem] mt-[0.31rem]">
@@ -53,12 +54,12 @@ function Members() {
             ))}
           </div>
           <div className="flex justify-end pr-[2.81rem] pb-[3.06rem]">
-            <button className="flex gap-[0.56rem] w-fit ml-auto mt-[2.5rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
+            <Button className="bg-transparent text-black hover:bg-transparent flex gap-[0.56rem] w-fit ml-auto mt-[2.5rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
               Veja mais{" "}
               <div className="rotate-180">
                 <Arrow />
               </div>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
