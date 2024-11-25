@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import BgFooter from "/public/images/bg-fundo-footer.svg";
-import LogoBlack from "/public/images/logo-stjd-black.svg";
+
 import { Rubik } from "next/font/google";
 import { ArrowUp } from "lucide-react";
 import { Button } from "../ui/button";
@@ -16,12 +16,6 @@ const rubik = Rubik({
 function Footer() {
   return (
     <div>
-      <div className="container">
-        <div className="pb-[7.94rem]  border-l-[2px] border-[#B0B0B0]">
-          <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
-        </div>
-      </div>
-
       <div className="bg-[#000100]">
         <div className="container overflow-hidden relative">
           <div className="absolute bottom-0 -left-20">
