@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 import CardTopPage from "@/_components/CardTopPage";
 import BalancaJustica from "/public/images/balanca-justica.webp";
@@ -8,81 +9,105 @@ import BgEditais from "/public/images/bg-card-editais.svg";
 import Image from "next/image";
 import LogoBlack from "/public/images/logo-stjd-black.svg";
 import BgFundoMembers from "/public/images/bg-fundo-members.svg";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/_components/ui/dialog";
+import { Button } from "@/_components/ui/button";
+
+interface legislacaoType {
+  title: string;
+  subtitle: string;
+  pdf: string;
+}
 
 const legislacoes = [
   {
     title: "Escala de Procuradores",
     subtitle: "2024",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "CBJD - Normas e ",
     subtitle: "Legislação Complementar",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "Escala de Procuradores",
     subtitle: "2024",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "Escala de Procuradores",
     subtitle: "2024",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "Escala de Procuradores",
     subtitle: "2024",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "Escala de Procuradores",
     subtitle: "2024",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "Escala de Procuradores",
     subtitle: "2024",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "Escala de Procuradores",
     subtitle: "2024",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "CBJD - Normas e ",
     subtitle: "Legislação Complementar",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "CBJD - Normas e ",
     subtitle: "Legislação Complementar",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "CBJD - Normas e ",
     subtitle: "Legislação Complementar",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "CBJD - Normas e ",
     subtitle: "Legislação Complementar",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "CBJD - Normas e ",
     subtitle: "Legislação Complementar",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
   {
     title: "CBJD - Normas e ",
     subtitle: "Legislação Complementar",
-    pdf: "https://www.stjd.com.br/wp-content/uploads/2023/08/Escala-de-Procuradores-2024.pdf",
+    pdf: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
   },
 ];
 
 function Legislacao() {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [legislacaoActive, setLegislacaoActive] = useState<legislacaoType>(
+    {} as legislacaoType
+  );
+
+  const handleOpenDialog = (legislacao: legislacaoType) => {
+    setLegislacaoActive(legislacao);
+    setOpenDialog(true);
+  };
+
   return (
     <div>
       <CardTopPage
@@ -94,7 +119,7 @@ function Legislacao() {
       <div className="container mt-[15rem] relative z-10">
         <div className="max-w-[90.99738rem] mx-auto flex gap-x-[3.93rem] gap-y-[2.56rem] flex-wrap justify-center">
           {legislacoes.map((legislacao, index) => (
-            <button key={index}>
+            <button key={index} onClick={() => handleOpenDialog(legislacao)}>
               <CardLegislacao
                 title={legislacao.title}
                 subtitle={legislacao.subtitle}
@@ -125,6 +150,38 @@ function Legislacao() {
           </div>
         </div>
       </div>
+      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+        <DialogContent className="py-[3.19rem] bg-[#E1E1E1] max-h-[90vh]">
+          <DialogHeader className="flex flex-row items-center gap-[1.37rem] ">
+            <DialogTitle className="text-[#2E2E2E] text-[1.64356rem] max-w-[23.75rem] w-full">
+              Escala de Procuradores <span className="font-light">2024</span>{" "}
+            </DialogTitle>
+            <div className="relative w-full">
+              <p className="text-end text-[0.79181rem] absolute right-0 -top-5 text-[#2E2E2E] font-light">
+                Prévia do documento
+              </p>
+              <hr className="bg-[#BD995D] border w-full border-[#BD995D]" />
+            </div>
+          </DialogHeader>
+          <div>
+            <iframe
+              src={legislacaoActive.pdf}
+              className="w-full h-[55vh]"
+            ></iframe>
+          </div>
+          <DialogFooter>
+            <a
+              href={legislacaoActive.pdf}
+              className="w-fit mx-auto"
+              // download={legislacaoActive.pdf.split("/").pop()}
+            >
+              <Button className="mx-auto mt-[2rem] h-[3.75rem] rounded-[4.625rem] px-[3.12rem] text-[1.25rem] font-bold">
+                Fazer Download
+              </Button>
+            </a>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
