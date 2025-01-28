@@ -155,7 +155,7 @@ function MenuTop() {
                     <p className="inline-block py-[0.88rem] px-[1.25rem] text-[#002A3E] text-center group-hover:font-bold text-[0.95769rem] leading-[0.95769rem] w-full ">
                       {menu.name}
                     </p>
-                    <div className="absolute top-[4.6rem] w-full hidden group-hover:block">
+                    <div className="absolute top-[4.9rem] w-full hidden group-hover:block">
                       <div className="bg-[#fff] w-[100%] rounded-[0.8125rem] py-[0.94rem] h-[5.625rem]">
                         {menu.paths &&
                           menu.paths.map((path, i) => (
