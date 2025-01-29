@@ -44,6 +44,7 @@ function JudgmentGuidelines() {
                   alt="Antiqueta"
                   className="z-0 w-[28.8125rem]"
                   draggable={false}
+                  priority
                 />
               </div>
             </div>
