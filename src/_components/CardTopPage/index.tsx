@@ -1,16 +1,24 @@
 import React from "react";
 
 import Image, { StaticImageData } from "next/image";
-import { Scale } from "lucide-react";
+import { ArrowDown, Scale } from "lucide-react";
+import Link from "next/link";
 
 interface CardTopPageProps {
   title: string;
   description: string;
   image: StaticImageData;
   height: string;
+  scrollTo?: string;
 }
 
-function CardTopPage({ title, description, image, height }: CardTopPageProps) {
+function CardTopPage({
+  title,
+  description,
+  image,
+  height,
+  scrollTo,
+}: CardTopPageProps) {
   return (
     <div className="container mt-[5.64rem]">
       <div
@@ -31,8 +39,16 @@ function CardTopPage({ title, description, image, height }: CardTopPageProps) {
         </div>
 
         <div className="absolute -top-8 -right-36 z-0">
-          <Image src={image} alt="Martelo" />
+          <Image src={image} alt="" />
         </div>
+        {scrollTo && (
+          <Link
+            href={scrollTo}
+            className="absolute inset-x-0 -bottom-[1.5rem] mx-auto rounded-full bg-secondary hover:bg-secondary w-[3.125rem] h-[3.125rem] flex items-center justify-center px-4 py-2"
+          >
+            <ArrowDown className="text-black" />
+          </Link>
+        )}
       </div>
     </div>
   );
