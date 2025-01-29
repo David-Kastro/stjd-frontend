@@ -160,7 +160,7 @@ function MenuTop() {
                             <Link
                               key={i}
                               href={path.pathname}
-                              className="block border-b-[0.0625rem] border-[#CFCFCF] border-opacity-50 invisible last:border-b-0 px-[1.25rem] py-[0.625rem] hover:!font-semibold text-[0.95769rem] leading-[0.95769rem] text-[#000000] opacity-0 h-0 group-hover:visible group-hover:opacity-100 group-hover:h-[100%] transition-[opacity,visibility,height] duration-300"
+                              className="block border-b-[0.0625rem] border-[#CFCFCF] border-opacity-50 invisible last:border-b-0 py-[0.625rem] hover:!font-bold text-[0.95769rem] leading-[0.95769rem] text-[#000000] opacity-0 h-0 group-hover:visible group-hover:opacity-100 group-hover:h-[100%] transition-[opacity,visibility,height] duration-300"
                               style={{
                                 fontWeight: pathname.includes(path.pathname)
                                   ? "700"
