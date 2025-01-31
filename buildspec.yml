@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Instalando dependências..."
+      - npm install
+
+  build:
+    commands:
+      - echo "Construindo aplicação..."
+      - npm run build
+
+artifacts:
+  files:
+    - "**/*"
