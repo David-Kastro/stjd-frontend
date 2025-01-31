@@ -1,7 +1,8 @@
 import { FileText } from "lucide-react";
 import React from "react";
 import CardEdital from "../CardEdital";
-import Arrow from "../Arrow";
+
+import { ChevronLeft } from "lucide-react";
 import { Button } from "../ui/button";
 
 function ListEditais() {
@@ -11,9 +12,9 @@ function ListEditais() {
         <FileText />
         Editais
       </h1>
-      <div className="mt-[5rem] pl-[1.69rem] h-[50rem] relative flex items-center justify-center">
-        <div className="h-full absolute right-1 z-0 w-[2px] bg-[#BFBFBF]"></div>
-        <div className="h-[49.5rem] w-full  pr-[4rem]  flex flex-col gap-[2.6rem] scroll-custom-editais">
+      <div className="lg:mt-[5rem] mt-[1.5rem] lg:pl-[1.69rem] lg:h-[50rem] relative flex items-center justify-center">
+        <div className="h-full absolute right-1 z-0 w-[2px] bg-[#BFBFBF] lg:block hidden"></div>
+        <div className="lg:h-[49.5rem] w-full  lg:pr-[4rem]  flex flex-col lg:gap-[2.6rem] gap-[1.31rem] scroll-custom-editais lg:overflow-y-auto z-[1000] relative rounded">
           <CardEdital />
           <CardEdital />
           <CardEdital />
@@ -31,11 +32,11 @@ function ListEditais() {
           <CardEdital />
         </div>
       </div>
-      <div className="pt-[2.5rem] pb-[2.88rem] mr-1  border-r-[2px] border-[#BFBFBF]">
-        <Button className="bg-transparent text-black hover:bg-transparent flex gap-[0.56rem] w-fit ml-auto  mr-[2.88rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
+      <div className="lg:pt-[2.5rem] pt-[1.5rem] pb-[2.88rem] lg:mr-1  lg:border-r-[2px] border-[#BFBFBF]">
+        <Button className="bg-transparent text-black hover:bg-transparent flex gap-[0.56rem] w-fit ml-auto  lg:mr-[2.88rem] items-center lg:text-[1.25rem] text-[0.82363rem] leading-[1.23775rem] font-bold">
           Veja mais{" "}
           <div className="rotate-180">
-            <Arrow />
+            <ChevronLeft />
           </div>
         </Button>
       </div>
