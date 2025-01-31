@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Superior Tribunal de Justiça Desportiva (STJD)
 
-First, run the development server:
+Este repositório contém o código-fonte do site oficial do Superior Tribunal de Justiça Desportiva (STJD), desenvolvido utilizando [Next.js](https://nextjs.org/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Índice
+
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Instalação e Configuração](#instalação-e-configuração)
+- [Scripts Disponíveis](#scripts-disponíveis)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+
+
+## Sobre o Projeto
+
+O site do STJD fornece informações sobre o tribunal, incluindo notícias, resultados de julgamentos, legislações e outros recursos relacionados à justiça desportiva no futebol brasileiro. O objetivo é oferecer uma plataforma acessível e informativa para atletas, clubes, advogados e o público em geral.
+
+## Tecnologias Utilizadas
+
+- [Next.js](https://nextjs.org/) - Framework React para desenvolvimento de aplicações web.
+- [React](https://reactjs.org/) - Biblioteca JavaScript para construção de interfaces de usuário.
+- [TypeScript](https://www.typescriptlang.org/) - Superset do JavaScript que adiciona tipagem estática ao código.
+
+## Instalação e Configuração
+
+Siga os passos abaixo para configurar o ambiente de desenvolvimento:
+
+1. **Clone o repositório:**
+
+   ```bash
+   git clone https://github.com/seu-usuario/stjd-site.git
+   ```
+
+2. **Navegue até o diretório do projeto:**
+
+   ```bash
+   cd stjd-site
+   ```
+
+3. **Instale as dependências:**
+
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
+
+4. **Configure as variáveis de ambiente:**
+
+   Crie um arquivo `.env.local` na raiz do projeto e defina as variáveis necessárias, como URLs de APIs, chaves de acesso, etc. Consulte o arquivo `.env.example` para referência.
+
+## Scripts Disponíveis
+
+No diretório do projeto, você pode executar:
+
+- **`npm run dev`** ou **`yarn dev`**: Inicia o servidor de desenvolvimento em modo hot-reload. Acesse [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
+
+- **`npm run build`** ou **`yarn build`**: Cria a versão de produção da aplicação.
+
+- **`npm run start`** ou **`yarn start`**: Inicia o servidor com a versão de produção.
+
+- **`npm run lint`** ou **`yarn lint`**: Executa o linter para verificar problemas no código.
+
+## Estrutura do Projeto
+
+A estrutura principal do projeto é a seguinte:
+
+```
+stjd-site/
+├── public/             # Arquivos estáticos (imagens, fontes, etc.)
+├── src/
+│   ├── components/     # Componentes reutilizáveis
+│   ├── pages/          # Páginas da aplicação
+│   ├── styles/         # Estilos globais e temas
+│   ├── utils/          # Funções utilitárias
+│   └── services/       # Configurações de APIs e serviços externos
+├── .env.example        # Exemplo de variáveis de ambiente
+├── next.config.js      # Configurações do Next.js
+└── package.json        # Dependências e scripts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

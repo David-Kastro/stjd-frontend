@@ -6,6 +6,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -16,7 +20,8 @@ body {
     --popover-foreground: 0 0% 3.9%;
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
+    --secondary: 37 33% 54%;
+    /* Atualizado para a cor #BD995D */
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
@@ -24,7 +29,8 @@ body {
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
+    /* Border atualizado para cor #B0B0B0 */
+    --border: 0 0% 69%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
     --chart-1: 12 76% 61%;
@@ -34,6 +40,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -43,7 +50,8 @@ body {
     --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
     --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
+    --secondary: 37 33% 54%;
+    /* Atualizado para a cor #BD995D */
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
@@ -51,7 +59,8 @@ body {
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
+    /* Border atualizado para cor #B0B0B0 */
+    --border: 0 0% 69%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
     --chart-1: 220 70% 50%;
@@ -66,7 +75,69 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  background: #d5d5d5;
+  overflow-x: hidden;
+}
+
+.bg-custom-menu {
+  background: linear-gradient(90deg, #e1e1e1 42%, #cec9c7 100%);
+}
+
+.bg-footer-image {
+  background-image: url("/images/bg-fundo-footer.svg");
+  background-position: 0 4rem;
+  /* Desloca a imagem 20px para baixo */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-custom-judgment-guidelines {
+  border-radius: 1.375rem;
+  background: linear-gradient(20deg, #e5e4e4 18.5%, #9a8d85 186.02%);
+}
+
+.scroll-custom-editais {
+  overflow-y: auto;
+
+  z-index: 1000;
+  position: relative;
+  border-radius: 0.25rem;
+}
+
+.scroll-custom-editais::-webkit-scrollbar {
+  width: 0.9375rem;
+  /* Largura da barra de rolagem */
+}
+
+.scroll-custom-editais::-webkit-scrollbar {
+  width: 0.8rem;
+  /* Largura da barra de rolagem */
+}
+
+.scroll-custom-editais::-webkit-scrollbar-thumb {
+  background-color: #a1a1a1;
+  /* Cor da "thumb" */
+  border-radius: 0.25rem;
+  /* Bordas arredondadas */
+}
+
+.scroll-custom-editais::-webkit-scrollbar-track {
+  background-color: transparent;
+  /* Cor do "track" */
+}
+
+.bg-custom-scale {
+  border-radius: 1.375rem;
+  background: linear-gradient(90deg, #e1e1e1 42%, #cec9c7 100%);
+}
+
+.bg-card-legislacao {
+  background: url("/images/noise.svg") lightgray 0% 0% / 71.07091546058655px 71.07091546058655px repeat;
 }
