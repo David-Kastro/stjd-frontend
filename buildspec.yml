@@ -4,12 +4,12 @@ phases:
   install:
     commands:
       - echo "Instalando dependências..."
-      - npm install
+      - pnpm install
 
   build:
     commands:
       - echo "Construindo aplicação..."
-      - npm run build
+      - pnpm run build
 
 artifacts:
   files:
