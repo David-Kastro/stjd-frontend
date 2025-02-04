@@ -10,6 +10,7 @@ interface CardTopPageProps {
   image: StaticImageData;
   height: string;
   scrollTo?: string;
+  customClassImage?: string;
 }
 
 function CardTopPage({
@@ -18,6 +19,7 @@ function CardTopPage({
   image,
   height,
   scrollTo,
+  customClassImage,
 }: CardTopPageProps) {
   return (
     <div className="container mt-[5.64rem]">
@@ -38,7 +40,7 @@ function CardTopPage({
           <h2 className="mt-[0.81rem] leading-[1.6875rem]">{description}</h2>
         </div>
 
-        <div className="absolute -top-8 -right-36 z-0">
+        <div className={` absolute -top-8 -right-36 z-0 ${customClassImage}`}>
           <Image src={image} alt="" />
         </div>
         {scrollTo && (

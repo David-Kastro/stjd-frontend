@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LogoBlack from "/public/images/stjd-black.svg";
 
 import { Button } from "../ui/button";
@@ -22,10 +23,22 @@ function ScaleAttorneys({
   textbtn,
   href,
 }: ScaleAttorneysProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Define o breakpoint que você considera como mobile (ex.: 1024px para lg)
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 1024);
+
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+
   return (
     <div
-      className={`lg:max-w-[99.4375rem] mx-auto bg-custom-scale lg:rounded-[1.375rem] rounded-none lg:py-[1.47rem] py-[1.7rem] lg:px-[1.5rem] px-4 flex lg:flex-row flex-col justify-between items-center relative lg:h-[${height}] h-auto relative`}
-      // style={{ height: height }}
+      className={`lg:max-w-[99.4375rem] mx-auto bg-custom-scale lg:rounded-[1.375rem] rounded-none lg:py-[1.47rem] py-[1.7rem] lg:px-[1.5rem] px-4 flex lg:flex-row flex-col justify-between items-center relative relative`}
+      style={{ height: isMobile ? "auto" : height }}
     >
       <div className="flex lg:gap-[1.06rem] gap-[0.6rem] items-center z-10 relative">
         <Image
