@@ -12,7 +12,7 @@ import {
 } from "@/_components/ui/select";
 import { Button } from "@/_components/ui/button";
 import BgFundoMembers from "/public/images/bg-fundo-members.svg";
-import { Label } from "@/_components/ui/label";
+
 import { Input } from "@/_components/ui/input";
 import ScaleAttorneys from "@/_components/ScaleAttorneys";
 import Image from "next/image";
