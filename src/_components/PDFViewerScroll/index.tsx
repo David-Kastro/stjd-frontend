@@ -35,6 +35,8 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
           </div>
         </div>
       </div>
+      <button onClick={goToPrevPage}></button>
+      <button onClick={goToNextPage}></button>
 
       {loading && <p>Carregando documento...</p>}
 
