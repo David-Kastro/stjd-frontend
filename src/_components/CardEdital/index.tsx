@@ -1,15 +1,15 @@
-"use client";
-import React from "react";
-import { FileText } from "lucide-react";
-import Link from "next/link";
+'use client'
+import React from 'react'
+import { FileText } from 'lucide-react'
+import Link from 'next/link'
 
 interface CardEditalProps {
-  title: string;
-  description?: string;
-  type: "link" | "function";
-  path?: string;
-  handleClick?: () => void;
-  isActive?: boolean;
+  title: string
+  description?: string
+  type: 'link' | 'function'
+  path?: string
+  handleClick?: () => void
+  isActive?: boolean
 }
 
 function CardEdital({
@@ -20,44 +20,44 @@ function CardEdital({
   handleClick,
   isActive,
 }: CardEditalProps) {
-  if (type === "link") {
+  if (type === 'link') {
     return (
-      <Link href={path ? path : ""}>
+      <Link href={path || ''}>
         <div
-          className={`max-w-[44.3125rem] w-full bg-[#E1E1E1] hover:bg-[#fff] transition-colors duration-300 ease-in-out px-[1.25rem] py-[0.62rem] rounded-[0.625rem] flex lg:gap-[1.88rem] gap-[1.18rem] items-center `}
+          className={`flex w-full max-w-[44.3125rem] items-center gap-[1.18rem] rounded-[0.625rem] bg-[#E1E1E1] px-[1.25rem] py-[0.62rem] transition-colors duration-300 ease-in-out hover:bg-[#fff] lg:gap-[1.88rem]`}
         >
           <FileText className="text-[#A2A2A2]" />
           <div className="">
-            <h1 className="text-[#2E2E2E]  font-bold lg:text-[1.25rem] text-[0.78806rem]">
+            <h1 className="text-[0.78806rem] font-bold text-[#2E2E2E] lg:text-[1.25rem]">
               {title}
             </h1>
-            <h2 className=" lg:text-[0.8125rem] text-[0.51225rem] text-[#2E2E2E] font-bold">
+            <h2 className="text-[0.51225rem] font-bold text-[#2E2E2E] lg:text-[0.8125rem]">
               {description}
             </h2>
           </div>
         </div>
       </Link>
-    );
+    )
   }
   return (
     <button onClick={handleClick}>
       <div
-        className={`max-w-[44.3125rem] min-h-[4.6875rem] w-full bg-[#E1E1E1] hover:bg-[#fff] transition-colors duration-300 ease-in-out px-[1.25rem] py-[0.62rem] rounded-[0.625rem] flex lg:gap-[1.88rem] gap-[1.18rem] items-center ${
-          isActive && "bg-[#fff] border-[2px] border-[#BD995D]"
+        className={`flex min-h-[4.6875rem] w-full max-w-[44.3125rem] items-center gap-[1.18rem] rounded-[0.625rem] bg-[#E1E1E1] px-[1.25rem] py-[0.62rem] transition-colors duration-300 ease-in-out hover:bg-[#fff] lg:gap-[1.88rem] ${
+          isActive && 'border-[2px] border-[#BD995D] bg-[#fff]'
         }`}
       >
         <FileText className="text-[#A2A2A2]" />
         <div className="">
-          <h1 className="text-[#2E2E2E]  font-bold lg:text-[1.25rem] text-[0.78806rem]">
+          <h1 className="text-[0.78806rem] font-bold text-[#2E2E2E] lg:text-[1.25rem]">
             {title}
           </h1>
-          <h2 className=" lg:text-[0.8125rem] text-[0.51225rem] text-[#2E2E2E] font-bold text-left">
+          <h2 className="text-left text-[0.51225rem] font-bold text-[#2E2E2E] lg:text-[0.8125rem]">
             {description}
           </h2>
         </div>
       </div>
     </button>
-  );
+  )
 }
 
-export default CardEdital;
+export default CardEdital

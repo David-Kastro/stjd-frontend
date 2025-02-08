@@ -1,8 +1,8 @@
-import React from "react";
-import CardTopPage from "@/_components/CardTopPage";
-import Martelo from "/public/images/martelo.webp";
-import { Button } from "@/_components/ui/button";
-import { ArrowDown } from "lucide-react";
+import React from 'react'
+import CardTopPage from '@/_components/CardTopPage'
+import Martelo from '/public/images/martelo.webp'
+import { Button } from '@/_components/ui/button'
+import { ArrowDown } from 'lucide-react'
 function QuemSomos() {
   return (
     <div className="relative">
@@ -12,15 +12,15 @@ function QuemSomos() {
         image={Martelo}
         height="33.6875rem"
       />
-      <div className="flex absolute -bottom-5 justify-center w-full z-10">
+      <div className="absolute -bottom-5 z-10 flex w-full justify-center">
         <a href="#">
-          <Button className="rounded-full bg-secondary hover:bg-secondary w-[3.125rem] h-[3.125rem] flex items-center justify-center">
+          <Button className="flex h-[3.125rem] w-[3.125rem] items-center justify-center rounded-full bg-secondary hover:bg-secondary">
             <ArrowDown className="text-black" />
           </Button>
         </a>
       </div>
     </div>
-  );
+  )
 }
 
-export default QuemSomos;
+export default QuemSomos

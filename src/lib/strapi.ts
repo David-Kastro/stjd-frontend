@@ -2,7 +2,7 @@ import * as qs from 'qs'
 
 type Props = {
   endpoint: string
-  query?: Record<string, any>;
+  query?: Record<string, any>
 }
 
 /**
@@ -37,33 +37,32 @@ export default async function fetchApi<T>({
   query,
 }: Props): Promise<[T, any]> {
   try {
-
     if (endpoint.startsWith('/')) {
-      endpoint = endpoint.slice(1);
+      endpoint = endpoint.slice(1)
     }
 
-    query = query || {};
-
+    query = query || {}
 
     const queryString = qs.stringify(query)
-    const url = new URL(`${process.env.VITE_API_URL}/${endpoint}?${queryString}`);
-    console.log("[API LOG] URL: ", url.toString())
+    const url = new URL(
+      `${process.env.VITE_API_URL}/${endpoint}?${queryString}`,
+    )
+    console.log('[API LOG] URL: ', url.toString())
 
-    const res = await fetch(url.toString());
-    const data = await res.json();
+    const res = await fetch(url.toString())
+    const data = await res.json()
 
-    const meta = data.meta;
-    const items = data.data as T;
+    const meta = data.meta
+    const items = data.data as T
 
-    if(data.error) {
+    if (data.error) {
       throw new Error(data.error)
-    };
+    }
 
-    return [items as T, meta];
-
+    return [items as T, meta]
   } catch (error) {
-    console.error(error);
-    console.error(JSON.stringify(error));
-    return [[] as T, null];
+    console.error(error)
+    console.error(JSON.stringify(error))
+    return [[] as T, null]
   }
 }

@@ -1,42 +1,40 @@
-import Link from "next/link";
-import React from "react";
-import CustomImage from "../CustomImage";
+import Link from 'next/link'
+import React from 'react'
+import CustomImage from '../CustomImage'
 
 interface Props {
-  image: string;
-  title: string;
-  date: string;
-  textContent: string;
+  image: string
+  title: string
+  date: string
+  textContent: string
 }
 
 function CardNews({ image, title, date, textContent }: Props) {
   return (
-    <Link href={"/noticias"}>
+    <Link href={'/noticias'}>
       <div
-        className="flex lg:flex-row flex-col gap-[1.88rem]"
-        style={{ userSelect: "none" }}
+        className="flex flex-col gap-[1.88rem] lg:flex-row"
+        style={{ userSelect: 'none' }}
       >
         <CustomImage
           src={image}
-          className="rounded-[0.625rem] h-fit aspect-[2/1] object-cover"
+          className="aspect-[2/1] h-fit rounded-[0.625rem] object-cover"
           alt={title}
           width={200}
           height={100}
         />
-        <div className="lg:max-w-[29rem] flex flex-col gap-[0.5rem]">
-          <h1 className="lg:text-[1.25rem] font-bold leading-[1.5rem] ">
+        <div className="flex flex-col gap-[0.5rem] lg:max-w-[29rem]">
+          <h1 className="font-bold leading-[1.5rem] lg:text-[1.25rem]">
             {title}
           </h1>
-          <h2 className="text-[0.875rem] text-secondary">
-            {date}
-          </h2>
-            <p className="leading-[1.6875rem] lg:text-base text-[0.75rem] line-clamp-2">
+          <h2 className="text-[0.875rem] text-secondary">{date}</h2>
+          <p className="line-clamp-2 text-[0.75rem] leading-[1.6875rem] lg:text-base">
             {textContent}
-            </p>
+          </p>
         </div>
       </div>
     </Link>
-  );
+  )
 }
 
-export default CardNews;
+export default CardNews

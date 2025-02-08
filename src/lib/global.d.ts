@@ -1,3 +1,3 @@
 interface ImportMeta {
-    env: any;
+  env: any
 }
