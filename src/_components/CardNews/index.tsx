@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import CustomImage from "../CustomImage";
 
 interface Props {
   image: string;
@@ -15,22 +16,23 @@ function CardNews({ image, title, date, textContent }: Props) {
         className="flex lg:flex-row flex-col gap-[1.88rem]"
         style={{ userSelect: "none" }}
       >
-        <img
+        <CustomImage
           src={image}
-          alt="title"
-          className="lg:max-w-[12.6875rem] lg:h-[7.1875rem] rounded-[0.625rem]"
+          className="rounded-[0.625rem] h-fit aspect-[2/1] object-cover"
+          alt={title}
+          width={200}
+          height={100}
         />
-        <div className="lg:max-w-[29rem]">
-          <h1 className="lg:text-[1.25rem] font-bold leading-[1.3125rem] ">
+        <div className="lg:max-w-[29rem] flex flex-col gap-[0.5rem]">
+          <h1 className="lg:text-[1.25rem] font-bold leading-[1.5rem] ">
             {title}
           </h1>
-          <h2 className="text-[0.875rem] mt-[0.75rem] text-secondary">
+          <h2 className="text-[0.875rem] text-secondary">
             {date}
           </h2>
-          <p className="leading-[1.6875rem] mt-[0.88rem] lg:text-base text-[0.75rem]">
-            {" "}
-            {textContent}{" "}
-          </p>
+            <p className="leading-[1.6875rem] lg:text-base text-[0.75rem] line-clamp-2">
+            {textContent}
+            </p>
         </div>
       </div>
     </Link>

@@ -8,14 +8,33 @@ import Image from "next/image";
 import React from "react";
 import LogoBlack from "/public/images/logo-stjd-black.svg";
 import BgScalle from "/public/images/bg-card-scale.svg";
+import fetchApi from "@/lib/strapi";
+import { Article } from "@/lib/types";
 
-function Home() {
+async function Home() {
+
+  const [ articles ] = await fetchApi<Article[]>({
+    endpoint: "articles",
+    query: {
+      sort: "id:desc",
+      populate: {
+        imagem: {
+          fields: ["name", "url", "width", "height", "size", "mime"],
+        },
+      },
+      pagination: {
+        pageSize: 10,
+        page: 1,
+      }
+    }
+  })
+
   return (
     <div>
       <div className="container lg:mt-[5rem] ">
         <div className="flex lg:flex-row flex-col gap-[3rem] lg:border-l-[2px] border-[#B0B0B0]">
-          <LatestNews />
-          <div className="w-full">
+          <LatestNews articles={articles} />
+          <div className="grow">
             <JudgmentGuidelines />
             <ListEditais />
           </div>
