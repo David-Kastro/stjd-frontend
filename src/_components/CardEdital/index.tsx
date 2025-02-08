@@ -24,7 +24,7 @@ function CardEdital({
     return (
       <Link href={path || ''}>
         <div
-          className={`flex w-full max-w-[44.3125rem] items-center gap-[1.18rem] rounded-[0.625rem] bg-[#E1E1E1] px-[1.25rem] py-[0.62rem] transition-colors duration-300 ease-in-out hover:bg-[#fff] lg:gap-[1.88rem]`}
+          className={`flex w-full max-w-[44.3125rem] items-center gap-[1.18rem] rounded-[0.625rem] bg-[#E1E1E1] px-[1.25rem] py-[0.62rem] shadow-sm transition-colors duration-300 ease-in-out hover:bg-[#fff] lg:gap-[1.88rem]`}
         >
           <FileText className="text-[#A2A2A2]" />
           <div className="">

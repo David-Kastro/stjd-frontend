@@ -17,6 +17,7 @@ import { Skeleton } from '../ui/skeleton'
 import { Article } from '@/lib/types'
 import { marked } from 'marked'
 import CustomImage from '../CustomImage'
+import { dateTimeFormat } from '@/lib/utils'
 
 function LatestNews({ articles }: { articles: Article[] }) {
   const [api, setApi] = useState<CarouselApi>()
@@ -43,14 +44,16 @@ function LatestNews({ articles }: { articles: Article[] }) {
     })
   }, [api])
 
+  const articlesWithoutHighlight = useMemo(() => articles.slice(1), [articles])
+
   // Dividindo o array de notícias em grupos de 3
   const groupedArticles = useMemo(() => {
     const result = []
-    for (let i = 0; i < articles.length; i += 3) {
-      result.push(articles.slice(i, i + 3))
+    for (let i = 0; i < articlesWithoutHighlight.length; i += 3) {
+      result.push(articlesWithoutHighlight.slice(i, i + 3))
     }
     return result
-  }, [])
+  }, [articlesWithoutHighlight])
 
   const articleHightlight = articles[0]
 
@@ -151,14 +154,14 @@ function LatestNews({ articles }: { articles: Article[] }) {
                 className="mt-[1.29rem] w-full lg:mt-[3.69rem]"
               >
                 <CarouselContent>
-                  {articles.map((group, groupIndex) => (
+                  {articlesWithoutHighlight.map((group, groupIndex) => (
                     <CarouselItem key={groupIndex}>
                       <>
                         <h1 className="w-full max-w-[40.1875rem] text-[1.29613rem] font-bold leading-[1.44013rem] tracking-[0.0225rem] lg:text-[2.25rem] lg:leading-[2.5rem]">
                           {group.headline}
                         </h1>
                         <h2 className="mt-[0.7rem] text-[0.5rem] text-[#A1A1A1] lg:mt-[1.19rem] lg:text-[0.875rem]">
-                          {group.createdAt}
+                          {dateTimeFormat(group.createdAt)}
                         </h2>
                         <CustomImage
                           src={group.imagem.url}
@@ -187,7 +190,7 @@ function LatestNews({ articles }: { articles: Article[] }) {
                 </CarouselContent>
               </Carousel>
               <div className="mt-5 flex justify-center gap-2">
-                {articles.map((_, groupIndex) => (
+                {articlesWithoutHighlight.map((_, groupIndex) => (
                   <div
                     key={groupIndex}
                     className={`h-[0.4375rem] rounded-full ${
@@ -282,10 +285,10 @@ function LatestNews({ articles }: { articles: Article[] }) {
               {groupedArticles.map((_, groupIndex) => (
                 <div
                   key={groupIndex}
-                  className={`h-[0.4375rem] rounded-full ${
+                  className={`h-[0.4375rem] w-[4rem] rounded-full transition-all ${
                     current === groupIndex + 1
-                      ? 'w-[3.0625rem] bg-[#797979]'
-                      : 'w-[0.625rem] bg-secondary'
+                      ? 'max-w-[3.0625rem] bg-[#797979]'
+                      : 'max-w-[0.625rem] bg-secondary'
                   }`}
                 ></div>
               ))}

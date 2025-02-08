@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import CustomImage from '../CustomImage'
+import { dateTimeFormat } from '@/lib/utils'
 
 interface Props {
   image: string
@@ -27,7 +28,9 @@ function CardNews({ image, title, date, textContent }: Props) {
           <h1 className="font-bold leading-[1.5rem] lg:text-[1.25rem]">
             {title}
           </h1>
-          <h2 className="text-[0.875rem] text-secondary">{date}</h2>
+          <h2 className="text-[0.875rem] text-secondary">
+            {dateTimeFormat(date)}
+          </h2>
           <p className="line-clamp-2 text-[0.75rem] leading-[1.6875rem] lg:text-base">
             {textContent}
           </p>
