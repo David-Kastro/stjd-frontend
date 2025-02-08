@@ -82,10 +82,6 @@ const menus: MenuItem[] = [
         name: "Resoluções",
         pathname: "/leis-normas/resolucoes",
       },
-      {
-        name: "Jurisprudência STJD",
-        pathname: "/leis-normas/jurisprudencia-stjd",
-      },
     ],
   },
   {

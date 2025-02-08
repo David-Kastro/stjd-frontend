@@ -19,72 +19,63 @@ const news = [
   {
     title: "Pleno confirma pauta com oito recursos",
     date: "05/11/2024 às 10h11",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Auditores da última instância nacional do futebol se reunirão nesta quinta, 7, a partir das 10h.",
   },
   {
     title: "CRB x Atlético/MG: Clubes multados e Formiga punido por agressão",
     date: "05/11/2024 às 10h11",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Infrações na partida da Copa do Brasil foram julgadas pela Primeira Comissão do STJD do Futebol",
   },
   {
     title: "Relator concede efeito suspensivo a Willian Formiga",
     date: "12/10/2024 às 12h10",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Auditor Rodrigo Aiache deferiu pedido do CRB e lateral poderá atuar até o julgamento do recurso no Pleno do STJD.",
   },
   {
     title: "Pleno confirma pauta com oito recursos",
     date: "05/11/2024 às 10h11",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Auditores da última instância nacional do futebol se reunirão nesta quinta, 7, a partir das 10h.",
   },
   {
     title: "CRB x Atlético/MG: Clubes multados e Formiga punido por agressão",
     date: "05/11/2024 às 10h11",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Infrações na partida da Copa do Brasil foram julgadas pela Primeira Comissão do STJD do Futebol",
   },
   {
     title: "Relator concede efeito suspensivo a Willian Formiga",
     date: "12/10/2024 às 12h10",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Auditor Rodrigo Aiache deferiu pedido do CRB e lateral poderá atuar até o julgamento do recurso no Pleno do STJD.",
   },
   {
     title: "Pleno confirma pauta com oito recursos",
     date: "05/11/2024 às 10h11",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Auditores da última instância nacional do futebol se reunirão nesta quinta, 7, a partir das 10h.",
   },
   {
     title: "CRB x Atlético/MG: Clubes multados e Formiga punido por agressão",
     date: "05/11/2024 às 10h11",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Infrações na partida da Copa do Brasil foram julgadas pela Primeira Comissão do STJD do Futebol",
   },
   {
     title: "Relator concede efeito suspensivo a Willian Formiga",
     date: "12/10/2024 às 12h10",
-    image:
-      "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg",
+    image: "/images/image-noticia.png",
     textContent:
       "Auditor Rodrigo Aiache deferiu pedido do CRB e lateral poderá atuar até o julgamento do recurso no Pleno do STJD.",
   },
@@ -236,7 +227,7 @@ function LatestNews() {
                           className="rounded-[1.25rem] lg:mt-[2.88rem] mt-[1.14rem]"
                           alt="Image"
                         />
-                        <p className="lg:mt-[1.94rem] mt-[0.9rem] leading-[1.6875rem] lg:text-base text-[0.75rem] leading-4">
+                        <p className="lg:mt-[1.94rem] mt-[0.9rem] lg:leading-[1.6875rem] lg:text-base text-[0.75rem] leading-4">
                           {group.textContent}
                         </p>
                         <Button className="bg-transparent text-black hover:bg-transparent flex gap-[0.56rem] w-fit ml-auto items-center text-[0.82363rem] leading-[1.23775rem] font-bold lg:hidden">
@@ -286,9 +277,7 @@ function LatestNews() {
                 05/11/2024 às 12h00
               </h2>
               <img
-                src={
-                  "https://conteudo.cbf.com.br/cdn/thumbs/974x546/202411/20241114145709_755.jpeg"
-                }
+                src={"/images/image-noticia.png"}
                 className="rounded-[1.25rem] lg:mt-[2.88rem] mt-[1.4rem]"
                 alt="Image"
               />

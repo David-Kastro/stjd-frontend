@@ -12,7 +12,7 @@ import BgScalle from "/public/images/bg-card-scale.svg";
 function Home() {
   return (
     <div>
-      <div className="container lg:mt-[5rem] ">
+      <div className="container lg:mt-[5rem]">
         <div className="flex lg:flex-row flex-col gap-[3rem] lg:border-l-[2px] border-[#B0B0B0]">
           <LatestNews />
           <div className="w-full">
