@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 import CardTopPage from '@/_components/CardTopPage'
-import BalancaJustica from '/public/images/balanca-justica.webp'
+import BalancaJustica from '/public/images/balanca-justica-prata.png'
 import CardLegislacao from '@/_components/CardLegislacao'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import BgEditais from '/public/images/bg-card-editais.svg'
@@ -152,7 +152,7 @@ const legislacoes = [
   },
 ]
 
-function Legislacao() {
+function Resolucoes() {
   const [openDialog, setOpenDialog] = useState(false)
   const [legislacaoActive, setLegislacaoActive] = useState<legislacaoType>(
     {} as legislacaoType,
@@ -166,18 +166,18 @@ function Legislacao() {
   return (
     <div className="mt-[8.4rem]">
       <CardTopPage
-        title="Legislação STJD"
+        title="Resoluções STJD"
         description="A parte de legislação do STJD define e interpreta as normas do esporte no Brasil, focando na justiça e integridade das competições. Baseada no CBJD, essa área regula e aplica punições a infrações esportivas, promovendo julgamentos imparciais e com critérios legais."
         image={BalancaJustica}
         height={'28.875rem'}
-        customClassImage="!-top-28 "
+        customClassImage="!-top-72 -right-44"
       />
       <div className="container">
         <div className="mx-auto max-w-[100.0625rem] rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">
           <div className="flex items-center gap-[0.56rem] px-[2.19rem]">
             <Search />
             <h1 className="text-[1.25rem] font-bold">
-              Encontrar Resultados de Julgamentos
+              Pesquisar Jurisprudências
             </h1>
           </div>
           <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
@@ -229,8 +229,7 @@ function Legislacao() {
       </div>
       <div className="container">
         <div className="relative z-10 mt-[10rem]">
-          <div className="absolute right-0 z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
-          <div className="scroll-custom-editais relative mx-auto -mr-[5px] flex h-[28rem] flex-wrap justify-center gap-x-[3.93rem] gap-y-[2.56rem] overflow-y-auto">
+          <div className="relative mx-auto -mr-[5px] flex flex-wrap justify-center gap-x-[3.93rem] gap-y-[2.56rem]">
             {legislacoes.map((legislacao, index) => (
               <button key={index} onClick={() => handleOpenDialog(legislacao)}>
                 <CardLegislacao
@@ -243,7 +242,7 @@ function Legislacao() {
         </div>
       </div>
       <div className="container relative z-10">
-        <div className="border-r-[2px] border-[#BFBFBF] pt-[6.19rem]">
+        <div className="pt-[6.19rem]">
           <ScaleAttorneys
             title="Editais de Julgamentos"
             subtitle="Acesse a tabela de Editais"
@@ -256,7 +255,7 @@ function Legislacao() {
       </div>
 
       <div className="container relative">
-        <div className="border-r-[2px] border-[#BFBFBF] pt-[7.81rem]">
+        <div className="pt-[7.81rem]">
           <div className="pb-[7.94rem]">
             <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
           </div>
@@ -296,4 +295,4 @@ function Legislacao() {
   )
 }
 
-export default Legislacao
+export default Resolucoes

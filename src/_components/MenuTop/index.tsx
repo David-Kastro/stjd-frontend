@@ -82,10 +82,6 @@ const menus: MenuItem[] = [
         name: 'Resoluções',
         pathname: '/leis-normas/resolucoes',
       },
-      {
-        name: 'Jurisprudência STJD',
-        pathname: '/leis-normas/jurisprudencia-stjd',
-      },
     ],
   },
   {
@@ -123,7 +119,7 @@ function MenuTop() {
     return menu.pathname ? pathname === menu.pathname : false
   }
   return (
-    <div>
+    <div className="relative z-10">
       <div className="hidden w-full bg-black lg:block">
         <div className="container flex items-center justify-end gap-[1.25rem] py-[0.78rem] pr-[2.56rem] text-[0.95769rem] leading-[0.95769rem] text-[#fff]">
           <a href="#" className="border-r border-[#fff] pr-[1.25rem]">

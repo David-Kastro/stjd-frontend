@@ -27,7 +27,7 @@ function Footer() {
           <div className="absolute -left-20 bottom-0">
             <Image src={BgFooter} alt="BgFooter" />
           </div>
-          <div className="w-full border-l-[2px] border-[#B0B0B0] pt-[4rem]">
+          <div className="w-full pt-[4rem]">
             <div className="relative mx-auto w-full max-w-[86.5625rem]">
               <div className="flex">
                 <div>
