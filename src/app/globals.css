@@ -145,3 +145,8 @@ body {
 .h2 {
   @apply font-[Inter] text-info text-[1.60rem] leading-[1.78rem] font-bold;
 }
+
+.bg-painel-transparencia {
+  background: linear-gradient(210deg, #E5E4E4 18.5%, #9A8D85 186.02%);
+  
+}
