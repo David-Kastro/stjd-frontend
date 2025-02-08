@@ -10,6 +10,7 @@ html {
   scroll-behavior: smooth;
 }
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -18,10 +19,12 @@ html {
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary:0 0% 9%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 37 33% 54%;
     /* Atualizado para a cor #BD995D */
+    --secondary: 37 33% 54%;
+    --info: 200 100% 27%;
+
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
@@ -48,10 +51,11 @@ html {
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 9%;
-    --secondary: 37 33% 54%;
     /* Atualizado para a cor #BD995D */
+    --secondary: 37 33% 54%;
+    --info: 200 100% 27%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
@@ -130,6 +134,14 @@ body {
 }
 
 .bg-card-legislacao {
-  background: url("/images/noise.svg") lightgray 0% 0% / 71.07091546058655px
-    71.07091546058655px repeat;
+  background: url("/images/noise.svg") lightgray 0% 0% / 71.07091546058655px 71.07091546058655px repeat;
+}
+
+.h1 {
+  @apply font-[Inter] text-[#000] text-4xl font-bold;
+}
+
+
+.h2 {
+  @apply font-[Inter] text-info text-[1.60rem] leading-[1.78rem] font-bold;
 }

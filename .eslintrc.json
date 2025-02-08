@@ -1,6 +1,7 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"],
+  "extends": ["next/core-web-vitals", "next/typescript", "@rocketseat/eslint-config/next"],
   "rules": {
+    "import/no-absolute-path": "off",
     "@typescript-eslint/no-explicit-any": "off"
   }
 }
