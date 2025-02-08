@@ -5,7 +5,7 @@ import Link from "next/link";
 
 interface CardEditalProps {
   title: string;
-  description: string;
+  description?: string;
   type: "link" | "function";
   path?: string;
   handleClick?: () => void;
@@ -42,7 +42,7 @@ function CardEdital({
   return (
     <button onClick={handleClick}>
       <div
-        className={`max-w-[44.3125rem] w-full bg-[#E1E1E1] hover:bg-[#fff] transition-colors duration-300 ease-in-out px-[1.25rem] py-[0.62rem] rounded-[0.625rem] flex lg:gap-[1.88rem] gap-[1.18rem] items-center ${
+        className={`max-w-[44.3125rem] min-h-[4.6875rem] w-full bg-[#E1E1E1] hover:bg-[#fff] transition-colors duration-300 ease-in-out px-[1.25rem] py-[0.62rem] rounded-[0.625rem] flex lg:gap-[1.88rem] gap-[1.18rem] items-center ${
           isActive && "bg-[#fff] border-[2px] border-[#BD995D]"
         }`}
       >
