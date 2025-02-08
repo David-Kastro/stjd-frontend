@@ -9,6 +9,7 @@ function Procuradores() {
     name: 'Paulo Emílio Dantas Nazaré',
     role: 'Procurador Geral',
     image: '/images/profile.jpg',
+    bio: 'Paulo Emílio Dantas Nazaré é um profissional dedicado à regulamentação esportiva, atuando como suplente na entidade. Sua experiência no setor jurídico é fundamental para a manutenção da transparência nos processos internos.\n\nEle trabalha ativamente para assegurar que as normas sejam aplicadas corretamente e que os princípios éticos sejam sempre preservados.',
   }
 
   const teamsData: AttorneysTeam[] = [

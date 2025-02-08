@@ -1,13 +1,17 @@
+'use client'
+
 import { cn } from '@/lib/utils'
 import { Users } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import DialogMemberBio from '../DialogMemberBio'
 
 export type Member = {
   name: string
   role?: string
   institution?: string
   image: string
+  bio?: string
 }
 
 type Group = {
@@ -28,10 +32,28 @@ interface Props {
   hideDividers?: boolean
 }
 
-const RenderMember: React.FC<{ member: Member }> = ({ member }) => {
+interface RenderMemberProps {
+  member: Member
+  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>
+  setActiveMember: React.Dispatch<React.SetStateAction<Member | null>>
+}
+
+const RenderMember: React.FC<RenderMemberProps> = ({
+  member,
+  setOpenDialog,
+  setActiveMember,
+}) => {
+  const handleClick = () => {
+    setActiveMember(member)
+    setOpenDialog(true)
+  }
+
   return (
     <div className="col-span-10 lg:col-span-2">
-      <div className="mb-6 h-[165px] w-[167px] overflow-hidden rounded-[0.625rem]">
+      <div
+        className="mb-6 h-[165px] w-[167px] cursor-pointer overflow-hidden rounded-[0.625rem]"
+        onClick={handleClick}
+      >
         <Image
           src={member.image}
           alt={`Retrato de ${member.name}`}
@@ -42,13 +64,24 @@ const RenderMember: React.FC<{ member: Member }> = ({ member }) => {
       </div>
       <div className="flex flex-col gap-[0.31rem]">
         {member.role && (
-          <h3 className="text-base font-bold text-secondary">{member.role}</h3>
+          <h3
+            className="cursor-pointer text-base font-bold text-secondary"
+            onClick={handleClick}
+          >
+            {member.role}
+          </h3>
         )}
-        <p className="max-w-44 text-base font-bold uppercase leading-[121%] text-[#3A3A3C]">
+        <p
+          className="max-w-44 cursor-pointer text-base font-bold uppercase leading-[121%] text-[#3A3A3C]"
+          onClick={handleClick}
+        >
           {member.name}
         </p>
         {member.institution && (
-          <p className="text-[0.8125rem] font-bold leading-[0.83688rem] text-[#727272]">
+          <p
+            className="cursor-pointer text-[0.8125rem] font-bold leading-[0.83688rem] text-[#727272]"
+            onClick={handleClick}
+          >
             {member.institution}
           </p>
         )}
@@ -62,6 +95,9 @@ function TeamGrid({
   splitGroupMembersByRole,
   hideDividers,
 }: Props) {
+  const [openDialog, setOpenDialog] = React.useState(false)
+  const [activeMember, setActiveMember] = React.useState<Member | null>(null)
+
   const getGrouppedMembersByRole = () => {
     return members.map((member) => {
       const splittedGroups = member.groups?.map((group) => {
@@ -77,7 +113,7 @@ function TeamGrid({
           },
           [[], []] as Member[][],
         )
-        return { ...{ ...group, isGrouped: true }, members: splittedMembers }
+        return { ...group, isGrouped: true, members: splittedMembers }
       })
       return splittedGroups
         ? { ...member, groups: [...splittedGroups] }
@@ -98,13 +134,20 @@ function TeamGrid({
           )}
         >
           <div className="container">
-            <div className="mb-8 flex items-center gap-1">
-              <Users className="h-6 w-6 text-secondary" />
-              <h2 className="h2">{team.title}</h2>
-            </div>
+            {team.title && (
+              <div className="mb-8 flex items-center gap-1">
+                <Users className="h-6 w-6 text-secondary" />
+                <h2 className="h2">{team.title}</h2>
+              </div>
+            )}
             <div className="grid grid-cols-11 gap-x-6 gap-y-12">
               {team.members?.map((member) => (
-                <RenderMember key={member.name} member={member} />
+                <RenderMember
+                  key={member.name}
+                  member={member}
+                  setActiveMember={setActiveMember}
+                  setOpenDialog={setOpenDialog}
+                />
               ))}
             </div>
           </div>
@@ -129,13 +172,20 @@ function TeamGrid({
                         className="mb-12 grid grid-cols-11 gap-x-6 gap-y-12 last:mb-0"
                       >
                         {memberGroup.map((member) => (
-                          <RenderMember key={member.name} member={member} />
+                          <RenderMember
+                            key={member.name}
+                            member={member}
+                            setActiveMember={setActiveMember}
+                            setOpenDialog={setOpenDialog}
+                          />
                         ))}
                       </div>
                     ) : (
                       <RenderMember
                         key={memberGroup.name}
                         member={memberGroup}
+                        setActiveMember={setActiveMember}
+                        setOpenDialog={setOpenDialog}
                       />
                     ),
                   )}
@@ -145,6 +195,11 @@ function TeamGrid({
           ))}
         </div>
       ))}
+      <DialogMemberBio
+        activeMember={activeMember}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+      />
     </>
   )
 }
