@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
 interface Props {
-  color?: string;
-  className?: string;
+  color?: string
+  className?: string
 }
 
 function Arrow({ color, className }: Props) {
@@ -18,7 +18,7 @@ function Arrow({ color, className }: Props) {
       <g clipPath="url(#clip0_16_120)">
         <path
           d="M0.0614243 7.00021C0.0614243 6.77011 0.157914 6.54004 0.350504 6.36461L6.41384 0.844188C6.79954 0.493018 7.4249 0.493018 7.81045 0.844188C8.19599 1.19522 8.19599 1.76447 7.81045 2.11567L2.44527 7.00021L7.81026 11.8848C8.19581 12.2359 8.19581 12.8051 7.81026 13.1561C7.42471 13.5075 6.79936 13.5075 6.41365 13.1561L0.350305 7.6358C0.157695 7.46028 0.0614243 7.23022 0.0614243 7.0002V7.00021Z"
-          fill={color || "#000"}
+          fill={color || '#000'}
         />
       </g>
       <defs>
@@ -32,7 +32,7 @@ function Arrow({ color, className }: Props) {
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 }
 
-export default Arrow;
+export default Arrow

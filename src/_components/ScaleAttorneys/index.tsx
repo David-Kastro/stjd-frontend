@@ -1,18 +1,18 @@
-"use client";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import LogoBlack from "/public/images/stjd-black.svg";
+'use client'
+import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
+import LogoBlack from '/public/images/stjd-black.svg'
 
-import { Button } from "../ui/button";
-import Link from "next/link";
+import { Button } from '../ui/button'
+import Link from 'next/link'
 
 interface ScaleAttorneysProps {
-  title: string;
-  subtitle: string;
-  height: string;
-  image: string;
-  textbtn: string;
-  href: string;
+  title: string
+  subtitle: string
+  height: string
+  image: string
+  textbtn: string
+  href: string
 }
 
 function ScaleAttorneys({
@@ -23,39 +23,39 @@ function ScaleAttorneys({
   textbtn,
   href,
 }: ScaleAttorneysProps) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     // Define o breakpoint que você considera como mobile (ex.: 1024px para lg)
-    const checkIsMobile = () => setIsMobile(window.innerWidth < 1024);
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 1024)
 
-    checkIsMobile();
-    window.addEventListener("resize", checkIsMobile);
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
 
-    return () => window.removeEventListener("resize", checkIsMobile);
-  }, []);
+    return () => window.removeEventListener('resize', checkIsMobile)
+  }, [])
 
   return (
     <div
-      className={`lg:max-w-[99.4375rem] mx-auto bg-custom-scale lg:rounded-[1.375rem] rounded-none lg:py-[1.47rem] py-[1.7rem] lg:px-[1.5rem] px-4 flex lg:flex-row flex-col justify-between items-center relative relative`}
-      style={{ height: isMobile ? "auto" : height }}
+      className={`bg-custom-scale relative mx-auto flex flex-col items-center justify-between rounded-none px-4 py-[1.7rem] lg:max-w-[99.4375rem] lg:flex-row lg:rounded-[1.375rem] lg:px-[1.5rem] lg:py-[1.47rem]`}
+      style={{ height: isMobile ? 'auto' : height }}
     >
-      <div className="flex lg:gap-[1.06rem] gap-[0.6rem] items-center z-10 relative">
+      <div className="relative z-10 flex items-center gap-[0.6rem] lg:gap-[1.06rem]">
         <Image
           src={LogoBlack}
           alt="LogoBlack"
-          className="lg:w-auto w-[2.8235rem]"
+          className="w-[2.8235rem] lg:w-auto"
         />
         <div>
-          <h1 className="text-[#005D8A] font-bold lg:text-[2.25rem] text-[1.28669rem] tracking-[0.0225rem]">
+          <h1 className="text-[1.28669rem] font-bold tracking-[0.0225rem] text-[#005D8A] lg:text-[2.25rem]">
             {title}
           </h1>
-          <h2 className="lg:text-[1.25rem] text-[0.71481rem] font-light text-[#000100]">
+          <h2 className="text-[0.71481rem] font-light text-[#000100] lg:text-[1.25rem]">
             {subtitle}
           </h2>
         </div>
       </div>
-      <div className="absolute lg:top-0 lg:left-96 lg:block hidden">
+      <div className="absolute hidden lg:left-96 lg:top-0 lg:block">
         <Image
           src={image}
           alt="BgScalle"
@@ -64,14 +64,14 @@ function ScaleAttorneys({
         />
       </div>
       <Link href={href} className="">
-        <Button className="lg:h-[3.75rem] h-[2.81019rem] px-[3.12rem] rounded-[4.625rem] bg-[#000100] text-[#FFFFFF] max-w-[15.375rem]  w-full lg:py-[0.94rem] py-[0.7rem]  font-bold lg:mt-0 mt-[0.86rem]">
-          <p className="lg:text-[1.25rem] text-[0.93675rem] lg:leading-normal leading-[0.92756rem]">
+        <Button className="mt-[0.86rem] h-[2.81019rem] w-full max-w-[15.375rem] rounded-[4.625rem] bg-[#000100] px-[3.12rem] py-[0.7rem] font-bold text-[#FFFFFF] lg:mt-0 lg:h-[3.75rem] lg:py-[0.94rem]">
+          <p className="text-[0.93675rem] leading-[0.92756rem] lg:text-[1.25rem] lg:leading-normal">
             {textbtn}
           </p>
         </Button>
       </Link>
     </div>
-  );
+  )
 }
 
-export default ScaleAttorneys;
+export default ScaleAttorneys

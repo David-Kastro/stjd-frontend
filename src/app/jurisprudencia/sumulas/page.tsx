@@ -1,110 +1,110 @@
-"use client";
-import CardTopPage from "@/_components/CardTopPage";
-import React, { useEffect, useState } from "react";
-import Pastas from "/public/images/martelo-sumulas.png";
-import { Search } from "lucide-react";
+'use client'
+import CardTopPage from '@/_components/CardTopPage'
+import React, { useEffect, useState } from 'react'
+import Pastas from '/public/images/martelo-sumulas.png'
+import { Search } from 'lucide-react'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/_components/ui/select";
-import { Button } from "@/_components/ui/button";
-import CardEdital from "@/_components/CardEdital";
+} from '@/_components/ui/select'
+import { Button } from '@/_components/ui/button'
+import CardEdital from '@/_components/CardEdital'
 
-import PDFViewer from "@/_components/PDFViewer";
-import ScaleAttorneys from "@/_components/ScaleAttorneys";
-import BgScalle from "/public/images/bg-card-processo.svg";
-import Image from "next/image";
-import LogoBlack from "/public/images/logo-stjd-black.svg";
-import BgFundoMembers from "/public/images/bg-fundo-members.svg";
+import PDFViewer from '@/_components/PDFViewer'
+import ScaleAttorneys from '@/_components/ScaleAttorneys'
+import BgScalle from '/public/images/bg-card-processo.svg'
+import Image from 'next/image'
+import LogoBlack from '/public/images/logo-stjd-black.svg'
+import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 
 export type Edital = {
-  id: number;
-  titulo: string;
-  subTitle: string;
-  link: string;
-};
+  id: number
+  titulo: string
+  subTitle: string
+  link: string
+}
 
 const editais = [
   {
     id: 1,
-    titulo: "Edital de Citação e Intimação opa",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação opa',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 2,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 3,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 4,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 5,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 6,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 5,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 8,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 9,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
   {
     id: 10,
-    titulo: "Edital de Citação e Intimação",
-    subTitle: "3º Comissão Disciplinar",
-    link: "https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf",
+    titulo: 'Edital de Citação e Intimação',
+    subTitle: '3º Comissão Disciplinar',
+    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
-];
+]
 
 function Editais() {
   const [editalActive, setEditalActive] = useState<Edital>({
     id: 0,
-    titulo: "",
-    subTitle: "",
-    link: "",
-  });
+    titulo: '',
+    subTitle: '',
+    link: '',
+  })
 
   useEffect(() => {
-    setEditalActive(editais[0]);
-  }, []);
+    setEditalActive(editais[0])
+  }, [])
 
   const handleClickEdital = (edital: Edital) => {
-    setEditalActive(edital);
-  };
+    setEditalActive(edital)
+  }
 
   return (
     <div>
@@ -112,22 +112,22 @@ function Editais() {
         title="Súmulas"
         description="As súmulas do STJD (Superior Tribunal de Justiça Desportiva) são entendimentos ou orientações consolidadas que o tribunal adota para casos específicos no âmbito desportivo, especialmente no futebol. Elas servem como uma espécie de jurisprudência, estabelecendo precedentes que orientam futuras decisões e garantindo maior uniformidade no julgamento de infrações."
         image={Pastas}
-        height={"28.875rem"}
+        height={'28.875rem'}
         customClassImage="-top-3"
       />
       <div className="container mt-[1.75rem]">
-        <div className="max-w-[100.0625rem] mx-auto">
-          <div className=" pt-[1.44rem] pb-[1.5rem] bg-[#E1E1E1] rounded-[1.375rem]">
-            <div className="flex items-center gap-[0.56rem] px-[2.19rem] ">
+        <div className="mx-auto max-w-[100.0625rem]">
+          <div className="rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">
+            <div className="flex items-center gap-[0.56rem] px-[2.19rem]">
               <Search />
               <h1 className="text-[1.25rem] font-bold">
                 Encontrar Resultados de Julgamentos
               </h1>
             </div>
-            <hr className="my-[1.5rem] bg-[#C2C2C2] h-[0.125rem]" />
-            <div className="flex px-[2.19rem] gap-[0.69rem] relative ">
+            <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
+            <div className="relative flex gap-[0.69rem] px-[2.19rem]">
               <Select>
-                <SelectTrigger className="w-[15rem] rounded-[0.8125rem] h-[3.75rem]">
+                <SelectTrigger className="h-[3.75rem] w-[15rem] rounded-[0.8125rem]">
                   <SelectValue placeholder="Escolha o Ano" />
                 </SelectTrigger>
                 <SelectContent>
@@ -140,7 +140,7 @@ function Editais() {
                 </SelectContent>
               </Select>
               <Select>
-                <SelectTrigger className="w-[8.875rem] rounded-[0.8125rem] h-[3.75rem]">
+                <SelectTrigger className="h-[3.75rem] w-[8.875rem] rounded-[0.8125rem]">
                   <SelectValue placeholder="Mês" />
                 </SelectTrigger>
                 <SelectContent>
@@ -159,16 +159,16 @@ function Editais() {
                 </SelectContent>
               </Select>
 
-              <Button className="text-[1.25rem] h-[3.75rem] p rounded-[4.625rem] w-[15.375rem] ml-[4rem]">
+              <Button className="p ml-[4rem] h-[3.75rem] w-[15.375rem] rounded-[4.625rem] text-[1.25rem]">
                 Pesquisar
               </Button>
             </div>
           </div>
-          <div className="flex gap-[5rem] ">
-            <div className="max-w-[48.4375rem] w-full">
-              <div className="lg:mt-[10.94rem] mt-[1.5rem] lg:pl-[1.69rem] lg:h-[58rem] z-10 relative flex items-center justify-center">
-                <div className="h-full absolute right-1 z-0 w-[2px] bg-[#BFBFBF] lg:block hidden"></div>
-                <div className="lg:h-[58rem] w-full  lg:pr-[4rem] flex flex-col lg:gap-[2.6rem] gap-[1.31rem] scroll-custom-editais lg:overflow-y-auto  relative rounded">
+          <div className="flex gap-[5rem]">
+            <div className="w-full max-w-[48.4375rem]">
+              <div className="relative z-10 mt-[1.5rem] flex items-center justify-center lg:mt-[10.94rem] lg:h-[58rem] lg:pl-[1.69rem]">
+                <div className="absolute right-1 z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
+                <div className="scroll-custom-editais relative flex w-full flex-col gap-[1.31rem] rounded lg:h-[58rem] lg:gap-[2.6rem] lg:overflow-y-auto lg:pr-[4rem]">
                   {editais.map((edital, index) => (
                     <CardEdital
                       key={index}
@@ -183,9 +183,9 @@ function Editais() {
 
                 {/* <div className="h-[5rem] absolute w-full bottom-0 blur-md bg-gradient-to-t from-[#ccc] to-transparent"></div> */}
               </div>
-              <div className="h-[5rem] border-r-[2px] border-[#BFBFBF] mr-[4.2px]"></div>
+              <div className="mr-[4.2px] h-[5rem] border-r-[2px] border-[#BFBFBF]"></div>
             </div>
-            <div className="max-w-[48.4375rem] w-full mt-[2rem]">
+            <div className="mt-[2rem] w-full max-w-[48.4375rem]">
               <PDFViewer editalActive={editalActive} />
             </div>
           </div>
@@ -193,7 +193,7 @@ function Editais() {
       </div>
       <div className="w-full border"></div>
       <div className="container">
-        <div className="lg:border-r-[2px] border-[#BFBFBF] pt-[3.9rem]">
+        <div className="border-[#BFBFBF] pt-[3.9rem] lg:border-r-[2px]">
           <ScaleAttorneys
             title="Legislação STJD"
             subtitle="Acesse a tabela"
@@ -205,12 +205,12 @@ function Editais() {
         </div>
       </div>
 
-      <div className="lg:container lg:bg-transparent bg-[#000] lg:py-0 py-[3.87rem] relative">
-        <div className="lg:pb-[7.94rem]  mt-[6.37rem]">
+      <div className="relative bg-[#000] py-[3.87rem] lg:container lg:bg-transparent lg:py-0">
+        <div className="mt-[6.37rem] lg:pb-[7.94rem]">
           <Image
             src={LogoBlack}
             alt="LogoBlack"
-            className="mx-auto lg:w-auto w-[8.9375rem]"
+            className="mx-auto w-[8.9375rem] lg:w-auto"
           />
         </div>
         <div className="absolute -left-20 -top-[48rem] z-0">
@@ -218,7 +218,7 @@ function Editais() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Editais;
+export default Editais

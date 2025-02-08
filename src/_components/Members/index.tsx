@@ -1,76 +1,76 @@
-import React from "react";
-import { ChevronLeft, Users } from "lucide-react";
+import React from 'react'
+import { ChevronLeft, Users } from 'lucide-react'
 
-import Image from "next/image";
-import BgFundoMembers from "/public/images/bg-fundo-members.svg";
-import { Button } from "../ui/button";
+import Image from 'next/image'
+import BgFundoMembers from '/public/images/bg-fundo-members.svg'
+import { Button } from '../ui/button'
 const members = [
   {
-    cargo: "Presidente",
-    nome: "Luís Otávio Veríssimo Teixeira",
-    foto: "/images/luis-otavio.svg",
+    cargo: 'Presidente',
+    nome: 'Luís Otávio Veríssimo Teixeira',
+    foto: '/images/luis-otavio.svg',
   },
   {
-    cargo: "Vice Presidente",
-    nome: "Maxwell Borges de Moura Vieira",
-    foto: "/images/max-borges.svg",
+    cargo: 'Vice Presidente',
+    nome: 'Maxwell Borges de Moura Vieira',
+    foto: '/images/max-borges.svg',
   },
   {
-    cargo: "Vice Presidente Administrativo",
-    nome: "Rodrigo Aiache",
-    foto: "/images/max-borges.svg",
+    cargo: 'Vice Presidente Administrativo',
+    nome: 'Rodrigo Aiache',
+    foto: '/images/max-borges.svg',
   },
   {
-    cargo: "Diretor da ENAJD",
-    nome: "Luiz Felipe Bulus Alves Ferreira",
-    foto: "/images/max-borges.svg",
+    cargo: 'Diretor da ENAJD',
+    nome: 'Luiz Felipe Bulus Alves Ferreira',
+    foto: '/images/max-borges.svg',
   },
-];
+]
 function Members() {
   return (
     <section className="container relative">
-      <div className="pt-[4.94rem] lg:border-l-[2px] border-[#B0B0B0] lg:pb-[7.81rem] pb-[5rem] relative z-20">
-        <div className="max-w-[80.0625rem] mx-auto lg:bg-[#E1E1E1] rounded-[1.375rem] pt-[3.38rem]">
-          <div className="lg:pl-[5rem] flex gap-[1.5rem] items-center">
+      <div className="relative z-20 border-[#B0B0B0] pb-[5rem] pt-[4.94rem] lg:border-l-[2px] lg:pb-[7.81rem]">
+        <div className="mx-auto max-w-[80.0625rem] rounded-[1.375rem] pt-[3.38rem] lg:bg-[#E1E1E1]">
+          <div className="flex items-center gap-[1.5rem] lg:pl-[5rem]">
             <h1 className="flex items-center gap-[0.56rem] text-[1.25rem] font-bold">
               <Users />
               Membros
             </h1>
-            <hr className="w-full h-[0.125rem] bg-secondary lg:block hidden" />
+            <hr className="hidden h-[0.125rem] w-full bg-secondary lg:block" />
           </div>
-          <div className="lg:px-[6.31rem] mt-[3.75rem] flex lg:justify-between justify-center lg:gap-0 gap-[1rem] lg:flex-nowrap flex-wrap">
+          <div className="mt-[3.75rem] flex flex-wrap justify-center gap-[1rem] lg:flex-nowrap lg:justify-between lg:gap-0 lg:px-[6.31rem]">
             {members.map((member, index) => (
-              <div key={index} className="lg:max-w-[10.4375rem] max-w-[10rem]">
+              <div key={index} className="max-w-[10rem] lg:max-w-[10.4375rem]">
                 <div className="w-full">
                   <img src={member.foto} alt={member.nome} className="w-full" />
-                  <p className="text-secondary font-bold mt-[1.5rem] leading-[1.03rem] lg:text-base text-[0.85rem]">
+                  <p className="mt-[1.5rem] text-[0.85rem] font-bold leading-[1.03rem] text-secondary lg:text-base">
                     {member.cargo}
                   </p>
-                  <h2 className="lg:text-base text-[0.85rem] uppercase font-bold text-[#3A3A3C] leading-[1.21rem] mt-[0.31rem]">
+                  <h2 className="mt-[0.31rem] text-[0.85rem] font-bold uppercase leading-[1.21rem] text-[#3A3A3C] lg:text-base">
                     {member.nome}
                   </h2>
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex lg:justify-end justify-center lg:pr-[2.81rem] pb-[3.06rem]">
-            <Button className="lg:flex hidden bg-transparent text-black hover:bg-transparent  gap-[0.56rem] w-fit lg:ml-auto mt-[2.5rem] items-center text-[1.25rem] leading-[1.23775rem] font-bold">
-              Veja mais{" "}
+          <div className="flex justify-center pb-[3.06rem] lg:justify-end lg:pr-[2.81rem]">
+            <Button className="mt-[2.5rem] hidden w-fit items-center gap-[0.56rem] bg-transparent text-[1.25rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:ml-auto lg:flex">
+              Veja mais{' '}
               <div className="rotate-180">
                 <ChevronLeft />
               </div>
             </Button>
-            <Button className="lg:hidden bg-black rounded-full text-white hover:bg-transparent  gap-[0.56rem] w-fit lg:ml-auto mt-[2.5rem] items-center px-[2.34rem] leading-[1.23775rem] font-bold text-[0.93675rem]">
+            <Button className="mt-[2.5rem] w-fit items-center gap-[0.56rem] rounded-full bg-black px-[2.34rem] text-[0.93675rem] font-bold leading-[1.23775rem] text-white hover:bg-transparent lg:ml-auto lg:hidden">
               Veja mais
             </Button>
           </div>
         </div>
       </div>
-      <div className="absolute -left-20 -bottom-[12.4rem] lg:block hidden">
+      <div className="absolute -bottom-[12.4rem] -left-20 hidden lg:block">
         <Image src={BgFundoMembers} alt="BgFundoMembers" />
       </div>
     </section>
-  );
+  )
 }
 
-export default Members;
+export default Members

@@ -20,8 +20,10 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.4.0",
     "lucide-react": "^0.454.0",
+    "marked": "^15.0.6",
     "next": "15.0.2",
     "pdfjs-dist": "^4.10.38",
+    "qs": "^6.14.0",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-countdown": "^2.3.6",
     "react-day-picker": "8.10.1",
@@ -33,6 +35,7 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^20",
+    "@types/qs": "^6.9.18",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
