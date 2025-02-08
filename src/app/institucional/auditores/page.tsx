@@ -246,7 +246,7 @@ function Auditores() {
           Membros
         </h1>
         <div className="mt-24">
-          <TeamGrid teams={teams} splitGroupMembersByRole />
+          <TeamGrid teamsData={teams} splitGroupMembersByRole />
         </div>
       </section>
       <section>
