@@ -1,32 +1,32 @@
-import React from "react";
+import React from 'react'
 
-import { Card, CardContent, CardTitle } from "@/_components/ui/card";
-import { FileText } from "lucide-react";
+import { Card, CardContent, CardTitle } from '@/_components/ui/card'
+import { FileText } from 'lucide-react'
 
 interface CardLegislacaoProps {
-  title: string;
-  subtitle: string;
+  title: string
+  subtitle: string
 }
 
 function CardLegislacao({ title, subtitle }: CardLegislacaoProps) {
   return (
-    <Card className="group h-full  w-[9.62763rem] rounded-[0.61588rem] hover:shadow-2xl bg-card-legislacao bg-cover relative ">
-      <div className="absolute top-6 -left-[2px] w-[4.5px] rounded-full bg-secondary h-[1.7925rem]"></div>
+    <Card className="bg-card-legislacao group relative h-full w-[9.62763rem] rounded-[0.61588rem] bg-cover hover:shadow-2xl">
+      <div className="absolute -left-[2px] top-6 h-[1.7925rem] w-[4.5px] rounded-full bg-secondary"></div>
 
       <CardContent className="p-4 pt-0">
-        <div className="h-[4.09375rem] w-[3.47788rem] flex items-center justify-center bg-[#ABABAB] group-hover:bg-secondary rounded-md rounded-tr-[1.2rem] mt-[2.94rem] mx-auto">
+        <div className="mx-auto mt-[2.94rem] flex h-[4.09375rem] w-[3.47788rem] items-center justify-center rounded-md rounded-tr-[1.2rem] bg-[#ABABAB] group-hover:bg-secondary">
           <FileText className="text-white" />
         </div>
         <div className="mt-[1.16rem]">
           <CardTitle>
-            <p className="text-[0.7rem] leading-[1rem] font-normal text-[#2E2E2E] text-center">
+            <p className="text-center text-[0.7rem] font-normal leading-[1rem] text-[#2E2E2E]">
               <span className="font-bold">{title}</span> <span>{subtitle}</span>
             </p>
           </CardTitle>
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }
 
-export default CardLegislacao;
+export default CardLegislacao

@@ -1,22 +1,22 @@
-import CardTopPage from "@/_components/CardTopPage";
-import React from "react";
-import Estatua from "/public/images/estatua-processos.svg";
-import { Search } from "lucide-react";
+import CardTopPage from '@/_components/CardTopPage'
+import React from 'react'
+import Estatua from '/public/images/estatua-processos.svg'
+import { Search } from 'lucide-react'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/_components/ui/select";
-import { Button } from "@/_components/ui/button";
-import BgFundoMembers from "/public/images/bg-fundo-members.svg";
-import { Label } from "@/_components/ui/label";
-import { Input } from "@/_components/ui/input";
-import ScaleAttorneys from "@/_components/ScaleAttorneys";
-import Image from "next/image";
-import LogoBlack from "/public/images/logo-stjd-black.svg";
-import BgScalle from "/public/images/bg-card-processo.svg";
+} from '@/_components/ui/select'
+import { Button } from '@/_components/ui/button'
+import BgFundoMembers from '/public/images/bg-fundo-members.svg'
+import { Label } from '@/_components/ui/label'
+import { Input } from '@/_components/ui/input'
+import ScaleAttorneys from '@/_components/ScaleAttorneys'
+import Image from 'next/image'
+import LogoBlack from '/public/images/logo-stjd-black.svg'
+import BgScalle from '/public/images/bg-card-processo.svg'
 
 function Processos() {
   return (
@@ -26,7 +26,7 @@ function Processos() {
           title="Processos STJD"
           description="Os processos do STJD são ações jurídicas para resolver infrações e disputas no esporte, especialmente no futebol, baseadas no Código Brasileiro de Justiça Desportiva (CBJD) e regulamentos da CBF, com atuação independente."
           image={Estatua}
-          height={"28.875rem"}
+          height={'28.875rem'}
           customClassImage="-top-48 right-10"
         />
         <div className="container">
@@ -145,7 +145,7 @@ function Processos() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Processos;
+export default Processos

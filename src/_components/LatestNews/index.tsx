@@ -7,80 +7,19 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/_components/ui/carousel'
+
 import CardNews from '../CardNews'
 import { Button } from '../ui/button'
 import { useGlobalContext } from '@/contexts/GlobalContext'
 
 import LiveSessionCard from '../LiveSessionCard'
 import { Skeleton } from '../ui/skeleton'
+import { Article } from '@/lib/types'
+import { marked } from 'marked'
+import CustomImage from '../CustomImage'
+import { dateTimeFormat } from '@/lib/utils'
 
-const news = [
-  {
-    title: 'Pleno confirma pauta com oito recursos',
-    date: '05/11/2024 às 10h11',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Auditores da última instância nacional do futebol se reunirão nesta quinta, 7, a partir das 10h.',
-  },
-  {
-    title: 'CRB x Atlético/MG: Clubes multados e Formiga punido por agressão',
-    date: '05/11/2024 às 10h11',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Infrações na partida da Copa do Brasil foram julgadas pela Primeira Comissão do STJD do Futebol',
-  },
-  {
-    title: 'Relator concede efeito suspensivo a Willian Formiga',
-    date: '12/10/2024 às 12h10',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Auditor Rodrigo Aiache deferiu pedido do CRB e lateral poderá atuar até o julgamento do recurso no Pleno do STJD.',
-  },
-  {
-    title: 'Pleno confirma pauta com oito recursos',
-    date: '05/11/2024 às 10h11',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Auditores da última instância nacional do futebol se reunirão nesta quinta, 7, a partir das 10h.',
-  },
-  {
-    title: 'CRB x Atlético/MG: Clubes multados e Formiga punido por agressão',
-    date: '05/11/2024 às 10h11',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Infrações na partida da Copa do Brasil foram julgadas pela Primeira Comissão do STJD do Futebol',
-  },
-  {
-    title: 'Relator concede efeito suspensivo a Willian Formiga',
-    date: '12/10/2024 às 12h10',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Auditor Rodrigo Aiache deferiu pedido do CRB e lateral poderá atuar até o julgamento do recurso no Pleno do STJD.',
-  },
-  {
-    title: 'Pleno confirma pauta com oito recursos',
-    date: '05/11/2024 às 10h11',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Auditores da última instância nacional do futebol se reunirão nesta quinta, 7, a partir das 10h.',
-  },
-  {
-    title: 'CRB x Atlético/MG: Clubes multados e Formiga punido por agressão',
-    date: '05/11/2024 às 10h11',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Infrações na partida da Copa do Brasil foram julgadas pela Primeira Comissão do STJD do Futebol',
-  },
-  {
-    title: 'Relator concede efeito suspensivo a Willian Formiga',
-    date: '12/10/2024 às 12h10',
-    image: '/images/image-noticia.png',
-    textContent:
-      'Auditor Rodrigo Aiache deferiu pedido do CRB e lateral poderá atuar até o julgamento do recurso no Pleno do STJD.',
-  },
-]
-
-function LatestNews() {
+function LatestNews({ articles }: { articles: Article[] }) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const { status, sessao, loadingSession } = useGlobalContext()
@@ -105,19 +44,22 @@ function LatestNews() {
     })
   }, [api])
 
+  const articlesWithoutHighlight = useMemo(() => articles.slice(1), [articles])
+
   // Dividindo o array de notícias em grupos de 3
-  const groupedNews = useMemo(() => {
+  const groupedArticles = useMemo(() => {
     const result = []
-    for (let i = 0; i < news.length; i += 3) {
-      result.push(news.slice(i, i + 3))
+    for (let i = 0; i < articlesWithoutHighlight.length; i += 3) {
+      result.push(articlesWithoutHighlight.slice(i, i + 3))
     }
     return result
-  }, [])
+  }, [articlesWithoutHighlight])
+
+  const articleHightlight = articles[0]
 
   useEffect(() => {
     if (status === 'online') {
       const dataString = new Date(sessao.released)
-      console.log('dataString', dataString)
       setDateFinal(dataString)
     }
   }, [status, sessao])
@@ -212,22 +154,29 @@ function LatestNews() {
                 className="mt-[1.29rem] w-full lg:mt-[3.69rem]"
               >
                 <CarouselContent>
-                  {news.map((group, groupIndex) => (
+                  {articlesWithoutHighlight.map((group, groupIndex) => (
                     <CarouselItem key={groupIndex}>
                       <>
                         <h1 className="w-full max-w-[40.1875rem] text-[1.29613rem] font-bold leading-[1.44013rem] tracking-[0.0225rem] lg:text-[2.25rem] lg:leading-[2.5rem]">
-                          {group.title}
+                          {group.headline}
                         </h1>
                         <h2 className="mt-[0.7rem] text-[0.5rem] text-[#A1A1A1] lg:mt-[1.19rem] lg:text-[0.875rem]">
-                          {group.date}
+                          {dateTimeFormat(group.createdAt)}
                         </h2>
-                        <img
-                          src={group.image}
-                          className="mt-[1.14rem] rounded-[1.25rem] lg:mt-[2.88rem]"
-                          alt="Image"
+                        <CustomImage
+                          src={group.imagem.url}
+                          className="mt-[1.14rem] aspect-[2/1] rounded-[1.25rem] object-cover lg:mt-[2.88rem]"
+                          alt={group.imagem.name}
+                          width={200}
+                          height={100}
                         />
-                        <p className="mt-[0.9rem] text-[0.75rem] leading-4 lg:mt-[1.94rem] lg:text-base lg:leading-[1.6875rem]">
-                          {group.textContent}
+                        {/* <img
+                          src={group.imagem.url}
+                          className="rounded-[1.25rem] lg:mt-[2.88rem] mt-[1.14rem]"
+                          alt="Image"
+                        /> */}
+                        <p className="mt-[0.9rem] text-[0.75rem] leading-4 lg:mt-[1.94rem] lg:text-base">
+                          {marked.parse(group.corpo)}
                         </p>
                         <Button className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:hidden">
                           Veja mais{' '}
@@ -241,7 +190,7 @@ function LatestNews() {
                 </CarouselContent>
               </Carousel>
               <div className="mt-5 flex justify-center gap-2">
-                {news.map((_, groupIndex) => (
+                {articlesWithoutHighlight.map((_, groupIndex) => (
                   <div
                     key={groupIndex}
                     className={`h-[0.4375rem] rounded-full ${
@@ -270,20 +219,17 @@ function LatestNews() {
                 </p>
               </div>
               <h1 className="mt-[1.29rem] w-full max-w-[40.1875rem] text-[1.29613rem] font-bold leading-[1.44013rem] tracking-[0.01294rem] lg:mt-[2.94rem] lg:text-[2.25rem] lg:leading-[2.5rem] lg:tracking-[0.0225rem]">
-                Zagueiro do Cruzeiro absolvido em primeira instância
+                {articleHightlight.headline}
               </h1>
-              <h2 className="mt-[0.7rem] text-[0.5rem] text-[#A1A1A1] lg:mt-[1.19rem] lg:text-[0.875rem]">
-                05/11/2024 às 12h00
-              </h2>
-              <img
-                src={'/images/image-noticia.png'}
-                className="mt-[1.4rem] rounded-[1.25rem] lg:mt-[2.88rem]"
-                alt="Image"
+              <CustomImage
+                src={articleHightlight.imagem.url}
+                className="mt-[1.4rem] aspect-[2/1] rounded-[1.25rem] object-cover lg:mt-[2.88rem]"
+                alt={articleHightlight.imagem.name}
+                width={720}
+                height={360}
               />
               <p className="mt-[0.9rem] text-[0.75rem] leading-[1rem] lg:mt-[1.94rem] lg:text-base lg:leading-[1.6875rem]">
-                Expulso contra o Cuiabá, João Marcelo foi denunciado e julgado
-                por praticar ato desleal ou hostil ao impedir uma oportunidade
-                clara de gol.
+                {articleHightlight.corpo}
               </p>
               <Button className="ml-auto mt-[0.6rem] flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:mt-[2.5rem] lg:text-[1.25rem]">
                 Veja mais{' '}
@@ -315,16 +261,16 @@ function LatestNews() {
                 className="mt-[3.69rem] p-0 lg:w-full lg:pl-[2.81rem]"
               >
                 <CarouselContent>
-                  {groupedNews.map((group, groupIndex) => (
+                  {groupedArticles.map((group, groupIndex) => (
                     <CarouselItem key={groupIndex}>
                       <div className="flex flex-col gap-[2.81rem] lg:p-4">
                         {group.map((item, index) => (
                           <div key={index} className="flex-1">
                             <CardNews
-                              image={item.image}
-                              title={item.title}
-                              date={item.date}
-                              textContent={item.textContent}
+                              image={item.imagem.url}
+                              title={item.headline}
+                              date={item.createdAt}
+                              textContent={item.corpo}
                             />
                           </div>
                         ))}
@@ -336,13 +282,13 @@ function LatestNews() {
             </div>
 
             <div className="mt-[2rem] flex justify-center gap-2">
-              {groupedNews.map((_, groupIndex) => (
+              {groupedArticles.map((_, groupIndex) => (
                 <div
                   key={groupIndex}
-                  className={`h-[0.4375rem] rounded-full ${
+                  className={`h-[0.4375rem] w-[4rem] rounded-full transition-all ${
                     current === groupIndex + 1
-                      ? 'w-[3.0625rem] bg-[#797979]'
-                      : 'w-[0.625rem] bg-secondary'
+                      ? 'max-w-[3.0625rem] bg-[#797979]'
+                      : 'max-w-[0.625rem] bg-secondary'
                   }`}
                 ></div>
               ))}
