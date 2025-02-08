@@ -3,7 +3,7 @@ import { Users } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-type Member = {
+export type Member = {
   name: string
   role?: string
   institution?: string
@@ -23,8 +23,9 @@ export type Team = {
 }
 
 interface Props {
-  teams: Team[]
+  teamsData: Team[]
   splitGroupMembersByRole?: boolean
+  hideDividers?: boolean
 }
 
 const RenderMember: React.FC<{ member: Member }> = ({ member }) => {
@@ -56,7 +57,11 @@ const RenderMember: React.FC<{ member: Member }> = ({ member }) => {
   )
 }
 
-function TeamGrid({ teams: members, splitGroupMembersByRole }: Props) {
+function TeamGrid({
+  teamsData: members,
+  splitGroupMembersByRole,
+  hideDividers,
+}: Props) {
   const getGrouppedMembersByRole = () => {
     return members.map((member) => {
       const splittedGroups = member.groups?.map((group) => {
@@ -87,7 +92,10 @@ function TeamGrid({ teams: members, splitGroupMembersByRole }: Props) {
       {teams.map((team) => (
         <div
           key={team.title}
-          className="relative pb-20 pt-10 after:absolute after:-left-4 after:bottom-0 after:h-[0.125rem] after:w-[calc(100%+2rem)] after:bg-border"
+          className={cn(
+            'relative pb-20 pt-10 after:absolute after:-left-4 after:bottom-0 after:right-0 after:h-[0.125rem] after:w-screen after:bg-border',
+            hideDividers && 'after:hidden',
+          )}
         >
           <div className="container">
             <div className="mb-8 flex items-center gap-1">
@@ -103,7 +111,7 @@ function TeamGrid({ teams: members, splitGroupMembersByRole }: Props) {
           {team.groups?.map((group) => (
             <div
               key={group.title}
-              className="relative pt-10 after:absolute after:-left-4 after:bottom-0 after:h-[0.125rem] after:w-[calc(100%+2rem)] after:bg-border after:last:h-0 [&:not(:last-child)]:pb-20"
+              className="relative pt-10 after:absolute after:-left-4 after:bottom-0 after:right-0 after:h-[0.125rem] after:w-screen after:bg-border after:last:h-0 [&:not(:last-child)]:pb-20"
             >
               <div className="container">
                 <h3 className="mb-7 mt-[0.81rem] text-xl font-semibold leading-[1.23775rem] text-[#000]">
