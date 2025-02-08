@@ -12,8 +12,8 @@ import BgScalle from "/public/images/bg-card-scale.svg";
 function Home() {
   return (
     <div>
-      <div className="container mt-[5rem] ">
-        <div className="flex gap-[3rem] border-l-[2px] border-[#B0B0B0]">
+      <div className="container lg:mt-[5rem] ">
+        <div className="flex lg:flex-row flex-col gap-[3rem] lg:border-l-[2px] border-[#B0B0B0]">
           <LatestNews />
           <div className="w-full">
             <JudgmentGuidelines />
@@ -21,9 +21,9 @@ function Home() {
           </div>
         </div>
       </div>
-      <hr className="w-fulll h-[0.125rem] bg-[#B0B0B0]" />
-      <div className="container">
-        <div className="pt-[4.94rem] border-l-[2px] border-[#B0B0B0]">
+      <hr className="w-fulll h-[0.125rem] bg-[#B0B0B0] lg:block hidden" />
+      <div className="lg:container">
+        <div className="lg:pt-[4.94rem] lg:border-l-[2px] border-[#B0B0B0]">
           <ScaleAttorneys
             title="Escala de Procuradores 2024"
             subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"
@@ -35,9 +35,13 @@ function Home() {
         </div>
       </div>
       <Members />
-      <div className="container">
-        <div className="pb-[7.94rem]  border-l-[2px] border-[#B0B0B0]">
-          <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
+      <div className="lg:container lg:bg-transparent bg-[#000] lg:py-0 py-[3.87rem]">
+        <div className="lg:pb-[7.94rem]  lg:border-l-[2px] border-[#B0B0B0]">
+          <Image
+            src={LogoBlack}
+            alt="LogoBlack"
+            className="mx-auto lg:w-auto w-[8.9375rem]"
+          />
         </div>
       </div>
     </div>

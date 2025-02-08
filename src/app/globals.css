@@ -10,6 +10,7 @@ html {
   scroll-behavior: smooth;
 }
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -104,14 +105,6 @@ body {
   background: linear-gradient(20deg, #e5e4e4 18.5%, #9a8d85 186.02%);
 }
 
-.scroll-custom-editais {
-  overflow-y: auto;
-
-  z-index: 1000;
-  position: relative;
-  border-radius: 0.25rem;
-}
-
 .scroll-custom-editais::-webkit-scrollbar {
   width: 0.9375rem;
   /* Largura da barra de rolagem */
@@ -135,7 +128,6 @@ body {
 }
 
 .bg-custom-scale {
-  border-radius: 1.375rem;
   background: linear-gradient(90deg, #e1e1e1 42%, #cec9c7 100%);
 }
 

@@ -17,7 +17,13 @@ function Footer() {
   return (
     <div>
       <div className="bg-[#000100]">
-        <div className="container overflow-hidden relative">
+        <div className=" border-t-[0.0625rem] border-[#B8B8B8] py-[1.7rem] italic lg:hidden">
+          <p className="max-w-[19.25rem] mx-auto text-center text-[#B8B8B8] text-[0.8125rem]">
+            Superior Tribunal de Justiça Deportiva de Futebol © Todos os
+            direitos reservados
+          </p>
+        </div>
+        <div className="container overflow-hidden relative lg:block hidden">
           <div className="absolute bottom-0 -left-20">
             <Image src={BgFooter} alt="BgFooter" />
           </div>

@@ -1,11 +1,17 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "/public/images/logo-stjd.svg";
 import BgTop from "/public/images/bg-fundo-menu.png";
-import { Search } from "lucide-react";
+import { ChevronRight, Menu, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/_components/ui/sheet";
 
 interface MenuItem {
   name: string;
@@ -36,56 +42,89 @@ const menus: MenuItem[] = [
     ],
   },
   {
-    name: "Legislação",
-    pathname: "/legislacao",
-  },
-  {
-    name: "Editais",
-    pathname: "/editais",
-  },
-  {
-    name: "Resultados",
-    pathname: "/resultados",
-  },
-  {
-    name: "Acordãos",
-    pathname: "/acordaos",
+    name: "Processos",
+    paths: [
+      {
+        name: "Editais",
+        pathname: "/processos/editais",
+      },
+      {
+        name: "Processos",
+        pathname: "/processos/processos",
+      },
+    ],
   },
   {
     name: "Jurisprudência",
-    pathname: "/jurisprudencia",
+    paths: [
+      {
+        name: "Acordãos e Decisões",
+        pathname: "/jurisprudencia/acordaos-decisoes",
+      },
+      {
+        name: "Súmulas",
+        pathname: "/jurisprudencia/sumulas",
+      },
+      {
+        name: "Jurisprudência STJD",
+        pathname: "/jurisprudencia/jurisprudencia-stjd",
+      },
+    ],
   },
   {
-    name: "Resoluções",
-    pathname: "/resolucoes",
+    name: "Leis e Normas",
+    paths: [
+      {
+        name: "Legislação",
+        pathname: "/leis-normas/legislacao",
+      },
+      {
+        name: "Resoluções",
+        pathname: "/leis-normas/resolucoes",
+      },
+      {
+        name: "Jurisprudência STJD",
+        pathname: "/leis-normas/jurisprudencia-stjd",
+      },
+    ],
   },
   {
-    name: "Notícias",
-    pathname: "/noticias",
+    name: "Publicações e Repositório",
+    pathname: "/publicacao-repositorio",
   },
   {
-    name: "Galerias",
-    pathname: "/galerias",
+    name: "Comunicação",
+    paths: [
+      {
+        name: "Notícias",
+        pathname: "/comunicacao/noticias",
+      },
+      {
+        name: "Galerias",
+        pathname: "/comunicacao/galerias",
+      },
+    ],
   },
   {
-    name: "Contato",
-    pathname: "/contato",
+    name: "Transparência e Prestação de Contas",
+    pathname: "/transparencia-pretacao-contas",
   },
 ];
 
 function MenuTop() {
+  const [open, setOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
   function isActive(menu: MenuItem): boolean {
     if (menu.paths) {
-      // Verifica se o pathname da página está dentro de algum submenu
       return menu.paths.some((subMenu) => pathname.includes(subMenu.pathname));
     }
-    // Caso não haja submenu, verifica se o pathname corresponde ao item principal
+
     return menu.pathname ? pathname === menu.pathname : false;
   }
   return (
     <div>
-      <div className="w-full bg-black">
+      <div className="w-full bg-black lg:block hidden">
         <div className="container py-[0.78rem] flex justify-end items-center gap-[1.25rem] text-[#fff] text-[0.95769rem] leading-[0.95769rem] pr-[2.56rem]">
           <a href="#" className="border-r border-[#fff] pr-[1.25rem]">
             CBF
@@ -96,12 +135,23 @@ function MenuTop() {
           <a href="#">Transparência e Prestação de Contas</a>
         </div>
       </div>
-      <div className="container mt-[1.5rem]">
-        <div className="flex justify-between items-center bg-custom-menu px-8 py-5 rounded-[1.375rem] relative">
+      <div className="lg:container lg:mt-[1.5rem]">
+        <div className="flex justify-between items-center bg-custom-menu px-8 lg:py-5 py-[2.9rem] lg:rounded-[1.375rem] relative lg:overflow-visible overflow-hidden">
           <Link href={"/"}>
-            <Image src={Logo} alt="Logo" draggable={false} />
+            <Image
+              src={Logo}
+              alt="Logo"
+              draggable={false}
+              className="lg:w-auto w-[10.25rem]"
+            />
           </Link>
-          <form className="max-w-[22.0625rem] z-10 w-full relative">
+          <button
+            onClick={() => setOpen(true)}
+            className="lg:hidden text-white py-[0.81rem] px-[0.75rem] rounded-[0.4375rem] bg-[#BABABA]"
+          >
+            <Menu />
+          </button>
+          <form className="max-w-[22.0625rem] z-10 w-full relative lg:block hidden">
             <input
               type="text"
               name=""
@@ -114,12 +164,17 @@ function MenuTop() {
               <Search />
             </button>
           </form>
-          <div className="absolute right-0 top-1 z-0 ">
-            <Image src={BgTop} alt="BgTop" draggable={false} />
+          <div className="absolute lg:right-0 -right-5 top-24 lg:top-1 z-0 ">
+            <Image
+              src={BgTop}
+              alt="BgTop"
+              draggable={false}
+              className="lg:w-auto w-[15.5625rem]"
+            />
           </div>
         </div>
       </div>
-      <div className="container mt-[1.86rem]">
+      <nav className="container mt-[1.86rem] lg:block hidden">
         <div className="max-w-[99.3125rem] mx-auto w-full flex justify-between px-[1.64rem]">
           {menus.map((menu, index) => (
             <div key={index}>
@@ -134,7 +189,7 @@ function MenuTop() {
                       fontWeight: isActive(menu) ? "700" : "",
                     }}
                   >
-                    <button className="inline-block py-[0.88rem] px-[1.25rem] text-[#002A3E] group-hover:font-bold text-[0.95769rem] leading-[0.95769rem]">
+                    <button className="inline-block  py-[0.88rem] px-[1.25rem] text-[#002A3E] group-hover:font-bold text-[0.95769rem] leading-[0.95769rem]">
                       {menu.name}
                     </button>
                   </div>
@@ -153,8 +208,8 @@ function MenuTop() {
                     <p className="inline-block py-[0.88rem] px-[1.25rem] text-[#002A3E] text-center group-hover:font-bold text-[0.95769rem] leading-[0.95769rem] w-full">
                       {menu.name}
                     </p>
-                    <div className="absolute top-[4.9rem] w-full invisible opacity-0 h-0 group-hover:block group-hover:opacity-100 group-hover:visible group-hover:h-auto transition-[opacity,visibility,height] duration-300">
-                      <div className="bg-[#fff] rounded-[0.8125rem] py-[0.94rem] px-4">
+                    <div className="absolute top-[4.9rem] invisible opacity-0 h-0 group-hover:block group-hover:opacity-100 group-hover:visible group-hover:h-auto transition-[opacity,visibility,height] duration-300 min-w-[10rem] w-max ">
+                      <div className="bg-[#fff] rounded-[0.8125rem] py-[0.94rem] px-4 whitespace-nowrap">
                         {menu.paths &&
                           menu.paths.map((path, i) => (
                             <Link
@@ -179,7 +234,72 @@ function MenuTop() {
           ))}
         </div>
         <hr className="h-[0.125rem] bg-[#fff] -mt-[2px]" />
-      </div>
+      </nav>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent side="left">
+          <SheetHeader>
+            <SheetTitle>Menu</SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-4 mt-5">
+            {menus.map((menu, index) => (
+              <div key={index}>
+                {menu.pathname ? (
+                  // Se for um link direto
+                  <Link
+                    href={menu.pathname}
+                    className={`block p-2 text-lg font-medium rounded ${
+                      pathname === menu.pathname
+                        ? "text-[#006A9E] font-bold"
+                        : "hover:bg-gray-100"
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {menu.name}
+                  </Link>
+                ) : (
+                  // Se for um menu com submenus
+                  <div>
+                    <button
+                      className="flex justify-between w-full p-2 text-lg font-medium hover:bg-gray-100 rounded"
+                      onClick={() =>
+                        setOpenSubmenu(
+                          openSubmenu === menu.name ? null : menu.name
+                        )
+                      }
+                    >
+                      {menu.name}
+                      <ChevronRight
+                        className={`h-5 w-5 transition-transform ${
+                          openSubmenu === menu.name ? "rotate-90" : ""
+                        }`}
+                      />
+                    </button>
+
+                    {openSubmenu === menu.name && (
+                      <div className="ml-4 flex flex-col ">
+                        {menu.paths?.map((submenu, subIndex) => (
+                          <Link
+                            key={subIndex}
+                            href={submenu.pathname}
+                            className={`block p-2 text-base font-medium rounded ${
+                              pathname === submenu.pathname
+                                ? "text-[#006A9E] font-bold"
+                                : "hover:bg-gray-100"
+                            }`}
+                            onClick={() => setOpen(false)}
+                          >
+                            {submenu.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
