@@ -1,9 +1,8 @@
-import { FileText } from "lucide-react";
-import React from "react";
-import CardEdital from "../CardEdital";
+import { FileText, ChevronLeft } from 'lucide-react'
+import React from 'react'
+import CardEdital from '../CardEdital'
 
-import { ChevronLeft } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from '../ui/button'
 
 function ListEditais() {
   return (
@@ -12,9 +11,9 @@ function ListEditais() {
         <FileText />
         Editais
       </h1>
-      <div className="lg:mt-[5rem] mt-[1.5rem] lg:pl-[1.69rem] lg:h-[50rem] relative flex items-center justify-center">
-        <div className="h-full absolute right-1 z-0 w-[2px] bg-[#BFBFBF] lg:block hidden"></div>
-        <div className="lg:h-[49.5rem] w-full  lg:pr-[4rem]  flex flex-col lg:gap-[2.6rem] gap-[1.31rem] scroll-custom-editais lg:overflow-y-auto z-[1000] relative rounded">
+      <div className="relative mt-[1.5rem] flex items-center justify-center lg:mt-[5rem] lg:h-[50rem] lg:pl-[1.69rem]">
+        <div className="absolute right-1 z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
+        <div className="scroll-custom-editais relative z-[1000] flex w-full flex-col gap-[1.31rem] rounded lg:h-[49.5rem] lg:gap-[2.6rem] lg:overflow-y-auto lg:pr-[4rem]">
           <CardEdital
             title="EDITAL DE CITAÇÃO E INTIMAÇÃO"
             description="3ª Comissão Disciplinar"
@@ -83,16 +82,16 @@ function ListEditais() {
           />
         </div>
       </div>
-      <div className="lg:pt-[2.5rem] pt-[1.5rem] pb-[2.88rem] lg:mr-1  lg:border-r-[2px] border-[#BFBFBF]">
-        <Button className="bg-transparent text-black hover:bg-transparent flex gap-[0.56rem] w-fit ml-auto  lg:mr-[2.88rem] items-center lg:text-[1.25rem] text-[0.82363rem] leading-[1.23775rem] font-bold">
-          Veja mais{" "}
+      <div className="border-[#BFBFBF] pb-[2.88rem] pt-[1.5rem] lg:mr-1 lg:border-r-[2px] lg:pt-[2.5rem]">
+        <Button className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:mr-[2.88rem] lg:text-[1.25rem]">
+          Veja mais{' '}
           <div className="rotate-180">
             <ChevronLeft />
           </div>
         </Button>
       </div>
     </div>
-  );
+  )
 }
 
-export default ListEditais;
+export default ListEditais

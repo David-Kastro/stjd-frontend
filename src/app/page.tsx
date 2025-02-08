@@ -1,19 +1,19 @@
 // import MenuTop from "@/_components/MenuTop";
-import JudgmentGuidelines from "@/_components/JudgmentGuidelines";
-import LatestNews from "@/_components/LatestNews";
-import ListEditais from "@/_components/ListEditais";
-import Members from "@/_components/Members";
-import ScaleAttorneys from "@/_components/ScaleAttorneys";
-import Image from "next/image";
-import React from "react";
-import LogoBlack from "/public/images/logo-stjd-black.svg";
-import BgScalle from "/public/images/bg-card-scale.svg";
+import JudgmentGuidelines from '@/_components/JudgmentGuidelines'
+import LatestNews from '@/_components/LatestNews'
+import ListEditais from '@/_components/ListEditais'
+import Members from '@/_components/Members'
+import ScaleAttorneys from '@/_components/ScaleAttorneys'
+import Image from 'next/image'
+import React from 'react'
+import LogoBlack from '/public/images/logo-stjd-black.svg'
+import BgScalle from '/public/images/bg-card-scale.svg'
 
 function Home() {
   return (
     <div>
       <div className="container lg:mt-[5rem]">
-        <div className="flex lg:flex-row flex-col gap-[3rem] lg:border-l-[2px] border-[#B0B0B0]">
+        <div className="flex flex-col gap-[3rem] border-[#B0B0B0] lg:flex-row lg:border-l-[2px]">
           <LatestNews />
           <div className="w-full">
             <JudgmentGuidelines />
@@ -21,9 +21,9 @@ function Home() {
           </div>
         </div>
       </div>
-      <hr className="w-fulll h-[0.125rem] bg-[#B0B0B0] lg:block hidden" />
+      <hr className="w-fulll hidden h-[0.125rem] bg-[#B0B0B0] lg:block" />
       <div className="lg:container">
-        <div className="lg:pt-[4.94rem] lg:border-l-[2px] border-[#B0B0B0]">
+        <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pt-[4.94rem]">
           <ScaleAttorneys
             title="Escala de Procuradores 2024"
             subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"
@@ -35,17 +35,17 @@ function Home() {
         </div>
       </div>
       <Members />
-      <div className="lg:container lg:bg-transparent bg-[#000] lg:py-0 py-[3.87rem]">
-        <div className="lg:pb-[7.94rem]  lg:border-l-[2px] border-[#B0B0B0]">
+      <div className="bg-[#000] py-[3.87rem] lg:container lg:bg-transparent lg:py-0">
+        <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pb-[7.94rem]">
           <Image
             src={LogoBlack}
             alt="LogoBlack"
-            className="mx-auto lg:w-auto w-[8.9375rem]"
+            className="mx-auto w-[8.9375rem] lg:w-auto"
           />
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
