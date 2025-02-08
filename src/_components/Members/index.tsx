@@ -42,11 +42,7 @@ function Members() {
             {members.map((member, index) => (
               <div key={index} className="max-w-[10rem] lg:max-w-[10.4375rem]">
                 <div className="w-full">
-                  <Image
-                    src={member.foto}
-                    alt={member.nome}
-                    className="w-full"
-                  />
+                  <img src={member.foto} alt={member.nome} className="w-full" />
                   <p className="mt-[1.5rem] text-[0.85rem] font-bold leading-[1.03rem] text-secondary lg:text-base">
                     {member.cargo}
                   </p>
