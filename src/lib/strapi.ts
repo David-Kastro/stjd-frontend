@@ -44,9 +44,7 @@ export default async function fetchApi<T>({
     query = query || {}
 
     const queryString = qs.stringify(query)
-    const url = new URL(
-      `${process.env.VITE_API_URL}/${endpoint}?${queryString}`,
-    )
+    const url = new URL(`${process.env.API_URL}/${endpoint}?${queryString}`)
     console.log('[API LOG] URL: ', url.toString())
 
     const res = await fetch(url.toString())

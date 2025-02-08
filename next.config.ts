@@ -1,10 +1,18 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["stjd-strapi-49c7f8c3b0f7.herokuapp.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.herokuapp.com',
+        port: '',
+        pathname: '/uploads/**',
+        search: '',
+      },
+    ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
