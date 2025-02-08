@@ -18,53 +18,35 @@ function Auditores() {
           role: 'Presidente',
           institution: 'Atletas',
           image: '/images/profile.jpg',
+          bio: 'Luís Otávio Veríssimo Teixeira possui ampla experiência na gestão esportiva, atuando há anos no setor. Como presidente, ele lidera iniciativas estratégicas para o desenvolvimento da entidade e aprimoramento das políticas internas.\n\nAlém de sua atuação institucional, ele é reconhecido por sua capacidade de articulação entre diferentes segmentos do esporte. Seu trabalho visa fortalecer as relações entre atletas, clubes e federações, promovendo um ambiente de maior transparência e profissionalismo.',
         },
         {
           name: 'MAXWELL BORGES DE MOURA VIEIRA',
           role: 'Vice Presidente',
           institution: 'Atletas',
           image: '/images/profile.jpg',
+          bio: 'Maxwell Borges de Moura Vieira é um dos principais responsáveis pela gestão da entidade, ocupando o cargo de vice-presidente. Ele desempenha um papel fundamental na definição de estratégias e na implementação de projetos voltados ao desenvolvimento do esporte.\n\nCom uma trajetória consolidada na área esportiva, Maxwell tem se destacado pela sua visão inovadora e por seu compromisso com a integridade e o crescimento sustentável das competições e dos atletas.',
         },
         {
           name: 'RODRIGO AMACHE',
           role: 'Vice Presidente Administrativo',
           institution: 'Árbitros',
           image: '/images/profile.jpg',
+          bio: 'Rodrigo Amache atua na coordenação administrativa da entidade, sendo responsável pela estruturação dos processos internos e pela supervisão de diferentes áreas, incluindo a arbitragem.\n\nSeu trabalho é essencial para garantir que a entidade funcione de maneira eficiente, promovendo melhorias contínuas na gestão dos recursos e na capacitação dos profissionais envolvidos no esporte.',
         },
         {
           name: 'LUIZ FELIPE BLUM ALVES FERREIRA',
           role: 'Diretor de ENAJD',
           institution: 'Clubes',
           image: '/images/profile.jpg',
+          bio: 'Luiz Felipe Blum Alves Ferreira desempenha um papel central como Diretor da Escola Nacional da Justiça Desportiva (ENAJD). Sua experiência e conhecimento jurídico são fundamentais para a evolução das práticas disciplinares no esporte.\n\nAlém de seu trabalho na ENAJD, ele também atua como Corregedor da Região Nordeste, garantindo que as normas e regulamentos sejam aplicados de forma justa e eficaz em todo o território.',
         },
         {
           name: 'Sérgio Henrique Furtado Coelho Filho',
           role: 'Corregedor Região Sudeste',
           institution: 'OAB',
           image: '/images/profile.jpg',
-        },
-        {
-          name: 'MARCO AURÉLIO DE LIMA CHOY',
-          role: 'Corregedor Região Sul',
-          institution: 'OAB',
-          image: '/images/profile.jpg',
-        },
-        {
-          name: 'MARCELO AUGUSTO F. BELLIZZE',
-          role: 'Corregedor Região Centro-Oeste',
-          institution: 'Clubes',
-          image: '/images/profile.jpg',
-        },
-        {
-          name: 'ANTONIETA DA SILVA PINTO',
-          role: 'Corregedora Região Norte',
-          institution: 'CBF',
-          image: '/images/profile-woman.jpg',
-        },
-        {
-          name: 'MARIANA BARROS BARREIRAS',
-          role: 'CBF',
-          image: '/images/profile-woman.jpg',
+          bio: 'Sérgio Henrique Furtado Coelho Filho é um advogado altamente qualificado com atuação em direito desportivo e regulatório. Como corregedor da Região Sudeste, ele assegura o cumprimento das diretrizes disciplinares e jurídicas dentro do setor esportivo.\n\nSua atuação é pautada na ética e na transparência, contribuindo para um ambiente mais equilibrado e justo para todas as partes envolvidas nas competições.',
         },
       ],
     },
@@ -78,20 +60,13 @@ function Auditores() {
               name: 'Marcelo da Rocha Ribeiro Dantas',
               role: 'Presidente',
               image: '/images/profile.jpg',
+              bio: 'Marcelo da Rocha Ribeiro Dantas possui grande experiência em direito desportivo e atua como presidente da 1ª Comissão Disciplinar. Sua liderança é essencial para a análise e julgamento de casos relacionados às competições.\n\nCom uma trajetória consolidada na área, ele trabalha para garantir que as decisões tomadas sejam justas e alinhadas às normas regulamentares do esporte.',
             },
             {
               name: 'Guilherme Martorelli',
               role: 'Vice Presidente',
               image: '/images/profile.jpg',
-            },
-            { name: 'William Figueiredo', image: '/images/profile.jpg' },
-            {
-              name: 'Carolina Teixeira Ramo',
-              image: '/images/profile-woman.jpg',
-            },
-            {
-              name: 'Alcino Júnior de Macedo Guedes',
-              image: '/images/profile.jpg',
+              bio: 'Guilherme Martorelli é especialista em governança esportiva e ética. Como vice-presidente da 1ª Comissão Disciplinar, ele contribui para a manutenção da ordem e do respeito às regras dentro das competições.\n\nSeu conhecimento na área jurídica e sua dedicação ao esporte fazem dele um profissional essencial na estrutura organizacional da entidade.',
             },
           ],
         },
@@ -102,107 +77,7 @@ function Auditores() {
               name: 'Ticiano Figueiredo de Oliveira',
               role: 'Presidente',
               image: '/images/profile.jpg',
-            },
-            {
-              name: 'Delmiro Dantas Campos Neto',
-              role: 'Vice Presidente',
-              image: '/images/profile.jpg',
-            },
-            {
-              name: 'Ana Luiza de Oliveira Rail',
-              image: '/images/profile-woman.jpg',
-            },
-            {
-              name: 'Luiz Gabriel Batista Neves',
-              image: '/images/profile.jpg',
-            },
-            {
-              name: 'Felipe Tadeu Moreira Lima do Rego Barros',
-              image: '/images/profile.jpg',
-            },
-          ],
-        },
-        {
-          title: '3ª Comissão Disciplinar',
-          members: [
-            {
-              name: 'Adriene Silveira Hassen',
-              role: 'Presidente',
-              image: '/images/profile-woman.jpg',
-            },
-            {
-              name: 'Rafael Bozzano',
-              role: 'Vice Presidente',
-              image: '/images/profile.jpg',
-            },
-            { name: 'Pedro Gonet Branco', image: '/images/profile.jpg' },
-            {
-              name: 'George Suetônio Ramalho Júnior',
-              image: '/images/profile.jpg',
-            },
-            { name: 'José Maria Philomeno', image: '/images/profile.jpg' },
-          ],
-        },
-        {
-          title: '4ª Comissão Disciplinar',
-          members: [
-            {
-              name: 'Salvio Dino Júnior',
-              role: 'Presidente',
-              image: '/images/profile.jpg',
-            },
-            {
-              name: 'Caio Carvalho Barros',
-              role: 'Vice Presidente',
-              image: '/images/profile.jpg',
-            },
-            { name: 'Juliana Camões', image: '/images/profile-woman.jpg' },
-            { name: 'Gustavo Favero Vaughn', image: '/images/profile.jpg' },
-            { name: 'Gabriel Fonseca', image: '/images/profile.jpg' },
-          ],
-        },
-        {
-          title: '5ª Comissão Disciplinar',
-          members: [
-            {
-              name: 'Paulo Ronaldo CEO de Carvalho',
-              role: 'Presidente',
-              image: '/images/profile.jpg',
-            },
-            {
-              name: 'Lucas Brandão',
-              role: 'Vice Presidente',
-              image: '/images/profile.jpg',
-            },
-            { name: 'Raoni Lacerda Vita', image: '/images/profile.jpg' },
-            {
-              name: 'Renata Baldez Mendonça',
-              image: '/images/profile-woman.jpg',
-            },
-            { name: 'Ramon Rocha Santos', image: '/images/profile.jpg' },
-          ],
-        },
-        {
-          title: '6ª Comissão Disciplinar',
-          members: [
-            {
-              name: 'José Cardoso Dutra Júnior',
-              role: 'Presidente',
-              image: '/images/profile.jpg',
-            },
-            {
-              name: 'Jorge Octavio Lavocat Galvão',
-              role: 'Vice Presidente',
-              image: '/images/profile.jpg',
-            },
-            {
-              name: 'Aline Gonçalves Jatahy',
-              image: '/images/profile-woman.jpg',
-            },
-            { name: 'Rodrigo Steinmann Bayer', image: '/images/profile.jpg' },
-            {
-              name: 'Eduardo Xible Salles Ramos',
-              image: '/images/profile.jpg',
+              bio: 'Ticiano Figueiredo de Oliveira é um advogado renomado no cenário esportivo, atuando como presidente da 2ª Comissão Disciplinar. Seu trabalho envolve a análise criteriosa de processos e a aplicação das normas do setor.\n\nEle se destaca por sua imparcialidade e comprometimento em manter a justiça dentro do ambiente esportivo, garantindo que todas as decisões sejam embasadas nos regulamentos vigentes.',
             },
           ],
         },
@@ -211,17 +86,16 @@ function Auditores() {
     {
       title: 'Suplentes',
       members: [
-        { name: 'Antônio Augusto Pires Brandão', image: '/images/profile.jpg' },
-        { name: 'Carlos Eduardo Cardoso', image: '/images/profile.jpg' },
-        { name: 'João Gabriel Maffei', image: '/images/profile.jpg' },
         {
-          name: 'José Luiz Cavalcanti Ferreira de Souza',
+          name: 'Antônio Augusto Pires Brandão',
           image: '/images/profile.jpg',
+          bio: 'Antônio Augusto Pires Brandão integra a equipe como suplente, trazendo consigo anos de experiência no direito desportivo. Sua atuação contribui para a estruturação de processos disciplinares eficientes e justos.\n\nCom um olhar atento às normas e regulamentos, ele colabora para o desenvolvimento do setor, sempre buscando aperfeiçoar os mecanismos de governança esportiva.',
         },
-        { name: 'Marcelo Doval Mendes', image: '/images/profile.jpg' },
-        { name: 'Mateus Resende Vilela', image: '/images/profile.jpg' },
-        { name: 'Pedro Perdiz de Jesus', image: '/images/profile.jpg' },
-        { name: 'Thiago Peleja Vizeu Lima', image: '/images/profile.jpg' },
+        {
+          name: 'Carlos Eduardo Cardoso',
+          image: '/images/profile.jpg',
+          bio: 'Carlos Eduardo Cardoso é um profissional dedicado à regulamentação esportiva, atuando como suplente na entidade. Sua experiência no setor jurídico é fundamental para a manutenção da transparência nos processos internos.\n\nEle trabalha ativamente para assegurar que as normas sejam aplicadas corretamente e que os princípios éticos sejam sempre preservados.',
+        },
       ],
     },
   ]
