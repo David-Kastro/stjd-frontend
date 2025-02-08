@@ -3,6 +3,7 @@ import React from 'react'
 import Image, { StaticImageData } from 'next/image'
 import { ArrowDown, Scale } from 'lucide-react'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 interface CardTopPageProps {
   title: string
@@ -40,7 +41,7 @@ function CardTopPage({
           <h2 className="mt-[0.81rem] leading-[1.6875rem]">{description}</h2>
         </div>
 
-        <div className={`absolute -right-36 -top-8 z-0 ${customClassImage}`}>
+        <div className={cn('absolute -right-36 -top-8 z-0', customClassImage)}>
           <Image src={image} alt="" />
         </div>
         {scrollTo && (
