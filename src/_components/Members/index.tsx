@@ -45,6 +45,8 @@ function Members() {
                   <Image
                     src={member.foto}
                     alt={member.nome}
+                    width={167}
+                    height={167}
                     className="w-full"
                   />
                   <p className="mt-[1.5rem] text-[0.85rem] font-bold leading-[1.03rem] text-secondary lg:text-base">

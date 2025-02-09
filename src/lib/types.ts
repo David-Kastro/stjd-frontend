@@ -33,3 +33,29 @@ export type Article = {
   lead: string
   imagem: Image
 }
+
+export interface Session {
+  id: number
+  documentId: string
+  titulo: string
+  data: string
+  duracao: string
+  link: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Doc {
+  id: number
+  documentId: string
+  titulo: string
+  subtitulo: string
+  tipo: string
+  categoria: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Edital extends Doc {
+  categoria: 'Editais'
+}

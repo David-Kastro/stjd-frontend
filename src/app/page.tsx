@@ -9,7 +9,7 @@ import React from 'react'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgScalle from '/public/images/bg-card-scale.svg'
 import fetchApi from '@/lib/strapi'
-import { Article } from '@/lib/types'
+import { Article, Edital, Member, Session } from '@/lib/types'
 
 async function Home() {
   const [articles] = await fetchApi<Article[]>({
@@ -28,17 +28,68 @@ async function Home() {
     },
   })
 
+  const [editais] = await fetchApi<Edital[]>({
+    endpoint: 'docs',
+    query: {
+      sort: 'id:desc',
+      fields: ['id', 'titulo', 'subtitulo', 'tipo'],
+      filters: {
+        categoria: 'Editais',
+      },
+      pagination: {
+        pageSize: 10,
+        page: 1,
+      },
+    },
+  })
+
+  const [members] = await fetchApi<Member[]>({
+    endpoint: 'members',
+    query: {
+      populate: {
+        avatar: {
+          fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
+        },
+      },
+      pagination: {
+        pageSize: 4,
+        page: 1,
+      },
+    },
+  })
+
+  const [todaySessions] = await fetchApi<Session[]>({
+    endpoint: 'sessions',
+    query: {
+      filters: {
+        // filtra sessoes de hoje
+        data: {
+          $startsWith: new Date().toISOString().split('T')[0],
+        },
+      },
+      pagination: {
+        pageSize: 1,
+        page: 1,
+      },
+    },
+  })
+
+  const nextSessions = todaySessions.filter((session) => {
+    const duracao = session.duracao.replace(/^(.*)\d{2}\.\d+$/ , '$1')
+    const duracaoMinutes = parseInt(duracao.split(':')[0]) * 60 + parseInt(duracao.split(':')[1])
+
+    // verifica se a sessao ainda nao acabou
+    const sessionEnd = new Date(session.data)
+    sessionEnd.setMinutes(sessionEnd.getMinutes() + duracaoMinutes)
+
+    console.log(new Date(session.data), sessionEnd, new Date())
+    
+    return sessionEnd > new Date()
+  })
+
   return (
     <div>
-      <div className="container lg:mt-[5rem]">
-        <div className="flex flex-col gap-[3rem] border-[#B0B0B0] lg:flex-row lg:border-l-[2px]">
-          <LatestNews articles={articles} />
-          <div className="grow">
-            <JudgmentGuidelines />
-            <ListEditais />
-          </div>
-        </div>
-      </div>
+      <LatestNews articles={articles} nextSession={nextSessions[0]} editais={editais} />
       <hr className="w-fulll hidden h-[0.125rem] bg-[#B0B0B0] lg:block" />
       <div className="lg:container">
         <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pt-[4.94rem]">

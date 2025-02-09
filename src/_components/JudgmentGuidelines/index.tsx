@@ -1,78 +1,25 @@
-'use client'
-import { ArrowDownRight } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
-import { Calendar } from '../ui/calendar'
-import { ptBR } from 'date-fns/locale'
-import Antiqueta from '/public/images/Antique-Bronze.svg'
-import Image from 'next/image'
+"use client";
+import { ArrowDownRight } from "lucide-react";
+import React, { useState } from "react";
+import { Calendar } from "../ui/calendar";
+import { ptBR } from "date-fns/locale";
+import Antiqueta from "/public/images/Antique-Bronze.svg";
+import Image from "next/image";
 
-import { useGlobalContext } from '@/contexts/GlobalContext'
-import LiveSessionCard from '../LiveSessionCard'
+import LiveSessionCard from "../LiveSessionCard";
 
-function JudgmentGuidelines() {
-  const [date, setDate] = useState<Date | undefined>(new Date())
-  const { status, setSessao, setStatus, sessao, setLoadingSession } =
-    useGlobalContext()
-  const [isClient, setIsClient] = useState(false)
+type Props = {
+  status: "offline" | "online" | "waiting";
+  onCountdownComplete?: () => void;
+  releaseDate?: string;
+};
 
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoadingSession(true)
-        // mock API
-        const response = await fetch(
-          'https://679aabd1747b09cdcccf74be.mockapi.io/api/live/lives',
-        )
-        if (!response.ok) {
-          throw new Error('Erro ao buscar dados')
-        }
-        const data = await response.json()
-
-        if (data.length > 0) {
-          const lastItem = data[data.length - 1]
-          const dateApi = new Date(lastItem.released)
-          const newDate = new Date()
-          if (dateApi.getDate() === newDate.getDate()) {
-            setSessao(lastItem)
-          } else {
-            setSessao({
-              isCompleted: true,
-              linkYoutube: '',
-              released: '',
-              title: '',
-            })
-          }
-        }
-      } catch (error) {
-        console.error('Erro ao buscar os dados da API:', error)
-      } finally {
-        setLoadingSession(false)
-      }
-    }
-
-    fetchData()
-  }, [])
-
-  useEffect(() => {
-    if (isClient) {
-      if (sessao.isCompleted) {
-        setStatus('offline')
-        return
-      }
-      const dataSessao = new Date(sessao.released)
-      const agora = new Date()
-
-      if (dataSessao > agora) {
-        setStatus('wating')
-      } else {
-        setStatus('online')
-      }
-    }
-  }, [isClient, sessao.isCompleted, sessao.released, setStatus])
+function JudgmentGuidelines({
+  status,
+  onCountdownComplete,
+  releaseDate,
+}: Props) {
+  const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
     <div className="w-full">
@@ -115,10 +62,16 @@ function JudgmentGuidelines() {
       </div>
       <div className="relative mt-[4.81rem] hidden items-center lg:flex">
         <hr className="h-[0.125rem] w-full bg-secondary" />
-        <LiveSessionCard status={status === 'online' ? 'disabled' : status} />
+        {status !== "online" && (
+          <LiveSessionCard
+            status={status}
+            releaseDate={releaseDate}
+            onCountdownComplete={onCountdownComplete}
+          />
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default JudgmentGuidelines
+export default JudgmentGuidelines;

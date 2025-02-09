@@ -7,7 +7,6 @@ import MenuTop from '@/_components/MenuTop'
 import Footer from '@/_components/Footer'
 
 import { Inter } from 'next/font/google'
-import { GlobalProvider } from '@/contexts/GlobalContext'
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
   subsets: ['latin'],
@@ -42,11 +41,9 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <GlobalProvider>
-          <MenuTop />
+        <MenuTop />
           {children}
-          <Footer />
-        </GlobalProvider>
+        <Footer />
       </body>
     </html>
   )
