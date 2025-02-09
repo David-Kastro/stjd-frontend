@@ -7,12 +7,13 @@ import {
   CarouselItem,
 } from '@/_components/ui/carousel'
 import { Article } from '@/lib/types'
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import CardNews from '../CardNews'
 import { ChevronLeft } from 'lucide-react'
 
 function NewsCarousel({ articles }: { articles: Article[] }) {
   const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
 
   // Dividindo o array de notícias em grupos de 8
   const groupedArticles = useMemo(() => {
@@ -29,6 +30,19 @@ function NewsCarousel({ articles }: { articles: Article[] }) {
   const handleNext = () => {
     api?.scrollNext()
   }
+
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
   return (
     <>
       <Carousel
@@ -54,6 +68,18 @@ function NewsCarousel({ articles }: { articles: Article[] }) {
           ))}
         </CarouselContent>
       </Carousel>
+      <div className="mt-5 flex justify-center gap-2">
+        {groupedArticles.map((_, groupIndex) => (
+          <div
+            key={groupIndex}
+            className={`h-[0.4375rem] rounded-full ${
+              current === groupIndex + 1
+                ? 'w-[3.0625rem] bg-[#797979]'
+                : 'w-[0.625rem] bg-secondary'
+            }`}
+          ></div>
+        ))}
+      </div>
 
       <div className="absolute right-0 top-7 flex gap-[0.41rem] pr-[2.5rem]">
         <button
