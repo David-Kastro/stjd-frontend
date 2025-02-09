@@ -12,7 +12,6 @@ import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/_components/ui/dialog'
