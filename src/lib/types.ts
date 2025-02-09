@@ -1,14 +1,15 @@
 export type Member = {
   id: number
   documentId: string
-  createdAt: string
-  updatedAt: string
   publishedAt: string
   nome: string
   orgao: string
   associacao: string
   cargo: string
   bio: string
+  avatar?: Image
+  createdAt: string
+  updatedAt: string
 }
 
 export type Image = {

@@ -25,7 +25,8 @@ function ListEditais({ editais }: { editais: Edital[] }) {
             <CardEdital
               key={`edital_${edital.documentId}_${edital.id}`}
               title={edital.titulo}
-              description={edital.subtitulo}
+              subtitle={edital.subtitulo}
+              description={edital.tipo}
               type="link"
               path={`/editais/${edital.id}`}
             />

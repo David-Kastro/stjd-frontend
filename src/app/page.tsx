@@ -51,6 +51,7 @@ async function Home() {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
       },
+      sort: 'prioridade:desc',
       pagination: {
         pageSize: 4,
         page: 1,
@@ -103,7 +104,7 @@ async function Home() {
           />
         </div>
       </div>
-      <Members />
+      <Members members={members} />
       <div className="bg-[#000] py-[3.87rem] lg:container lg:bg-transparent lg:py-0">
         <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pb-[7.94rem]">
           <Image

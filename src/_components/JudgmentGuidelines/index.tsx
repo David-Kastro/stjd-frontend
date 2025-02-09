@@ -41,7 +41,7 @@ function JudgmentGuidelines({
               <Calendar
                 mode="single"
                 selected={date}
-                onSelect={setDate}
+                // onSelect={setDate}
                 className="rounded-md"
                 locale={ptBR}
               />

@@ -5,6 +5,8 @@ import Image from 'next/image'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
+import { Member } from '@/lib/types'
+import CustomImage from '../CustomImage'
 const members = [
   {
     cargo: 'Presidente',
@@ -27,7 +29,7 @@ const members = [
     foto: '/images/max-borges.svg',
   },
 ]
-function Members({ thinBorder }: { thinBorder?: boolean }) {
+function Members({ thinBorder, members }: { thinBorder?: boolean, members: Member[] }) {
   return (
     <section
       className={cn(
@@ -52,14 +54,26 @@ function Members({ thinBorder }: { thinBorder?: boolean }) {
           <div className="mt-[3.75rem] flex flex-wrap justify-center gap-[1rem] lg:flex-nowrap lg:justify-between lg:gap-0 lg:px-[6.31rem]">
             {members.map((member, index) => (
               <div key={index} className="max-w-[10rem] lg:max-w-[10.4375rem]">
-                <div className="w-full">
-                  <Image
-                    src={member.foto}
-                    alt={member.nome}
-                    width={167}
-                    height={167}
-                    className="w-full"
-                  />
+                <div>
+                  {
+                    member?.avatar ? (
+                      <CustomImage
+                        src={member.avatar.url}
+                        alt={member.nome}
+                        width={167}
+                        height={167}
+                        className="w-full aspect-square object-cover object-top rounded-[10px] transition-all transform duration-300 hover:scale-105 hover:shadow-lg"
+                      />
+                    ) : (
+                      <Image
+                        src={'/images/profile.jpg'}
+                        alt={member.nome}
+                        width={167}
+                        height={167}
+                        className="w-full aspect-square object-cover object-top rounded-[10px] transition-all transform duration-300 hover:scale-105 hover:shadow-lg"
+                      />
+                    )
+                  }
                   <p className="mt-[1.5rem] text-[0.85rem] font-bold leading-[1.03rem] text-secondary lg:text-base">
                     {member.cargo}
                   </p>
