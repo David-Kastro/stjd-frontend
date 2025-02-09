@@ -55,34 +55,33 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
           </div>
         </div>
       )}
-      {!loading && (
-        <div>
-          <div
-            className="scroll-custom-editais mx-auto mt-[1rem] flex max-h-[56vh] w-full max-w-[46rem] justify-center overflow-y-scroll border border-gray-300 bg-white p-2 shadow-lg"
-            onScroll={handleScroll}
-          >
-            <Document file={linkPdf} onLoadSuccess={onDocumentLoadSuccess}>
-              {Array.from(new Array(numPages), (_, index) => (
-                <div key={`page_${index + 1}`} className="mb-4">
-                  <Page
-                    pageNumber={index + 1}
-                    scale={1.0}
-                    renderTextLayer={false}
-                    renderAnnotationLayer={false}
-                  />
-                </div>
-              ))}
-            </Document>
-          </div>
-          <div className="mt-5 flex justify-center">
-            <a href={linkPdf} className="mx-auto w-fit" target="_blank">
-              <Button className="mx-auto h-[3.75rem] rounded-[4.625rem] px-[3.12rem] text-[1.25rem] font-bold">
-                Fazer Download
-              </Button>
-            </a>
-          </div>
+
+      <div>
+        <div
+          className="scroll-custom-editais mx-auto mt-[1rem] flex max-h-[56vh] w-full max-w-[46rem] justify-center overflow-y-scroll border border-gray-300 bg-white p-2 shadow-lg"
+          onScroll={handleScroll}
+        >
+          <Document file={linkPdf} onLoadSuccess={onDocumentLoadSuccess}>
+            {Array.from(new Array(numPages), (_, index) => (
+              <div key={`page_${index + 1}`} className="mb-4">
+                <Page
+                  pageNumber={index + 1}
+                  scale={1.0}
+                  renderTextLayer={false}
+                  renderAnnotationLayer={false}
+                />
+              </div>
+            ))}
+          </Document>
         </div>
-      )}
+        <div className="mt-5 flex justify-center">
+          <a href={linkPdf} className="mx-auto w-fit" target="_blank">
+            <Button className="mx-auto h-[3.75rem] rounded-[4.625rem] px-[3.12rem] text-[1.25rem] font-bold">
+              Fazer Download
+            </Button>
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
