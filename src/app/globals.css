@@ -147,6 +147,10 @@ body {
 }
 
 .bg-painel-transparencia {
-  background: linear-gradient(210deg, #E5E4E4 18.5%, #9A8D85 186.02%);
+  background: linear-gradient(20deg, #E5E4E4 18.5%, #9A8D85 186.02%);
   
+}
+
+.clip-path-custom {
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
 }
