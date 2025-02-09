@@ -4,6 +4,7 @@ import { ChevronLeft, Users } from 'lucide-react'
 import Image from 'next/image'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import { Button } from '../ui/button'
+import { cn } from '@/lib/utils'
 const members = [
   {
     cargo: 'Presidente',
@@ -26,10 +27,20 @@ const members = [
     foto: '/images/max-borges.svg',
   },
 ]
-function Members() {
+function Members({ thinBorder }: { thinBorder?: boolean }) {
   return (
-    <section className="container relative">
-      <div className="relative z-20 border-[#B0B0B0] pb-[5rem] pt-[4.94rem] lg:border-l-[2px] lg:pb-[7.81rem]">
+    <section
+      className={cn(
+        'container relative',
+        thinBorder && 'border-l border-border',
+      )}
+    >
+      <div
+        className={cn(
+          'relative z-20 border-[#B0B0B0] pb-[5rem] pt-[4.94rem] lg:border-l-[2px] lg:pb-[7.81rem]',
+          thinBorder && 'border-none',
+        )}
+      >
         <div className="mx-auto max-w-[80.0625rem] rounded-[1.375rem] pt-[3.38rem] lg:bg-[#E1E1E1]">
           <div className="flex items-center gap-[1.5rem] lg:pl-[5rem]">
             <h1 className="flex items-center gap-[0.56rem] text-[1.25rem] font-bold">
@@ -66,7 +77,7 @@ function Members() {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-[12.4rem] -left-20 hidden lg:block">
+      <div className="absolute -bottom-[12.4rem] -left-20 -z-[1] hidden lg:block">
         <Image src={BgFundoMembers} alt="BgFundoMembers" />
       </div>
     </section>
