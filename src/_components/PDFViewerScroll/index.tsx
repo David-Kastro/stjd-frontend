@@ -48,7 +48,7 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
           <div className="mt-5 flex justify-center">
             <Button
               disabled
-              className="mx-auto h-[3.75rem] rounded-[4.625rem] px-[3.12rem] text-[1.25rem] font-bold"
+              className="animate mx-auto h-[3.75rem] animate-pulse rounded-[4.625rem] px-[3.12rem] text-[1.25rem] font-bold"
             >
               Fazer Download
             </Button>
@@ -58,7 +58,7 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
       {!loading && (
         <div>
           <div
-            className="scroll-custom-editais mx-auto mt-[1rem] flex min-h-[27rem] w-full max-w-[46rem] justify-center overflow-y-scroll border border-gray-300 bg-white p-2 shadow-lg"
+            className="scroll-custom-editais mx-auto mt-[1rem] flex max-h-[56vh] w-full max-w-[46rem] justify-center overflow-y-scroll border border-gray-300 bg-white p-2 shadow-lg"
             onScroll={handleScroll}
           >
             <Document file={linkPdf} onLoadSuccess={onDocumentLoadSuccess}>
