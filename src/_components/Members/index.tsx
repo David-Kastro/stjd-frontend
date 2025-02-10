@@ -7,29 +7,35 @@ import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import { Member } from '@/lib/types'
 import CustomImage from '../CustomImage'
-const members = [
-  {
-    cargo: 'Presidente',
-    nome: 'Luís Otávio Veríssimo Teixeira',
-    foto: '/images/luis-otavio.svg',
-  },
-  {
-    cargo: 'Vice Presidente',
-    nome: 'Maxwell Borges de Moura Vieira',
-    foto: '/images/max-borges.svg',
-  },
-  {
-    cargo: 'Vice Presidente Administrativo',
-    nome: 'Rodrigo Aiache',
-    foto: '/images/max-borges.svg',
-  },
-  {
-    cargo: 'Diretor da ENAJD',
-    nome: 'Luiz Felipe Bulus Alves Ferreira',
-    foto: '/images/max-borges.svg',
-  },
-]
-function Members({ thinBorder, members }: { thinBorder?: boolean, members: Member[] }) {
+// const members = [
+//   {
+//     cargo: 'Presidente',
+//     nome: 'Luís Otávio Veríssimo Teixeira',
+//     foto: '/images/luis-otavio.svg',
+//   },
+//   {
+//     cargo: 'Vice Presidente',
+//     nome: 'Maxwell Borges de Moura Vieira',
+//     foto: '/images/max-borges.svg',
+//   },
+//   {
+//     cargo: 'Vice Presidente Administrativo',
+//     nome: 'Rodrigo Aiache',
+//     foto: '/images/max-borges.svg',
+//   },
+//   {
+//     cargo: 'Diretor da ENAJD',
+//     nome: 'Luiz Felipe Bulus Alves Ferreira',
+//     foto: '/images/max-borges.svg',
+//   },
+// ]
+function Members({
+  thinBorder,
+  members,
+}: {
+  thinBorder?: boolean
+  members: Member[]
+}) {
   return (
     <section
       className={cn(
@@ -55,25 +61,23 @@ function Members({ thinBorder, members }: { thinBorder?: boolean, members: Membe
             {members.map((member, index) => (
               <div key={index} className="max-w-[10rem] lg:max-w-[10.4375rem]">
                 <div>
-                  {
-                    member?.avatar ? (
-                      <CustomImage
-                        src={member.avatar.url}
-                        alt={member.nome}
-                        width={167}
-                        height={167}
-                        className="w-full aspect-square object-cover object-top rounded-[10px] transition-all transform duration-300 hover:scale-105 hover:shadow-lg"
-                      />
-                    ) : (
-                      <Image
-                        src={'/images/profile.jpg'}
-                        alt={member.nome}
-                        width={167}
-                        height={167}
-                        className="w-full aspect-square object-cover object-top rounded-[10px] transition-all transform duration-300 hover:scale-105 hover:shadow-lg"
-                      />
-                    )
-                  }
+                  {member?.avatar ? (
+                    <CustomImage
+                      src={member.avatar.url}
+                      alt={member.nome}
+                      width={167}
+                      height={167}
+                      className="aspect-square w-full transform rounded-[10px] object-cover object-top transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                    />
+                  ) : (
+                    <Image
+                      src={'/images/profile.jpg'}
+                      alt={member.nome}
+                      width={167}
+                      height={167}
+                      className="aspect-square w-full transform rounded-[10px] object-cover object-top transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                    />
+                  )}
                   <p className="mt-[1.5rem] text-[0.85rem] font-bold leading-[1.03rem] text-secondary lg:text-base">
                     {member.cargo}
                   </p>

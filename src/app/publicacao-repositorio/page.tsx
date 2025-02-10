@@ -4,7 +4,7 @@ import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import { Button } from '@/_components/ui/button'
 import { Input } from '@/_components/ui/input'
 import fetchApi from '@/lib/strapi'
-import { Article } from '@/lib/types'
+import { Article, Member } from '@/lib/types'
 import { Search } from 'lucide-react'
 import React from 'react'
 import BgEditais from '/public/images/bg-card-editais.svg'
@@ -65,6 +65,21 @@ async function PublicaoRepositorio() {
         'O STJD firmou uma nova parceria com a Federação Internacional de Futebol para promover o intercâmbio de conhecimentos e práticas judiciais no esporte. Esta parceria busca fortalecer a cooperação internacional e aprimorar os processos judiciais desportivos.',
     },
   ]
+  const [members] = await fetchApi<Member[]>({
+    endpoint: 'members',
+    query: {
+      populate: {
+        avatar: {
+          fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
+        },
+      },
+      sort: 'prioridade:desc',
+      pagination: {
+        pageSize: 4,
+        page: 1,
+      },
+    },
+  })
 
   return (
     <main className="mt-24">
@@ -109,7 +124,7 @@ async function PublicaoRepositorio() {
             href=""
           />
         </div>
-        <Members thinBorder />
+        <Members members={members} thinBorder />
         <div className="pb-[7.94rem]">
           <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
         </div>
