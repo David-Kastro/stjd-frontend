@@ -125,10 +125,13 @@ function MenuTop() {
           <a href="#" className="border-r border-[#fff] pr-[1.25rem]">
             CBF
           </a>
-          <a href="#" className="border-r border-[#fff] pr-[1.25rem]">
+          <a
+            href="https://transparencia.stf.jus.br/extensions/corte_aberta/corte_aberta.html"
+            className="border-r border-[#fff] pr-[1.25rem]"
+          >
             Ouvidoria
           </a>
-          <a href="#">Transparência e Prestação de Contas</a>
+          <Link href="/contato">contato</Link>
         </div>
       </div>
       <div className="lg:container lg:mt-[1.5rem]">

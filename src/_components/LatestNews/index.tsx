@@ -1,103 +1,103 @@
-"use client";
-import React, { useEffect, useMemo, useState } from "react";
-import { Newspaper, ChevronLeft } from "lucide-react";
+'use client'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Newspaper, ChevronLeft } from 'lucide-react'
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
-} from "@/_components/ui/carousel";
+} from '@/_components/ui/carousel'
 
-import CardNews from "../CardNews";
-import { Button } from "../ui/button";
+import CardNews from '../CardNews'
+import { Button } from '../ui/button'
 
-import LiveSessionCard from "../LiveSessionCard";
-import { Article, Edital, Session } from "@/lib/types";
-import { marked } from "marked";
-import CustomImage from "../CustomImage";
-import { dateTimeFormat } from "@/lib/utils";
-import JudgmentGuidelines from "../JudgmentGuidelines";
-import ListEditais from "../ListEditais";
+import LiveSessionCard from '../LiveSessionCard'
+import { Article, Edital, Session } from '@/lib/types'
+import { marked } from 'marked'
+import CustomImage from '../CustomImage'
+import { dateTimeFormat } from '@/lib/utils'
+import JudgmentGuidelines from '../JudgmentGuidelines'
+import ListEditais from '../ListEditais'
 
 function LatestNews({
   articles,
   editais,
   nextSession,
 }: {
-  articles: Article[];
-  editais: Edital[];
-  nextSession?: Session;
+  articles: Article[]
+  editais: Edital[]
+  nextSession?: Session
 }) {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [dateNow, setDateNow] = useState<Date>(new Date());
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+  const [dateNow, setDateNow] = useState<Date>(new Date())
 
   useEffect(() => {
     if (!api) {
-      return;
+      return
     }
 
-    setCurrent(api.selectedScrollSnap() + 1);
+    setCurrent(api.selectedScrollSnap() + 1)
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
 
   const status = useMemo(() => {
     if (!dateNow || !nextSession) {
-      return "offline";
+      return 'offline'
     }
 
     if (dateNow >= new Date(nextSession.data)) {
-      return "online";
+      return 'online'
     }
 
     // eslint-disable-next-line prettier/prettier
     if ((new Date(nextSession.data)).getTime() - dateNow.getTime() < 1000 * 60 * 60 * 24) { // TODO: Pegar da configuração global
-      return "waiting";
+      return 'waiting'
     }
 
-    return "offline";
-  }, [dateNow]);
+    return 'offline'
+  }, [dateNow])
 
-  const articlesWithoutHighlight = useMemo(() => articles.slice(1), [articles]);
+  const articlesWithoutHighlight = useMemo(() => articles.slice(1), [articles])
 
   // Dividindo o array de notícias em grupos de 3
   const groupedArticles = useMemo(() => {
-    const result = [];
+    const result = []
     for (let i = 0; i < articlesWithoutHighlight.length; i += 3) {
-      result.push(articlesWithoutHighlight.slice(i, i + 3));
+      result.push(articlesWithoutHighlight.slice(i, i + 3))
     }
-    return result;
-  }, [articlesWithoutHighlight]);
+    return result
+  }, [articlesWithoutHighlight])
 
-  const articleHightlight = articles[0];
+  const articleHightlight = articles[0]
 
   const handlePrevious = () => {
-    api?.scrollPrev();
-  };
+    api?.scrollPrev()
+  }
   const handleNext = () => {
-    api?.scrollNext();
-  };
+    api?.scrollNext()
+  }
 
   const onCountdownComplete = () => {
     setTimeout(() => {
-      setDateNow(new Date());
+      setDateNow(new Date())
     }, 500)
-  };
+  }
 
   return (
     <div className="container lg:mt-[5rem]">
       <div className="flex flex-col gap-[3rem] border-[#B0B0B0] lg:flex-row lg:border-l-[2px]">
         <div>
           <div className="relative w-full rounded-[1.375rem] pb-[2.19rem] lg:ml-[4.69rem] lg:bg-[#E1E1E1] lg:pt-[2.56rem] xl:max-w-[40.1875rem] 2xl:max-w-[50.1875rem]">
-            {status === "online" && nextSession && (
+            {status === 'online' && nextSession && (
               <>
                 <div className="relative lg:w-[50.1875rem]">
                   <div className="absolute -left-20 top-56 w-[15.65488rem] lg:-left-16 lg:-top-10">
                     <LiveSessionCard
-                      status={"online"}
+                      status={'online'}
                       onCountdownComplete={onCountdownComplete}
                       releaseDate={nextSession.data}
                     />
@@ -173,7 +173,7 @@ function LatestNews({
                               {marked.parse(group.corpo)}
                             </p>
                             <Button className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:hidden">
-                              Veja mais{" "}
+                              Veja mais{' '}
                               <div className="rotate-180">
                                 <ChevronLeft />
                               </div>
@@ -189,8 +189,8 @@ function LatestNews({
                         key={groupIndex}
                         className={`h-[0.4375rem] w-[4rem] rounded-full transition-all ${
                           current === groupIndex + 1
-                            ? "max-w-[3.0625rem] bg-[#797979]"
-                            : "max-w-[0.625rem] bg-secondary"
+                            ? 'max-w-[3.0625rem] bg-[#797979]'
+                            : 'max-w-[0.625rem] bg-secondary'
                         }`}
                       ></div>
                     ))}
@@ -199,12 +199,12 @@ function LatestNews({
               </>
             )}
 
-            {articleHightlight && status !== "online" && (
+            {articleHightlight && status !== 'online' && (
               <>
                 <div className="absolute -left-[2px] top-[6rem] h-[1rem] w-[2px] rounded-full bg-secondary lg:top-[8rem] lg:h-[2rem] lg:w-[5px]"></div>
                 <div className="mt-[1.62rem] rounded-[0.63938rem] bg-[#E1E1E1] px-[1.5rem] py-[1.5rem] lg:mt-0 lg:rounded-none lg:bg-transparent lg:px-[2.5rem] lg:py-0">
                   <div className="absolute -top-4 right-0 w-[15.65488rem] lg:hidden">
-                    <LiveSessionCard status={"offline"} />
+                    <LiveSessionCard status={'offline'} />
                   </div>
                   <div className="flex items-center gap-[0.56rem]">
                     <Newspaper className="w-[1.06088rem] lg:w-auto" />
@@ -226,7 +226,7 @@ function LatestNews({
                     {articleHightlight.corpo}
                   </p>
                   <Button className="ml-auto mt-[0.6rem] flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:mt-[2.5rem] lg:text-[1.25rem]">
-                    Veja mais{" "}
+                    Veja mais{' '}
                     <div className="rotate-180">
                       <ChevronLeft />
                     </div>
@@ -281,8 +281,8 @@ function LatestNews({
                       key={groupIndex}
                       className={`h-[0.4375rem] w-[4rem] rounded-full transition-all ${
                         current === groupIndex + 1
-                          ? "max-w-[3.0625rem] bg-[#797979]"
-                          : "max-w-[0.625rem] bg-secondary"
+                          ? 'max-w-[3.0625rem] bg-[#797979]'
+                          : 'max-w-[0.625rem] bg-secondary'
                       }`}
                     ></div>
                   ))}
@@ -291,7 +291,7 @@ function LatestNews({
             )}
           </div>
           <Button className="mb-[2.88rem] ml-auto mt-[1.63rem] hidden w-fit items-center gap-[0.56rem] bg-transparent text-[1.25rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:flex">
-            Veja mais{" "}
+            Veja mais{' '}
             <div className="rotate-180">
               <ChevronLeft />
             </div>
@@ -307,6 +307,6 @@ function LatestNews({
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default LatestNews;
+export default LatestNews
