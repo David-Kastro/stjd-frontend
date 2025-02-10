@@ -1,141 +1,36 @@
-import CardTopPage from '@/_components/CardTopPage'
-import React from 'react'
-import WoodenGavel from '/public/images/wooden-gavel.png'
-import TeamGrid, { Member } from '@/_components/TeamGrid'
-import TeamBoard, { AttorneysTeam } from '@/_components/TeamBoard'
+import CardTopPage from "@/_components/CardTopPage";
+import React from "react";
+import WoodenGavel from "/public/images/wooden-gavel.png";
+import TeamBoard, { AttorneysTeam } from "@/_components/TeamBoard";
+import { Member } from "@/lib/types";
+import fetchApi from "@/lib/strapi";
+import TeamGrid from "@/_components/TeamGrid";
 
-function Procuradores() {
-  const attorneyGeneral: Member = {
-    name: 'Paulo Emílio Dantas Nazaré',
-    role: 'Procurador Geral',
-    image: '/images/profile.jpg',
-    bio: 'Paulo Emílio Dantas Nazaré é um profissional dedicado à regulamentação esportiva, atuando como suplente na entidade. Sua experiência no setor jurídico é fundamental para a manutenção da transparência nos processos internos.\n\nEle trabalha ativamente para assegurar que as normas sejam aplicadas corretamente e que os princípios éticos sejam sempre preservados.',
-  }
+async function Procuradores() {
+  const [members] = await fetchApi<Member[]>({
+    endpoint: "members",
+    query: {
+      populate: {
+        avatar: {
+          fields: ["name", "url", "width", "height", "size", "mime"],
+        },
+      },
+      filters: {
+        cargo: "Procurador-geral",
+      },
+      pagination: -1,
+    },
+  });
 
-  const teamsData: AttorneysTeam[] = [
-    {
-      nome: 'Equipe Gabriel Andrade de Santana',
-      leader: {
-        nome: 'Gabriel Andrade de Santana',
-        orgao: 'P - Procuradoria',
-        associacao: 'CBF',
-        cargo: 'Subprocurador-geral',
-        bio: '#Tomale\n\nquer mais? Toma mais',
-        avatar: '/images/profile.jpg',
-      },
-      equipes: [
-        {
-          nome: 'Anderson da Silva Oliveira',
-          orgao: 'P - Procuradoria',
-          associacao: 'OAB',
-          cargo: 'Procurador',
-          bio: 'Procurador',
-          avatar: '/images/profile.jpg',
-        },
-        {
-          nome: 'André Medeiros',
-          orgao: 'P - Procuradoria',
-          associacao: 'CBF',
-          cargo: 'Procurador',
-          bio: 'Procurador',
-          avatar: '/images/profile.jpg',
-        },
-        {
-          nome: 'Anderson da Silva Oliveira',
-          orgao: 'P - Procuradoria',
-          associacao: 'OAB',
-          cargo: 'Procurador',
-          bio: 'Procurador',
-          avatar: '/images/profile.jpg',
-        },
-        {
-          nome: 'André Medeiros',
-          orgao: 'P - Procuradoria',
-          associacao: 'CBF',
-          cargo: 'Procurador',
-          bio: 'Procurador',
-          avatar: '/images/profile.jpg',
-        },
-        {
-          nome: 'Anderson da Silva Oliveira',
-          orgao: 'P - Procuradoria',
-          associacao: 'OAB',
-          cargo: 'Procurador',
-          bio: 'Procurador',
-          avatar: '/images/profile.jpg',
-        },
-        {
-          nome: 'André Medeiros',
-          orgao: 'P - Procuradoria',
-          associacao: 'CBF',
-          cargo: 'Procurador',
-          bio: 'Procurador',
-          avatar: '/images/profile.jpg',
-        },
-      ],
+  const attorneyLeader = members[0];
+
+  const [teams] = await fetchApi<AttorneysTeam[]>({
+    endpoint: "teams",
+    query: {
+      populate: "*",
+      pagination: -1,
     },
-    {
-      nome: 'Equipe Eduardo Araújo Rocha Ximenes',
-      leader: {
-        nome: 'Eduardo Araújo Rocha Ximenes',
-        orgao: 'P - Procuradoria',
-        associacao: 'Atletas',
-        cargo: 'Subprocurador-Geral',
-        bio: 'Sub-procurador',
-        avatar: '/images/profile.jpg',
-      },
-      equipes: [
-        {
-          nome: 'João Marcos Guimarães Siqueira',
-          orgao: 'P - Procuradoria',
-          associacao: 'Clubes',
-          cargo: 'Procurador',
-          bio: 'teste',
-          avatar: '/images/profile.jpg',
-        },
-        {
-          nome: 'Bárbara Maués Freire',
-          orgao: 'P - Procuradoria',
-          associacao: 'Clubes',
-          cargo: 'Procurador',
-          bio: 'Teste',
-          avatar: '/images/profile-woman.jpg',
-        },
-        {
-          nome: 'João Marcos Guimarães Siqueira',
-          orgao: 'P - Procuradoria',
-          associacao: 'Clubes',
-          cargo: 'Procurador',
-          bio: 'teste',
-          avatar: '/images/profile.jpg',
-        },
-        {
-          nome: 'Bárbara Maués Freire',
-          orgao: 'P - Procuradoria',
-          associacao: 'Clubes',
-          cargo: 'Procurador',
-          bio: 'Teste',
-          avatar: '/images/profile-woman.jpg',
-        },
-        {
-          nome: 'João Marcos Guimarães Siqueira',
-          orgao: 'P - Procuradoria',
-          associacao: 'Clubes',
-          cargo: 'Procurador',
-          bio: 'teste',
-          avatar: '/images/profile.jpg',
-        },
-        {
-          nome: 'Bárbara Maués Freire',
-          orgao: 'P - Procuradoria',
-          associacao: 'Clubes',
-          cargo: 'Procurador',
-          bio: 'Teste',
-          avatar: '/images/profile-woman.jpg',
-        },
-      ],
-    },
-  ]
+  });
 
   return (
     <>
@@ -144,7 +39,7 @@ function Procuradores() {
           title="Procuradores"
           description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
           image={WoodenGavel}
-          height={'28.875rem'}
+          height={"28.875rem"}
           scrollTo="#members"
         />
         <hr className="mb-0 mt-20 h-[0.125rem] w-full bg-border" />
@@ -158,14 +53,14 @@ function Procuradores() {
         </h1>
         <div className="mt-24">
           <TeamGrid
-            teamsData={[{ title: 'Procuradoria', members: [attorneyGeneral] }]}
+            teamsData={[{ title: "Procuradoria", members: [attorneyLeader] }]}
             hideDividers
           />
-          <TeamBoard teamsData={teamsData} />
+          <TeamBoard teamsData={teams} />
         </div>
       </section>
     </>
-  )
+  );
 }
 
-export default Procuradores
+export default Procuradores;

@@ -82,8 +82,6 @@ async function Home() {
     const sessionEnd = new Date(session.data)
     sessionEnd.setMinutes(sessionEnd.getMinutes() + duracaoMinutes)
 
-    console.log(new Date(session.data), sessionEnd, new Date())
-
     return sessionEnd > new Date()
   })
 

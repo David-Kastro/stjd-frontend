@@ -2,7 +2,10 @@
 import React from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
 import Image from 'next/image'
-import { Member } from '../TeamGrid'
+import CustomImage from '../CustomImage'
+import { Member } from '@/lib/types'
+import { marked } from 'marked'
+import { MarkedContent } from '../marked-content'
 
 interface Props {
   openDialog: boolean
@@ -17,34 +20,44 @@ function DialogMemberBio({ activeMember, openDialog, setOpenDialog }: Props) {
         <DialogContent className="max-h-[90vh] bg-[#E1E1E1] px-16 py-[3.19rem]">
           <DialogHeader className="flex flex-row items-center gap-[1.37rem]">
             <DialogTitle className="flex w-full items-center justify-center gap-[0.625rem] text-[1.34694rem] font-bold text-secondary">
-              {activeMember.role}
+              {activeMember.cargo}
               <hr className="-mb-1 grow border-b border-secondary" />
             </DialogTitle>
           </DialogHeader>
           <div className="flex items-start gap-8">
             <div>
               <div className="mb-6 h-[267px] w-[271px] cursor-pointer overflow-hidden rounded-[0.625rem]">
-                <Image
-                  src={activeMember.image}
-                  alt={`Retrato de ${activeMember.name}`}
-                  width={271}
-                  height={267}
-                  className="size-full object-cover object-center"
-                />
+                {
+                  activeMember.avatar?.url ? (
+                    <CustomImage
+                      src={activeMember.avatar.url}
+                      alt={`Retrato de ${activeMember.nome}`}
+                      width={271}
+                      height={267}
+                      className="size-full object-cover object-top"
+                    />
+                  ) : (
+                    <CustomImage
+                      src={'/images/profile.jpg'}
+                      alt={`Retrato de ${activeMember.nome}`}
+                      width={271}
+                      height={267}
+                      className="size-full object-cover object-top"
+                    />
+                  )
+                }
               </div>
             </div>
             <div className="scroll-custom-editais flex max-h-[55vh] max-w-3xl flex-col gap-4 overflow-y-auto pb-4 pr-4 pt-8">
               <div className="flex flex-col gap-1">
                 <h2 className="text-base font-bold uppercase leading-[121%] text-[#3A3A3C]">
-                  {activeMember.name}
+                  {activeMember.nome}
                 </h2>
                 <p className="text-[0.8125rem] font-bold uppercase text-[#727272]">
-                  {activeMember.institution}
+                  {activeMember.associacao}
                 </p>
               </div>
-              <div className="text-base font-light leading-6 text-[#000]">
-                {activeMember.bio}
-              </div>
+              <MarkedContent content={activeMember.bio} />
             </div>
           </div>
           <div className="h-[121px]">
