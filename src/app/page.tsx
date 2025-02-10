@@ -76,21 +76,26 @@ async function Home() {
   })
 
   const nextSessions = todaySessions.filter((session) => {
-    const duracao = session.duracao.replace(/^(.*)\d{2}\.\d+$/ , '$1')
-    const duracaoMinutes = parseInt(duracao.split(':')[0]) * 60 + parseInt(duracao.split(':')[1])
+    const duracao = session.duracao.replace(/^(.*)\d{2}\.\d+$/, '$1')
+    const duracaoMinutes =
+      parseInt(duracao.split(':')[0]) * 60 + parseInt(duracao.split(':')[1])
 
     // verifica se a sessao ainda nao acabou
     const sessionEnd = new Date(session.data)
     sessionEnd.setMinutes(sessionEnd.getMinutes() + duracaoMinutes)
 
     console.log(new Date(session.data), sessionEnd, new Date())
-    
+
     return sessionEnd > new Date()
   })
 
   return (
     <div>
-      <LatestNews articles={articles} nextSession={nextSessions[0]} editais={editais} />
+      <LatestNews
+        articles={articles}
+        nextSession={nextSessions[0]}
+        editais={editais}
+      />
       <hr className="w-fulll hidden h-[0.125rem] bg-[#B0B0B0] lg:block" />
       <div className="lg:container">
         <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pt-[4.94rem]">
