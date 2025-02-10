@@ -1,7 +1,5 @@
-// import MenuTop from "@/_components/MenuTop";
-import JudgmentGuidelines from '@/_components/JudgmentGuidelines'
 import LatestNews from '@/_components/LatestNews'
-import ListEditais from '@/_components/ListEditais'
+
 import Members from '@/_components/Members'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import Image from 'next/image'
