@@ -1,3 +1,14 @@
+export type Image = {
+  id: number
+  documentId: string
+  name: string
+  url: string
+  width: number
+  height: number
+  size: number
+  mime: string
+}
+
 export type Member = {
   id: number
   documentId: string
@@ -10,17 +21,6 @@ export type Member = {
   avatar?: Image
   createdAt: string
   updatedAt: string
-}
-
-export type Image = {
-  id: number
-  documentId: string
-  name: string
-  url: string
-  width: number
-  height: number
-  size: number
-  mime: string
 }
 
 export type Article = {

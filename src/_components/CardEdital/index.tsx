@@ -32,7 +32,9 @@ function CardEdital({
           <div className="">
             <h1 className="text-[0.78806rem] font-bold text-[#2E2E2E] lg:text-[1.25rem]">
               {title}
-              <span className=' text-base font-medium'>{subtitle && ` - ${subtitle}`}</span>
+              <span className="text-base font-medium">
+                {subtitle && ` - ${subtitle}`}
+              </span>
             </h1>
             <h2 className="text-[0.51225rem] font-bold text-[#2E2E2E] lg:text-[0.8125rem]">
               {description}

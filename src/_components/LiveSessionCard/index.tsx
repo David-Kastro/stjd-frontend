@@ -1,6 +1,6 @@
 'use client'
 import { MonitorPlay } from 'lucide-react'
-import React, { useEffect, useState, useCallback } from 'react'
+import React from 'react'
 import { Fira_Sans } from 'next/font/google'
 import Countdown, { CountdownRenderProps } from 'react-countdown'
 
@@ -16,7 +16,6 @@ interface Props {
 }
 
 function LiveSessionCard({ status, onCountdownComplete, releaseDate }: Props) {
-
   const renderer = ({
     hours,
     minutes,
@@ -36,9 +35,7 @@ function LiveSessionCard({ status, onCountdownComplete, releaseDate }: Props) {
   }
 
   return (
-    <div
-      className="absolute right-0 flex gap-[1.22rem] rounded-[1.375rem] bg-white px-[0.96rem] py-[0.57rem] lg:px-[1.44rem] lg:py-[0.86rem]"
-    >
+    <div className="absolute right-0 flex gap-[1.22rem] rounded-[1.375rem] bg-white px-[0.96rem] py-[0.57rem] lg:px-[1.44rem] lg:py-[0.86rem]">
       <div
         className={`flex items-center justify-center rounded-full border-[3.447px] p-[0.6rem] lg:p-4 ${
           status === 'offline' && 'border-[#E8E8F6] bg-secondary'

@@ -1,25 +1,25 @@
-"use client";
-import { ArrowDownRight } from "lucide-react";
-import React, { useState } from "react";
-import { Calendar } from "../ui/calendar";
-import { ptBR } from "date-fns/locale";
-import Antiqueta from "/public/images/Antique-Bronze.svg";
-import Image from "next/image";
+'use client'
+import { ArrowDownRight } from 'lucide-react'
+import React, { useState } from 'react'
+import { Calendar } from '../ui/calendar'
+import { ptBR } from 'date-fns/locale'
+import Antiqueta from '/public/images/Antique-Bronze.svg'
+import Image from 'next/image'
 
-import LiveSessionCard from "../LiveSessionCard";
+import LiveSessionCard from '../LiveSessionCard'
 
 type Props = {
-  status: "offline" | "online" | "waiting";
-  onCountdownComplete?: () => void;
-  releaseDate?: string;
-};
+  status: 'offline' | 'online' | 'waiting'
+  onCountdownComplete?: () => void
+  releaseDate?: string
+}
 
 function JudgmentGuidelines({
   status,
   onCountdownComplete,
   releaseDate,
 }: Props) {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
     <div className="w-full">
@@ -41,7 +41,7 @@ function JudgmentGuidelines({
               <Calendar
                 mode="single"
                 selected={date}
-                // onSelect={setDate}
+                onSelect={setDate}
                 className="rounded-md"
                 locale={ptBR}
               />
@@ -62,7 +62,7 @@ function JudgmentGuidelines({
       </div>
       <div className="relative mt-[4.81rem] hidden items-center lg:flex">
         <hr className="h-[0.125rem] w-full bg-secondary" />
-        {status !== "online" && (
+        {status !== 'online' && (
           <LiveSessionCard
             status={status}
             releaseDate={releaseDate}
@@ -71,7 +71,7 @@ function JudgmentGuidelines({
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default JudgmentGuidelines;
+export default JudgmentGuidelines

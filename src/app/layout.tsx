@@ -42,7 +42,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <MenuTop />
-          {children}
+        {children}
         <Footer />
       </body>
     </html>

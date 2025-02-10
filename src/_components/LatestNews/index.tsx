@@ -59,7 +59,7 @@ function LatestNews({
     }
 
     return 'offline'
-  }, [dateNow])
+  }, [dateNow, nextSession])
 
   const articlesWithoutHighlight = useMemo(() => articles.slice(1), [articles])
 
