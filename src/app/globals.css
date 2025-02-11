@@ -136,6 +136,10 @@ body {
 .bg-card-legislacao {
   background: url("/images/noise.svg") lightgray 0% 0% / 71.07091546058655px 71.07091546058655px repeat;
 }
+.bg-card-galeria {
+  background: url("/images/noise.svg") lightgray 0% 0% / 88.97637724876404px 88.97637724876404px repeat;
+
+}
 
 .h1 {
   @apply font-[Inter] text-[#000] text-4xl font-bold;
