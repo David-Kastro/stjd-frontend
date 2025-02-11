@@ -13,7 +13,6 @@ import {
 import { Button } from '@/_components/ui/button'
 import CardEdital from '@/_components/CardEdital'
 
-import PDFViewer from '@/_components/PDFViewer'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import BgScalle from '/public/images/bg-card-processo.svg'
 import Image from 'next/image'

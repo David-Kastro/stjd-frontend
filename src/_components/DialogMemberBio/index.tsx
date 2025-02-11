@@ -1,10 +1,8 @@
 'use client'
 import React from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
-import Image from 'next/image'
 import CustomImage from '../CustomImage'
 import { Member } from '@/lib/types'
-import { marked } from 'marked'
 import { MarkedContent } from '../marked-content'
 
 interface Props {
@@ -27,25 +25,23 @@ function DialogMemberBio({ activeMember, openDialog, setOpenDialog }: Props) {
           <div className="flex items-start gap-8">
             <div>
               <div className="mb-6 h-[267px] w-[271px] cursor-pointer overflow-hidden rounded-[0.625rem]">
-                {
-                  activeMember.avatar?.url ? (
-                    <CustomImage
-                      src={activeMember.avatar.url}
-                      alt={`Retrato de ${activeMember.nome}`}
-                      width={271}
-                      height={267}
-                      className="size-full object-cover object-top"
-                    />
-                  ) : (
-                    <CustomImage
-                      src={'/images/profile.jpg'}
-                      alt={`Retrato de ${activeMember.nome}`}
-                      width={271}
-                      height={267}
-                      className="size-full object-cover object-top"
-                    />
-                  )
-                }
+                {activeMember.avatar?.url ? (
+                  <CustomImage
+                    src={activeMember.avatar.url}
+                    alt={`Retrato de ${activeMember.nome}`}
+                    width={271}
+                    height={267}
+                    className="size-full object-cover object-top"
+                  />
+                ) : (
+                  <CustomImage
+                    src={'/images/profile.jpg'}
+                    alt={`Retrato de ${activeMember.nome}`}
+                    width={271}
+                    height={267}
+                    className="size-full object-cover object-top"
+                  />
+                )}
               </div>
             </div>
             <div className="scroll-custom-editais flex max-h-[55vh] max-w-3xl flex-col gap-4 overflow-y-auto pb-4 pr-4 pt-8">

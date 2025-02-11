@@ -1,4 +1,4 @@
-import { marked } from "marked";
+import { marked } from 'marked'
 
 export function MarkedContent({ content }: { content: string }) {
   return (
@@ -6,5 +6,5 @@ export function MarkedContent({ content }: { content: string }) {
       className="marked"
       dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
     />
-  );
+  )
 }
