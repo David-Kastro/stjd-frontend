@@ -1,5 +1,5 @@
 import CardTopPage from '@/_components/CardTopPage'
-import React, { useMemo } from 'react'
+import React from 'react'
 import WoodenGavel from '/public/images/wooden-gavel.png'
 import Image from 'next/image'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
@@ -11,60 +11,64 @@ import fetchApi from '@/lib/strapi'
 import { Member } from '@/lib/types'
 
 const orgaoCodes: Record<string, string> = {
-  'TP': 'Tribunal Pleno',
-  'CD': 'Comissão Disciplinar',
-  'S': 'Suplentes',
+  TP: 'Tribunal Pleno',
+  CD: 'Comissão Disciplinar',
+  S: 'Suplentes',
 }
 
 async function Auditores() {
   const [members] = await fetchApi<Member[]>({
-      endpoint: 'members',
-      query: {
-        populate: {
-          avatar: {
-            fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
-          },
+    endpoint: 'members',
+    query: {
+      populate: {
+        avatar: {
+          fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
-        sort: 'prioridade:desc',
-        pagination: -1,
       },
-    })
+      sort: 'prioridade:desc',
+      pagination: -1,
+    },
+  })
 
   const membersGrouped = () => {
-    return Object.keys(orgaoCodes).map((key) => {
-      const group = members.filter( member => member.orgao.startsWith(key))
+    return Object.keys(orgaoCodes)
+      .map((key) => {
+        const group = members.filter((member) => member.orgao.startsWith(key))
 
-      if (!group.length) {
-        return null
-      }
+        if (!group.length) {
+          return null
+        }
 
-      if (key === 'CD') {
-        const subgroupNames: string[] = group.reduce((acc: any, member) => {
-          const subgroupName = member.orgao.replace(/^.*-\s(.*)/, '$1')
-          if (!acc.includes(subgroupName)) {
-            return [...acc, subgroupName]
-          }
-          return acc
-        }, [])
+        if (key === 'CD') {
+          const subgroupNames: string[] = group.reduce((acc: any, member) => {
+            const subgroupName = member.orgao.replace(/^.*-\s(.*)/, '$1')
+            if (!acc.includes(subgroupName)) {
+              return [...acc, subgroupName]
+            }
+            return acc
+          }, [])
 
-        const subgroups = subgroupNames.map(subgroupName => {
+          const subgroups = subgroupNames.map((subgroupName) => {
+            return {
+              title: subgroupName,
+              members: group.filter((member) =>
+                member.orgao.includes(subgroupName),
+              ),
+            }
+          })
+
           return {
-            title: subgroupName,
-            members: group.filter(member => member.orgao.includes(subgroupName))
+            title: orgaoCodes[key],
+            groups: subgroups,
           }
-        })
+        }
 
         return {
           title: orgaoCodes[key],
-          groups: subgroups
+          members: group,
         }
-      }
-
-      return {
-        title: orgaoCodes[key],
-        members: group
-      }
-    }).filter(Boolean) as Team[]
+      })
+      .filter(Boolean) as Team[]
   }
 
   const teams = membersGrouped()

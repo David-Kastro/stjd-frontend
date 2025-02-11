@@ -186,7 +186,7 @@ function Editais() {
               <div className="mr-[4.2px] h-[5rem] border-r-[2px] border-[#BFBFBF]"></div>
             </div>
             <div className="mt-[2rem] w-full max-w-[48.4375rem]">
-              <PDFViewer editalActive={editalActive} />
+              {/* <PDFViewer doc={editalActive} /> */}
             </div>
           </div>
         </div>

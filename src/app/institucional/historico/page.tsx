@@ -1,10 +1,10 @@
 import CardTopPage from '@/_components/CardTopPage'
-import TeamGrid, { Team } from '@/_components/TeamGrid'
+import TeamGrid from '@/_components/TeamGrid'
 import React from 'react'
 import Clock from '/public/images/clock.png'
 
 function Historico() {
-  const teams: Team[] = [
+  const teams: any = [
     {
       title: '',
       members: [
