@@ -54,7 +54,7 @@ export default async function fetchApi<T>({
     const items = data.data as T
 
     if (data.error) {
-      throw new Error(data.error)
+      throw new Error(JSON.stringify(data.error))
     }
 
     return [items as T, meta]

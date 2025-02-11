@@ -1,35 +1,34 @@
-"use client";
+'use client'
 
-import { cn } from "@/lib/utils";
-import { Users } from "lucide-react";
-import Image from "next/image";
-import React from "react";
-import DialogMemberBio from "../DialogMemberBio";
-import { Member } from "@/lib/types";
-import CustomImage from "../CustomImage";
+import { cn } from '@/lib/utils'
+import { Users } from 'lucide-react'
+import React from 'react'
+import DialogMemberBio from '../DialogMemberBio'
+import { Member } from '@/lib/types'
+import CustomImage from '../CustomImage'
 
 type Group = {
-  title: string;
-  members: Member[];
-  isGrouped?: boolean;
-};
+  title: string
+  members: Member[]
+  isGrouped?: boolean
+}
 
 export type Team = {
-  title: string;
-  members?: Member[];
-  groups?: Group[];
-};
+  title: string
+  members?: Member[]
+  groups?: Group[]
+}
 
 interface Props {
-  teamsData: Team[];
-  splitGroupMembersByRole?: boolean;
-  hideDividers?: boolean;
+  teamsData: Team[]
+  splitGroupMembersByRole?: boolean
+  hideDividers?: boolean
 }
 
 interface RenderMemberProps {
-  member: Member;
-  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  setActiveMember: React.Dispatch<React.SetStateAction<Member | null>>;
+  member: Member
+  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>
+  setActiveMember: React.Dispatch<React.SetStateAction<Member | null>>
 }
 
 const RenderMember: React.FC<RenderMemberProps> = ({
@@ -38,9 +37,9 @@ const RenderMember: React.FC<RenderMemberProps> = ({
   setActiveMember,
 }) => {
   const handleClick = () => {
-    setActiveMember(member);
-    setOpenDialog(true);
-  };
+    setActiveMember(member)
+    setOpenDialog(true)
+  }
 
   return (
     <div className="col-span-10 lg:col-span-2">
@@ -58,7 +57,7 @@ const RenderMember: React.FC<RenderMemberProps> = ({
           />
         ) : (
           <CustomImage
-            src={"/images/profile.jpg"}
+            src={'/images/profile.jpg'}
             alt={`Retrato de ${member.nome}`}
             width={167}
             height={165}
@@ -91,16 +90,16 @@ const RenderMember: React.FC<RenderMemberProps> = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 function TeamGrid({
   teamsData: members,
   splitGroupMembersByRole,
   hideDividers,
 }: Props) {
-  const [openDialog, setOpenDialog] = React.useState(false);
-  const [activeMember, setActiveMember] = React.useState<Member | null>(null);
+  const [openDialog, setOpenDialog] = React.useState(false)
+  const [activeMember, setActiveMember] = React.useState<Member | null>(null)
 
   const getGrouppedMembersByRole = () => {
     return members.map((member) => {
@@ -108,24 +107,24 @@ function TeamGrid({
         const splittedMembers = group.members.reduce(
           (acc, member) => {
             if (member.cargo) {
-              acc[0] = [...acc[0], member];
+              acc[0] = [...acc[0], member]
             }
             if (!member.cargo) {
-              acc[1] = [...acc[1], member];
+              acc[1] = [...acc[1], member]
             }
-            return acc;
+            return acc
           },
           [[], []] as Member[][],
-        );
-        return { ...group, isGrouped: true, members: splittedMembers };
-      });
+        )
+        return { ...group, isGrouped: true, members: splittedMembers }
+      })
       return splittedGroups
         ? { ...member, groups: [...splittedGroups] }
-        : member;
-    });
-  };
+        : member
+    })
+  }
 
-  const teams = splitGroupMembersByRole ? getGrouppedMembersByRole() : members;
+  const teams = splitGroupMembersByRole ? getGrouppedMembersByRole() : members
 
   return (
     <>
@@ -133,8 +132,8 @@ function TeamGrid({
         <div
           key={team.title}
           className={cn(
-            "relative pb-20 pt-10 after:absolute after:-left-4 after:bottom-0 after:right-0 after:h-[0.125rem] after:w-screen after:bg-border",
-            hideDividers && "after:hidden",
+            'relative pb-20 pt-10 after:absolute after:-left-4 after:bottom-0 after:right-0 after:h-[0.125rem] after:w-screen after:bg-border',
+            hideDividers && 'after:hidden',
           )}
         >
           <div className="container">
@@ -166,7 +165,7 @@ function TeamGrid({
                 </h3>
                 <div
                   className={cn(
-                    !group.isGrouped && "grid grid-cols-11 gap-x-6 gap-y-12",
+                    !group.isGrouped && 'grid grid-cols-11 gap-x-6 gap-y-12',
                   )}
                 >
                   {group.members.map((memberGroup, index) =>
@@ -205,7 +204,7 @@ function TeamGrid({
         setOpenDialog={setOpenDialog}
       />
     </>
-  );
+  )
 }
 
-export default TeamGrid;
+export default TeamGrid

@@ -1,37 +1,37 @@
-import Image from "next/image";
-import React from "react";
-import ScaleAttorneys from "../ScaleAttorneys";
-import BgEditais from "/public/images/bg-card-editais.svg";
-import LogoBlack from "/public/images/logo-stjd-black.svg";
-import BgFundoMembers from "/public/images/bg-fundo-members.svg";
-import CustomImage from "../CustomImage";
+import Image from 'next/image'
+import React from 'react'
+import ScaleAttorneys from '../ScaleAttorneys'
+import BgEditais from '/public/images/bg-card-editais.svg'
+import LogoBlack from '/public/images/logo-stjd-black.svg'
+import BgFundoMembers from '/public/images/bg-fundo-members.svg'
+import CustomImage from '../CustomImage'
 
 type TeamMember = {
-  id?: number;
-  nome: string;
-  orgao: string;
-  associacao: string;
-  cargo: string;
-  bio: string;
-  avatar: string;
-};
+  id?: number
+  nome: string
+  orgao: string
+  associacao: string
+  cargo: string
+  bio: string
+  avatar: string
+}
 
 type TeamLeader = {
-  id?: number;
-  nome: string;
-  orgao: string;
-  associacao: string;
-  cargo: string;
-  bio: string;
-  avatar: string;
-};
+  id?: number
+  nome: string
+  orgao: string
+  associacao: string
+  cargo: string
+  bio: string
+  avatar: string
+}
 
 export type AttorneysTeam = {
-  id?: number;
-  nome: string;
-  leader: TeamLeader;
-  equipes: TeamMember[];
-};
+  id?: number
+  nome: string
+  leader: TeamLeader
+  equipes: TeamMember[]
+}
 
 function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
   return (
@@ -60,7 +60,7 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                         />
                       ) : (
                         <Image
-                          src={"/images/profile.jpg"}
+                          src={'/images/profile.jpg'}
                           alt={`Retrato de ${team.leader.nome}`}
                           width={167}
                           height={165}
@@ -93,7 +93,7 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                             />
                           ) : (
                             <Image
-                              src={"/images/profile.jpg"}
+                              src={'/images/profile.jpg'}
                               alt={`Retrato de ${member.nome}`}
                               width={167}
                               height={165}
@@ -136,7 +136,7 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
         </div>
       </section>
     </>
-  );
+  )
 }
 
-export default TeamBoard;
+export default TeamBoard

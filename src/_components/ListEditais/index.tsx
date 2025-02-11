@@ -13,7 +13,7 @@ function ListEditais({ editais }: { editais: Edital[] }) {
         Editais
       </h1>
       <div className="relative flex items-center justify-center lg:max-h-[50rem] lg:pl-[1.69rem]">
-        <div className="absolute right-1 z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
+        <div className="absolute right-[4px] z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
 
         {/* gradientes efeito fade em cima e embaixo */}
         <div className="absolute right-10 top-0 z-20 h-20 w-full bg-gradient-to-t from-transparent to-[#d5d5d5]"></div>
