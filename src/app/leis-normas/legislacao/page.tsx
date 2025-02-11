@@ -12,7 +12,6 @@ import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/_components/ui/dialog'
@@ -279,17 +278,6 @@ function Legislacao() {
             </div>
           </DialogHeader>
           <PDFViewerScroll linkPdf={legislacaoActive.pdf} />
-          <DialogFooter>
-            <a
-              href={legislacaoActive.pdf}
-              className="mx-auto w-fit"
-              // download={legislacaoActive.pdf.split("/").pop()}
-            >
-              <Button className="mx-auto h-[3.75rem] rounded-[4.625rem] px-[3.12rem] text-[1.25rem] font-bold">
-                Fazer Download
-              </Button>
-            </a>
-          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>

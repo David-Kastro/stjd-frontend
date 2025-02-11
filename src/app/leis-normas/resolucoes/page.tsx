@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import CardTopPage from '@/_components/CardTopPage'
 import BalancaJustica from '/public/images/balanca-justica-prata.png'
@@ -16,7 +16,7 @@ import {
   DialogTitle,
 } from '@/_components/ui/dialog'
 import { Button } from '@/_components/ui/button'
-import { Search } from 'lucide-react'
+import { ChevronLeft, Search } from 'lucide-react'
 import {
   Select,
   SelectContent,
@@ -26,6 +26,12 @@ import {
 } from '@/_components/ui/select'
 import { Input } from '@/_components/ui/input'
 import PDFViewerScroll from '@/_components/PDFViewerScroll'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselApi,
+  CarouselItem,
+} from '@/components/ui/carousel'
 
 interface legislacaoType {
   title: string
@@ -150,16 +156,44 @@ const legislacoes = [
     pdf: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
   },
 ]
+function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
+  const chunks: T[][] = []
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    chunks.push(arr.slice(i, i + chunkSize))
+  }
+  return chunks
+}
 
 function Resolucoes() {
+  const groupedLegislacoes = chunkArray(legislacoes, 14)
   const [openDialog, setOpenDialog] = useState(false)
   const [legislacaoActive, setLegislacaoActive] = useState<legislacaoType>(
     {} as legislacaoType,
   )
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+  console.log('groupedLegislacoes', groupedLegislacoes)
 
   const handleOpenDialog = (legislacao: legislacaoType) => {
     setLegislacaoActive(legislacao)
     setOpenDialog(true)
+  }
+  const handlePrevious = () => {
+    api?.scrollPrev()
+  }
+  const handleNext = () => {
+    api?.scrollNext()
   }
 
   return (
@@ -226,17 +260,48 @@ function Resolucoes() {
           </div>
         </div>
       </div>
+      {/* Carousel com grupos de 14 itens */}
       <div className="container">
-        <div className="relative z-10 mt-[10rem]">
-          <div className="relative mx-auto -mr-[5px] flex flex-wrap justify-center gap-x-[3.93rem] gap-y-[2.56rem]">
-            {legislacoes.map((legislacao, index) => (
-              <button key={index} onClick={() => handleOpenDialog(legislacao)}>
-                <CardLegislacao
-                  title={legislacao.title}
-                  subtitle={legislacao.subtitle}
-                />
+        <div className="relative z-10 mx-auto mt-[10rem] max-w-[100.0625rem]">
+          <Carousel setApi={setApi}>
+            <CarouselContent>
+              {groupedLegislacoes.map((group, groupIndex) => (
+                <CarouselItem key={`group-${groupIndex}`}>
+                  <div className="grid grid-cols-7 gap-x-[3.93rem] gap-y-[2.56rem]">
+                    {group.map((legislacao, index) => (
+                      <button
+                        key={`leg-${groupIndex}-${index}`}
+                        onClick={() => handleOpenDialog(legislacao)}
+                      >
+                        <CardLegislacao
+                          title={legislacao.title}
+                          subtitle={legislacao.subtitle}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+          <div className="mt-[2.5rem] flex flex-col items-center justify-center gap-[0.41rem] pr-[2.5rem]">
+            <div className="flex justify-center gap-[0.41rem]">
+              <button
+                onClick={handlePrevious}
+                className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1]"
+              >
+                <ChevronLeft color="#A1A1A1" />
               </button>
-            ))}
+              <button
+                onClick={handleNext}
+                className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1]"
+              >
+                <ChevronLeft color="#A1A1A1" className="rotate-180" />
+              </button>
+            </div>
+            <p className="text-center text-[0.9375rem] font-light leading-[1.23775rem]">
+              {current} / {groupedLegislacoes.length}
+            </p>
           </div>
         </div>
       </div>
