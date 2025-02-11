@@ -13,7 +13,6 @@ import {
 import { Button } from '@/_components/ui/button'
 import CardEdital from '@/_components/CardEdital'
 
-import PDFViewer from '@/_components/PDFViewer'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import BgScalle from '/public/images/bg-card-processo.svg'
 import Image from 'next/image'
@@ -186,7 +185,7 @@ function Editais() {
               <div className="mr-[4.2px] h-[5rem] border-r-[2px] border-[#BFBFBF]"></div>
             </div>
             <div className="mt-[2rem] w-full max-w-[48.4375rem]">
-              <PDFViewer editalActive={editalActive} />
+              {/* <PDFViewer doc={editalActive} /> */}
             </div>
           </div>
         </div>

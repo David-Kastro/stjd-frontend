@@ -4,6 +4,7 @@ import ScaleAttorneys from '../ScaleAttorneys'
 import BgEditais from '/public/images/bg-card-editais.svg'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
+import CustomImage from '../CustomImage'
 
 type TeamMember = {
   id?: number
@@ -49,20 +50,32 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                   </h3>
                   <div className="flex h-full w-full flex-col items-center justify-center">
                     <div className="mb-6 h-[165px] w-[167px] overflow-hidden rounded-[0.625rem]">
-                      <Image
-                        src={team.leader.avatar}
-                        alt={`Retrato de ${team.leader.nome}`}
-                        width={167}
-                        height={165}
-                        className="size-full object-cover object-center"
-                      />
+                      {team.leader?.avatar ? (
+                        <CustomImage
+                          src={team.leader.avatar}
+                          alt={`Retrato de ${team.leader.nome}`}
+                          width={167}
+                          height={165}
+                          className="size-full object-cover object-center"
+                        />
+                      ) : (
+                        <Image
+                          src={'/images/profile.jpg'}
+                          alt={`Retrato de ${team.leader.nome}`}
+                          width={167}
+                          height={165}
+                          className="size-full object-cover object-center"
+                        />
+                      )}
                     </div>
-                    <p className="text-base font-bold text-secondary">
-                      {team.leader.cargo}
-                    </p>
-                    <h4 className="max-w-44 text-lg font-bold uppercase leading-[121%] text-[#3A3A3C]">
-                      {team.leader.nome}
-                    </h4>
+                    <div>
+                      <p className="text-base font-bold text-secondary">
+                        {team.leader.cargo}
+                      </p>
+                      <h4 className="max-w-44 text-lg font-bold uppercase leading-[121%] text-[#3A3A3C]">
+                        {team.leader.nome}
+                      </h4>
+                    </div>
                   </div>
                 </div>
                 <div className="col-span-8 px-20 py-12">
@@ -70,13 +83,23 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                     {team.equipes.map((member) => (
                       <div key={member.id}>
                         <div className="mb-6 h-[165px] w-[167px] overflow-hidden rounded-[0.625rem]">
-                          <Image
-                            src={member.avatar}
-                            alt={`Retrato de ${member.nome}`}
-                            width={167}
-                            height={165}
-                            className="size-full object-cover object-center"
-                          />
+                          {member?.avatar ? (
+                            <CustomImage
+                              src={member.avatar}
+                              alt={`Retrato de ${member.nome}`}
+                              width={167}
+                              height={165}
+                              className="size-full object-cover object-center"
+                            />
+                          ) : (
+                            <Image
+                              src={'/images/profile.jpg'}
+                              alt={`Retrato de ${member.nome}`}
+                              width={167}
+                              height={165}
+                              className="size-full object-cover object-center"
+                            />
+                          )}
                         </div>
                         <div className="flex flex-col gap-1">
                           <p className="max-w-48 text-base font-bold uppercase leading-[121%] text-[#3A3A3C]">

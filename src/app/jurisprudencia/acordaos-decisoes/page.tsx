@@ -1,6 +1,6 @@
 'use client'
 import CardTopPage from '@/_components/CardTopPage'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Pastas from '/public/images/pasta-acordoes.png'
 import { Search } from 'lucide-react'
 import {
@@ -19,91 +19,27 @@ import BgScalle from '/public/images/bg-card-processo.svg'
 import Image from 'next/image'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
+import { Doc } from '@/lib/types'
 
-export type Edital = {
-  id: number
-  titulo: string
-  subTitle: string
-  link: string
-}
-
-const editais = [
-  {
-    id: 1,
-    titulo: 'Edital de Citação e Intimação opa',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 2,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 3,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 4,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 5,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 6,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 5,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 8,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 9,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-  {
-    id: 10,
-    titulo: 'Edital de Citação e Intimação',
-    subTitle: '3º Comissão Disciplinar',
-    link: 'https://conteudo.cbf.com.br/cdn/202409/20240911155731_689.pdf',
-  },
-]
+const editais: Doc[] = []
 
 function Editais() {
-  const [editalActive, setEditalActive] = useState<Edital>({
-    id: 0,
-    titulo: '',
-    subTitle: '',
-    link: '',
-  })
+  const [editalActive, setEditalActive] = useState<number | null>(null)
+
+  const selectedEdital = useMemo(() => {
+    return editais.find((edital) => {
+      return edital.id === editalActive
+    })
+  }, [editalActive])
 
   useEffect(() => {
-    setEditalActive(editais[0])
+    if (editais.length > 0) {
+      setEditalActive(editais[0].id)
+    }
   }, [])
 
-  const handleClickEdital = (edital: Edital) => {
-    setEditalActive(edital)
+  const handleClickEdital = (edital: Doc) => {
+    setEditalActive(edital.id)
   }
 
   return (
@@ -192,10 +128,10 @@ function Editais() {
                     <CardEdital
                       key={index}
                       title={edital.titulo}
-                      description={edital.subTitle}
+                      description={edital.subtitulo}
                       type="function"
                       handleClick={() => handleClickEdital(edital)}
-                      isActive={edital.id === editalActive.id}
+                      isActive={edital.id === editalActive}
                     />
                   ))}
                 </div>
@@ -205,7 +141,7 @@ function Editais() {
               <div className="mr-[4.2px] h-[5rem] border-r-[2px] border-[#BFBFBF]"></div>
             </div>
             <div className="mt-[2rem] w-full max-w-[48.4375rem]">
-              <PDFViewer editalActive={editalActive} />
+              {selectedEdital && <PDFViewer doc={selectedEdital} />}
             </div>
           </div>
         </div>

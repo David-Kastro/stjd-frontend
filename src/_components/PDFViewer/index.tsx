@@ -2,19 +2,20 @@ import React, { useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
-import { Edital } from '@/app/processos/editais/page'
 import { ChevronLeft } from 'lucide-react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
+import { Doc } from '@/lib/types'
+import { mediaSource } from '@/lib/media-source'
 
 // Configura o worker para carregar PDFs corretamente
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
 
 interface PDFViewerProps {
-  editalActive: Edital
+  doc: Doc
 }
 
-const PDFViewer = ({ editalActive }: PDFViewerProps) => {
+const PDFViewer = ({ doc }: PDFViewerProps) => {
   const [numPages, setNumPages] = useState<number | null>(null)
   const [pageNumber, setPageNumber] = useState(1)
 
@@ -32,8 +33,7 @@ const PDFViewer = ({ editalActive }: PDFViewerProps) => {
   return (
     <div className="relative rounded-[1.375rem] bg-[#E1E1E1] px-[1.69rem] py-[1rem]">
       <h2 className="text-[1.12138rem] font-bold leading-[2.66025rem]">
-        {editalActive.titulo}{' '}
-        <span className="font-normal">{editalActive.subTitle}</span>
+        {doc.titulo} <span className="font-normal">{doc.subtitulo}</span>
       </h2>
       <p className="text-end text-[0.79181rem] text-[#2E2E2E]">
         Prévia do documento
@@ -62,7 +62,7 @@ const PDFViewer = ({ editalActive }: PDFViewerProps) => {
             <ChevronLeft color="#A1A1A1" className="rotate-180" />
           </button>
         </div>
-        <Link href={editalActive.link} target="_blank">
+        <Link href={mediaSource(doc.documento.url)} target="_blank">
           <Button className="h-[2.21038rem] w-[9.0625rem] rounded-[2.72613rem] text-[0.73681rem]">
             Fazer Download
           </Button>
@@ -76,7 +76,7 @@ const PDFViewer = ({ editalActive }: PDFViewerProps) => {
         style={{ border: '1px solid #ccc', display: 'inline-block' }}
       >
         <Document
-          file={editalActive.link}
+          file={mediaSource(doc.documento.url)}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page pageNumber={pageNumber} scale={1.0} />

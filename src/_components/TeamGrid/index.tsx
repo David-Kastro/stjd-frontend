@@ -2,17 +2,10 @@
 
 import { cn } from '@/lib/utils'
 import { Users } from 'lucide-react'
-import Image from 'next/image'
 import React from 'react'
 import DialogMemberBio from '../DialogMemberBio'
-
-export type Member = {
-  name: string
-  role?: string
-  institution?: string
-  image: string
-  bio?: string
-}
+import { Member } from '@/lib/types'
+import CustomImage from '../CustomImage'
 
 type Group = {
   title: string
@@ -54,35 +47,45 @@ const RenderMember: React.FC<RenderMemberProps> = ({
         className="mb-6 h-[165px] w-[167px] cursor-pointer overflow-hidden rounded-[0.625rem]"
         onClick={handleClick}
       >
-        <Image
-          src={member.image}
-          alt={`Retrato de ${member.name}`}
-          width={167}
-          height={165}
-          className="size-full object-cover object-center"
-        />
+        {member.avatar?.url ? (
+          <CustomImage
+            src={member.avatar.url}
+            alt={`Retrato de ${member.nome}`}
+            width={167}
+            height={165}
+            className="size-full object-cover object-top"
+          />
+        ) : (
+          <CustomImage
+            src={'/images/profile.jpg'}
+            alt={`Retrato de ${member.nome}`}
+            width={167}
+            height={165}
+            className="size-full object-cover object-top"
+          />
+        )}
       </div>
       <div className="flex flex-col gap-[0.31rem]">
-        {member.role && (
+        {member.cargo && (
           <h3
             className="cursor-pointer text-base font-bold text-secondary"
             onClick={handleClick}
           >
-            {member.role}
+            {member.cargo}
           </h3>
         )}
         <p
           className="max-w-44 cursor-pointer text-base font-bold uppercase leading-[121%] text-[#3A3A3C]"
           onClick={handleClick}
         >
-          {member.name}
+          {member.nome}
         </p>
-        {member.institution && (
+        {member.associacao && (
           <p
             className="cursor-pointer text-[0.8125rem] font-bold leading-[0.83688rem] text-[#727272]"
             onClick={handleClick}
           >
-            {member.institution}
+            {member.associacao}
           </p>
         )}
       </div>
@@ -103,10 +106,10 @@ function TeamGrid({
       const splittedGroups = member.groups?.map((group) => {
         const splittedMembers = group.members.reduce(
           (acc, member) => {
-            if (member.role) {
+            if (member.cargo) {
               acc[0] = [...acc[0], member]
             }
-            if (!member.role) {
+            if (!member.cargo) {
               acc[1] = [...acc[1], member]
             }
             return acc
@@ -143,7 +146,7 @@ function TeamGrid({
             <div className="grid grid-cols-11 gap-x-6 gap-y-12">
               {team.members?.map((member) => (
                 <RenderMember
-                  key={member.name}
+                  key={member.id}
                   member={member}
                   setActiveMember={setActiveMember}
                   setOpenDialog={setOpenDialog}
@@ -173,7 +176,7 @@ function TeamGrid({
                       >
                         {memberGroup.map((member) => (
                           <RenderMember
-                            key={member.name}
+                            key={member.nome}
                             member={member}
                             setActiveMember={setActiveMember}
                             setOpenDialog={setOpenDialog}
@@ -182,7 +185,7 @@ function TeamGrid({
                       </div>
                     ) : (
                       <RenderMember
-                        key={memberGroup.name}
+                        key={memberGroup.nome}
                         member={memberGroup}
                         setActiveMember={setActiveMember}
                         setOpenDialog={setOpenDialog}

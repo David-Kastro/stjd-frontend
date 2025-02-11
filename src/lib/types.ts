@@ -9,6 +9,15 @@ export type Image = {
   mime: string
 }
 
+export type File = {
+  id: number
+  documentId: string
+  name: string
+  url: string
+  size: number
+  mime: string
+}
+
 export type Member = {
   id: number
   documentId: string
@@ -53,6 +62,7 @@ export interface Doc {
   subtitulo: string
   tipo: string
   categoria: string
+  documento: File
   createdAt: string
   updatedAt: string
 }

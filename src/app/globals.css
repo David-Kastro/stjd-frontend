@@ -154,3 +154,47 @@ body {
 .clip-path-custom {
   clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
 }
+
+.marked {
+  @apply text-base font-light leading-6 text-[#000];
+}
+
+.marked h1 {
+  @apply text-3xl font-bold;
+}
+
+.marked h2 {
+  @apply text-2xl font-bold;
+}
+
+.marked h3 {
+  @apply text-xl font-bold;
+}
+
+.marked h4 {
+  @apply text-lg font-bold;
+}
+
+.marked h5 {
+  @apply text-base font-bold;
+}
+
+.marked h6 {
+  @apply text-sm font-bold;
+}
+
+.marked p {
+  @apply text-base font-light leading-6 text-[#000];
+}
+
+.marked a {
+  @apply text-primary underline;
+}
+
+.marked * {
+  @apply pb-4;
+}
+
+.marked *:last-child {
+  @apply pb-0;
+}
