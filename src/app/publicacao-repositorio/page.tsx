@@ -1,5 +1,5 @@
-import NewsCarousel from '@/_components/NewsCarousel'
 import PublicationsCarousel from '@/_components/PublicationsCarousel'
+import PublicationsHighligthCarousel from '@/_components/PublicationsHighligthCarousel'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import { Button } from '@/_components/ui/button'
 import { Input } from '@/_components/ui/input'
@@ -13,7 +13,7 @@ import Image from 'next/image'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 
 async function PublicaoRepositorio() {
-  const [articles] = await fetchApi<Article[]>({
+  const [publicationsData] = await fetchApi<Article[]>({
     endpoint: 'articles',
     query: {
       sort: 'id:desc',
@@ -22,6 +22,9 @@ async function PublicaoRepositorio() {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
       },
+      filters: {
+        tipo: 'Notícia', // IMPORTANT: Change this to 'Publicação' to get the right data
+      },
       pagination: {
         pageSize: 10,
         page: 1,
@@ -29,42 +32,10 @@ async function PublicaoRepositorio() {
     },
   })
 
-  const publications = [
-    {
-      title: 'Título da publicação',
-      date: '05/11/2024 às 12h00',
-      author: 'Fulano de Tal',
-      image: '/images/publicacao-image.jpg',
-      imageDescription: 'Imagem de uma publicação',
-      description:
-        'O Superior Tribunal de Justiça Desportiva reitera seu compromisso com a imparcialidade e a transparência no julgamento de processos que envolvem o desporto brasileiro. Na sessão plenária desta semana, foi aprovado um importante entendimento consolidado, que resultou na Súmula 123/2025. Esta súmula estabelece parâmetros mais claros para casos de condutas antidesportivas envolvendo atletas e membros de comissão técnica durante competições oficiais.',
-    },
-    {
-      title: 'Nova Súmula Aprovada',
-      date: '10/11/2024 às 14h00',
-      author: 'Fulano de Tal',
-      image: '/images/publicacao-image.jpg',
-      imageDescription: 'Imagem de uma publicação',
-      description:
-        'A nova súmula aprovada pelo STJD visa melhorar a clareza nos julgamentos de casos de doping. A súmula 124/2025 estabelece novos parâmetros para a análise de substâncias proibidas e suas consequências para os atletas.',
-    },
-    {
-      title: 'Reunião Extraordinária',
-      date: '15/11/2024 às 09h00',
-      author: 'Fulano de Tal',
-      image: '/images/publicacao-image.jpg',
-      description:
-        'Na reunião extraordinária realizada nesta semana, foram discutidas novas diretrizes para a arbitragem no futebol brasileiro. As mudanças visam aumentar a transparência e a eficiência nas decisões tomadas durante as partidas.',
-    },
-    {
-      title: 'Parceria Internacional',
-      date: '20/11/2024 às 16h00',
-      author: 'Fulano de Tal',
-      image: '/images/publicacao-image.jpg',
-      description:
-        'O STJD firmou uma nova parceria com a Federação Internacional de Futebol para promover o intercâmbio de conhecimentos e práticas judiciais no esporte. Esta parceria busca fortalecer a cooperação internacional e aprimorar os processos judiciais desportivos.',
-    },
-  ]
+  const higlightedPublications = publicationsData.slice(0, 3)
+
+  const publications = publicationsData.slice(3)
+
   const [members] = await fetchApi<Member[]>({
     endpoint: 'members',
     query: {
@@ -105,11 +76,13 @@ async function PublicaoRepositorio() {
           </form>
         </section>
         <section className="relative rounded-[1.375rem] bg-[#E1E1E1] p-8">
-          <PublicationsCarousel publications={publications} />
+          <PublicationsHighligthCarousel
+            publications={higlightedPublications}
+          />
         </section>
         <hr className="w-full border-b border-secondary" />
         <section className="relative rounded-[1.375rem] bg-[#E1E1E1] p-8">
-          <NewsCarousel articles={articles} />
+          <PublicationsCarousel articles={publications} />
         </section>
       </article>
       <hr className="h-px w-full bg-border" />
@@ -129,6 +102,7 @@ async function PublicaoRepositorio() {
           <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
         </div>
       </section>
+      <section></section>
     </main>
   )
 }

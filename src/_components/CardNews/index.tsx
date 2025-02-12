@@ -19,7 +19,7 @@ function CardNews({ image, title, date, textContent }: Props) {
       >
         <CustomImage
           src={image}
-          className="aspect-[2/1] h-fit rounded-[0.625rem] object-cover"
+          className="aspect-video h-fit rounded-[0.625rem] object-cover"
           alt={title}
           width={200}
           height={100}
