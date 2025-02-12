@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
-async function Publicacao({ params }: { params: { slug: string } }) {
+async function Publicacao({ params }: Props) {
   const { slug } = await params
   const [[data]] = await fetchApi<Publication[]>({
     endpoint: 'articles',

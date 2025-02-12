@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
-async function Noticia({ params }: { params: { slug: string } }) {
+async function Noticia({ params }: Props) {
   const { slug } = await params
   const [[data]] = await fetchApi<News[]>({
     endpoint: 'articles',
