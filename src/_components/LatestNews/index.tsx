@@ -265,6 +265,7 @@ function LatestNews({
                                   title={item.headline}
                                   date={item.createdAt}
                                   textContent={item.lead}
+                                  href={`/comunicacao/noticias/${item.slug}`}
                                 />
                               </div>
                             ))}
