@@ -32,7 +32,12 @@ function PublicationsHighligthCarousel({
 
   return (
     <>
-      <Carousel setApi={setApi}>
+      <Carousel
+        setApi={setApi}
+        opts={{
+          watchDrag: false,
+        }}
+      >
         <CarouselContent>
           {publications.map((publication) => (
             <CarouselItem key={publication.headline}>
@@ -42,10 +47,9 @@ function PublicationsHighligthCarousel({
                     <Image
                       src={publication.imagem.url}
                       alt={publication.imagem.name}
-                      width="0"
-                      height="0"
-                      sizes="100vw"
-                      className="h-auto w-full object-cover object-center"
+                      width="720"
+                      height="540"
+                      className="aspect-[4/3] object-cover object-center"
                     />
                   </div>
                 </div>
