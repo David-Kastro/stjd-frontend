@@ -3,11 +3,11 @@ import { Edital, News } from '@/lib/types'
 import React from 'react'
 import Article from '@/_components/Article'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}) {
+type Props = {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const [[data]] = await fetchApi<News[]>({
     endpoint: 'articles',
