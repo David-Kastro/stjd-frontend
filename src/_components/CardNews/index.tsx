@@ -8,11 +8,12 @@ interface Props {
   title: string
   date: string
   textContent: string
+  href: string
 }
 
-function CardNews({ image, title, date, textContent }: Props) {
+function CardNews({ image, title, date, textContent, href }: Props) {
   return (
-    <Link href={'/noticias'}>
+    <Link href={href}>
       <div
         className="flex flex-col gap-[1.88rem] lg:flex-row"
         style={{ userSelect: 'none' }}

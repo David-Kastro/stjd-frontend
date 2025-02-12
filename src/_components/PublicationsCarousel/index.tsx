@@ -17,6 +17,8 @@ interface Props {
   itemsPerSlide?: number
   carouselCustomClass?: string
   gridCustomClass?: string
+  controlsCustomClass?: string
+  type: Article['tipo']
 }
 
 function PublicationsCarousel({
@@ -24,11 +26,18 @@ function PublicationsCarousel({
   itemsPerSlide = 8,
   carouselCustomClass,
   gridCustomClass,
+  controlsCustomClass,
+  type,
 }: Props) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
 
-  // Dividindo o array de notícias em grupos de 8
+  const hrefPath = {
+    Notícia: '/comunicacao/noticias',
+    Publicação: '/publicacao-repositorio',
+  }
+
+  // Dividindo o array de notícias em grupos de X (itemsPerSlide) notícias
   const groupedArticles = useMemo(() => {
     const result = []
     for (let i = 0; i < articles.length; i += itemsPerSlide) {
@@ -81,6 +90,7 @@ function PublicationsCarousel({
                       title={item.headline}
                       date={item.createdAt}
                       textContent={item.corpo}
+                      href={`${hrefPath[type]}/${item.slug}`}
                     />
                   </div>
                 ))}
@@ -102,7 +112,12 @@ function PublicationsCarousel({
         ))}
       </div>
 
-      <div className="absolute right-0 top-7 flex gap-[0.41rem] pr-[2.5rem]">
+      <div
+        className={cn(
+          'absolute right-0 top-7 flex gap-[0.41rem] pr-[2.5rem]',
+          controlsCustomClass,
+        )}
+      >
         <button
           onClick={handlePrevious}
           className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1] bg-[#E1E1E1]/75 backdrop-blur-md"
