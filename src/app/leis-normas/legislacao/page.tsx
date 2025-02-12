@@ -229,7 +229,7 @@ function Legislacao() {
       <div className="container">
         <div className="relative z-10 mt-[10rem]">
           <div className="absolute right-0 z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
-          <div className="scroll-custom-editais relative mx-auto -mr-[5px] flex h-[28rem] flex-wrap justify-center gap-x-[3.93rem] gap-y-[2.56rem] overflow-y-auto">
+          <div className="scroll-custom-editais relative mx-auto -mr-[5px] flex h-[28rem] flex-wrap justify-center gap-x-[3.93rem] gap-y-[2.56rem] overflow-y-auto pb-14">
             {legislacoes.map((legislacao, index) => (
               <button key={index} onClick={() => handleOpenDialog(legislacao)}>
                 <CardLegislacao

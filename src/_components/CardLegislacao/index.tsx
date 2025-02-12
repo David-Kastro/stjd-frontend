@@ -10,11 +10,11 @@ interface CardLegislacaoProps {
 
 function CardLegislacao({ title, subtitle }: CardLegislacaoProps) {
   return (
-    <Card className="bg-card-legislacao group relative h-full w-[9.62763rem] rounded-[0.61588rem] bg-cover hover:shadow-2xl">
+    <Card className="bg-card-legislacao group relative h-full w-[9.62763rem] rounded-[0.61588rem] bg-cover transition-all hover:shadow-2xl">
       <div className="absolute -left-[2px] top-6 h-[1.7925rem] w-[4.5px] rounded-full bg-secondary"></div>
 
       <CardContent className="p-4 pt-0">
-        <div className="mx-auto mt-[2.94rem] flex h-[4.09375rem] w-[3.47788rem] items-center justify-center rounded-md rounded-tr-[1.2rem] bg-[#ABABAB] group-hover:bg-secondary">
+        <div className="mx-auto mt-[2.94rem] flex h-[4.09375rem] w-[3.47788rem] items-center justify-center rounded-md rounded-tr-[1.2rem] bg-[#ABABAB] transition-all group-hover:bg-secondary">
           <FileText className="text-white" />
         </div>
         <div className="mt-[1.16rem]">

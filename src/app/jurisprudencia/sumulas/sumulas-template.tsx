@@ -1,7 +1,7 @@
 'use client'
 import CardTopPage from '@/_components/CardTopPage'
 import React, { useEffect, useMemo, useState } from 'react'
-import Pastas from '/public/images/pastas.webp'
+import Pastas from '/public/images/martelo-sumulas.png'
 import { Search, X } from 'lucide-react'
 import {
   Select,
@@ -13,60 +13,54 @@ import {
 import { Button } from '@/_components/ui/button'
 import CardEdital from '@/_components/CardEdital'
 
-import PDFViewer from '@/_components/PDFViewer'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import BgScalle from '/public/images/bg-card-processo.svg'
 import Image from 'next/image'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
-import { Edital } from '@/lib/types'
-import { DocumentEmptyState } from '@/_components/empty-states/documents'
 import { BasicFilters } from '@/_server-actions/get-basic-query'
+import { Doc } from '@/lib/types'
+import { DocumentEmptyState } from '@/_components/empty-states/documents'
+import PDFViewer from '@/_components/PDFViewer'
 
 type Props = {
   filters: BasicFilters
-  editais: Edital[]
+  docs: Doc[]
 }
 
-function EditaisTemplate({ filters, editais }: Props) {
-  const [editalActive, setEditalActive] = useState<number | null>(null)
-
-  const [categoria, setCategoria] = useState('editais')
+function SumulasTemplate({ filters, docs }: Props) {
+  const [docActive, setDocActive] = useState<number | null>(null)
 
   const hasFilters = Object.values(filters).some((value) => !!value)
 
-  const selectedEdital = useMemo(() => {
-    return editais.find((edital) => edital.id === editalActive)
-  }, [editalActive, editais])
+  const selectedDoc = useMemo(() => {
+    return docs.find((doc) => doc.id === docActive)
+  }, [docActive, docs])
 
   useEffect(() => {
-    if (editais.length > 0) {
-      setEditalActive(editais[0].id)
+    if (docs.length > 0) {
+      setDocActive(docs[0].id)
     }
-  }, [editais])
+  }, [docs])
 
   const handleClickEdital = (editalId: number) => {
-    setEditalActive(editalId)
-  }
-
-  const handleSelectCategoria = (value: string) => {
-    setCategoria(value.toLowerCase())
+    setDocActive(editalId)
   }
 
   const handleResetFilters = () => {
     if (window) {
-      window.location.href = '/processos/editais#pageFilters'
+      window.location.href = '/jurisprudencia/sumulas#pageFilters'
     }
   }
 
   return (
     <div>
       <CardTopPage
-        title="Editais STJD"
-        description="Os editais do STJD são avisos oficiais que informam sobre decisões, convocações e processos esportivos. Eles trazem atualizações sobre julgamentos, suspensões e penalidades para clubes e atletas, garantindo transparência e mantendo todos informados das regras e decisões recentes no esporte brasileiro."
+        title="Súmulas"
+        description="As súmulas do STJD (Superior Tribunal de Justiça Desportiva) são entendimentos ou orientações consolidadas que o tribunal adota para casos específicos no âmbito desportivo, especialmente no futebol. Elas servem como uma espécie de jurisprudência, estabelecendo precedentes que orientam futuras decisões e garantindo maior uniformidade no julgamento de infrações."
         image={Pastas}
         height={'28.875rem'}
-        customClassImage="-top-80"
+        customClassImage="-top-3"
       />
       <div id="pageFilters" className="container mt-[1.75rem]">
         <div className="mx-auto max-w-[100.0625rem]">
@@ -74,26 +68,14 @@ function EditaisTemplate({ filters, editais }: Props) {
             <div className="flex items-center gap-[0.56rem] px-[2.19rem]">
               <Search />
               <h1 className="text-[1.25rem] font-bold">
-                Encontrar Editais de Julgamentos
+                Encontrar Resultados de Julgamentos
               </h1>
             </div>
             <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
             <form
-              action={`/processos/${categoria}#pageFilters`}
+              action={`#pageFilters`}
               className="relative flex items-center gap-[0.69rem] px-[2.19rem]"
             >
-              <Select
-                defaultValue={'Editais'}
-                onValueChange={handleSelectCategoria}
-              >
-                <SelectTrigger className="h-[3.75rem] w-[9.1875rem] rounded-[0.8125rem]">
-                  <SelectValue placeholder="Categoria" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Editais">Editais</SelectItem>
-                  <SelectItem value="Processos">Processos</SelectItem>
-                </SelectContent>
-              </Select>
               <Select defaultValue={filters.ano} name="ano">
                 <SelectTrigger className="h-[3.75rem] w-[15rem] rounded-[0.8125rem]">
                   <SelectValue placeholder="Escolha o Ano" />
@@ -126,17 +108,6 @@ function EditaisTemplate({ filters, editais }: Props) {
                   <SelectItem value="12">Dezembro</SelectItem>
                 </SelectContent>
               </Select>
-              <Select defaultValue={filters.tipo} name="tipo">
-                <SelectTrigger className="h-[3.75rem] w-[14.5625rem] rounded-[0.8125rem]">
-                  <SelectValue placeholder="Tipo" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Comissão Disciplinar">
-                    Comissão Disciplinar
-                  </SelectItem>
-                  <SelectItem value="Tribunal Pleno">Tribunal Pleno</SelectItem>
-                </SelectContent>
-              </Select>
               {hasFilters && (
                 <Button
                   type="button"
@@ -155,7 +126,7 @@ function EditaisTemplate({ filters, editais }: Props) {
               </Button>
             </form>
           </div>
-          {editais.length === 0 ? (
+          {docs.length === 0 ? (
             <DocumentEmptyState />
           ) : (
             <div className="flex gap-[5rem]">
@@ -167,15 +138,15 @@ function EditaisTemplate({ filters, editais }: Props) {
                   <div className="absolute bottom-0 right-10 z-20 h-20 w-full bg-gradient-to-b from-transparent to-[#d5d5d5]"></div>
                   {/* ----------------------------------------- */}
                   <div className="scroll-custom-editais relative flex w-full flex-col gap-[1.31rem] rounded py-16 lg:h-[58rem] lg:gap-6 lg:overflow-y-auto lg:pr-[4rem]">
-                    {editais.map((edital) => (
+                    {docs.map((doc) => (
                       <CardEdital
-                        key={`edital_${edital.documentId}_${edital.id}`}
-                        title={edital.titulo}
-                        subtitle={edital.subtitulo}
-                        description={edital.tipo}
+                        key={`doc_${doc.documentId}_${doc.id}`}
+                        title={doc.titulo}
+                        subtitle={doc.subtitulo}
+                        description={doc.tipo}
                         type="function"
-                        handleClick={() => handleClickEdital(edital.id)}
-                        isActive={edital.id === editalActive}
+                        handleClick={() => handleClickEdital(doc.id)}
+                        isActive={doc.id === docActive}
                       />
                     ))}
                   </div>
@@ -185,7 +156,7 @@ function EditaisTemplate({ filters, editais }: Props) {
                 <div className="mr-[4.2px] h-[5rem] border-r-[2px] border-[#BFBFBF]"></div>
               </div>
               <div className="mt-[2rem] w-full max-w-[48.4375rem]">
-                {selectedEdital && <PDFViewer doc={selectedEdital} />}
+                {selectedDoc && <PDFViewer doc={selectedDoc} />}
               </div>
             </div>
           )}
@@ -221,4 +192,4 @@ function EditaisTemplate({ filters, editais }: Props) {
   )
 }
 
-export default EditaisTemplate
+export default SumulasTemplate
