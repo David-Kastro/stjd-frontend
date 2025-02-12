@@ -2,7 +2,7 @@
 import CardTopPage from '@/_components/CardTopPage'
 import React, { useEffect, useMemo, useState } from 'react'
 import Pastas from '/public/images/pastas.webp'
-import { Search, X, FileSearch2 } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import {
   Select,
   SelectContent,
@@ -21,6 +21,7 @@ import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import { EditaisFilters } from './page'
 import { Edital } from '@/lib/types'
+import { DocumentEmptyState } from '@/_components/empty-states/documents'
 
 type Props = {
   filters: EditaisFilters
@@ -67,7 +68,7 @@ function EditaisTemplate({ filters, editais }: Props) {
         height={'28.875rem'}
         customClassImage="-top-80"
       />
-      <div className="container mt-[1.75rem]">
+      <div id="pageFilters" className="container mt-[1.75rem]">
         <div className="mx-auto max-w-[100.0625rem]">
           <div className="rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">
             <div className="flex items-center gap-[0.56rem] px-[2.19rem]">
@@ -78,7 +79,7 @@ function EditaisTemplate({ filters, editais }: Props) {
             </div>
             <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
             <form
-              action={`/processos/${categoria}`}
+              action={`/processos/${categoria}#pageFilters`}
               className="relative flex items-center gap-[0.69rem] px-[2.19rem]"
             >
               <Select
@@ -155,13 +156,7 @@ function EditaisTemplate({ filters, editais }: Props) {
             </form>
           </div>
           {editais.length === 0 ? (
-            <div className="mt-[1.5rem] flex h-[20rem] flex-col items-center justify-center gap-[0.75rem]">
-              <FileSearch2 size={76} strokeWidth={1} className="opacity-65" />
-              <h1 className="text-[1.25rem] font-medium">
-                Nenhum documento por aqui.. 🤔
-              </h1>
-              <p>Tente novamente com outros filtros ou volte mais tarde.</p>
-            </div>
+            <DocumentEmptyState />
           ) : (
             <div className="flex gap-[5rem]">
               <div className="w-full max-w-[48.4375rem]">

@@ -33,15 +33,11 @@ async function Editais({
     end = `${year}-${necessaryZero}${nextMonth}-01`
   }
 
-  console.log(start, end)
-
   const queryFilters = {
     categoria: 'Editais',
     ...(filters.tipo ? { tipo: filters.tipo } : {}),
     ...(start && end ? { data: { $gte: start, $lt: end } } : {}),
   }
-
-  console.log(queryFilters)
 
   const [editais] = await fetchApi<Edital[]>({
     endpoint: 'docs',
