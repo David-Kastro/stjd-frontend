@@ -32,7 +32,7 @@ export type Member = {
   updatedAt: string
 }
 
-export type Article = {
+export interface Article {
   id: number
   documentId: string
   headline: string
@@ -42,6 +42,16 @@ export type Article = {
   publishedAt: string
   lead: string
   imagem: Image
+  slug: string
+  tipo: 'Notícia' | 'Publicação'
+}
+
+export interface News extends Article {
+  tipo: 'Notícia'
+}
+
+export interface Publication extends Article {
+  tipo: 'Publicação'
 }
 
 export interface Session {
