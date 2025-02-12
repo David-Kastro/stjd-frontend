@@ -6,7 +6,6 @@ import { ChevronLeft } from 'lucide-react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import { Doc } from '@/lib/types'
-import { mediaSource } from '@/lib/media-source'
 
 // Configura o worker para carregar PDFs corretamente
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
@@ -62,7 +61,7 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
             <ChevronLeft color="#A1A1A1" className="rotate-180" />
           </button>
         </div>
-        <Link href={mediaSource(doc.documento.url)} target="_blank">
+        <Link href={doc.documento.url} target="_blank">
           <Button className="h-[2.21038rem] w-[9.0625rem] rounded-[2.72613rem] text-[0.73681rem]">
             Fazer Download
           </Button>
@@ -76,7 +75,7 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
         style={{ border: '1px solid #ccc', display: 'inline-block' }}
       >
         <Document
-          file={mediaSource(doc.documento.url)}
+          file={doc.documento.url}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page pageNumber={pageNumber} scale={1.0} />

@@ -102,6 +102,7 @@ async function PublicaoRepositorio() {
           <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
         </div>
       </section>
+      <section></section>
     </main>
   )
 }
