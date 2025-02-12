@@ -1,29 +1,41 @@
 'use client'
-import React, { useState } from 'react'
-import { Button } from '@/_components/ui/button'
+
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
 } from '@/_components/ui/carousel'
-import Image from 'next/image'
-import { ChevronLeft, Newspaper } from 'lucide-react'
-
-type Publication = {
-  title: string
-  date: string
-  author: string
-  image: string
-  description: string
-}
+import { Article } from '@/lib/types'
+import React, { useEffect, useMemo, useState } from 'react'
+import CardNews from '../CardNews'
+import { ChevronLeft } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 interface Props {
-  publications: Publication[]
+  articles: Article[]
+  itemsPerSlide?: number
+  carouselCustomClass?: string
+  gridCustomClass?: string
 }
 
-function PublicationsCarousel({ publications }: Props) {
+function PublicationsCarousel({
+  articles,
+  itemsPerSlide = 8,
+  carouselCustomClass,
+  gridCustomClass,
+}: Props) {
   const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+
+  // Dividindo o array de notícias em grupos de 8
+  const groupedArticles = useMemo(() => {
+    const result = []
+    for (let i = 0; i < articles.length; i += itemsPerSlide) {
+      result.push(articles.slice(i, i + itemsPerSlide))
+    }
+    return result
+  }, [articles])
 
   const handlePrevious = () => {
     api?.scrollPrev()
@@ -32,65 +44,76 @@ function PublicationsCarousel({ publications }: Props) {
     api?.scrollNext()
   }
 
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
   return (
     <>
-      <Carousel setApi={setApi}>
+      <Carousel
+        setApi={setApi}
+        className={cn(
+          'mt-[3.69rem] p-0 lg:w-full lg:pl-[2.81rem]',
+          carouselCustomClass,
+        )}
+      >
         <CarouselContent>
-          {publications.map((publication) => (
-            <CarouselItem key={publication.title}>
-              <div className="flex max-w-[92rem] items-stretch gap-16">
-                <div className="relative w-1/2 after:absolute after:inset-0 after:-right-1 after:top-14 after:ml-auto after:h-7 after:w-1 after:rounded-full after:bg-secondary">
-                  <div className="overflow-hidden rounded-[1.25rem]">
-                    <Image
-                      src={publication.image}
-                      alt={publication.title}
-                      width="0"
-                      height="0"
-                      sizes="100vw"
-                      className="h-auto w-full object-cover object-center"
+          {groupedArticles.map((group, groupIndex) => (
+            <CarouselItem key={groupIndex}>
+              <div
+                className={cn(
+                  'grid grid-cols-2 gap-x-24 gap-y-9',
+                  gridCustomClass,
+                )}
+              >
+                {group.map((item, index) => (
+                  <div key={index} className="flex-1">
+                    <CardNews
+                      image={item.imagem.url}
+                      title={item.headline}
+                      date={item.createdAt}
+                      textContent={item.corpo}
                     />
                   </div>
-                </div>
-                <div className="flex w-1/2 flex-col gap-7">
-                  <div className="flex items-center gap-2">
-                    <Newspaper />
-                    <h2 className="text-xl font-bold leading-5">Publicações</h2>
-                  </div>
-                  <div className="flex h-full flex-col gap-5">
-                    <h3 className="text-4xl font-bold text-[#000]">
-                      {publication.title}
-                    </h3>
-                    <p className="text-sm font-normal leading-4 text-[#A1A1A1]">
-                      {publication.date} - Por: {publication.author}
-                    </p>
-                    <p className="text-base font-normal leading-[1.7rem] text-[#000]">
-                      {publication.description}
-                    </p>
-                    <div className="mt-auto flex grow items-end justify-start">
-                      <Button className="flex items-end justify-start gap-[0.56rem] bg-transparent p-0 text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:text-[1.25rem]">
-                        Veja mais{' '}
-                        <div className="rotate-180">
-                          <ChevronLeft />
-                        </div>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="h-fu absolute right-0 top-7 flex gap-[0.41rem] pr-[2.5rem]">
-        <button className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1] bg-[#E1E1E1]/75 backdrop-blur-md">
-          <ChevronLeft color="#A1A1A1" onClick={handlePrevious} />
+      <div className="mt-5 flex justify-center gap-2">
+        {groupedArticles.map((_, groupIndex) => (
+          <div
+            key={groupIndex}
+            className={`h-[0.4375rem] rounded-full ${
+              current === groupIndex + 1
+                ? 'w-[3.0625rem] bg-[#797979]'
+                : 'w-[0.625rem] bg-secondary'
+            }`}
+          ></div>
+        ))}
+      </div>
+
+      <div className="absolute right-0 top-7 flex gap-[0.41rem] pr-[2.5rem]">
+        <button
+          onClick={handlePrevious}
+          className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1] bg-[#E1E1E1]/75 backdrop-blur-md"
+        >
+          <ChevronLeft color="#A1A1A1" />
         </button>
-        <button className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1] bg-[#E1E1E1]/75 backdrop-blur-md">
-          <ChevronLeft
-            color="#A1A1A1"
-            className="rotate-180"
-            onClick={handleNext}
-          />
+        <button
+          onClick={handleNext}
+          className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1] bg-[#E1E1E1]/75 backdrop-blur-md"
+        >
+          <ChevronLeft color="#A1A1A1" className="rotate-180" />
         </button>
       </div>
     </>
