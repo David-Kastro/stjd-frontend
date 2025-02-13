@@ -216,7 +216,10 @@ function LatestNews({
                     {articleHightlight.headline}
                   </h1>
                   <CustomImage
-                    src={articleHightlight.imagem.url}
+                    // src={articleHightlight.imagem.url}
+                    src={
+                      'https://stjd-bucket.s3.us-east-1.amazonaws.com/noticia_20b44af0fa.jpg'
+                    }
                     className="mt-[1.4rem] aspect-[2/1] rounded-[1.25rem] object-cover lg:mt-[2.88rem]"
                     alt={articleHightlight.imagem.name}
                     width={720}
@@ -261,7 +264,10 @@ function LatestNews({
                             {group.map((item, index) => (
                               <div key={index} className="flex-1">
                                 <CardNews
-                                  image={item.imagem.url}
+                                  image={
+                                    'https://stjd-bucket.s3.us-east-1.amazonaws.com/noticia_20b44af0fa.jpg'
+                                  }
+                                  // image={item.imagem.url}
                                   title={item.headline}
                                   date={item.createdAt}
                                   textContent={item.lead}
