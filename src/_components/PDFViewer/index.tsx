@@ -30,24 +30,24 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
     setPageNumber((prev) => Math.min(prev + 1, numPages || 1))
 
   return (
-    <div className="relative rounded-[1.375rem] bg-[#E1E1E1] px-[1.69rem] py-[1rem]">
-      <h2 className="text-[1.12138rem] font-bold leading-[2.66025rem]">
+    <div className="relative rounded-[1.375rem] bg-[#E1E1E1] px-[1.69rem] py-9 lg:py-[1rem]">
+      <h2 className="text-center text-[1.12138rem] font-bold lg:text-left lg:leading-[2.66025rem]">
         {doc.titulo} <span className="font-normal">{doc.subtitulo}</span>
       </h2>
-      <p className="text-end text-[0.79181rem] text-[#2E2E2E]">
+      <p className="hidden text-end text-[0.79181rem] text-[#2E2E2E] lg:block">
         Prévia do documento
       </p>
       <hr className="mt-[0.8rem] h-[0.125rem] w-full bg-[#BD995D]" />
-      <div className="mt-[1.9rem] flex items-center justify-between">
-        <div className="w-[9.0625rem]">
-          <div className="w-[4.79169rem] rounded-[0.41669rem] bg-[#A1A1A1] py-[0.42rem]">
+      <div className="mt-2 flex items-center justify-between lg:mt-[1.9rem]">
+        <div className="mx-auto lg:w-[9.0625rem]">
+          <div className="w-14 rounded-[0.41669rem] bg-[#A1A1A1] py-1 lg:w-[4.79169rem] lg:py-[0.42rem]">
             <p className="text-center text-[0.66669rem] font-bold text-white">
               {pageNumber} / {numPages}
             </p>
           </div>
         </div>
 
-        <div className="flex w-[9.0625rem] justify-center gap-[0.41rem]">
+        <div className="hidden w-[9.0625rem] justify-center gap-[0.41rem] lg:flex">
           <button
             onClick={goToPrevPage}
             className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1]"
@@ -62,11 +62,14 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
           </button>
         </div>
         <Link href={doc.documento.url} target="_blank">
-          <Button className="h-[2.21038rem] w-[9.0625rem] rounded-[2.72613rem] text-[0.73681rem]">
+          <Button className="hidden h-[2.21038rem] w-[9.0625rem] rounded-[2.72613rem] text-[0.73681rem] lg:block">
             Fazer Download
           </Button>
         </Link>
       </div>
+      <p className="mt-1 text-center text-[0.79181rem] text-[#2E2E2E] lg:hidden">
+        Prévia do documento
+      </p>
 
       {loading && <p>Carregando documento...</p>}
 
@@ -81,6 +84,25 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
           <Page pageNumber={pageNumber} scale={1.0} />
         </Document>
       </div>
+      <div className="mx-auto mt-[1rem] flex w-[9.0625rem] justify-center gap-[0.41rem] lg:hidden">
+        <button
+          onClick={goToPrevPage}
+          className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1]"
+        >
+          <ChevronLeft color="#A1A1A1" />
+        </button>
+        <button
+          onClick={goToNextPage}
+          className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1]"
+        >
+          <ChevronLeft color="#A1A1A1" className="rotate-180" />
+        </button>
+      </div>
+      <Link href={doc.documento.url} target="_blank">
+        <Button className="mt-[1rem] h-[3.8rem] w-full rounded-[2.72613rem] text-[1.25rem] lg:hidden lg:h-[2.21038rem] lg:w-[9.0625rem]">
+          Fazer Download
+        </Button>
+      </Link>
     </div>
   )
 }

@@ -202,7 +202,7 @@ function Resolucoes() {
         title="Resoluções STJD"
         description="A parte de legislação do STJD define e interpreta as normas do esporte no Brasil, focando na justiça e integridade das competições. Baseada no CBJD, essa área regula e aplica punições a infrações esportivas, promovendo julgamentos imparciais e com critérios legais."
         image={BalancaJustica}
-        height={'28.875rem'}
+        height="lg:h-[28.875rem]"
         customClassImage="!-top-72 -right-44"
       />
       <div className="container">

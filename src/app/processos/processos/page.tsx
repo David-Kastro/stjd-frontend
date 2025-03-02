@@ -26,7 +26,7 @@ function Processos() {
           title="Processos STJD"
           description="Os processos do STJD são ações jurídicas para resolver infrações e disputas no esporte, especialmente no futebol, baseadas no Código Brasileiro de Justiça Desportiva (CBJD) e regulamentos da CBF, com atuação independente."
           image={Estatua}
-          height={'28.875rem'}
+          height="lg:h-[28.875rem]"
           customClassImage="-top-48 right-10"
         />
         <div className="container">

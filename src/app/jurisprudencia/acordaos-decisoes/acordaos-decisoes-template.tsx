@@ -59,7 +59,7 @@ function AcordoesDecisoesTemplate({ filters, docs }: Props) {
         title="Acordãos e Decisões"
         description="Um acórdão é a decisão colegiada emitida por um tribunal, formada pela análise conjunta de um grupo de magistrados (juízes ou desembargadores). Ele representa o resultado do julgamento de um processo e contém o entendimento majoritário do tribunal sobre as questões debatidas."
         image={Pastas}
-        height={'28.875rem'}
+        height="lg:h-[28.875rem]"
         customClassImage="top-10"
       />
       <div id="pageFilters" className="container mt-[1.75rem]">
