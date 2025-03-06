@@ -29,29 +29,29 @@ function JurisprudenciaStj() {
   const [openAdvanced, setOpenAdvanced] = useState(false)
   return (
     <div>
-      <div className="mt-[9rem]">
+      <div className="lg:mt-[9rem]">
         <CardTopPage
           title="Jurisprudência"
           description="A jurisprudência do Superior Tribunal de Justiça Desportiva (STJD) assegura uniformidade nas decisões relacionadas a infrações, regulamentos e disputas esportivas. Baseada em casos anteriores, ela promove ética, fair play e segurança jurídica, orientando atletas, clubes e dirigentes no cumprimento das regras do desporto nacional."
           image={Estatua}
-          height="lg:h-[28.875rem]"
+          height="lg:h-[28.875rem] lg:pb-0 pb-[3.5rem]"
           customClassImage="!-top-28 right-10"
         />
         <div className="container">
           {!openAdvanced ? (
             <div className="mx-auto max-w-[100rem]">
               <div className="relative z-10 rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">
-                <div className="flex items-center gap-[0.56rem] px-[2.19rem]">
+                <div className="flex items-center justify-center gap-[0.56rem] pl-[0.28rem] lg:justify-start lg:px-[2.19rem]">
                   <Search />
-                  <h1 className="text-[1.25rem] font-bold">
+                  <h1 className="text-[1.13263rem] font-bold lg:text-[1.25rem]">
                     Consultar Jurisprudências
                   </h1>
                 </div>
                 <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
                 <div className="px-[2.19rem]">
-                  <div className="mt-[0.5rem] flex items-end gap-[0.56rem]">
+                  <div className="mt-[0.5rem] flex flex-wrap items-end gap-[0.56rem]">
                     <Select>
-                      <SelectTrigger className="h-[3.75rem] w-[22.5625rem] rounded-[0.8125rem]">
+                      <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[22.5625rem]">
                         <SelectValue placeholder="Pesquise aqui" />
                       </SelectTrigger>
                       <SelectContent>
@@ -64,7 +64,7 @@ function JurisprudenciaStj() {
                       </SelectContent>
                     </Select>
                     <Select>
-                      <SelectTrigger className="h-[3.75rem] w-[14.5625rem] rounded-[0.8125rem]">
+                      <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                         <SelectValue placeholder="Escolha o Ano" />
                       </SelectTrigger>
                       <SelectContent>
@@ -83,7 +83,7 @@ function JurisprudenciaStj() {
                     >
                       Pesquisa avançada
                     </Button>
-                    <Button className="p ml-auto h-[3.75rem] w-[15.375rem] rounded-[4.625rem] text-[1.25rem]">
+                    <Button className="h-[3.75rem] w-full rounded-[4.625rem] text-[1.25rem] lg:ml-auto lg:w-[15.375rem]">
                       Pesquisar
                     </Button>
                   </div>
@@ -100,16 +100,16 @@ function JurisprudenciaStj() {
                   >
                     <ChevronLeft className="text-black" />
                   </Button>
-                  <h1 className="text-[1.25rem] font-bold">
+                  <h1 className="text-[1.13263rem] font-bold lg:text-[1.25rem]">
                     Consultar Jurisprudências
                   </h1>
                 </div>
                 <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
                 <div className="px-[2.19rem]">
-                  <h2 className="mb-[1.79rem] text-[1.67094rem] font-bold text-secondary">
+                  <h2 className="mb-[1.79rem] text-[1.25rem] font-bold text-secondary lg:text-[1.67094rem]">
                     Pesquisa avançada
                   </h2>
-                  <div className="mt-[0.5rem] flex items-end gap-[1.5rem]">
+                  <div className="mt-[0.5rem] flex flex-wrap items-end gap-[1.5rem]">
                     <div className="w-full max-w-[23.375rem]">
                       <Input
                         placeholder="Número do acordão"
@@ -162,9 +162,9 @@ function JurisprudenciaStj() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="mt-[1.5rem] flex items-end gap-[1.5rem]">
+                  <div className="mt-[1.5rem] flex flex-wrap items-end gap-[1.5rem]">
                     <Select>
-                      <SelectTrigger className="h-[3.75rem] w-[14rem] rounded-[0.8125rem]">
+                      <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14rem]">
                         <SelectValue placeholder="Relator (a)" />
                       </SelectTrigger>
                       <SelectContent>
@@ -177,7 +177,7 @@ function JurisprudenciaStj() {
                       </SelectContent>
                     </Select>
                     <Select>
-                      <SelectTrigger className="h-[3.75rem] w-[14rem] rounded-[0.8125rem]">
+                      <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14rem]">
                         <SelectValue placeholder="Revisor (a)" />
                       </SelectTrigger>
                       <SelectContent>
@@ -190,7 +190,7 @@ function JurisprudenciaStj() {
                       </SelectContent>
                     </Select>
                     <Select>
-                      <SelectTrigger className="h-[3.75rem] w-[16.6875rem] rounded-[0.8125rem]">
+                      <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[16.6875rem]">
                         <SelectValue placeholder="Relator (a) Designado (a)" />
                       </SelectTrigger>
                       <SelectContent>
@@ -247,8 +247,8 @@ function JurisprudenciaStj() {
                       </Popover>
                     </div>
                   </div>
-                  <div className="mt-[4.19rem] flex justify-end">
-                    <Button className="p h-[3.75rem] w-[15.375rem] rounded-[4.625rem] text-[1.25rem]">
+                  <div className="mt-[1.85rem] flex justify-end lg:mt-[4.19rem]">
+                    <Button className="h-[3.75rem] w-full rounded-[4.625rem] text-[1.25rem] lg:w-[15.375rem]">
                       Pesquisar
                     </Button>
                   </div>
@@ -258,8 +258,8 @@ function JurisprudenciaStj() {
           )}
         </div>
 
-        <div className="mt-[6rem] w-full border"></div>
-        <div className="container relative z-10">
+        <div className="mt-[6rem] hidden w-full border lg:block"></div>
+        <div className="relative z-10 lg:container">
           <div className="border-[#BFBFBF] pt-[3.9rem] lg:border-r-[2px]">
             <ScaleAttorneys
               title="Legislação STJD"
@@ -272,15 +272,15 @@ function JurisprudenciaStj() {
           </div>
         </div>
 
-        <div className="relative bg-[#000] py-[3.87rem] lg:container lg:bg-transparent lg:py-0">
-          <div className="border-[#BFBFBF] pt-[6.37rem] lg:border-r-[2px] lg:pb-[7.94rem]">
+        <div className="relative mt-20 bg-[#000] py-[3.87rem] lg:container lg:mt-0 lg:bg-transparent lg:py-0">
+          <div className="lg:mt-[6.37rem] lg:pb-[7.94rem]">
             <Image
               src={LogoBlack}
               alt="LogoBlack"
               className="mx-auto w-[8.9375rem] lg:w-auto"
             />
           </div>
-          <div className="absolute -left-20 -top-[42rem] z-0">
+          <div className="absolute -left-20 -top-[48rem] z-0 hidden lg:block">
             <Image src={BgFundoMembers} alt="BgFundoMembers" />
           </div>
         </div>
