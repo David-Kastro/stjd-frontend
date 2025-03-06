@@ -23,7 +23,7 @@ function CardTopPage({
   customClassImage,
 }: CardTopPageProps) {
   return (
-    <div className="container mt-5 lg:mt-[5.64rem]">
+    <div className="container relative z-50 mt-5 lg:mt-[5.64rem]">
       <div
         className={cn(
           `bg-custom-judgment-guidelines relative mx-auto mb-10 max-w-[100.0625rem] rounded-[1.375rem]`,
