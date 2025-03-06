@@ -23,7 +23,7 @@ function CardTopPage({
   customClassImage,
 }: CardTopPageProps) {
   return (
-    <div className="container relative z-50 mt-5 lg:mt-[5.64rem]">
+    <div className="container mt-5 lg:mt-[5.64rem]">
       <div
         className={cn(
           `bg-custom-judgment-guidelines relative mx-auto mb-10 max-w-[100.0625rem] rounded-[1.375rem]`,
@@ -44,11 +44,11 @@ function CardTopPage({
         >
           <Image src={image} alt="" />
         </div>
-        <div className="-mt-4 max-w-[44.125rem] px-[1.5rem] lg:mt-0 lg:px-0 lg:pl-[2.25rem] lg:pt-[5.5rem]">
-          <h1 className="text-[2.2rem] font-bold tracking-[0.03rem] lg:text-[3rem]">
+        <div className="max-w-[44.125rem] px-[1.5rem] lg:mt-0 lg:px-0 lg:pl-[2.25rem] lg:pt-[5.5rem]">
+          <h1 className="text-[2.2rem] font-bold leading-[2.1875rem] tracking-[0.03rem] lg:text-[3rem] lg:leading-normal">
             {title}
           </h1>
-          <h2 className="mt-[0.81rem] text-[0.75rem] leading-[1.6875rem] lg:text-base">
+          <h2 className="mt-[0.81rem] text-[0.75rem] leading-[1.3125rem] lg:text-base lg:leading-[1.6875rem]">
             {description}
           </h2>
         </div>

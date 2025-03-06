@@ -39,7 +39,7 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
       </p>
       <hr className="mt-[0.8rem] h-[0.125rem] w-full bg-[#BD995D]" />
       <div className="mt-2 flex items-center justify-between lg:mt-[1.9rem]">
-        <div className="mx-auto lg:w-[9.0625rem]">
+        <div className="mx-auto lg:mx-0 lg:w-[9.0625rem]">
           <div className="w-14 rounded-[0.41669rem] bg-[#A1A1A1] py-1 lg:w-[4.79169rem] lg:py-[0.42rem]">
             <p className="text-center text-[0.66669rem] font-bold text-white">
               {pageNumber} / {numPages}

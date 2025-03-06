@@ -203,12 +203,12 @@ function MenuTop() {
                     fontWeight: isActive(menu) ? '700' : '',
                   }}
                 >
-                  <div className="relative z-10">
+                  <div className="relative z-50">
                     <p className="inline-block w-full px-[1.25rem] py-[0.88rem] text-center text-[0.95769rem] leading-[0.95769rem] text-[#002A3E] group-hover:font-bold">
                       {menu.name}
                     </p>
                     <div className="invisible absolute top-[4.9rem] h-0 w-max min-w-[10rem] opacity-0 transition-[opacity,visibility,height] duration-300 group-hover:visible group-hover:block group-hover:h-auto group-hover:opacity-100">
-                      <div className="whitespace-nowrap rounded-[0.8125rem] bg-[#fff] px-4 py-[0.94rem]">
+                      <div className="relative z-50 whitespace-nowrap rounded-[0.8125rem] bg-[#fff] px-4 py-[0.94rem]">
                         {menu.paths &&
                           menu.paths.map((path, i) => (
                             <Link
