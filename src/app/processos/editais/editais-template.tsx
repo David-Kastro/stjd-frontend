@@ -65,28 +65,28 @@ function EditaisTemplate({ filters, editais }: Props) {
         title="Editais STJD"
         description="Os editais do STJD são avisos oficiais que informam sobre decisões, convocações e processos esportivos. Eles trazem atualizações sobre julgamentos, suspensões e penalidades para clubes e atletas, garantindo transparência e mantendo todos informados das regras e decisões recentes no esporte brasileiro."
         image={Pastas}
-        height={'28.875rem'}
-        customClassImage="-top-80"
+        height="lg:h-[28.875rem] lg:pb-0 pb-10"
+        customClassImage="lg:-top-80 -mt-14 lg:mt-0"
       />
       <div id="pageFilters" className="container mt-[1.75rem]">
         <div className="mx-auto max-w-[100.0625rem]">
           <div className="rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">
-            <div className="flex items-center gap-[0.56rem] px-[2.19rem]">
+            <div className="flex items-center gap-[0.56rem] px-[1rem] lg:px-[2.19rem]">
               <Search />
-              <h1 className="text-[1.25rem] font-bold">
+              <h1 className="text-[1.15rem] font-bold lg:text-[1.25rem]">
                 Encontrar Editais de Julgamentos
               </h1>
             </div>
             <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
             <form
               action={`/processos/${categoria}#pageFilters`}
-              className="relative flex items-center gap-[0.69rem] px-[2.19rem]"
+              className="relative flex flex-wrap items-center gap-[0.69rem] px-[2.19rem]"
             >
               <Select
                 defaultValue={'Editais'}
                 onValueChange={handleSelectCategoria}
               >
-                <SelectTrigger className="h-[3.75rem] w-[9.1875rem] rounded-[0.8125rem]">
+                <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[9.1875rem]">
                   <SelectValue placeholder="Categoria" />
                 </SelectTrigger>
                 <SelectContent>
@@ -95,7 +95,7 @@ function EditaisTemplate({ filters, editais }: Props) {
                 </SelectContent>
               </Select>
               <Select defaultValue={filters.ano} name="ano">
-                <SelectTrigger className="h-[3.75rem] w-[15rem] rounded-[0.8125rem]">
+                <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[15rem]">
                   <SelectValue placeholder="Escolha o Ano" />
                 </SelectTrigger>
                 <SelectContent>
@@ -108,7 +108,7 @@ function EditaisTemplate({ filters, editais }: Props) {
                 </SelectContent>
               </Select>
               <Select defaultValue={filters.mes} name="mes">
-                <SelectTrigger className="h-[3.75rem] w-[8.875rem] rounded-[0.8125rem]">
+                <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[8.875rem]">
                   <SelectValue placeholder="Mês" />
                 </SelectTrigger>
                 <SelectContent>
@@ -127,7 +127,7 @@ function EditaisTemplate({ filters, editais }: Props) {
                 </SelectContent>
               </Select>
               <Select defaultValue={filters.tipo} name="tipo">
-                <SelectTrigger className="h-[3.75rem] w-[14.5625rem] rounded-[0.8125rem]">
+                <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                   <SelectValue placeholder="Tipo" />
                 </SelectTrigger>
                 <SelectContent>
@@ -149,7 +149,7 @@ function EditaisTemplate({ filters, editais }: Props) {
               )}
               <Button
                 type="submit"
-                className="p ml-[2rem] h-[3.75rem] w-[15.375rem] rounded-[4.625rem] text-[1.25rem]"
+                className="h-[3.75rem] w-full rounded-[4.625rem] text-[1.25rem] lg:ml-[2rem] lg:w-[15.375rem]"
               >
                 Pesquisar
               </Button>
@@ -158,14 +158,14 @@ function EditaisTemplate({ filters, editais }: Props) {
           {editais.length === 0 ? (
             <DocumentEmptyState />
           ) : (
-            <div className="flex gap-[5rem]">
+            <div className="flex flex-col-reverse lg:flex-row lg:gap-[5rem]">
               <div className="w-full max-w-[48.4375rem]">
                 <div className="relative z-10 mt-[1.5rem] flex items-center justify-center lg:mt-[5rem] lg:h-[58rem] lg:pl-[1.69rem]">
                   <div className="absolute right-[5px] z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
-                  {/* gradientes efeito fade em cima e embaixo */}
+
                   <div className="absolute right-10 top-0 z-20 h-20 w-full bg-gradient-to-t from-transparent to-[#d5d5d5]"></div>
                   <div className="absolute bottom-0 right-10 z-20 h-20 w-full bg-gradient-to-b from-transparent to-[#d5d5d5]"></div>
-                  {/* ----------------------------------------- */}
+
                   <div className="scroll-custom-editais relative flex w-full flex-col gap-[1.31rem] rounded py-16 lg:h-[58rem] lg:gap-6 lg:overflow-y-auto lg:pr-[4rem]">
                     {editais.map((edital) => (
                       <CardEdital
@@ -179,10 +179,8 @@ function EditaisTemplate({ filters, editais }: Props) {
                       />
                     ))}
                   </div>
-
-                  {/* <div className="h-[5rem] absolute w-full bottom-0 blur-md bg-gradient-to-t from-[#ccc] to-transparent"></div> */}
                 </div>
-                <div className="mr-[4.2px] h-[5rem] border-r-[2px] border-[#BFBFBF]"></div>
+                <div className="mr-[4.2px] hidden h-[5rem] border-[#BFBFBF] lg:block lg:border-r-[2px]"></div>
               </div>
               <div className="mt-[2rem] w-full max-w-[48.4375rem]">
                 {selectedEdital && <PDFViewer doc={selectedEdital} />}
@@ -191,8 +189,8 @@ function EditaisTemplate({ filters, editais }: Props) {
           )}
         </div>
       </div>
-      <div className="w-full border"></div>
-      <div className="container">
+      <div className="w-full lg:border"></div>
+      <div className="lg:container">
         <div className="border-[#BFBFBF] pt-[3.9rem] lg:border-r-[2px]">
           <ScaleAttorneys
             title="Legislação STJD"
@@ -205,15 +203,15 @@ function EditaisTemplate({ filters, editais }: Props) {
         </div>
       </div>
 
-      <div className="relative bg-[#000] py-[3.87rem] lg:container lg:bg-transparent lg:py-0">
-        <div className="mt-[6.37rem] lg:pb-[7.94rem]">
+      <div className="relative mt-20 bg-[#000] py-[3.87rem] lg:container lg:mt-0 lg:bg-transparent lg:py-0">
+        <div className="lg:mt-[6.37rem] lg:pb-[7.94rem]">
           <Image
             src={LogoBlack}
             alt="LogoBlack"
             className="mx-auto w-[8.9375rem] lg:w-auto"
           />
         </div>
-        <div className="absolute -left-20 -top-[48rem] z-0">
+        <div className="absolute -left-20 -top-[48rem] z-0 hidden lg:block">
           <Image src={BgFundoMembers} alt="BgFundoMembers" />
         </div>
       </div>

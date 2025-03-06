@@ -10,7 +10,7 @@ function QuemSomos() {
         title="Conheça o STJD"
         description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
         image={Martelo}
-        height="33.6875rem"
+        height="lg:h-[28.875rem]"
       />
       <div className="absolute -bottom-5 z-10 flex w-full justify-center">
         <a href="#">
