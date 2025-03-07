@@ -166,6 +166,7 @@ function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
 
 function Resolucoes() {
   const groupedLegislacoes = chunkArray(legislacoes, 14)
+  const groupedLegislacoesMob = chunkArray(legislacoes, 6)
   const [openDialog, setOpenDialog] = useState(false)
   const [legislacaoActive, setLegislacaoActive] = useState<legislacaoType>(
     {} as legislacaoType,
@@ -183,7 +184,6 @@ function Resolucoes() {
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
-  console.log('groupedLegislacoes', groupedLegislacoes)
 
   const handleOpenDialog = (legislacao: legislacaoType) => {
     setLegislacaoActive(legislacao)
@@ -197,12 +197,12 @@ function Resolucoes() {
   }
 
   return (
-    <div className="mt-[8.4rem]">
+    <div className="lg:mt-[8.4rem]">
       <CardTopPage
         title="Resoluções STJD"
         description="A parte de legislação do STJD define e interpreta as normas do esporte no Brasil, focando na justiça e integridade das competições. Baseada no CBJD, essa área regula e aplica punições a infrações esportivas, promovendo julgamentos imparciais e com critérios legais."
         image={BalancaJustica}
-        height="lg:h-[28.875rem]"
+        height="lg:h-[28.875rem] lg:pb-0 pb-[2.25rem]"
         customClassImage="!-top-72 -right-44"
       />
       <div className="container">
@@ -214,9 +214,9 @@ function Resolucoes() {
             </h1>
           </div>
           <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
-          <div className="relative flex gap-[0.69rem] px-[2.19rem]">
+          <div className="relative flex flex-wrap gap-[0.69rem] px-[2.19rem]">
             <Select>
-              <SelectTrigger className="h-[3.75rem] w-[10.375rem] rounded-[0.8125rem]">
+              <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[10.375rem]">
                 <SelectValue placeholder="Categoria" />
               </SelectTrigger>
               <SelectContent>
@@ -225,7 +225,7 @@ function Resolucoes() {
               </SelectContent>
             </Select>
             <Select>
-              <SelectTrigger className="h-[3.75rem] w-[14.5625rem] rounded-[0.8125rem]">
+              <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                 <SelectValue placeholder="Tipo" />
               </SelectTrigger>
               <SelectContent>
@@ -234,7 +234,7 @@ function Resolucoes() {
                 <SelectItem value="PG">PG</SelectItem>
               </SelectContent>
             </Select>
-            <div className="w-full max-w-[14.875rem]">
+            <div className="w-full lg:max-w-[14.875rem]">
               <Input
                 placeholder="Número da Resolução"
                 className="h-[3.75rem] w-full rounded-[0.8125rem]"
@@ -242,7 +242,7 @@ function Resolucoes() {
             </div>
 
             <Select>
-              <SelectTrigger className="h-[3.75rem] w-[14.5625rem] rounded-[0.8125rem]">
+              <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                 <SelectValue placeholder="Escolha o Ano" />
               </SelectTrigger>
               <SelectContent>
@@ -254,7 +254,7 @@ function Resolucoes() {
                 <SelectItem value="2025">2025</SelectItem>
               </SelectContent>
             </Select>
-            <Button className="p ml-[4rem] h-[3.75rem] w-[15.375rem] rounded-[4.625rem] text-[1.25rem]">
+            <Button className="mt-[2rem] h-[3.75rem] w-full rounded-[4.625rem] text-[1.25rem] lg:ml-[4rem] lg:mt-0 lg:w-[15.375rem]">
               Pesquisar
             </Button>
           </div>
@@ -262,29 +262,54 @@ function Resolucoes() {
       </div>
       {/* Carousel com grupos de 14 itens */}
       <div className="container">
-        <div className="relative z-10 mx-auto mt-[10rem] max-w-[100.0625rem]">
-          <Carousel setApi={setApi}>
-            <CarouselContent>
-              {groupedLegislacoes.map((group, groupIndex) => (
-                <CarouselItem key={`group-${groupIndex}`}>
-                  <div className="grid grid-cols-7 gap-x-[3.93rem] gap-y-[2.56rem]">
-                    {group.map((legislacao, index) => (
-                      <button
-                        key={`leg-${groupIndex}-${index}`}
-                        onClick={() => handleOpenDialog(legislacao)}
-                      >
-                        <CardLegislacao
-                          title={legislacao.title}
-                          subtitle={legislacao.subtitle}
-                        />
-                      </button>
-                    ))}
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-          <div className="mt-[2.5rem] flex flex-col items-center justify-center gap-[0.41rem] pr-[2.5rem]">
+        <div className="relative z-10 mx-auto mt-[2.6rem] max-w-[100.0625rem] lg:mt-[10rem]">
+          <div className="hidden lg:block">
+            <Carousel setApi={setApi}>
+              <CarouselContent>
+                {groupedLegislacoes.map((group, groupIndex) => (
+                  <CarouselItem key={`group-${groupIndex}`}>
+                    <div className="grid grid-cols-7 gap-x-[3.93rem] gap-y-[2.56rem]">
+                      {group.map((legislacao, index) => (
+                        <button
+                          key={`leg-${groupIndex}-${index}`}
+                          onClick={() => handleOpenDialog(legislacao)}
+                        >
+                          <CardLegislacao
+                            title={legislacao.title}
+                            subtitle={legislacao.subtitle}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+          <div className="lg:hidden">
+            <Carousel setApi={setApi}>
+              <CarouselContent>
+                {groupedLegislacoesMob.map((group, groupIndex) => (
+                  <CarouselItem key={`group-${groupIndex}`}>
+                    <div className="grid grid-cols-2 justify-center gap-x-[2rem] gap-y-[2rem] lg:grid-cols-7 lg:gap-x-[3.93rem] lg:gap-y-[2.56rem]">
+                      {group.map((legislacao, index) => (
+                        <button
+                          key={`leg-${groupIndex}-${index}`}
+                          onClick={() => handleOpenDialog(legislacao)}
+                        >
+                          <CardLegislacao
+                            title={legislacao.title}
+                            subtitle={legislacao.subtitle}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+          <div className="mt-[2.5rem] flex flex-col items-center justify-center gap-[0.41rem] lg:pr-[2.5rem]">
             <div className="flex justify-center gap-[0.41rem]">
               <button
                 onClick={handlePrevious}
@@ -299,13 +324,16 @@ function Resolucoes() {
                 <ChevronLeft color="#A1A1A1" className="rotate-180" />
               </button>
             </div>
-            <p className="text-center text-[0.9375rem] font-light leading-[1.23775rem]">
+            <p className="hidden text-center text-[0.9375rem] font-light leading-[1.23775rem] lg:block">
               {current} / {groupedLegislacoes.length}
+            </p>
+            <p className="block text-center text-[0.9375rem] font-light leading-[1.23775rem] lg:hidden">
+              {current} / {groupedLegislacoesMob.length}
             </p>
           </div>
         </div>
       </div>
-      <div className="container relative z-10">
+      <div className="relative z-10 lg:container">
         <div className="pt-[6.19rem]">
           <ScaleAttorneys
             title="Editais de Julgamentos"
@@ -318,27 +346,31 @@ function Resolucoes() {
         </div>
       </div>
 
-      <div className="container relative">
-        <div className="pt-[7.81rem]">
-          <div className="pb-[7.94rem]">
-            <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
+      <div className="container relative mt-[3rem] bg-black lg:mt-0 lg:bg-transparent">
+        <div className="border-[#BFBFBF] pt-[3rem] lg:border-r-[2px] lg:pt-[7.81rem]">
+          <div className="pb-[3rem] lg:pb-[7.94rem]">
+            <Image
+              src={LogoBlack}
+              alt="LogoBlack"
+              className="mx-auto w-[8.9375rem] lg:w-auto"
+            />
           </div>
-          <div className="absolute -left-20 bottom-0">
+          <div className="absolute -left-20 bottom-0 hidden lg:block">
             <Image src={BgFundoMembers} alt="BgFundoMembers" />
           </div>
         </div>
       </div>
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="max-h-[90vh] bg-[#E1E1E1] py-[3.19rem]">
-          <DialogHeader className="flex flex-row items-center gap-[1.37rem]">
-            <DialogTitle className="w-full max-w-[23.75rem] text-[1.64356rem] text-[#2E2E2E]">
+        <DialogContent className="max-w-[23rem] bg-[#E1E1E1] lg:max-h-[90vh] lg:max-w-[60rem] lg:py-[3.19rem]">
+          <DialogHeader className="flex flex-col items-center gap-[1.37rem] lg:flex-row">
+            <DialogTitle className="w-full max-w-[23.75rem] text-[#2E2E2E] lg:text-[1.64356rem]">
               Escala de Procuradores <span className="font-light">2024</span>{' '}
             </DialogTitle>
             <div className="relative w-full">
-              <p className="absolute -top-5 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E]">
+              <p className="absolute -top-2 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E] lg:-top-5">
                 Prévia do documento
               </p>
-              <hr className="w-full border border-[#BD995D] bg-[#BD995D]" />
+              <hr className="mt-5 w-full border border-[#BD995D] bg-[#BD995D] lg:mt-0" />
             </div>
           </DialogHeader>
           <PDFViewerScroll linkPdf={legislacaoActive.pdf} />

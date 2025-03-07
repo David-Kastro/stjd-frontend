@@ -3,7 +3,6 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import { Button } from '../ui/button'
-import { Skeleton } from '../ui/skeleton'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
 
@@ -13,12 +12,11 @@ interface PDFViewerProps {
 
 const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
   const [numPages, setNumPages] = useState<number | null>(null)
-  const [loading, setLoading] = useState(true)
+
   const [currentPage, setCurrentPage] = useState(1)
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages)
-    setLoading(false)
   }
 
   // Função para detectar qual página está visível
@@ -33,7 +31,7 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
   return (
     <div className="relative rounded-[1.375rem] bg-[#E1E1E1] px-[1.69rem]">
       <div className="flex items-center justify-center">
-        <div className="w-[9.0625rem]">
+        <div className="w-8 lg:w-[9.0625rem]">
           <div className="w-[4.79169rem] rounded-[0.41669rem] bg-[#A1A1A1] py-[0.42rem]">
             <p className="text-center text-[0.66669rem] font-bold text-white">
               {currentPage} / {numPages}
@@ -41,20 +39,6 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
           </div>
         </div>
       </div>
-
-      {loading && (
-        <div className="flex h-full flex-col items-center justify-center">
-          <Skeleton className="h-[27rem] w-[46rem] bg-[#ccc]" />
-          <div className="mt-5 flex justify-center">
-            <Button
-              disabled
-              className="animate mx-auto h-[3.75rem] animate-pulse rounded-[4.625rem] px-[3.12rem] text-[1.25rem] font-bold"
-            >
-              Fazer Download
-            </Button>
-          </div>
-        </div>
-      )}
 
       <div>
         <div

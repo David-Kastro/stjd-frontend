@@ -163,13 +163,13 @@ function Legislacao() {
   }
 
   return (
-    <div className="mt-[8.4rem]">
+    <div className="lg:mt-[8.4rem]">
       <CardTopPage
         title="Legislação STJD"
         description="A parte de legislação do STJD define e interpreta as normas do esporte no Brasil, focando na justiça e integridade das competições. Baseada no CBJD, essa área regula e aplica punições a infrações esportivas, promovendo julgamentos imparciais e com critérios legais."
         image={BalancaJustica}
-        height="lg:h-[28.875rem]"
-        customClassImage="!-top-28 "
+        height="lg:h-[28.875rem] lg:pb-0 pb-[2.25rem]"
+        customClassImage="!-top-28 ml-10 lg:ml-0"
       />
       <div className="container">
         <div className="mx-auto max-w-[100.0625rem] rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">
@@ -180,9 +180,9 @@ function Legislacao() {
             </h1>
           </div>
           <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
-          <div className="relative flex gap-[0.69rem] px-[2.19rem]">
+          <div className="relative flex flex-wrap gap-[0.69rem] px-[2.19rem]">
             <Select>
-              <SelectTrigger className="h-[3.75rem] w-[10.375rem] rounded-[0.8125rem]">
+              <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[10.375rem]">
                 <SelectValue placeholder="Categoria" />
               </SelectTrigger>
               <SelectContent>
@@ -191,7 +191,7 @@ function Legislacao() {
               </SelectContent>
             </Select>
             <Select>
-              <SelectTrigger className="h-[3.75rem] w-[14.5625rem] rounded-[0.8125rem]">
+              <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                 <SelectValue placeholder="Tipo" />
               </SelectTrigger>
               <SelectContent>
@@ -200,7 +200,7 @@ function Legislacao() {
                 <SelectItem value="PG">PG</SelectItem>
               </SelectContent>
             </Select>
-            <div className="w-full max-w-[14.875rem]">
+            <div className="w-full lg:max-w-[14.875rem]">
               <Input
                 placeholder="Número da Resolução"
                 className="h-[3.75rem] w-full rounded-[0.8125rem]"
@@ -208,7 +208,7 @@ function Legislacao() {
             </div>
 
             <Select>
-              <SelectTrigger className="h-[3.75rem] w-[14.5625rem] rounded-[0.8125rem]">
+              <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                 <SelectValue placeholder="Escolha o Ano" />
               </SelectTrigger>
               <SelectContent>
@@ -220,16 +220,16 @@ function Legislacao() {
                 <SelectItem value="2025">2025</SelectItem>
               </SelectContent>
             </Select>
-            <Button className="p ml-[4rem] h-[3.75rem] w-[15.375rem] rounded-[4.625rem] text-[1.25rem]">
+            <Button className="mt-[2.6rem] h-[3.75rem] w-full rounded-[4.625rem] text-[1.25rem] lg:ml-[4rem] lg:mt-0 lg:w-[15.375rem]">
               Pesquisar
             </Button>
           </div>
         </div>
       </div>
       <div className="container">
-        <div className="relative z-10 mt-[10rem]">
+        <div className="relative z-10 mt-[2.69rem] lg:mt-[10rem]">
           <div className="absolute right-0 z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
-          <div className="scroll-custom-editais relative mx-auto -mr-[5px] flex h-[28rem] flex-wrap justify-center gap-x-[3.93rem] gap-y-[2.56rem] overflow-y-auto pb-14">
+          <div className="scroll-custom-editais relative mx-auto -mr-[5px] flex h-[32rem] flex-wrap justify-center gap-x-[2rem] gap-y-[2rem] overflow-y-auto pb-14 lg:h-[28rem] lg:gap-x-[3.93rem] lg:gap-y-[2.56rem]">
             {legislacoes.map((legislacao, index) => (
               <button key={index} onClick={() => handleOpenDialog(legislacao)}>
                 <CardLegislacao
@@ -241,8 +241,8 @@ function Legislacao() {
           </div>
         </div>
       </div>
-      <div className="container relative z-10">
-        <div className="border-r-[2px] border-[#BFBFBF] pt-[6.19rem]">
+      <div className="relative z-10 lg:container">
+        <div className="border-[#BFBFBF] pt-[6.19rem] lg:border-r-[2px]">
           <ScaleAttorneys
             title="Editais de Julgamentos"
             subtitle="Acesse a tabela de Editais"
@@ -254,12 +254,16 @@ function Legislacao() {
         </div>
       </div>
 
-      <div className="container relative">
-        <div className="border-r-[2px] border-[#BFBFBF] pt-[7.81rem]">
-          <div className="pb-[7.94rem]">
-            <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
+      <div className="container relative mt-[3rem] bg-black lg:mt-0 lg:bg-transparent">
+        <div className="border-[#BFBFBF] pt-[3rem] lg:border-r-[2px] lg:pt-[7.81rem]">
+          <div className="pb-[3rem] lg:pb-[7.94rem]">
+            <Image
+              src={LogoBlack}
+              alt="LogoBlack"
+              className="mx-auto w-[8.9375rem] lg:w-auto"
+            />
           </div>
-          <div className="absolute -left-20 bottom-0">
+          <div className="absolute -left-20 bottom-0 hidden lg:block">
             <Image src={BgFundoMembers} alt="BgFundoMembers" />
           </div>
         </div>
