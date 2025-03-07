@@ -10,7 +10,7 @@ interface CardLegislacaoProps {
 
 function CardLegislacao({ title, subtitle }: CardLegislacaoProps) {
   return (
-    <Card className="bg-card-legislacao group relative h-full w-[9.62763rem] rounded-[0.61588rem] bg-cover transition-all hover:shadow-2xl">
+    <Card className="bg-card-legislacao group relative h-full w-full rounded-[0.61588rem] bg-cover transition-all hover:shadow-2xl lg:w-[9.62763rem]">
       <div className="absolute -left-[2px] top-6 h-[1.7925rem] w-[4.5px] rounded-full bg-secondary"></div>
 
       <CardContent className="p-4 pt-0">
