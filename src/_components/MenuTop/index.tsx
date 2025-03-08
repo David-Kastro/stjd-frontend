@@ -12,6 +12,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/_components/ui/sheet'
+import { cn } from '@/lib/utils'
 
 interface MenuItem {
   name: string
@@ -121,7 +122,7 @@ function MenuTop() {
   return (
     <div className="relative z-10">
       <div className="hidden w-full bg-black lg:block">
-        <div className="container flex items-center justify-end gap-[1.25rem] py-[0.78rem] pr-[2.56rem] text-[0.95769rem] leading-[0.95769rem] text-[#fff]">
+        <div className="~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem] container flex items-center justify-end gap-[1.25rem] py-[0.78rem] pr-[2.56rem] text-[#fff]">
           <a href="#" className="border-r border-[#fff] pr-[1.25rem]">
             CBF
           </a>
@@ -155,7 +156,7 @@ function MenuTop() {
               type="text"
               name=""
               id=""
-              className="w-full rounded-[9.375rem] px-[1.25rem] py-[0.88rem] text-[#000000] placeholder:text-[#000000]"
+              className="~lg/2xl:~px-[.5rem]/[1.25rem] w-full rounded-[9.375rem] py-[0.88rem] text-[#000000] placeholder:text-[#000000]"
               placeholder="Procurar..."
               required
             />
@@ -174,7 +175,7 @@ function MenuTop() {
         </div>
       </div>
       <nav className="container mt-[1.86rem] hidden lg:block">
-        <div className="mx-auto flex w-full max-w-[99.3125rem] justify-between px-[1.64rem]">
+        <div className="~lg/2xl:~gap-1/4 mx-auto flex w-full justify-between px-[1.64rem]">
           {menus.map((menu, index) => (
             <div key={index}>
               {menu.pathname ? (
@@ -185,17 +186,19 @@ function MenuTop() {
                       borderBottom: isActive(menu)
                         ? '0.125rem solid #006A9E'
                         : '',
-                      fontWeight: isActive(menu) ? '700' : '',
+                      textShadow: isActive(menu)
+                        ? '0 1px 0 rgb(0 0 0 / 100%)'
+                        : '',
                     }}
                   >
-                    <button className="inline-block px-[1.25rem] py-[0.88rem] text-[0.95769rem] leading-[0.95769rem] text-[#002A3E] group-hover:font-bold">
+                    <button className="~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] inline-block py-[0.88rem] text-[#002A3E] group-hover:[text-shadow:_0_1px_0_rgb(0_0_0_/_100%)]">
                       {menu.name}
                     </button>
                   </div>
                 </Link>
               ) : (
                 <div
-                  className="group w-[9.9375rem] pb-[1.86rem] hover:border-b-[0.125rem] hover:border-[#006A9E]"
+                  className="group pb-[1.86rem] hover:border-b-[0.125rem] hover:border-[#006A9E]"
                   style={{
                     borderBottom: isActive(menu)
                       ? '0.125rem solid #006A9E'
@@ -204,17 +207,23 @@ function MenuTop() {
                   }}
                 >
                   <div className="relative z-50">
-                    <p className="inline-block w-full px-[1.25rem] py-[0.88rem] text-center text-[0.95769rem] leading-[0.95769rem] text-[#002A3E] group-hover:font-bold">
+                    <p
+                      className={cn(
+                        '~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] inline-block w-full py-[0.88rem] text-center text-[#002A3E]',
+                        !isActive(menu) &&
+                          'group-hover:[text-shadow:_0_1px_0_rgb(0_0_0_/_100%)]',
+                      )}
+                    >
                       {menu.name}
                     </p>
-                    <div className="invisible absolute top-[4.9rem] h-0 w-max min-w-[10rem] opacity-0 transition-[opacity,visibility,height] duration-300 group-hover:visible group-hover:block group-hover:h-auto group-hover:opacity-100">
+                    <div className="~lg/2xl:~min-w-[5rem]/[10rem] invisible absolute top-[4.9rem] h-0 w-max opacity-0 transition-[opacity,visibility,height] duration-300 group-hover:visible group-hover:block group-hover:h-auto group-hover:opacity-100">
                       <div className="relative z-50 whitespace-nowrap rounded-[0.8125rem] bg-[#fff] px-4 py-[0.94rem]">
                         {menu.paths &&
                           menu.paths.map((path, i) => (
                             <Link
                               key={i}
                               href={path.pathname}
-                              className="invisible block h-0 border-b-[0.0625rem] border-[#CFCFCF] border-opacity-50 py-[0.625rem] text-[0.95769rem] leading-[0.95769rem] text-[#000000] opacity-0 transition-[opacity,visibility,height] duration-300 last:border-b-0 hover:!font-bold group-hover:visible group-hover:h-[100%] group-hover:opacity-100"
+                              className="~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem] invisible block h-0 border-b-[0.0625rem] border-[#CFCFCF] border-opacity-50 py-[0.625rem] text-[#000000] opacity-0 transition-[opacity,visibility,height] duration-300 last:border-b-0 hover:![text-shadow:_0_1px_0_rgb(0_0_0_/_100%)] group-hover:visible group-hover:h-[100%] group-hover:opacity-100"
                               style={{
                                 fontWeight: pathname.includes(path.pathname)
                                   ? '700'

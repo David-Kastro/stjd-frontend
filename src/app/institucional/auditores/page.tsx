@@ -82,6 +82,7 @@ async function Auditores() {
           image={WoodenGavel}
           height="lg:h-[28.875rem]"
           scrollTo="#members"
+          customClassImage=""
         />
         <hr className="mb-0 mt-20 h-[0.125rem] w-full bg-border" />
       </section>
