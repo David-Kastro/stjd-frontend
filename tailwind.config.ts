@@ -1,12 +1,17 @@
+import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
+
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
   darkMode: ['class'],
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/_components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: {
+    files: [
+      './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+      './src/_components/**/*.{js,ts,jsx,tsx,mdx}',
+      './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    ],
+    extract,
+  },
   theme: {
     extend: {
       container: {
@@ -74,8 +79,10 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
     },
+    screens,
+    fontSize,
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), fluid],
 }
 export default config
