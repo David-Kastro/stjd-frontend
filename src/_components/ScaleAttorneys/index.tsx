@@ -37,7 +37,7 @@ function ScaleAttorneys({
 
   return (
     <div
-      className={`bg-custom-scale relative mx-auto flex flex-col items-center justify-between rounded-none px-4 py-[1.7rem] lg:max-w-[99.4375rem] lg:flex-row lg:rounded-[1.375rem] lg:px-[1.5rem] lg:py-[1.47rem]`}
+      className={`bg-custom-scale relative mx-auto flex flex-col items-center justify-between rounded-none py-[1.7rem] lg:max-w-[99.4375rem] lg:flex-row lg:rounded-[1.375rem] lg:px-4 lg:px-[1.5rem] lg:py-[1.47rem]`}
       style={{ height: isMobile ? 'auto' : height }}
     >
       <div className="relative z-10 flex items-center gap-[0.6rem] lg:gap-[1.06rem]">
@@ -47,7 +47,7 @@ function ScaleAttorneys({
           className="w-[2.8235rem] lg:w-auto"
         />
         <div>
-          <h1 className="text-[1.28669rem] font-bold tracking-[0.0225rem] text-[#005D8A] lg:text-[2.25rem]">
+          <h1 className="text-[1.28669rem] font-bold leading-[1.42963rem] tracking-[0.0225rem] text-[#005D8A] lg:text-[2.25rem] lg:leading-normal">
             {title}
           </h1>
           <h2 className="text-[0.71481rem] font-light text-[#000100] lg:text-[1.25rem]">

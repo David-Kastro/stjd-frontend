@@ -231,7 +231,11 @@ function Legislacao() {
           <div className="absolute right-0 z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
           <div className="scroll-custom-editais relative mx-auto -mr-[5px] flex h-[32rem] flex-wrap justify-center gap-x-[2rem] gap-y-[2rem] overflow-y-auto pb-14 lg:h-[28rem] lg:gap-x-[3.93rem] lg:gap-y-[2.56rem]">
             {legislacoes.map((legislacao, index) => (
-              <button key={index} onClick={() => handleOpenDialog(legislacao)}>
+              <button
+                className="w-[9rem] lg:w-auto"
+                key={index}
+                onClick={() => handleOpenDialog(legislacao)}
+              >
                 <CardLegislacao
                   title={legislacao.title}
                   subtitle={legislacao.subtitle}
@@ -269,16 +273,16 @@ function Legislacao() {
         </div>
       </div>
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="max-h-[90vh] bg-[#E1E1E1] py-[3.19rem]">
-          <DialogHeader className="flex flex-row items-center gap-[1.37rem]">
-            <DialogTitle className="w-full max-w-[23.75rem] text-[1.64356rem] text-[#2E2E2E]">
+        <DialogContent className="max-w-[23rem] bg-[#E1E1E1] lg:max-h-[90vh] lg:max-w-[60rem] lg:py-[3.19rem]">
+          <DialogHeader className="flex flex-col items-center gap-[1.37rem] lg:flex-row">
+            <DialogTitle className="w-full max-w-[23.75rem] text-[#2E2E2E] lg:text-[1.64356rem]">
               Escala de Procuradores <span className="font-light">2024</span>{' '}
             </DialogTitle>
             <div className="relative w-full">
-              <p className="absolute -top-5 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E]">
+              <p className="absolute -top-2 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E] lg:-top-5">
                 Prévia do documento
               </p>
-              <hr className="w-full border border-[#BD995D] bg-[#BD995D]" />
+              <hr className="mt-5 w-full border border-[#BD995D] bg-[#BD995D] lg:mt-0" />
             </div>
           </DialogHeader>
           <PDFViewerScroll linkPdf={legislacaoActive.pdf} />
