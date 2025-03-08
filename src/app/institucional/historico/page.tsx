@@ -62,7 +62,7 @@ function Historico() {
       </section>
       <section
         id="members"
-        className="container relative pt-6 lg:ml-auto lg:mr-[unset] lg:pl-8 min-[2000px]:mr-auto"
+        className="min-[2000px]:mr-auto container relative pt-6 lg:ml-auto lg:mr-[unset] lg:pl-8"
       >
         <h1 className="h1 relative before:absolute before:inset-y-0 before:left-[-1rem] before:my-auto before:h-[90%] before:w-[5px] before:rounded-full before:bg-secondary lg:before:left-[-1.05rem]">
           Antigos Membros

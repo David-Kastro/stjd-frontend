@@ -1,7 +1,9 @@
 import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import { extendTailwindMerge } from 'tailwind-merge'
+import { withFluid } from '@fluid-tailwind/tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
+  const twMerge = extendTailwindMerge(withFluid)
   return twMerge(clsx(inputs))
 }
 
