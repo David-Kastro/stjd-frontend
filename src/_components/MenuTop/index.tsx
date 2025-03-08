@@ -122,7 +122,7 @@ function MenuTop() {
   return (
     <div className="relative z-10">
       <div className="hidden w-full bg-black lg:block">
-        <div className="~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem] container flex items-center justify-end gap-[1.25rem] py-[0.78rem] pr-[2.56rem] text-[#fff]">
+        <div className="container flex items-center justify-end gap-[1.25rem] py-[0.78rem] pr-[2.56rem] text-[#fff] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]">
           <a href="#" className="border-r border-[#fff] pr-[1.25rem]">
             CBF
           </a>
@@ -156,7 +156,7 @@ function MenuTop() {
               type="text"
               name=""
               id=""
-              className="~lg/2xl:~px-[.5rem]/[1.25rem] w-full rounded-[9.375rem] py-[0.88rem] text-[#000000] placeholder:text-[#000000]"
+              className="w-full rounded-[9.375rem] py-[0.88rem] text-[#000000] placeholder:text-[#000000] ~lg/2xl:~px-[.5rem]/[1.25rem]"
               placeholder="Procurar..."
               required
             />
@@ -175,7 +175,7 @@ function MenuTop() {
         </div>
       </div>
       <nav className="container mt-[1.86rem] hidden lg:block">
-        <div className="~lg/2xl:~gap-1/4 mx-auto flex w-full justify-between px-[1.64rem]">
+        <div className="mx-auto flex w-full justify-between px-[1.64rem] ~lg/2xl:~gap-1/4">
           {menus.map((menu, index) => (
             <div key={index}>
               {menu.pathname ? (
@@ -191,7 +191,7 @@ function MenuTop() {
                         : '',
                     }}
                   >
-                    <button className="~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] inline-block py-[0.88rem] text-[#002A3E] group-hover:[text-shadow:_0_1px_0_rgb(0_0_0_/_100%)]">
+                    <button className="inline-block py-[0.88rem] text-[#002A3E] group-hover:[text-shadow:_0_1px_0_rgb(0_0_0_/_100%)] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]">
                       {menu.name}
                     </button>
                   </div>
@@ -209,21 +209,21 @@ function MenuTop() {
                   <div className="relative z-50">
                     <p
                       className={cn(
-                        '~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] inline-block w-full py-[0.88rem] text-center text-[#002A3E]',
+                        'inline-block w-full py-[0.88rem] text-center text-[#002A3E] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]',
                         !isActive(menu) &&
                           'group-hover:[text-shadow:_0_1px_0_rgb(0_0_0_/_100%)]',
                       )}
                     >
                       {menu.name}
                     </p>
-                    <div className="~lg/2xl:~min-w-[5rem]/[10rem] invisible absolute top-[4.9rem] h-0 w-max opacity-0 transition-[opacity,visibility,height] duration-300 group-hover:visible group-hover:block group-hover:h-auto group-hover:opacity-100">
+                    <div className="invisible absolute top-[4.9rem] h-0 w-max opacity-0 transition-[opacity,visibility,height] duration-300 group-hover:visible group-hover:block group-hover:h-auto group-hover:opacity-100 ~lg/2xl:~min-w-[5rem]/[10rem]">
                       <div className="relative z-50 whitespace-nowrap rounded-[0.8125rem] bg-[#fff] px-4 py-[0.94rem]">
                         {menu.paths &&
                           menu.paths.map((path, i) => (
                             <Link
                               key={i}
                               href={path.pathname}
-                              className="~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem] invisible block h-0 border-b-[0.0625rem] border-[#CFCFCF] border-opacity-50 py-[0.625rem] text-[#000000] opacity-0 transition-[opacity,visibility,height] duration-300 last:border-b-0 hover:![text-shadow:_0_1px_0_rgb(0_0_0_/_100%)] group-hover:visible group-hover:h-[100%] group-hover:opacity-100"
+                              className="invisible block h-0 border-b-[0.0625rem] border-[#CFCFCF] border-opacity-50 py-[0.625rem] text-[#000000] opacity-0 transition-[opacity,visibility,height] duration-300 last:border-b-0 hover:![text-shadow:_0_1px_0_rgb(0_0_0_/_100%)] group-hover:visible group-hover:h-[100%] group-hover:opacity-100 ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]"
                               style={{
                                 fontWeight: pathname.includes(path.pathname)
                                   ? '700'
