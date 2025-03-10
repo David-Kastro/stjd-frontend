@@ -34,8 +34,8 @@ function JurisprudenciaStj() {
           title="Jurisprudência"
           description="A jurisprudência do Superior Tribunal de Justiça Desportiva (STJD) assegura uniformidade nas decisões relacionadas a infrações, regulamentos e disputas esportivas. Baseada em casos anteriores, ela promove ética, fair play e segurança jurídica, orientando atletas, clubes e dirigentes no cumprimento das regras do desporto nacional."
           image={Estatua}
-          height="lg:h-[28.875rem] lg:pb-0 pb-[3.5rem]"
-          customClassImage="!-top-28 right-10"
+          imageCustomClass="h-[calc(100%+7rem)]"
+          imagePosition="centerRight"
         />
         <div className="container">
           {!openAdvanced ? (

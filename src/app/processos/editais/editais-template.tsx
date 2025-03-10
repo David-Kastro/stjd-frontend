@@ -1,7 +1,7 @@
 'use client'
 import CardTopPage from '@/_components/CardTopPage'
 import React, { useEffect, useMemo, useState } from 'react'
-import Pastas from '/public/images/pastas.webp'
+import Pastas from '/public/images/pastas.png'
 import { Search, X } from 'lucide-react'
 import {
   Select,
@@ -65,8 +65,7 @@ function EditaisTemplate({ filters, editais }: Props) {
         title="Editais STJD"
         description="Os editais do STJD são avisos oficiais que informam sobre decisões, convocações e processos esportivos. Eles trazem atualizações sobre julgamentos, suspensões e penalidades para clubes e atletas, garantindo transparência e mantendo todos informados das regras e decisões recentes no esporte brasileiro."
         image={Pastas}
-        height="lg:h-[28.875rem] lg:pb-0 pb-10"
-        customClassImage="lg:-top-80 -mt-14 lg:mt-0"
+        imagePosition="centerRight"
       />
       <div id="pageFilters" className="container mt-[1.75rem]">
         <div className="mx-auto max-w-[100.0625rem]">

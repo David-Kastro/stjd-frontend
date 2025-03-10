@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 import CardTopPage from '@/_components/CardTopPage'
-import BalancaJustica from '/public/images/balanca-justica.webp'
+import BalancaJustica from '/public/images/balanca-justica.png'
 import CardLegislacao from '@/_components/CardLegislacao'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import BgEditais from '/public/images/bg-card-editais.svg'
@@ -168,8 +168,8 @@ function Legislacao() {
         title="Legislação STJD"
         description="A parte de legislação do STJD define e interpreta as normas do esporte no Brasil, focando na justiça e integridade das competições. Baseada no CBJD, essa área regula e aplica punições a infrações esportivas, promovendo julgamentos imparciais e com critérios legais."
         image={BalancaJustica}
-        height="lg:h-[28.875rem] lg:pb-0 pb-[2.25rem]"
-        customClassImage="!-top-28 ml-10 lg:ml-0"
+        imagePosition="centerRight"
+        imageCustomClass="h-[calc(100%+12rem)]"
       />
       <div className="container">
         <div className="mx-auto max-w-[100.0625rem] rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">

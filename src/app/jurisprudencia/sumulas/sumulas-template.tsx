@@ -59,8 +59,7 @@ function SumulasTemplate({ filters, docs }: Props) {
         title="Súmulas"
         description="As súmulas do STJD (Superior Tribunal de Justiça Desportiva) são entendimentos ou orientações consolidadas que o tribunal adota para casos específicos no âmbito desportivo, especialmente no futebol. Elas servem como uma espécie de jurisprudência, estabelecendo precedentes que orientam futuras decisões e garantindo maior uniformidade no julgamento de infrações."
         image={Pastas}
-        height="lg:h-[28.875rem] lg:pb-0 pb-[3.5rem]"
-        customClassImage="-top-3"
+        imagePosition="topRight"
       />
       <div id="pageFilters" className="container mt-[1.75rem]">
         <div className="mx-auto max-w-[100.0625rem]">
