@@ -54,9 +54,9 @@ function Historico() {
           title="Auditores"
           description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
           image={Clock}
-          height="lg:h-[28.875rem]"
           scrollTo="#members"
-          customClassImage="-right-20 top-[-8rem] max-w-[45rem]"
+          imagePosition="centerRight"
+          imageCustomClass="h-[calc(100%+4rem)]"
         />
         <hr className="mb-0 mt-20 h-[0.125rem] w-full bg-border" />
       </section>

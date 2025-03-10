@@ -80,9 +80,8 @@ async function Auditores() {
           title="Auditores"
           description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
           image={WoodenGavel}
-          height="lg:h-[28.875rem]"
           scrollTo="#members"
-          customClassImage="max-h-[100%]"
+          imagePosition="topRight"
         />
         <hr className="mb-0 mt-20 h-[0.125rem] w-full bg-border" />
       </section>
