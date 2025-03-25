@@ -67,7 +67,7 @@ function PublicationsHighligthCarousel({
                         {publication.headline}
                       </h3>
                       <p className="text-sm font-normal leading-4 text-[#A1A1A1]">
-                        {dateTimeFormat(publication.publishedAt)} - Por:{' '}
+                        {dateTimeFormat(publication.data_publicacao)} - Por:{' '}
                         {'publication.author'}
                       </p>
                       <p className="text-base font-normal leading-[1.7rem] text-[#000]">

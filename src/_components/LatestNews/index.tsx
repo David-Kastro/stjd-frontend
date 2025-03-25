@@ -13,11 +13,11 @@ import { Button } from '../ui/button'
 
 import LiveSessionCard from '../LiveSessionCard'
 import { Article, Edital, Session } from '@/lib/types'
-import { marked } from 'marked'
 import CustomImage from '../CustomImage'
 import { dateTimeFormat } from '@/lib/utils'
 import JudgmentGuidelines from '../JudgmentGuidelines'
 import ListEditais from '../ListEditais'
+import { MarkedContent } from '../marked-content'
 
 function LatestNews({
   articles,
@@ -170,7 +170,7 @@ function LatestNews({
                           alt="Image"
                         /> */}
                             <p className="mt-[0.9rem] text-[0.75rem] leading-4 lg:mt-[1.94rem] lg:text-base">
-                              {marked.parse(group.lead)}
+                              <MarkedContent content={group.lead} />
                             </p>
                             <Button className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:hidden">
                               Veja mais{' '}

@@ -204,6 +204,10 @@ body {
   @apply pb-0;
 }
 
+.marked strong {
+  @apply font-semibold;
+}
+
 
 .card-painel {
   filter: drop-shadow(2.903px 2.903px 2.903px rgba(0, 0, 0, 0.10));

@@ -7,6 +7,7 @@ import SearchNewsSection from '../SearchNewsSection'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import { Edital, News, Publication } from '@/lib/types'
 import SearchPublicationSection from '../SearchPublicationSection'
+import { MarkedContent } from '../marked-content'
 
 interface Props {
   articleData: News | Publication
@@ -31,9 +32,11 @@ function Article({ articleData, editais, readMoreData }: Props) {
               {articleData.headline}
             </h1>
             <p className="text-sm font-normal leading-4 text-[#A1A1A1]">
-              {dateTimeFormat(articleData.publishedAt)}
+              {dateTimeFormat(articleData.data_publicacao)}
             </p>
-            <p className="text-[#000000]">{articleData.corpo}</p>
+            <p className="text-[#000000]">
+              <MarkedContent content={articleData.corpo} />
+            </p>
           </div>
         </article>
         <aside className="flex w-1/2 flex-col gap-16">

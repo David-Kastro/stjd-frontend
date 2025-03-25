@@ -37,6 +37,7 @@ export interface Article {
   documentId: string
   headline: string
   corpo: string
+  data_publicacao: string
   createdAt: string
   updatedAt: string
   publishedAt: string
