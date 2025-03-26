@@ -32,7 +32,7 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
   return (
     <div className="relative rounded-[1.375rem] bg-[#E1E1E1] px-[1.69rem] py-9 lg:py-[1rem]">
       <h2 className="text-center text-[1.12138rem] font-bold lg:text-left lg:leading-[2.66025rem]">
-        {doc.titulo} <span className="font-normal">{doc.subtitulo}</span>
+        {doc.titulo} - <span className="font-normal">{doc.subtitulo}</span>
       </h2>
       <p className="hidden text-end text-[0.79181rem] text-[#2E2E2E] lg:block">
         Prévia do documento
@@ -81,7 +81,7 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
           file={doc.documento.url}
           onLoadSuccess={onDocumentLoadSuccess}
         >
-          <Page pageNumber={pageNumber} scale={1.0} />
+          <Page className="flex justify-center" pageNumber={pageNumber} />
         </Document>
       </div>
       <div className="mx-auto mt-[1rem] flex w-[9.0625rem] justify-center gap-[0.41rem] lg:hidden">

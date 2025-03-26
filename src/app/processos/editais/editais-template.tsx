@@ -39,6 +39,8 @@ function EditaisTemplate({ filters, editais }: Props) {
     return editais.find((edital) => edital.id === editalActive)
   }, [editalActive, editais])
 
+  console.log(selectedEdital)
+
   useEffect(() => {
     if (editais.length > 0) {
       setEditalActive(editais[0].id)

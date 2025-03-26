@@ -29,14 +29,14 @@ function ListEditais({ editais }: { editais: Edital[] }) {
               subtitle={edital.subtitulo}
               description={`Data julgamento: ${dateTimeFormat(edital.data, false)}`}
               type="link"
-              path={`/editais/${edital.id}`}
+              path={`/processos/editais/${edital.id}`}
             />
           ))}
         </div>
       </div>
       <div className="border-[#BFBFBF] pb-[2.88rem] pt-[1.5rem] lg:mr-1 lg:border-r-[2px]">
         <Link
-          href={`/editais`}
+          href={`/processos/editais`}
           className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:mr-[2.88rem] lg:text-[1.25rem]"
         >
           Veja mais{' '}
