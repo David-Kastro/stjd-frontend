@@ -88,7 +88,7 @@ function PublicationsCarousel({
                     <CardNews
                       image={item.imagem.url}
                       title={item.headline}
-                      date={item.createdAt}
+                      date={item.data_publicacao}
                       textContent={item.corpo}
                       href={`${hrefPath[type]}/${item.slug}`}
                     />

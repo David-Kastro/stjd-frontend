@@ -30,13 +30,16 @@ function CardEdital({
         >
           <FileText className="text-[#A2A2A2]" />
           <div className="">
-            <h1 className="text-[0.78806rem] font-bold text-[#2E2E2E] lg:text-[1.25rem]">
+            <h1 className="line-clamp-1 text-[0.75rem] font-bold text-[#2E2E2E] lg:text-[1.20rem]">
               {title}
-              <span className="text-base font-medium">
+              {/* <span className="hidden text-base font-medium lg:block">
                 {subtitle && ` - ${subtitle}`}
-              </span>
+              </span> */}
             </h1>
             <h2 className="text-[0.51225rem] font-bold text-[#2E2E2E] lg:text-[0.8125rem]">
+              <span className="hidden text-base font-normal lg:inline-block">
+                {subtitle && `${subtitle} -`}
+              </span>{' '}
               {description}
             </h2>
           </div>

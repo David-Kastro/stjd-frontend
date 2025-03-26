@@ -3,10 +3,10 @@ import { ChevronLeft, Users } from 'lucide-react'
 
 import Image from 'next/image'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
-import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import { Member } from '@/lib/types'
 import CustomImage from '../CustomImage'
+import Link from 'next/link'
 // const members = [
 //   {
 //     cargo: 'Presidente',
@@ -89,15 +89,21 @@ function Members({
             ))}
           </div>
           <div className="flex justify-center pb-[3.06rem] lg:justify-end lg:pr-[2.81rem]">
-            <Button className="mt-[2.5rem] hidden w-fit items-center gap-[0.56rem] bg-transparent text-[1.25rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:ml-auto lg:flex">
+            <Link
+              href={`/institucional/auditores`}
+              className="mt-[2.5rem] hidden w-fit items-center gap-[0.56rem] bg-transparent text-[1.25rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:ml-auto lg:flex"
+            >
               Veja mais{' '}
               <div className="rotate-180">
                 <ChevronLeft />
               </div>
-            </Button>
-            <Button className="mt-[2.5rem] w-fit items-center gap-[0.56rem] rounded-full bg-black px-[2.34rem] text-[0.93675rem] font-bold leading-[1.23775rem] text-white hover:bg-transparent lg:ml-auto lg:hidden">
+            </Link>
+            <Link
+              href={`/institucional/auditores`}
+              className="mt-[2.5rem] w-fit items-center gap-[0.56rem] rounded-full bg-black px-[2.34rem] text-[0.93675rem] font-bold leading-[1.23775rem] text-white hover:bg-transparent lg:ml-auto lg:hidden"
+            >
               Veja mais
-            </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -34,9 +34,8 @@ function Article({ articleData, editais, readMoreData }: Props) {
             <p className="text-sm font-normal leading-4 text-[#A1A1A1]">
               {dateTimeFormat(articleData.data_publicacao)}
             </p>
-            <p className="text-[#000000]">
-              <MarkedContent content={articleData.corpo} />
-            </p>
+
+            <MarkedContent content={articleData.corpo} />
           </div>
         </article>
         <aside className="flex w-1/2 flex-col gap-16">

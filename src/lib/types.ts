@@ -72,6 +72,7 @@ export interface Doc {
   titulo: string
   subtitulo: string
   tipo: string
+  data: string
   categoria: string
   documento: File
   createdAt: string

@@ -10,16 +10,15 @@ async function Editais({
 }) {
   const filters = {
     ...(await searchParams),
-    categoria: 'Editais',
   } as BasicFilters
 
   const query = await getBasicQuery(filters)
 
   const [editais] = await fetchApi<Edital[]>({
-    endpoint: 'docs',
+    endpoint: 'notices',
     query: {
       sort: 'id:desc',
-      fields: ['id', 'titulo', 'subtitulo', 'tipo'],
+      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
       populate: ['documento'],
       filters: query,
       pagination: {

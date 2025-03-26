@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
-import { Newspaper, ChevronLeft } from 'lucide-react'
+import { Newspaper, ChevronLeft, ChevronRight } from 'lucide-react'
 import {
   Carousel,
   CarouselApi,
@@ -9,7 +9,6 @@ import {
 } from '@/_components/ui/carousel'
 
 import CardNews from '../CardNews'
-import { Button } from '../ui/button'
 
 import LiveSessionCard from '../LiveSessionCard'
 import { Article, Edital, Session } from '@/lib/types'
@@ -18,6 +17,7 @@ import { dateTimeFormat } from '@/lib/utils'
 import JudgmentGuidelines from '../JudgmentGuidelines'
 import ListEditais from '../ListEditais'
 import { MarkedContent } from '../marked-content'
+import Link from 'next/link'
 
 function LatestNews({
   articles,
@@ -155,7 +155,7 @@ function LatestNews({
                               {group.headline}
                             </h1>
                             <h2 className="mt-[0.7rem] text-[0.5rem] text-[#A1A1A1] lg:mt-[1.19rem] lg:text-[0.875rem]">
-                              {dateTimeFormat(group.createdAt)}
+                              {dateTimeFormat(group.data_publicacao)}
                             </h2>
                             <CustomImage
                               src={group.imagem.url}
@@ -169,15 +169,15 @@ function LatestNews({
                           className="rounded-[1.25rem] lg:mt-[2.88rem] mt-[1.14rem]"
                           alt="Image"
                         /> */}
-                            <p className="mt-[0.9rem] text-[0.75rem] leading-4 lg:mt-[1.94rem] lg:text-base">
+                            <div className="mt-[0.9rem] text-[0.75rem] leading-4 lg:mt-[1.94rem] lg:text-base">
                               <MarkedContent content={group.lead} />
-                            </p>
-                            <Button className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:hidden">
-                              Veja mais{' '}
-                              <div className="rotate-180">
-                                <ChevronLeft />
-                              </div>
-                            </Button>
+                            </div>
+                            <Link
+                              href={`/comunicacao/noticias/${group.slug}`}
+                              className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:hidden"
+                            >
+                              Veja mais <ChevronRight />
+                            </Link>
                           </>
                         </CarouselItem>
                       ))}
@@ -203,7 +203,7 @@ function LatestNews({
               <>
                 <div className="absolute -left-[2px] top-[6rem] h-[1rem] w-[2px] rounded-full bg-secondary lg:top-[8rem] lg:h-[2rem] lg:w-[5px]"></div>
                 <div className="mt-[1.62rem] rounded-[0.63938rem] bg-[#E1E1E1] px-[1.5rem] py-[1.5rem] lg:mt-0 lg:rounded-none lg:bg-transparent lg:px-[2.5rem] lg:py-0">
-                  <div className="absolute -top-4 right-0 w-[15.65488rem] lg:hidden">
+                  <div className="absolute -right-2 -top-10 z-10 w-[15.65488rem] lg:hidden">
                     <LiveSessionCard status={'offline'} />
                   </div>
                   <div className="flex items-center gap-[0.56rem]">
@@ -222,15 +222,18 @@ function LatestNews({
                     width={720}
                     height={360}
                   />
-                  <p className="mt-[0.9rem] text-[0.75rem] leading-[1rem] lg:mt-[1.94rem] lg:text-base lg:leading-[1.6875rem]">
-                    {articleHightlight.lead}
-                  </p>
-                  <Button className="ml-auto mt-[0.6rem] flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:mt-[2.5rem] lg:text-[1.25rem]">
+                  <div className="mt-[0.9rem] text-[0.75rem] leading-[1rem] lg:mt-[1.94rem] lg:text-base lg:leading-[1.6875rem]">
+                    <MarkedContent content={articleHightlight.lead} />
+                  </div>
+                  <Link
+                    href={`/comunicacao/noticias/${articleHightlight.slug}`}
+                    className="ml-auto mt-[0.6rem] flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:mt-[2.5rem] lg:text-[1.25rem]"
+                  >
                     Veja mais{' '}
                     <div className="rotate-180">
                       <ChevronLeft />
                     </div>
-                  </Button>
+                  </Link>
                 </div>
                 <div className="mt-[4rem] hidden items-center gap-[1.31rem] lg:flex">
                   <hr className="h-[0.125rem] w-full bg-[#C2C2C2]" />
@@ -252,7 +255,7 @@ function LatestNews({
                 <div className="relative">
                   <Carousel
                     setApi={setApi}
-                    className="mt-[3.69rem] p-0 lg:w-full lg:pl-[2.81rem]"
+                    className="mt-8 p-0 lg:mt-[3.69rem] lg:w-full lg:pl-[2.81rem]"
                   >
                     <CarouselContent>
                       {groupedArticles.map((group, groupIndex) => (
@@ -263,7 +266,7 @@ function LatestNews({
                                 <CardNews
                                   image={item.imagem.url}
                                   title={item.headline}
-                                  date={item.createdAt}
+                                  date={item.data_publicacao}
                                   textContent={item.lead}
                                   href={`/comunicacao/noticias/${item.slug}`}
                                 />
@@ -291,12 +294,15 @@ function LatestNews({
               </>
             )}
           </div>
-          <Button className="mb-[2.88rem] ml-auto mt-[1.63rem] hidden w-fit items-center gap-[0.56rem] bg-transparent text-[1.25rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:flex">
+          <Link
+            href={`/comunicacao/noticias`}
+            className="mb-[2.88rem] ml-auto mt-[1.63rem] hidden w-fit items-center gap-[0.56rem] bg-transparent text-[1.25rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:flex"
+          >
             Veja mais{' '}
             <div className="rotate-180">
               <ChevronLeft />
             </div>
-          </Button>
+          </Link>
         </div>
         <div className="grow">
           <JudgmentGuidelines

@@ -27,13 +27,10 @@ async function Home() {
   })
 
   const [editais] = await fetchApi<Edital[]>({
-    endpoint: 'docs',
+    endpoint: 'notices',
     query: {
       sort: 'id:desc',
-      fields: ['id', 'titulo', 'subtitulo', 'tipo'],
-      filters: {
-        categoria: 'Editais',
-      },
+      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
       pagination: {
         pageSize: 10,
         page: 1,

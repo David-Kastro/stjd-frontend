@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { Button } from '@/_components/ui/button'
 import {
   Carousel,
   CarouselApi,
@@ -12,6 +11,7 @@ import { ChevronLeft, Newspaper } from 'lucide-react'
 import { Article } from '@/lib/types'
 import { dateTimeFormat } from '@/lib/utils'
 import Link from 'next/link'
+import { MarkedContent } from '../marked-content'
 
 interface Props {
   publications: Article[]
@@ -70,16 +70,19 @@ function PublicationsHighligthCarousel({
                         {dateTimeFormat(publication.data_publicacao)} - Por:{' '}
                         {'publication.author'}
                       </p>
-                      <p className="text-base font-normal leading-[1.7rem] text-[#000]">
-                        {publication.lead}
-                      </p>
+                      <div className="text-base font-normal leading-[1.7rem] text-[#000]">
+                        <MarkedContent content={publication.lead} />
+                      </div>
                       <div className="mt-auto flex grow items-end justify-start">
-                        <Button className="flex items-end justify-start gap-[0.56rem] bg-transparent p-0 text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:text-[1.25rem]">
+                        <Link
+                          href={`/publicacao-repositorio/${publication.slug}`}
+                          className="flex items-end justify-start gap-[0.56rem] bg-transparent p-0 text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:text-[1.25rem]"
+                        >
                           Veja mais{' '}
                           <div className="rotate-180">
                             <ChevronLeft />
                           </div>
-                        </Button>
+                        </Link>
                       </div>
                     </div>
                   </div>
