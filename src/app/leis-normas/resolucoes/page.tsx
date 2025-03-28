@@ -364,8 +364,7 @@ function Resolucoes() {
         <DialogContent className="max-w-[23rem] bg-[#E1E1E1] lg:max-h-[90vh] lg:max-w-[60rem] lg:py-[3.19rem]">
           <DialogHeader className="flex flex-col items-center gap-[1.37rem] lg:flex-row">
             <DialogTitle className="w-full max-w-[23.75rem] text-[#2E2E2E] lg:text-[1.64356rem]">
-              Escala de Procuradores{' '}
-              <span className="font-light">2024</span>{' '}
+              Escala de Procuradores <span className="font-light">2024</span>{' '}
             </DialogTitle>
             <div className="relative w-full">
               <p className="absolute -top-2 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E] lg:-top-5">
