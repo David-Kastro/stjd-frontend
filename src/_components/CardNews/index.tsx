@@ -42,6 +42,7 @@ function CardNews({ image, title, date, textContent, href }: Props) {
           </h2>
           <p
             className="line-clamp-3 text-[0.8125rem] lg:line-clamp-2 lg:text-base lg:leading-[1.6875rem]"
+            suppressHydrationWarning
             dangerouslySetInnerHTML={{ __html: marked.parse(textContent) }}
           />
         </div>

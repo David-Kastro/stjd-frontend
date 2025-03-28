@@ -64,3 +64,28 @@ export default async function fetchApi<T>({
     return [[] as T, null]
   }
 }
+
+export async function searchApi<T>({
+  search,
+}: {
+  search: string
+}): Promise<T | null> {
+  try {
+    const url = new URL(
+      `https://app.stjd.com.br/api/fuzzy-search/search?query=${search}`,
+    )
+
+    const res = await fetch(url.toString())
+    const data = await res.json()
+
+    if (data.error) {
+      throw new Error(JSON.stringify(data.error))
+    }
+
+    return data as T
+  } catch (error) {
+    console.error(error)
+    console.error(JSON.stringify(error))
+    return null
+  }
+}

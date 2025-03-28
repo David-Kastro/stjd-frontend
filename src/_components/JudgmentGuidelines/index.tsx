@@ -37,7 +37,7 @@ function JudgmentGuidelines({
           </div>
           <hr className="hidden h-[0.125rem] w-full bg-secondary lg:block" />
           <div className="flex flex-col lg:flex-row">
-            <div className="z-10 mt-[2.25rem] w-full lg:max-w-[22.5975rem] lg:pl-[1.31rem]">
+            <div className="mt-[2.25rem] w-full lg:max-w-[22.5975rem] lg:pl-[1.31rem]">
               <Calendar
                 mode="single"
                 selected={date}

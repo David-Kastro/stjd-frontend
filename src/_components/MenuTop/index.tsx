@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import Logo from '/public/images/logo-stjd.svg'
 import BgTop from '/public/images/bg-fundo-menu.png'
-import { ChevronRight, Menu, Search } from 'lucide-react'
+import { ChevronRight, Menu } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -13,6 +13,7 @@ import {
   SheetTitle,
 } from '@/_components/ui/sheet'
 import { cn } from '@/lib/utils'
+import FuzzySearch from '../fuzzy-search'
 
 interface MenuItem {
   name: string
@@ -151,19 +152,9 @@ function MenuTop() {
           >
             <Menu />
           </button>
-          <form className="relative z-10 hidden w-full max-w-[22.0625rem] lg:block">
-            <input
-              type="text"
-              name=""
-              id=""
-              className="w-full rounded-[9.375rem] py-[0.88rem] text-[#000000] placeholder:text-[#000000] ~lg/2xl:~px-[.5rem]/[1.25rem]"
-              placeholder="Procurar..."
-              required
-            />
-            <button className="absolute bottom-0 right-[1.5rem] top-0">
-              <Search />
-            </button>
-          </form>
+          <div className="hidden w-full max-w-[22.0625rem] lg:block">
+            <FuzzySearch />
+          </div>
           <div className="absolute -right-5 top-24 z-0 lg:right-0 lg:top-1">
             <Image
               src={BgTop}
@@ -191,7 +182,7 @@ function MenuTop() {
                         : '',
                     }}
                   >
-                    <button className="inline-block py-[0.88rem] text-[#002A3E] group-hover:[text-shadow:_0_1px_0_rgb(0_0_0_/_100%)] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]">
+                    <button className="inline-block py-[0.88rem] text-[#002A3E] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]">
                       {menu.name}
                     </button>
                   </div>
@@ -209,9 +200,7 @@ function MenuTop() {
                   <div className="relative z-50">
                     <p
                       className={cn(
-                        'inline-block w-full py-[0.88rem] text-center text-[#002A3E] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]',
-                        !isActive(menu) &&
-                          'group-hover:[text-shadow:_0_1px_0_rgb(0_0_0_/_100%)]',
+                        'inline-block w-full cursor-pointer py-[0.88rem] text-center text-[#002A3E] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~px-[.5rem]/[1.25rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]',
                       )}
                     >
                       {menu.name}
@@ -241,7 +230,7 @@ function MenuTop() {
             </div>
           ))}
         </div>
-        <hr className="-mt-[2px] h-[0.125rem] bg-[#fff]" />
+        <hr className="-mt-[2px] h-[0.125rem] bg-border" />
       </nav>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="left">

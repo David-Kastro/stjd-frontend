@@ -212,3 +212,22 @@ body {
 .card-painel {
   filter: drop-shadow(2.903px 2.903px 2.903px rgba(0, 0, 0, 0.10));
 }
+
+.fuzzy-search-animation {
+  animation-name: fuzzy-search;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes fuzzy-search {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
