@@ -42,9 +42,12 @@ const RenderMember: React.FC<RenderMemberProps> = ({
   }
 
   return (
-    <div className="col-span-10 lg:col-span-2">
+    <div className="col-span-5 lg:col-span-2">
       <div
-        className="mb-6 h-[165px] w-[167px] cursor-pointer overflow-hidden rounded-[0.625rem]"
+        className={cn(
+          'mb-6 h-[165px] w-[165px] cursor-pointer overflow-hidden rounded-[0.625rem]',
+          member.id === 47 && 'rotate-90',
+        )}
         onClick={handleClick}
       >
         {member.avatar?.url ? (
@@ -68,21 +71,21 @@ const RenderMember: React.FC<RenderMemberProps> = ({
       <div className="flex flex-col gap-[0.31rem]">
         {member.cargo && (
           <h3
-            className="cursor-pointer text-base font-bold text-secondary"
+            className="cursor-pointer text-xs font-bold text-secondary lg:text-base"
             onClick={handleClick}
           >
             {member.cargo}
           </h3>
         )}
         <p
-          className="max-w-44 cursor-pointer text-base font-bold uppercase leading-[121%] text-[#3A3A3C]"
+          className="max-w-44 cursor-pointer text-sm font-bold uppercase leading-[121%] text-[#3A3A3C] lg:text-base"
           onClick={handleClick}
         >
           {member.nome}
         </p>
         {member.associacao && (
           <p
-            className="cursor-pointer text-[0.8125rem] font-bold leading-[0.83688rem] text-[#727272]"
+            className="cursor-pointer text-xs font-bold leading-[0.83688rem] text-[#727272] lg:text-[0.8125rem]"
             onClick={handleClick}
           >
             {member.associacao}
@@ -100,6 +103,8 @@ function TeamGrid({
 }: Props) {
   const [openDialog, setOpenDialog] = React.useState(false)
   const [activeMember, setActiveMember] = React.useState<Member | null>(null)
+
+  console.log(openDialog)
 
   const getGrouppedMembersByRole = () => {
     return members.map((member) => {
@@ -136,7 +141,7 @@ function TeamGrid({
             hideDividers && 'after:hidden',
           )}
         >
-          <div className="container">
+          <div className="lg:container">
             {team.title && (
               <div className="mb-8 flex items-center gap-1">
                 <Users className="h-6 w-6 text-secondary" />
@@ -159,7 +164,7 @@ function TeamGrid({
               key={group.title}
               className="relative pt-10 after:absolute after:-left-4 after:bottom-0 after:right-0 after:h-[0.125rem] after:w-[calc(100%+2rem)] after:bg-border after:last:h-0 [&:not(:last-child)]:pb-20"
             >
-              <div className="container">
+              <div className="lg:container">
                 <h3 className="mb-7 mt-[0.81rem] text-xl font-semibold leading-[1.23775rem] text-[#000]">
                   {group.title}
                 </h3>
@@ -200,7 +205,8 @@ function TeamGrid({
       ))}
       <DialogMemberBio
         activeMember={activeMember}
-        openDialog={openDialog}
+        openDialog={false}
+        // openDialog={openDialog}
         setOpenDialog={setOpenDialog}
       />
     </>

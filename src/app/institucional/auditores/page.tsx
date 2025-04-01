@@ -25,7 +25,7 @@ async function Auditores() {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
       },
-      sort: 'prioridade:desc',
+      sort: 'id:asc',
       pagination: -1,
     },
   })
