@@ -46,7 +46,7 @@ async function Home() {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
       },
-      sort: 'prioridade:desc',
+      sort: 'createdAt:asc',
       pagination: {
         pageSize: 4,
         page: 1,

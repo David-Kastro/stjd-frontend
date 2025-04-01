@@ -25,10 +25,15 @@ async function Auditores() {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
       },
-      sort: 'id:asc',
-      pagination: -1,
+      sort: 'createdAt:asc',
+      pagination: {
+        page: 1,
+        pageSize: 200,
+      },
     },
   })
+
+  console.log(members)
 
   const membersGrouped = () => {
     return Object.keys(orgaoCodes)
