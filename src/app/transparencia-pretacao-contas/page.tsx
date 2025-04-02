@@ -8,21 +8,66 @@ import LogoBlack from '/public/images/logo-stjd-black.svg'
 
 function Transparencia() {
   const acervos = [
-    { label: 'Processos', valor: '22.449', textContent: 'processos em tramitação.' },
-    { label: 'Decisões', valor: '1.066', textContent: 'decisões no ano corrente.' },
+    {
+      label: 'Processos',
+      valor: '22.449',
+      textContent: 'processos em tramitação.',
+    },
+    {
+      label: 'Decisões',
+      valor: '1.066',
+      textContent: 'decisões no ano corrente.',
+    },
     { label: 'Temas', valor: '1.368', textContent: 'temas apreciados.' },
-    { label: 'Processos', valor: '1.116', textContent: 'processos em tramitação.' },
-    { label: 'Recebidos/Baixados', valor: '2.048 - 122', textContent: 'processos recebidos e baixados no ano.' },
-    { label: 'Registrados/Distribuídos', valor: '1.421 - 845', textContent: 'processos registrados à Presidência e distribuídos aos Ministros no ano.' },
-    { label: 'Pandemia', valor: '16.147', textContent: 'decisões relacionadas à pandemia.' },
-    { label: 'Processos', valor: '3.956', textContent: 'processos em tramitação.' },
-    { label: 'Virtuais', valor: '127.067', textContent: 'decisões colegiadas em ambientes virtuais.' },
-    { label: 'Liberados', valor: '1.105', textContent: 'processos liberados para julgamento colegiado.' },
-    { label: 'Liberados', valor: '1.174', textContent: 'processos liberados para julgamento colegiado.' },
+    {
+      label: 'Processos',
+      valor: '1.116',
+      textContent: 'processos em tramitação.',
+    },
+    {
+      label: 'Recebidos/Baixados',
+      valor: '2.048 - 122',
+      textContent: 'processos recebidos e baixados no ano.',
+    },
+    {
+      label: 'Registrados/Distribuídos',
+      valor: '1.421 - 845',
+      textContent:
+        'processos registrados à Presidência e distribuídos aos Ministros no ano.',
+    },
+    {
+      label: 'Pandemia',
+      valor: '16.147',
+      textContent: 'decisões relacionadas à pandemia.',
+    },
+    {
+      label: 'Processos',
+      valor: '3.956',
+      textContent: 'processos em tramitação.',
+    },
+    {
+      label: 'Virtuais',
+      valor: '127.067',
+      textContent: 'decisões colegiadas em ambientes virtuais.',
+    },
+    {
+      label: 'Liberados',
+      valor: '1.105',
+      textContent: 'processos liberados para julgamento colegiado.',
+    },
+    {
+      label: 'Liberados',
+      valor: '1.174',
+      textContent: 'processos liberados para julgamento colegiado.',
+    },
     { label: 'Julgados', valor: '140', textContent: 'julgados selecionados.' },
     { label: 'Julgados', valor: '101', textContent: 'julgados selecionados.' },
-    { label: 'Taxa', valor: '-', textContent: 'taxa atual de provimento de processos.' },
-  ];
+    {
+      label: 'Taxa',
+      valor: '-',
+      textContent: 'taxa atual de provimento de processos.',
+    },
+  ]
 
   return (
     <div>
