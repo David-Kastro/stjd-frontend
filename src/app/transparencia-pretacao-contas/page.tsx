@@ -8,63 +8,21 @@ import LogoBlack from '/public/images/logo-stjd-black.svg'
 
 function Transparencia() {
   const acervos = [
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-    {
-      valor: '22.449',
-      textContent: 'processos em tramitação.',
-    },
-  ]
+    { label: 'Processos', valor: '22.449', textContent: 'processos em tramitação.' },
+    { label: 'Decisões', valor: '1.066', textContent: 'decisões no ano corrente.' },
+    { label: 'Temas', valor: '1.368', textContent: 'temas apreciados.' },
+    { label: 'Processos', valor: '1.116', textContent: 'processos em tramitação.' },
+    { label: 'Recebidos/Baixados', valor: '2.048 - 122', textContent: 'processos recebidos e baixados no ano.' },
+    { label: 'Registrados/Distribuídos', valor: '1.421 - 845', textContent: 'processos registrados à Presidência e distribuídos aos Ministros no ano.' },
+    { label: 'Pandemia', valor: '16.147', textContent: 'decisões relacionadas à pandemia.' },
+    { label: 'Processos', valor: '3.956', textContent: 'processos em tramitação.' },
+    { label: 'Virtuais', valor: '127.067', textContent: 'decisões colegiadas em ambientes virtuais.' },
+    { label: 'Liberados', valor: '1.105', textContent: 'processos liberados para julgamento colegiado.' },
+    { label: 'Liberados', valor: '1.174', textContent: 'processos liberados para julgamento colegiado.' },
+    { label: 'Julgados', valor: '140', textContent: 'julgados selecionados.' },
+    { label: 'Julgados', valor: '101', textContent: 'julgados selecionados.' },
+    { label: 'Taxa', valor: '-', textContent: 'taxa atual de provimento de processos.' },
+  ];
 
   return (
     <div>
@@ -107,6 +65,7 @@ function Transparencia() {
                 {acervos.map((acervo, index) => (
                   <CardTranparencia
                     key={index}
+                    label={acervo.label}
                     valor={acervo.valor}
                     textContent={acervo.textContent}
                   />
@@ -120,12 +79,12 @@ function Transparencia() {
         <div className="mx-auto mt-[4rem] w-full max-w-[100.82681rem] lg:mt-0">
           <hr className="mb-[4.31rem] mt-[3.15rem] hidden h-[0.125rem] bg-secondary lg:block"></hr>
           <ScaleAttorneys
-            title="Escala de Procuradores 2024"
-            subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"
+            title="Legislação STJD"
+            subtitle="Acesse a tabela"
             height="8.125rem"
             image={BgScalle}
-            textbtn="Saiba Mais"
-            href=""
+            textbtn="Acessar Legislações"
+            href="/leis-normas/legislacao"
           />
           <div className="mt-[3.1rem] bg-[#000] py-[3.87rem] lg:container lg:mt-[8rem] lg:bg-transparent lg:py-0">
             <div className="lg:pb-[7.94rem]">

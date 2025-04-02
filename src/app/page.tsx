@@ -93,12 +93,12 @@ async function Home() {
       <div className="lg:container">
         <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pt-[4.94rem]">
           <ScaleAttorneys
-            title="Escala de Procuradores 2024"
-            subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"
+            title="Transparência"
+            subtitle="Prestação de Contas"
             height="8.125rem"
             image={BgScalle}
             textbtn="Saiba Mais"
-            href=""
+            href="/transparencia-pretacao-contas"
           />
         </div>
       </div>

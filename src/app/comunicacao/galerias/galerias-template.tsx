@@ -181,12 +181,12 @@ export function GaleriasTemplate({
           <div className="mx-auto max-w-[100rem]">
             <hr className="my-[4.31rem] h-[0.125rem] bg-secondary" />
             <ScaleAttorneys
-              title="Escala de Procuradores 2024"
-              subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"
+              title="Transparência"
+              subtitle="Prestação de Contas"
               height="8.125rem"
               image={BgScalle}
               textbtn="Saiba Mais"
-              href=""
+              href="/transparencia-pretacao-contas"
             />
           </div>
         </div>

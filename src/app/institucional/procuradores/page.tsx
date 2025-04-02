@@ -27,7 +27,22 @@ async function Procuradores() {
   const [teams] = await fetchApi<AttorneysTeam[]>({
     endpoint: 'teams',
     query: {
-      populate: '*',
+      populate: {
+        leader: {
+          populate: {
+            avatar: {
+              fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
+            },
+          },
+        },
+        equipes: {
+          populate: {
+            avatar: {
+              fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
+            },
+          },
+        },
+      },
       pagination: -1,
     },
   })
@@ -37,7 +52,7 @@ async function Procuradores() {
       <section>
         <CardTopPage
           title="Procuradores"
-          description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
+          description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
           image={WoodenGavel}
           scrollTo="#members"
           imagePosition="topRight"
@@ -51,7 +66,7 @@ async function Procuradores() {
         <h1 className="h1 relative before:absolute before:inset-y-0 before:left-[-1rem] before:my-auto before:h-[90%] before:w-[5px] before:rounded-full before:bg-secondary lg:before:left-[-1.05rem]">
           Membros
         </h1>
-        <div className="mt-24">
+        <div className="mt-8 lg:mt-24">
           <TeamGrid
             teamsData={[{ title: 'Procuradoria', members: [attorneyLeader] }]}
             hideDividers

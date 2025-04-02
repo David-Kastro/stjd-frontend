@@ -94,12 +94,12 @@ async function Noticias() {
       <section>
         <div className="container relative border-l border-border pt-8 lg:pt-[6.19rem]">
           <ScaleAttorneys
-            title="Escala de Procuradores 2024"
-            subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"
+            title="Transparência"
+            subtitle="Prestação de Contas"
             height="15.6875rem"
             image={BgEditais}
             textbtn="Saiba Mais"
-            href=""
+            href="/transparencia-pretacao-contas"
           />
         </div>
         <Members members={members} thinBorder />

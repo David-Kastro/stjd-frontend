@@ -104,12 +104,12 @@ async function Auditores() {
       <section>
         <div className="container relative mt-[6.19rem]">
           <ScaleAttorneys
-            title="Escala de Procuradores 2024"
-            subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"
+            title="Transparência"
+            subtitle="Prestação de Contas"
             height="15.6875rem"
             image={BgEditais}
             textbtn="Saiba Mais"
-            href=""
+            href="/transparencia-pretacao-contas"
           />
         </div>
         <div className="container relative -z-[1] pt-[7.81rem]">
