@@ -42,7 +42,7 @@ async function PublicaoRepositorio() {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
       },
-      sort: 'prioridade:desc',
+      sort: 'createdAt:asc',
       pagination: {
         pageSize: 4,
         page: 1,
@@ -51,23 +51,29 @@ async function PublicaoRepositorio() {
   })
 
   return (
-    <main className="mt-24">
-      <section className="container flex flex-col gap-8 border-l border-border px-16 pb-24">
+    <main className="mt-8 lg:mt-24">
+      <section className="container flex flex-col gap-4 border-l border-border px-4 pb-8 lg:gap-8 lg:px-16 lg:pb-24">
         <SearchPublicationSection />
-        <section className="relative rounded-[1.375rem] bg-[#E1E1E1] p-8">
+        <section className="relative rounded-[1.375rem] bg-[#E1E1E1] p-4 lg:p-8">
           <PublicationsHighligthCarousel
             publications={higlightedPublications}
             type="Publicação"
           />
         </section>
         <hr className="w-full border-b border-secondary" />
-        <section className="relative rounded-[1.375rem] bg-[#E1E1E1] p-8">
-          <PublicationsCarousel articles={publications} type="Publicação" />
+        <section className="relative rounded-[1.375rem] bg-[#E1E1E1] p-4 lg:p-8">
+          <PublicationsCarousel
+            articles={publications}
+            itemsPerSlide={4}
+            gridCustomClass="grid-cols-1 lg:grid-cols-2"
+            controlsCustomClass="right-2 top-8"
+            type="Publicação"
+          />
         </section>
       </section>
       <hr className="h-px w-full bg-border" />
       <section>
-        <div className="container relative border-l border-border pt-[6.19rem]">
+        <div className="container relative border-l border-border pt-8 lg:pt-[6.19rem]">
           <ScaleAttorneys
             title="Escala de Procuradores 2024"
             subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"

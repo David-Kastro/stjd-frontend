@@ -7,8 +7,25 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function dateTimeFormat(date: Date | string, includeTime = true) {
+export function dateTimeFormat(
+  date: Date | string,
+  includeTime:
+    | {
+        includeTime?: boolean
+        includeYear?: boolean
+      }
+    | boolean = true,
+) {
   if (includeTime) {
+    if (typeof includeTime === 'object') {
+      return new Date(date).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: includeTime.includeYear ? 'short' : 'long',
+        year: includeTime.includeYear ? 'numeric' : undefined,
+        hour: includeTime.includeTime ? '2-digit' : undefined,
+        minute: includeTime.includeTime ? '2-digit' : undefined,
+      })
+    }
     return new Date(date).toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: 'long',

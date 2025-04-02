@@ -43,7 +43,7 @@ function Footer() {
                   </Link>
                 </div>
                 <div className="ml-[6.56rem]">
-                  <Link href={'/legislacao'}>
+                  <Link href={'/leis-normas/legislacao'}>
                     <p className="text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Legislação
                     </p>
@@ -106,7 +106,7 @@ function Footer() {
                   </p>
                 </div>
                 <div className="ml-[2.81rem]">
-                  <Link href={'/editais'}>
+                  <Link href={'/processos/editais'}>
                     <p className="text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Editais
                     </p>
@@ -143,14 +143,14 @@ function Footer() {
                   <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
                     comissão disciplinar extraordinária
                   </p>
-                  <Link href={'/jurisprudencia'}>
+                  <Link href={'/jurisprudencia/jurisprudencia-stjd'}>
                     <p className="mt-[3.88rem] text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Jurisprudência
                     </p>
                   </Link>
                 </div>
                 <div className="ml-[4.19rem]">
-                  <Link href={'/resultados'}>
+                  <Link href={'/leis-normas/resolucoes'}>
                     <p className="text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Resultados
                     </p>
@@ -194,7 +194,7 @@ function Footer() {
                   </Link>
                 </div>
                 <div className="ml-[3.88rem]">
-                  <Link href={'/acordaos'}>
+                  <Link href={'/jurisprudencia/acordaos-decisoes'}>
                     <p className="text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Acordãos
                     </p>
@@ -231,12 +231,12 @@ function Footer() {
                   <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
                     comissão disciplinar extraordinária
                   </p>
-                  <Link href={'/noticias'}>
+                  <Link href={'/comunicacao/noticias'}>
                     <p className="mt-[3.88rem] text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Notícias
                     </p>
                   </Link>
-                  <Link href={'/galerias'}>
+                  <Link href={'/comunicacao/galerias'}>
                     <p className="mt-[1.56rem] text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Galerias
                     </p>

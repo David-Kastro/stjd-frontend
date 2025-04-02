@@ -17,9 +17,9 @@ interface Props {
 
 function Article({ articleData, editais, readMoreData }: Props) {
   return (
-    <main className="mt-24">
-      <section className="container flex items-stretch justify-center gap-5 border-l border-border">
-        <article className="flex w-1/2 flex-col gap-16 rounded-[1.375rem] bg-[#E1E1E1] p-8">
+    <main className="mt-8 lg:mt-24">
+      <section className="container flex flex-col items-stretch justify-center gap-5 border-l border-border lg:flex-row">
+        <article className="flex w-full flex-col gap-8 rounded-[1.375rem] bg-[#E1E1E1] p-4 lg:w-1/2 lg:gap-16 lg:p-8">
           <Image
             src={articleData.imagem.url}
             alt={articleData.imagem.name}
@@ -28,7 +28,7 @@ function Article({ articleData, editais, readMoreData }: Props) {
             className="aspect-video w-full rounded-[1.25rem]"
           />
           <div className="flex flex-col gap-4">
-            <h1 className="h1 relative before:absolute before:left-[-1rem] before:top-2 before:my-auto before:h-[90%] before:w-[5px] before:rounded-full before:bg-secondary lg:before:left-[-1.05rem] lg:before:max-h-7">
+            <h1 className="h1 relative before:absolute before:-left-[1.15rem] before:top-1 before:my-auto before:h-[100%] before:w-[5px] before:rounded-full before:bg-secondary lg:before:left-[-1.05rem] lg:before:max-h-7">
               {articleData.headline}
             </h1>
             <p className="text-sm font-normal leading-4 text-[#A1A1A1]">
@@ -38,9 +38,9 @@ function Article({ articleData, editais, readMoreData }: Props) {
             <MarkedContent content={articleData.corpo} />
           </div>
         </article>
-        <aside className="flex w-1/2 flex-col gap-16">
+        <aside className="flex w-full flex-col gap-16 lg:w-1/2">
           {readMoreData.length > 0 && (
-            <section className="relative rounded-[1.375rem] bg-[#E1E1E1] py-4">
+            <section className="relative rounded-[1.375rem] bg-[#E1E1E1] px-4 py-4 lg:px-0">
               <PublicationsCarousel
                 articles={readMoreData}
                 itemsPerSlide={4}
@@ -51,7 +51,7 @@ function Article({ articleData, editais, readMoreData }: Props) {
             </section>
           )}
           {editais.length > 0 && (
-            <section className="px-8">
+            <section className="px-4 lg:px-8">
               <ListEditais editais={editais} />
             </section>
           )}

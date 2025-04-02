@@ -45,8 +45,12 @@ function PublicationsHighligthCarousel({
           {publications.map((publication) => (
             <CarouselItem key={publication.id}>
               <Link href={`${hrefPath[type]}/${publication.slug}`}>
-                <div className="flex max-w-[92rem] items-stretch gap-16">
-                  <div className="relative w-1/2 after:absolute after:inset-0 after:-right-1 after:top-14 after:ml-auto after:h-7 after:w-1 after:rounded-full after:bg-secondary">
+                <div className="flex max-w-[92rem] flex-col items-stretch gap-8 lg:flex-row lg:gap-16">
+                  <div className="flex items-center gap-2 lg:hidden">
+                    <Newspaper />
+                    <h2 className="text-lg font-bold">{title}</h2>
+                  </div>
+                  <div className="w-full lg:w-1/2">
                     <div className="overflow-hidden rounded-[1.25rem]">
                       <Image
                         src={publication.imagem.url}
@@ -57,18 +61,18 @@ function PublicationsHighligthCarousel({
                       />
                     </div>
                   </div>
-                  <div className="flex w-1/2 flex-col gap-7">
-                    <div className="flex items-center gap-2">
+                  <div className="flex w-full flex-col gap-4 lg:w-1/2 lg:gap-7">
+                    <div className="hidden items-center gap-2 lg:flex">
                       <Newspaper />
-                      <h2 className="text-xl font-bold leading-5">{title}</h2>
+                      <h2 className="text-xl font-bold">{title}</h2>
                     </div>
                     <div className="flex h-full flex-col gap-5">
-                      <h3 className="text-4xl font-bold text-[#000]">
+                      <h3 className="relative text-4xl font-bold text-[#000] after:absolute after:-left-6 after:top-[0.375rem] after:ml-auto after:h-7 after:w-1 after:rounded-full after:bg-secondary">
                         {publication.headline}
                       </h3>
                       <p className="text-sm font-normal leading-4 text-[#A1A1A1]">
                         {dateTimeFormat(publication.data_publicacao)} - Por:{' '}
-                        {'publication.author'}
+                        {'STJD'}
                       </p>
                       <div className="text-base font-normal leading-[1.7rem] text-[#000]">
                         <MarkedContent content={publication.lead} />
@@ -92,7 +96,7 @@ function PublicationsHighligthCarousel({
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="h-fu absolute right-0 top-7 flex gap-[0.41rem] pr-[2.5rem]">
+      <div className="absolute right-0 top-7 hidden gap-[0.41rem] pr-[2.5rem] lg:flex">
         <button className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1] bg-[#E1E1E1]/75 backdrop-blur-md">
           <ChevronLeft color="#A1A1A1" onClick={handlePrevious} />
         </button>

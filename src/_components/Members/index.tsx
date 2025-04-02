@@ -45,11 +45,11 @@ function Members({
     >
       <div
         className={cn(
-          'relative z-20 border-[#B0B0B0] pb-[5rem] pt-[4.94rem] lg:border-l-[2px] lg:pb-[7.81rem]',
+          'relative z-20 border-[#B0B0B0] py-8 lg:border-l-[2px] lg:py-[5rem] lg:pb-[7.81rem]',
           thinBorder && 'border-none',
         )}
       >
-        <div className="mx-auto max-w-[80.0625rem] rounded-[1.375rem] pt-[3.38rem] lg:bg-[#E1E1E1]">
+        <div className="mx-auto max-w-[80.0625rem] rounded-[1.375rem] pt-4 lg:bg-[#E1E1E1] lg:pt-[3.38rem]">
           <div className="flex items-center gap-[1.5rem] lg:pl-[5rem]">
             <h1 className="flex items-center gap-[0.56rem] text-[1.25rem] font-bold">
               <Users />
@@ -57,7 +57,7 @@ function Members({
             </h1>
             <hr className="hidden h-[0.125rem] w-full bg-secondary lg:block" />
           </div>
-          <div className="mt-[3.75rem] flex flex-wrap justify-center gap-[1rem] lg:flex-nowrap lg:justify-between lg:gap-0 lg:px-[6.31rem]">
+          <div className="mt-8 flex flex-wrap justify-center gap-[1rem] lg:mt-[3.75rem] lg:flex-nowrap lg:justify-between lg:gap-0 lg:px-[6.31rem]">
             {members.map((member, index) => (
               <div key={index} className="max-w-[10rem] lg:max-w-[10.4375rem]">
                 <div>
@@ -100,7 +100,7 @@ function Members({
             </Link>
             <Link
               href={`/institucional/auditores`}
-              className="mt-[2.5rem] w-fit items-center gap-[0.56rem] rounded-full bg-black px-[2.34rem] text-[0.93675rem] font-bold leading-[1.23775rem] text-white hover:bg-transparent lg:ml-auto lg:hidden"
+              className="mt-[2.5rem] w-fit items-center gap-[0.56rem] rounded-full bg-black px-4 py-2 text-[0.93675rem] font-bold leading-[1.23775rem] text-white hover:bg-transparent lg:ml-auto lg:hidden"
             >
               Veja mais
             </Link>

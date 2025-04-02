@@ -82,3 +82,11 @@ export interface Doc {
 export interface Edital extends Doc {
   categoria: 'Editais'
 }
+
+export interface Galeria {
+  titulo: string
+  data: string
+  slug: string
+  lugar: string
+  imagens: Image[]
+}

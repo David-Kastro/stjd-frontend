@@ -34,9 +34,7 @@ function CardNews({ image, title, date, textContent, href }: Props) {
           height={200}
         />
         <div className="flex flex-col gap-[0.5rem] lg:max-w-[29rem]">
-          <h1 className="font-bold leading-[1.5rem] lg:text-[1.25rem]">
-            {title}
-          </h1>
+          <h1 className="text-[1.25rem] font-bold leading-[1.5rem]">{title}</h1>
           <h2 className="text-[0.875rem] text-secondary">
             {dateTimeFormat(date)}
           </h2>

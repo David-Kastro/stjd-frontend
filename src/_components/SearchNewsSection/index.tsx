@@ -14,14 +14,14 @@ function SearchNewsSection() {
   return (
     <section className="mx-auto w-full rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">
       <form role="search">
-        <div className="flex items-center gap-[0.56rem] px-[2.19rem]">
+        <div className="flex items-center gap-[0.56rem] px-4 lg:px-[2.19rem]">
           <Search aria-hidden="true" />
           <h1 className="text-[1.25rem] font-bold">Pesquisar Notícias</h1>
         </div>
         <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
-        <div className="relative flex gap-[0.69rem] px-[2.19rem]">
+        <div className="relative flex flex-col gap-[0.69rem] px-4 lg:flex-row lg:px-[2.19rem]">
           <Select>
-            <SelectTrigger className="h-[3.75rem] w-[15rem] rounded-[0.8125rem]">
+            <SelectTrigger className="h-[3.75rem] w-full rounded-[0.8125rem] lg:w-[15rem]">
               <SelectValue placeholder="Escolha o Ano" />
             </SelectTrigger>
             <SelectContent>
@@ -34,7 +34,7 @@ function SearchNewsSection() {
             </SelectContent>
           </Select>
           <Select>
-            <SelectTrigger className="h-[3.75rem] w-[8.875rem] rounded-[0.8125rem]">
+            <SelectTrigger className="h-[3.75rem] w-full rounded-[0.8125rem] lg:w-[8.875rem]">
               <SelectValue placeholder="Mês" />
             </SelectTrigger>
             <SelectContent>
@@ -60,7 +60,7 @@ function SearchNewsSection() {
             />
           </div>
 
-          <Button className="p ml-auto h-[3.75rem] w-[15.375rem] rounded-[4.625rem] text-[1.25rem]">
+          <Button className="mx-auto h-[3.75rem] w-[15.375rem] rounded-[4.625rem] text-[1.25rem] lg:ml-auto">
             Pesquisar
           </Button>
         </div>

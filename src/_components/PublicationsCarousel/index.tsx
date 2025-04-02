@@ -70,7 +70,7 @@ function PublicationsCarousel({
       <Carousel
         setApi={setApi}
         className={cn(
-          'mt-[3.69rem] p-0 lg:w-full lg:pl-[2.81rem]',
+          'mt-2 p-0 lg:mt-[3.69rem] lg:w-full lg:pl-[2.81rem]',
           carouselCustomClass,
         )}
       >
@@ -114,7 +114,7 @@ function PublicationsCarousel({
 
       <div
         className={cn(
-          'absolute right-0 top-7 flex gap-[0.41rem] pr-[2.5rem]',
+          'absolute right-0 top-7 hidden gap-[0.41rem] pr-[2.5rem] lg:flex',
           controlsCustomClass,
         )}
       >

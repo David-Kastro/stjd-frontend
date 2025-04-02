@@ -22,6 +22,7 @@ import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import { Edital } from '@/lib/types'
 import { DocumentEmptyState } from '@/_components/empty-states/documents'
 import { BasicFilters } from '@/_server-actions/get-basic-query'
+import { dateTimeFormat } from '@/lib/utils'
 
 type Props = {
   filters: BasicFilters
@@ -38,8 +39,6 @@ function EditaisTemplate({ filters, editais }: Props) {
   const selectedEdital = useMemo(() => {
     return editais.find((edital) => edital.id === editalActive)
   }, [editalActive, editais])
-
-  console.log(selectedEdital)
 
   useEffect(() => {
     if (editais.length > 0) {
@@ -173,7 +172,7 @@ function EditaisTemplate({ filters, editais }: Props) {
                         key={`edital_${edital.documentId}_${edital.id}`}
                         title={edital.titulo}
                         subtitle={edital.subtitulo}
-                        description={edital.tipo}
+                        description={`Data julgamento: ${dateTimeFormat(edital.data, false)}`}
                         type="function"
                         handleClick={() => handleClickEdital(edital.id)}
                         isActive={edital.id === editalActive}

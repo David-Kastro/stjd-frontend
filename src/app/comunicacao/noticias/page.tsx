@@ -32,13 +32,10 @@ async function Noticias() {
   })
 
   const [editais] = await fetchApi<Edital[]>({
-    endpoint: 'docs',
+    endpoint: 'notices',
     query: {
       sort: 'id:desc',
-      fields: ['id', 'titulo', 'subtitulo', 'tipo'],
-      filters: {
-        categoria: 'Editais',
-      },
+      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
       pagination: {
         pageSize: 10,
         page: 1,
@@ -58,7 +55,7 @@ async function Noticias() {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
       },
-      sort: 'prioridade:desc',
+      sort: 'createdAt:asc',
       pagination: {
         pageSize: 4,
         page: 1,
@@ -67,9 +64,9 @@ async function Noticias() {
   })
 
   return (
-    <main className="mt-24">
-      <section className="container flex flex-col gap-8 border-l border-border px-16">
-        <section className="relative rounded-[1.375rem] bg-[#E1E1E1] p-8">
+    <main className="mt-8 lg:mt-24">
+      <section className="container flex flex-col gap-8 border-l border-border px-4 lg:px-16">
+        <section className="relative rounded-[1.375rem] bg-[#E1E1E1] p-4 lg:p-8">
           <PublicationsHighligthCarousel
             title="Últimas Notícias"
             publications={highlightedNews}
@@ -78,8 +75,8 @@ async function Noticias() {
         </section>
         <SearchNewsSection />
         <hr className="w-full border-b border-secondary" />
-        <section className="flex items-start gap-12">
-          <div className="relative w-1/2 rounded-[1.375rem] bg-[#E1E1E1] px-10 py-10">
+        <section className="flex flex-col items-center gap-2 lg:flex-row lg:items-start lg:gap-12">
+          <div className="relative w-full rounded-[1.375rem] bg-[#E1E1E1] p-4 lg:w-1/2 lg:p-10">
             <PublicationsCarousel
               articles={news}
               itemsPerSlide={4}
@@ -88,14 +85,14 @@ async function Noticias() {
               type="Notícia"
             />
           </div>
-          <div className="w-1/2">
+          <div className="w-full lg:w-1/2">
             <ListEditais editais={editais} />
           </div>
         </section>
       </section>
       <hr className="h-px w-full bg-border" />
       <section>
-        <div className="container relative border-l border-border pt-[6.19rem]">
+        <div className="container relative border-l border-border pt-8 lg:pt-[6.19rem]">
           <ScaleAttorneys
             title="Escala de Procuradores 2024"
             subtitle="COMPETIÇÕES PROMOVIDAS PELA CBF"
@@ -106,7 +103,7 @@ async function Noticias() {
           />
         </div>
         <Members members={members} thinBorder />
-        <div className="pb-[7.94rem]">
+        <div className="pb-8 lg:pb-[7.94rem]">
           <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
         </div>
       </section>
