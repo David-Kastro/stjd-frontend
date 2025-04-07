@@ -6,6 +6,7 @@ import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import CustomImage from '../CustomImage'
 import { Member } from '@/lib/types'
+import { PresidentePlaceholder } from '../TeamGrid'
 
 export type AttorneysTeam = {
   id?: number
@@ -62,24 +63,18 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                 <div className="col-span-12 px-4 py-12 lg:col-span-8 lg:px-20">
                   <div className="mx-auto grid max-w-3xl grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-2 md:justify-items-center lg:grid-cols-3 lg:gap-x-16 lg:gap-y-4">
                     {team.equipes.map((member) => (
-                      <div key={member.id}>
-                        <div className="mb-4 h-[165px] w-[167px] overflow-hidden rounded-[0.625rem] lg:mb-6">
+                      <div className="w-full" key={member.id}>
+                        <div className="mb-4 h-[140px] w-[140px] overflow-hidden rounded-[0.625rem] lg:mb-6 lg:h-[165px] lg:w-[165px]">
                           {member?.avatar ? (
                             <CustomImage
                               src={member.avatar?.url || ''}
                               alt={`Retrato de ${member.nome}`}
-                              width={167}
+                              width={165}
                               height={165}
-                              className="size-full object-cover object-top"
+                              className="size-full object-cover object-top shadow-xl"
                             />
                           ) : (
-                            <Image
-                              src={'/images/profile.jpg'}
-                              alt={`Retrato de ${member.nome}`}
-                              width={167}
-                              height={165}
-                              className="size-full object-cover object-top"
-                            />
+                            <PresidentePlaceholder nome={member.nome} />
                           )}
                         </div>
                         <div className="flex flex-col gap-1">

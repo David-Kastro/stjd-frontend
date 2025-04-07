@@ -31,7 +31,7 @@ interface RenderMemberProps {
   setActiveMember: React.Dispatch<React.SetStateAction<Member | null>>
 }
 
-const PresidentePlaceholder = ({ nome }: { nome: string }) => {
+export const PresidentePlaceholder = ({ nome }: { nome: string }) => {
   // Obter as iniciais do nome
   const iniciais = nome
     .split(' ')
