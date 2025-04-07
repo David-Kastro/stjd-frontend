@@ -33,8 +33,6 @@ async function Auditores() {
     },
   })
 
-  console.log(members)
-
   const membersGrouped = () => {
     return Object.keys(orgaoCodes)
       .map((key) => {

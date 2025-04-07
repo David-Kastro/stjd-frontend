@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { Users } from 'lucide-react'
+import { User, Users } from 'lucide-react'
 import React from 'react'
 import DialogMemberBio from '../DialogMemberBio'
 import { Member } from '@/lib/types'
@@ -31,6 +31,27 @@ interface RenderMemberProps {
   setActiveMember: React.Dispatch<React.SetStateAction<Member | null>>
 }
 
+const PresidentePlaceholder = ({ nome }: { nome: string }) => {
+  // Obter as iniciais do nome
+  const iniciais = nome
+    .split(' ')
+    .map((n) => n.charAt(0))
+    .join('')
+    .substring(0, 2)
+
+  return (
+    <div className="flex h-[140px] w-[140px] items-center justify-center rounded-sm bg-[#C4C4C4] shadow-lg lg:h-[165px] lg:w-[165px] lg:shadow-xl">
+      {iniciais ? (
+        <span className="text-2xl font-semibold text-gray-600 lg:text-4xl">
+          {iniciais}
+        </span>
+      ) : (
+        <User className="h-8 text-gray-500 lg:w-8" />
+      )}
+    </div>
+  )
+}
+
 const RenderMember: React.FC<RenderMemberProps> = ({
   member,
   setOpenDialog,
@@ -45,7 +66,7 @@ const RenderMember: React.FC<RenderMemberProps> = ({
     <div className="col-span-5 lg:col-span-2">
       <div
         className={cn(
-          'mb-6 h-[165px] w-[165px] cursor-pointer overflow-hidden rounded-[0.625rem]',
+          'mb-6 h-[140px] w-[140px] cursor-pointer overflow-hidden rounded-[0.625rem] shadow-xl lg:h-[165px] lg:w-[165px]',
           member.id === 47 && 'rotate-90',
         )}
         onClick={handleClick}
@@ -59,13 +80,7 @@ const RenderMember: React.FC<RenderMemberProps> = ({
             className="size-full object-cover object-top"
           />
         ) : (
-          <CustomImage
-            src={'/images/profile.jpg'}
-            alt={`Retrato de ${member.nome}`}
-            width={167}
-            height={165}
-            className="size-full object-cover object-top"
-          />
+          <PresidentePlaceholder nome={member.nome} />
         )}
       </div>
       <div className="flex flex-col gap-[0.31rem]">
