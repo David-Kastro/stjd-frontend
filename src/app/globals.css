@@ -90,6 +90,10 @@ body {
   overflow-x: hidden;
 }
 
+.text-fira {
+  font-family: var(--font-fira-sans);
+}
+
 .bg-custom-menu {
   background: linear-gradient(90deg, #e1e1e1 42%, #cec9c7 100%);
 }

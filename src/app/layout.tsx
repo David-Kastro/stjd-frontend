@@ -6,11 +6,18 @@ import './globals.css'
 import MenuTop from '@/_components/MenuTop'
 import Footer from '@/_components/Footer'
 
-import { Inter } from 'next/font/google'
+import { Inter, Fira_Sans } from 'next/font/google'
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
+})
+
+const firaSans = Fira_Sans({
+  subsets: ['latin'],
+  variable: '--font-fira-sans',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -40,7 +47,7 @@ export default function RootLayout({
           as="image"
         />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className + ' ' + firaSans.variable}>
         <MenuTop />
         {children}
         <Footer />

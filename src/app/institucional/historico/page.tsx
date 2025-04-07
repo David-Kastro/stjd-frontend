@@ -1,78 +1,368 @@
-import CardTopPage from '@/_components/CardTopPage'
-import TeamGrid from '@/_components/TeamGrid'
-import React from 'react'
-import Clock from '/public/images/clock.png'
+'use client'
 
-function Historico() {
-  const teams: any = [
-    {
-      title: '',
-      members: [
-        {
-          name: 'LUÍS OTÁVIO VERÍSSIMO TEIXEIRA',
-          role: 'Presidente',
-          institution: 'Atletas',
-          image: '/images/profile.jpg',
-          bio: 'Luís Otávio Veríssimo Teixeira possui ampla experiência na gestão esportiva, atuando há anos no setor. Como presidente, ele lidera iniciativas estratégicas para o desenvolvimento da entidade e aprimoramento das políticas internas.\n\nAlém de sua atuação institucional, ele é reconhecido por sua capacidade de articulação entre diferentes segmentos do esporte. Seu trabalho visa fortalecer as relações entre atletas, clubes e federações, promovendo um ambiente de maior transparência e profissionalismo.',
-        },
-        {
-          name: 'MAXWELL BORGES DE MOURA VIEIRA',
-          role: 'Vice Presidente',
-          institution: 'Atletas',
-          image: '/images/profile.jpg',
-          bio: 'Maxwell Borges de Moura Vieira é um dos principais responsáveis pela gestão da entidade, ocupando o cargo de vice-presidente. Ele desempenha um papel fundamental na definição de estratégias e na implementação de projetos voltados ao desenvolvimento do esporte.\n\nCom uma trajetória consolidada na área esportiva, Maxwell tem se destacado pela sua visão inovadora e por seu compromisso com a integridade e o crescimento sustentável das competições e dos atletas.',
-        },
-        {
-          name: 'RODRIGO AMACHE',
-          role: 'Vice Presidente Administrativo',
-          institution: 'Árbitros',
-          image: '/images/profile.jpg',
-          bio: 'Rodrigo Amache atua na coordenação administrativa da entidade, sendo responsável pela estruturação dos processos internos e pela supervisão de diferentes áreas, incluindo a arbitragem.\n\nSeu trabalho é essencial para garantir que a entidade funcione de maneira eficiente, promovendo melhorias contínuas na gestão dos recursos e na capacitação dos profissionais envolvidos no esporte.',
-        },
-        {
-          name: 'LUIZ FELIPE BLUM ALVES FERREIRA',
-          role: 'Diretor de ENAJD',
-          institution: 'Clubes',
-          image: '/images/profile.jpg',
-          bio: 'Luiz Felipe Blum Alves Ferreira desempenha um papel central como Diretor da Escola Nacional da Justiça Desportiva (ENAJD). Sua experiência e conhecimento jurídico são fundamentais para a evolução das práticas disciplinares no esporte.\n\nAlém de seu trabalho na ENAJD, ele também atua como Corregedor da Região Nordeste, garantindo que as normas e regulamentos sejam aplicados de forma justa e eficaz em todo o território.',
-        },
-        {
-          name: 'Sérgio Henrique Furtado Coelho Filho',
-          role: 'Corregedor Região Sudeste',
-          institution: 'OAB',
-          image: '/images/profile.jpg',
-          bio: 'Sérgio Henrique Furtado Coelho Filho é um advogado altamente qualificado com atuação em direito desportivo e regulatório. Como corregedor da Região Sudeste, ele assegura o cumprimento das diretrizes disciplinares e jurídicas dentro do setor esportivo.\n\nSua atuação é pautada na ética e na transparência, contribuindo para um ambiente mais equilibrado e justo para todas as partes envolvidas nas competições.',
-        },
-      ],
-    },
-  ]
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { ArrowRight, User } from 'lucide-react'
+
+type Presidente = {
+  id: number
+  nome: string
+  periodoInicio: number
+  periodoFim?: number
+  foto?: string
+}
+
+const PRESIDENTES_PER_LINHA = 4 // Número de presidentes por linha para o layout desktop
+
+const presidentes: Presidente[] = [
+  {
+    id: 1,
+    nome: 'LUIZ GALLOTTI',
+    periodoInicio: 1946,
+    foto: '/images/luiz-gallotti.png',
+  },
+  { id: 2, nome: 'JOÃO COELHO BRANCO', periodoInicio: 1946, periodoFim: 1947 },
+  { id: 3, nome: 'JURANDIR LODI', periodoInicio: 1947, periodoFim: 1954 },
+  { id: 4, nome: 'MAX GOMES DE PAIVA', periodoInicio: 1955, periodoFim: 1969 },
+  {
+    id: 5,
+    nome: 'MOACYR FERREIRA DA SILVA',
+    periodoInicio: 1969,
+    periodoFim: 1978,
+  },
+  { id: 6, nome: 'ROBERTO MACHADO DE BUSTAMANTE', periodoInicio: 1979 },
+  {
+    id: 7,
+    nome: 'ALCINO DARDEU DE CARVALHO',
+    periodoInicio: 1981,
+    foto: '/images/alcirio-dardeu.png',
+  },
+  {
+    id: 8,
+    nome: 'CARLOS HENRIQUE DE CARVALHO SARAIVA',
+    periodoInicio: 1981,
+    periodoFim: 1983,
+  },
+  { id: 9, nome: 'MOACYR FERREIRA DA SILVA', periodoInicio: 1984 },
+  {
+    id: 10,
+    nome: 'CARLOS HENRIQUE DE CARVALHO SARAIVA',
+    periodoInicio: 1985,
+    periodoFim: 1986,
+  },
+  {
+    id: 11,
+    nome: 'MAURICIO NEY MACHADO MONTEIRO PALMEIRO',
+    periodoInicio: 1987,
+  },
+  { id: 12, nome: 'CARLOS HENRIQUE DE CARVALHO SARAIVA', periodoInicio: 1988 },
+  { id: 13, nome: 'JOÃO CARLOS GOMES FERREIRA', periodoInicio: 1989 },
+  {
+    id: 14,
+    nome: 'MOACYR FERREIRA DA SILVA',
+    periodoInicio: 1990,
+    periodoFim: 1994,
+  },
+  { id: 15, nome: 'LUIZ ZVEITER', periodoInicio: 1995, periodoFim: 2005 },
+  { id: 16, nome: 'RUBENS APPROBATO', periodoInicio: 2005, periodoFim: 2012 },
+  { id: 17, nome: 'FLAVIO ZVEITER', periodoInicio: 2012, periodoFim: 2014 },
+  { id: 18, nome: 'CAIO CESAR ROCHA', periodoInicio: 2014, periodoFim: 2016 },
+  { id: 19, nome: 'RONALDO PIACENTE', periodoInicio: 2016, periodoFim: 2018 },
+  {
+    id: 20,
+    nome: 'PAULO CESAR SALOMÃO FILHO',
+    periodoInicio: 2018,
+    periodoFim: 2020,
+  },
+  { id: 21, nome: 'OTAVIO NORONHA', periodoInicio: 2020, periodoFim: 2023 },
+  {
+    id: 22,
+    nome: 'JOSE PERDIZ DE JESUS',
+    periodoInicio: 2023,
+    periodoFim: 2024,
+  },
+  {
+    id: 23,
+    nome: 'LUIS OTAVIO VERÍSSIMO TEIXEIRA',
+    periodoInicio: 2024,
+    periodoFim: 2026,
+    foto: '/images/luis-verissimo.png',
+  },
+]
+
+// Agrupar presidentes em linhas para o layout desktop
+const agruparPresidentesEmLinhas = (
+  presidentes: Presidente[],
+): Presidente[][] => {
+  const linhas: Presidente[][] = []
+  let presidentesRestantes = [...presidentes]
+
+  // Definir quantos presidentes por linha (4 parece ser o ideal baseado na imagem)
+  const presidentesPorLinha = PRESIDENTES_PER_LINHA
+
+  while (presidentesRestantes.length > 0) {
+    // Pegar os próximos 4 presidentes
+    const proximosPresidentes = presidentesRestantes.slice(
+      0,
+      presidentesPorLinha,
+    )
+    presidentesRestantes = presidentesRestantes.slice(presidentesPorLinha)
+
+    // Se proximos Presidentes for menor que 4, preencher com null
+    if (proximosPresidentes.length < presidentesPorLinha) {
+      const faltando = presidentesPorLinha - proximosPresidentes.length
+      for (let i = 0; i < faltando; i++) {
+        proximosPresidentes.push(null as any)
+      }
+    }
+
+    // Se for uma linha de índice ímpar (segunda, quarta, etc.), inverter a ordem
+    if (linhas.length % 2 === 1) {
+      proximosPresidentes.reverse()
+    }
+
+    // Se a linha não estiver completa, preencher com null
+    while (proximosPresidentes.length < presidentesPorLinha) {
+      proximosPresidentes.push(null as any)
+    }
+
+    linhas.push(proximosPresidentes)
+  }
+
+  return linhas
+}
+
+export default function Histórico() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+    }
+  }, [])
+
+  const linhasPresidentes = agruparPresidentesEmLinhas(presidentes)
+
+  if (isMobile) {
+    return (
+      <div className="min-h-screen">
+        <div className="container mx-auto px-4 py-6">
+          <h1 className="mb-8 flex items-center text-xl font-bold">
+            <span className="mr-2 h-6 w-1 bg-[#BD995D]"></span>
+            Presidentes STJD
+          </h1>
+
+          <div className="relative">
+            {/* Linha vertical central contínua */}
+            <div className="absolute bottom-0 left-[116px] top-0 w-px bg-[#BD995D]"></div>
+
+            {presidentes.map((presidente) => (
+              <div key={presidente.id} className="relative mb-12 flex gap-8">
+                {/* Pílula de anos à esquerda */}
+                <div className="flex w-[100px] min-w-[100px] justify-end">
+                  <div className="text-fira flex h-fit w-fit items-center gap-1 rounded-md bg-white px-2 py-1 text-sm font-bold shadow-sm">
+                    {presidente.periodoInicio}
+                    {presidente.periodoFim && (
+                      <>
+                        <ArrowRight className="h-4 w-4 text-[#BD995D]" />
+                        {presidente.periodoFim}
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Conteúdo do presidente */}
+                <div>
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      {presidente.foto ? (
+                        <Image
+                          src={presidente.foto}
+                          alt={presidente.nome}
+                          width={90}
+                          height={90}
+                          className="aspect-square h-16 w-16 rounded-sm object-cover object-top shadow-lg"
+                        />
+                      ) : (
+                        <PresidentePlaceholder nome={presidente.nome} />
+                      )}
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-[#BD995D]">
+                        Presidente
+                      </p>
+                      <h3 className="text-sm font-semibold">
+                        {presidente.nome}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <>
-      <section id="#members">
-        <CardTopPage
-          title="Auditores"
-          description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
-          image={Clock}
-          scrollTo="#members"
-          imagePosition="centerRight"
-          imageCustomClass="h-[calc(100%+4rem)]"
-        />
-        <hr className="mb-0 mt-20 h-[0.125rem] w-full bg-border" />
-      </section>
-      <section
-        id="members"
-        className="min-[2000px]:mr-auto container relative pt-6 lg:ml-auto lg:mr-[unset] lg:pl-8"
-      >
-        <h1 className="h1 relative before:absolute before:inset-y-0 before:left-[-1rem] before:my-auto before:h-[90%] before:w-[5px] before:rounded-full before:bg-secondary lg:before:left-[-1.05rem]">
-          Antigos Membros
+    <div className="min-h-screen">
+      <div className="container mx-auto px-8 py-10">
+        <h1 className="mb-24 flex items-center text-2xl font-bold">
+          <span className="mr-2 h-8 w-1 bg-[#BD995D]"></span>
+          Presidentes STJD
         </h1>
-        <div className="mt-24">
-          <TeamGrid teamsData={teams} />
+
+        <div className="relative px-8">
+          {/* Linhas horizontais e conteúdo */}
+          {linhasPresidentes.map((linha, linhaIndex) => (
+            <div
+              key={linhaIndex}
+              className={`relative ${linhaIndex > 0 ? 'mt-[7.5rem]' : ''}`}
+            >
+              {/* Linha horizontal principal */}
+              <div
+                className="absolute bottom-0 h-px bg-border"
+                style={{
+                  width: `${(linha.filter(Boolean).length / PRESIDENTES_PER_LINHA) * 100}%`,
+                  left: linhaIndex % 2 === 0 ? '0px' : 'auto',
+                  right: linhaIndex % 2 === 1 ? '0px' : 'auto',
+                }}
+              ></div>
+
+              {/* Conexão vertical para a próxima linha */}
+              {linhaIndex < linhasPresidentes.length - 1 && (
+                <div
+                  className="absolute w-px bg-border"
+                  style={{
+                    left: linhaIndex % 2 === 1 ? '0px' : 'auto',
+                    right: linhaIndex % 2 === 0 ? '0px' : 'auto',
+                    bottom: '-200px',
+                    height: '200px',
+                  }}
+                ></div>
+              )}
+
+              {/* Conexão vertical da linha anterior */}
+              {linhaIndex > 0 && (
+                <div
+                  className="absolute w-px bg-border"
+                  style={{
+                    left: linhaIndex % 2 === 0 ? '0px' : 'auto',
+                    right: linhaIndex % 2 === 1 ? '0px' : 'auto',
+                    bottom: '0',
+                    height: '200px',
+                  }}
+                ></div>
+              )}
+
+              <div className="grid grid-cols-4 gap-4">
+                {linha.map((presidente, index) => (
+                  <div
+                    key={index}
+                    className={`relative flex h-[232px] gap-4 ${!presidente ? 'opacity-0' : ''}`}
+                  >
+                    {presidente && (
+                      <>
+                        {/* Pílula de anos */}
+                        <div className="z-10 mb-4 flex w-24 justify-center">
+                          <div className="text-fira -ml-[calc(50%+50%)] flex h-fit items-center gap-1 rounded-md bg-white px-3 py-1 text-base font-bold shadow-sm">
+                            {presidente.periodoInicio}
+                            {presidente.periodoFim && (
+                              <>
+                                <ArrowRight className="h-4 w-4 text-[#BD995D]" />
+                                {presidente.periodoFim}
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Linha vertical conectora até a linha horizontal */}
+                        {index !== 0 &&
+                          ((linha[index - 1] && linha[index + 1]) ||
+                            index === PRESIDENTES_PER_LINHA - 1) && (
+                            <div className="absolute bottom-0 h-[200px] w-px transform bg-border">
+                              <div className="absolute -bottom-[0.2rem] -left-[0.2rem] h-2 w-2 rounded-full bg-border"></div>
+                            </div>
+                          )}
+
+                        {presidente.id === presidentes[0].id && (
+                          <div className="absolute bottom-0 h-[280px] w-px transform bg-border">
+                            <div className="absolute -left-[0.66rem] -top-[0.2rem] h-2 w-6 rounded-full bg-[#BD995D]"></div>
+                            <div className="absolute -bottom-[0.2rem] -left-[0.2rem] h-2 w-2 rounded-full bg-border"></div>
+                          </div>
+                        )}
+
+                        {presidente.id ===
+                          presidentes[presidentes.length - 1].id && (
+                          <div className="absolute bottom-0 h-[200px] w-px transform bg-border">
+                            <div className="absolute -bottom-[0.2rem] -left-[0.66rem] h-2 w-6 rounded-full bg-[#BD995D]"></div>
+                          </div>
+                        )}
+
+                        {/* Conteúdo do presidente */}
+                        <div className="-mt-[32px]">
+                          <div className="flex flex-col justify-end gap-4">
+                            <div className="mr-4">
+                              {presidente.foto ? (
+                                <Image
+                                  src={presidente.foto}
+                                  alt={presidente.nome}
+                                  width={120}
+                                  height={120}
+                                  className="aspect-square h-20 w-20 rounded-sm object-cover object-top shadow-xl"
+                                />
+                              ) : (
+                                <PresidentePlaceholder nome={presidente.nome} />
+                              )}
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-[#BD995D]">
+                                Presidente
+                              </p>
+                              <h3 className="max-w-52 text-base font-bold">
+                                {presidente.nome}
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   )
 }
 
-export default Historico
+const PresidentePlaceholder = ({ nome }: { nome: string }) => {
+  // Obter as iniciais do nome
+  const iniciais = nome
+    .split(' ')
+    .map((n) => n.charAt(0))
+    .join('')
+    .substring(0, 2)
+
+  return (
+    <div className="flex h-16 w-16 items-center justify-center rounded-sm bg-[#C4C4C4] shadow-xl lg:h-20 lg:w-20">
+      {iniciais ? (
+        <span className="text-lg font-semibold text-gray-600 lg:text-xl">
+          {iniciais}
+        </span>
+      ) : (
+        <User className="h-6 w-6 text-gray-500 lg:h-8 lg:w-8" />
+      )}
+    </div>
+  )
+}
