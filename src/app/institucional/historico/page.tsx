@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { ArrowRight, User } from 'lucide-react'
 
 type Presidente = {
   id: number
@@ -11,12 +12,14 @@ type Presidente = {
   foto?: string
 }
 
+const PRESIDENTES_PER_LINHA = 4 // Número de presidentes por linha para o layout desktop
+
 const presidentes: Presidente[] = [
   {
     id: 1,
     nome: 'LUIZ GALLOTTI',
     periodoInicio: 1946,
-    foto: '/images/profile.jpg',
+    foto: '/images/luiz-gallotti.png',
   },
   { id: 2, nome: 'JOÃO COELHO BRANCO', periodoInicio: 1946, periodoFim: 1947 },
   { id: 3, nome: 'JURANDIR LODI', periodoInicio: 1947, periodoFim: 1954 },
@@ -32,7 +35,7 @@ const presidentes: Presidente[] = [
     id: 7,
     nome: 'ALCINO DARDEU DE CARVALHO',
     periodoInicio: 1981,
-    foto: '/images/profile.jpg',
+    foto: '/images/alcirio-dardeu.png',
   },
   {
     id: 8,
@@ -83,7 +86,7 @@ const presidentes: Presidente[] = [
     nome: 'LUIS OTAVIO VERÍSSIMO TEIXEIRA',
     periodoInicio: 2024,
     periodoFim: 2026,
-    foto: '/images/profile.jpg',
+    foto: '/images/luis-verissimo.png',
   },
 ]
 
@@ -95,7 +98,7 @@ const agruparPresidentesEmLinhas = (
   let presidentesRestantes = [...presidentes]
 
   // Definir quantos presidentes por linha (4 parece ser o ideal baseado na imagem)
-  const presidentesPorLinha = 4
+  const presidentesPorLinha = PRESIDENTES_PER_LINHA
 
   while (presidentesRestantes.length > 0) {
     // Pegar os próximos 4 presidentes
@@ -104,6 +107,14 @@ const agruparPresidentesEmLinhas = (
       presidentesPorLinha,
     )
     presidentesRestantes = presidentesRestantes.slice(presidentesPorLinha)
+
+    // Se proximos Presidentes for menor que 4, preencher com null
+    if (proximosPresidentes.length < presidentesPorLinha) {
+      const faltando = presidentesPorLinha - proximosPresidentes.length
+      for (let i = 0; i < faltando; i++) {
+        proximosPresidentes.push(null as any)
+      }
+    }
 
     // Se for uma linha de índice ímpar (segunda, quarta, etc.), inverter a ordem
     if (linhas.length % 2 === 1) {
@@ -144,49 +155,57 @@ export default function Histórico() {
       <div className="min-h-screen">
         <div className="container mx-auto px-4 py-6">
           <h1 className="mb-8 flex items-center text-xl font-bold">
-            <span className="mr-2 h-6 w-1 bg-yellow-500"></span>
+            <span className="mr-2 h-6 w-1 bg-[#BD995D]"></span>
             Presidentes STJD
           </h1>
 
-          <div className="relative pl-16">
+          <div className="relative">
             {/* Linha vertical central contínua */}
-            <div className="absolute bottom-0 left-16 top-0 w-px bg-border"></div>
+            <div className="absolute bottom-0 left-[116px] top-0 w-px bg-[#BD995D]"></div>
 
             {presidentes.map((presidente) => (
-              <div key={presidente.id} className="relative mb-12">
+              <div key={presidente.id} className="relative mb-12 flex gap-8">
                 {/* Pílula de anos à esquerda */}
-                <div className="absolute left-[-60px] top-0 z-10">
-                  <div className="rounded-full bg-white px-3 py-1 text-sm shadow-sm">
+                <div className="flex w-[100px] min-w-[100px] justify-end">
+                  <div className="text-fira flex h-fit w-fit items-center gap-1 rounded-md bg-white px-2 py-1 text-sm font-bold shadow-sm">
                     {presidente.periodoInicio}
-                    {presidente.periodoFim ? ` - ${presidente.periodoFim}` : ''}
+                    {presidente.periodoFim && (
+                      <>
+                        <ArrowRight className="h-4 w-4 text-[#BD995D]" />
+                        {presidente.periodoFim}
+                      </>
+                    )}
                   </div>
                 </div>
 
                 {/* Conteúdo do presidente */}
-                <div className="ml-8">
-                  <div className="flex">
-                    {presidente.foto && (
-                      <div className="mr-4">
-                        <Image
-                          src={presidente.foto || '/images/profile.jpg'}
-                          alt={presidente.nome}
-                          width={60}
-                          height={60}
-                          className="rounded-sm"
-                        />
-                      </div>
-                    )}
+                <div>
+                  <div className="flex flex-col gap-4">
                     <div>
-                      <p className="text-xs text-yellow-600">Presidente</p>
-                      <h3 className="text-sm font-medium">{presidente.nome}</h3>
+                      {presidente.foto ? (
+                        <Image
+                          src={presidente.foto}
+                          alt={presidente.nome}
+                          width={90}
+                          height={90}
+                          className="aspect-square h-16 w-16 rounded-sm object-cover object-top shadow-lg"
+                        />
+                      ) : (
+                        <PresidentePlaceholder nome={presidente.nome} />
+                      )}
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-[#BD995D]">
+                        Presidente
+                      </p>
+                      <h3 className="text-sm font-semibold">
+                        {presidente.nome}
+                      </h3>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
-
-            {/* Marcador final */}
-            <div className="absolute bottom-[-20px] left-16 h-4 w-4 translate-x-[-50%] transform rounded-full bg-yellow-500"></div>
           </div>
         </div>
       </div>
@@ -196,20 +215,27 @@ export default function Histórico() {
   return (
     <div className="min-h-screen">
       <div className="container mx-auto px-8 py-10">
-        <h1 className="mb-12 flex items-center text-2xl font-bold">
-          <span className="mr-2 h-8 w-1 bg-yellow-500"></span>
+        <h1 className="mb-24 flex items-center text-2xl font-bold">
+          <span className="mr-2 h-8 w-1 bg-[#BD995D]"></span>
           Presidentes STJD
         </h1>
 
-        <div className="relative">
+        <div className="relative px-8">
           {/* Linhas horizontais e conteúdo */}
           {linhasPresidentes.map((linha, linhaIndex) => (
             <div
               key={linhaIndex}
-              className={`relative ${linhaIndex > 0 ? 'mt-32' : ''}`}
+              className={`relative ${linhaIndex > 0 ? 'mt-[7.5rem]' : ''}`}
             >
               {/* Linha horizontal principal */}
-              <div className="absolute left-0 right-0 top-[60px] h-px bg-border"></div>
+              <div
+                className="absolute bottom-0 h-px bg-border"
+                style={{
+                  width: `${(linha.filter(Boolean).length / PRESIDENTES_PER_LINHA) * 100}%`,
+                  left: linhaIndex % 2 === 0 ? '0px' : 'auto',
+                  right: linhaIndex % 2 === 1 ? '0px' : 'auto',
+                }}
+              ></div>
 
               {/* Conexão vertical para a próxima linha */}
               {linhaIndex < linhasPresidentes.length - 1 && (
@@ -218,8 +244,8 @@ export default function Histórico() {
                   style={{
                     left: linhaIndex % 2 === 1 ? '0px' : 'auto',
                     right: linhaIndex % 2 === 0 ? '0px' : 'auto',
-                    top: '60px',
-                    height: '160px',
+                    bottom: '-200px',
+                    height: '200px',
                   }}
                 ></div>
               )}
@@ -231,8 +257,8 @@ export default function Histórico() {
                   style={{
                     left: linhaIndex % 2 === 0 ? '0px' : 'auto',
                     right: linhaIndex % 2 === 1 ? '0px' : 'auto',
-                    top: '-100px',
-                    height: '160px',
+                    bottom: '0',
+                    height: '200px',
                   }}
                 ></div>
               )}
@@ -241,42 +267,67 @@ export default function Histórico() {
                 {linha.map((presidente, index) => (
                   <div
                     key={index}
-                    className={`relative ${!presidente ? 'opacity-0' : ''}`}
+                    className={`relative flex h-[232px] gap-4 ${!presidente ? 'opacity-0' : ''}`}
                   >
                     {presidente && (
                       <>
                         {/* Pílula de anos */}
-                        <div className="mb-4 flex justify-center">
-                          <div className="inline-block rounded-full bg-white px-3 py-1 text-sm shadow-sm">
+                        <div className="z-10 mb-4 flex w-24 justify-center">
+                          <div className="text-fira -ml-[calc(50%+50%)] flex h-fit items-center gap-1 rounded-md bg-white px-3 py-1 text-base font-bold shadow-sm">
                             {presidente.periodoInicio}
-                            {presidente.periodoFim
-                              ? ` - ${presidente.periodoFim}`
-                              : ''}
+                            {presidente.periodoFim && (
+                              <>
+                                <ArrowRight className="h-4 w-4 text-[#BD995D]" />
+                                {presidente.periodoFim}
+                              </>
+                            )}
                           </div>
                         </div>
 
                         {/* Linha vertical conectora até a linha horizontal */}
-                        <div className="absolute left-[50%] top-[30px] h-[30px] w-px translate-x-[-50%] transform bg-border"></div>
+                        {index !== 0 &&
+                          ((linha[index - 1] && linha[index + 1]) ||
+                            index === PRESIDENTES_PER_LINHA - 1) && (
+                            <div className="absolute bottom-0 h-[200px] w-px transform bg-border">
+                              <div className="absolute -bottom-[0.2rem] -left-[0.2rem] h-2 w-2 rounded-full bg-border"></div>
+                            </div>
+                          )}
+
+                        {presidente.id === presidentes[0].id && (
+                          <div className="absolute bottom-0 h-[280px] w-px transform bg-border">
+                            <div className="absolute -left-[0.66rem] -top-[0.2rem] h-2 w-6 rounded-full bg-[#BD995D]"></div>
+                            <div className="absolute -bottom-[0.2rem] -left-[0.2rem] h-2 w-2 rounded-full bg-border"></div>
+                          </div>
+                        )}
+
+                        {presidente.id ===
+                          presidentes[presidentes.length - 1].id && (
+                          <div className="absolute bottom-0 h-[200px] w-px transform bg-border">
+                            <div className="absolute -bottom-[0.2rem] -left-[0.66rem] h-2 w-6 rounded-full bg-[#BD995D]"></div>
+                          </div>
+                        )}
 
                         {/* Conteúdo do presidente */}
-                        <div className="mt-[40px]">
-                          <div className="flex items-start">
-                            {presidente.foto && (
-                              <div className="mr-4">
+                        <div className="-mt-[32px]">
+                          <div className="flex flex-col justify-end gap-4">
+                            <div className="mr-4">
+                              {presidente.foto ? (
                                 <Image
-                                  src={presidente.foto || '/images/profile.jpg'}
+                                  src={presidente.foto}
                                   alt={presidente.nome}
-                                  width={70}
-                                  height={70}
-                                  className="rounded-sm"
+                                  width={120}
+                                  height={120}
+                                  className="aspect-square h-20 w-20 rounded-sm object-cover object-top shadow-xl"
                                 />
-                              </div>
-                            )}
+                              ) : (
+                                <PresidentePlaceholder nome={presidente.nome} />
+                              )}
+                            </div>
                             <div>
-                              <p className="text-xs text-yellow-600">
+                              <p className="text-sm font-medium text-[#BD995D]">
                                 Presidente
                               </p>
-                              <h3 className="text-sm font-medium">
+                              <h3 className="max-w-52 text-base font-bold">
                                 {presidente.nome}
                               </h3>
                             </div>
@@ -289,20 +340,29 @@ export default function Histórico() {
               </div>
             </div>
           ))}
-
-          {/* Marcador final */}
-          <div className="relative mt-8">
-            <div
-              className="absolute h-4 w-4 rounded-full bg-yellow-500"
-              style={{
-                left: (linhasPresidentes.length - 1) % 2 === 1 ? '0px' : 'auto',
-                right:
-                  (linhasPresidentes.length - 1) % 2 === 0 ? '0px' : 'auto',
-              }}
-            ></div>
-          </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+const PresidentePlaceholder = ({ nome }: { nome: string }) => {
+  // Obter as iniciais do nome
+  const iniciais = nome
+    .split(' ')
+    .map((n) => n.charAt(0))
+    .join('')
+    .substring(0, 2)
+
+  return (
+    <div className="flex h-16 w-16 items-center justify-center rounded-sm bg-[#C4C4C4] shadow-xl lg:h-20 lg:w-20">
+      {iniciais ? (
+        <span className="text-lg font-semibold text-gray-600 lg:text-xl">
+          {iniciais}
+        </span>
+      ) : (
+        <User className="h-6 w-6 text-gray-500 lg:h-8 lg:w-8" />
+      )}
     </div>
   )
 }
