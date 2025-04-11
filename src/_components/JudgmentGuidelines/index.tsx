@@ -3,8 +3,6 @@ import { ArrowDownRight } from 'lucide-react'
 import React, { useState } from 'react'
 import { Calendar } from '../ui/calendar'
 import { ptBR } from 'date-fns/locale'
-import Antiqueta from '/public/images/Antique-Bronze.svg'
-import Image from 'next/image'
 
 import LiveSessionCard from '../LiveSessionCard'
 
@@ -46,21 +44,10 @@ function JudgmentGuidelines({
                 locale={ptBR}
               />
             </div>
-            <div className="relative w-full lg:h-[27.95rem]">
+            <div className="relative w-full rounded-xl bg-[#E1E1E1] lg:h-[27.95rem]">
               <div className="p-4">
                 <h2 className="text-lg font-semibold">Pautas do Dia</h2>
-                <ul className="mt-2 space-y-2">
-                  {['Pauta 1', 'Pauta 2', 'Pauta 3']
-                    .slice(0, 3)
-                    .map((pauta, index) => (
-                      <li
-                        key={index}
-                        className="rounded-md bg-gray-100 p-2 shadow-sm"
-                      >
-                        {pauta}
-                      </li>
-                    ))}
-                </ul>
+                <div className="">Nenhuma pauta para o dia selecionado</div>
               </div>
             </div>
           </div>
