@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
-import { Newspaper, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import {
   Carousel,
   CarouselApi,
@@ -137,12 +137,12 @@ function LatestNews({
                   </div>
                 </div>
                 <div className="mt-[0.78rem] rounded-[0.63938rem] bg-[#E1E1E1] px-[1.19rem] py-[1.52rem] lg:mt-[3.1rem] lg:bg-transparent lg:px-[2.5rem] lg:py-0">
-                  <div className="flex items-center gap-[0.56rem]">
+                  {/* <div className="flex items-center gap-[0.56rem]">
                     <Newspaper className="w-[1.06088rem] lg:w-auto" />
                     <p className="text-[0.88406rem] font-bold lg:text-[1.25rem]">
                       Últimas notícias
                     </p>
-                  </div>
+                  </div> */}
                   <Carousel
                     setApi={setApi}
                     className="mt-[1.29rem] w-full lg:mt-[3.69rem]"
@@ -206,12 +206,12 @@ function LatestNews({
                   <div className="absolute -right-2 -top-10 z-10 w-[15.65488rem] lg:hidden">
                     <LiveSessionCard status={'offline'} />
                   </div>
-                  <div className="flex items-center gap-[0.56rem]">
+                  {/* <div className="flex items-center gap-[0.56rem]">
                     <Newspaper className="w-[1.06088rem] lg:w-auto" />
                     <p className="text-[0.88406rem] font-bold lg:text-[1.25rem]">
                       Últimas notícias
                     </p>
-                  </div>
+                  </div> */}
                   <h1 className="mt-[1.29rem] w-full max-w-[40.1875rem] text-[1.29613rem] font-bold leading-[1.44013rem] tracking-[0.01294rem] lg:mt-[2.94rem] lg:text-[2.25rem] lg:leading-[2.5rem] lg:tracking-[0.0225rem]">
                     {articleHightlight.headline}
                   </h1>

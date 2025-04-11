@@ -104,8 +104,8 @@ const menus: MenuItem[] = [
     ],
   },
   {
-    name: 'Transparência e Prestação de Contas',
-    pathname: '/transparencia-pretacao-contas',
+    name: 'Estatísticas',
+    pathname: '/estatisticas',
   },
 ]
 
@@ -122,10 +122,16 @@ function MenuTop() {
   }
   return (
     <div className="relative z-10">
-      <div className="hidden w-full bg-black lg:block">
+      <div className="hidden w-full bg-[#005D8A] lg:block">
         <div className="container flex items-center justify-end gap-[1.25rem] py-[0.78rem] pr-[2.56rem] text-[#fff] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]">
           <a href="#" className="border-r border-[#fff] pr-[1.25rem]">
             CBF
+          </a>
+          <a
+            href="https://www.contatoseguro.com.br/pt/cbfcontramanipulacao/"
+            className="border-r border-[#fff] pr-[1.25rem]"
+          >
+            Alerta de Manipulação
           </a>
           <a
             href="https://transparencia.stf.jus.br/extensions/corte_aberta/corte_aberta.html"
@@ -133,7 +139,7 @@ function MenuTop() {
           >
             Ouvidoria
           </a>
-          <Link href="/contato">contato</Link>
+          <Link href="/contato">Contato</Link>
         </div>
       </div>
       <div className="lg:container lg:mt-[1.5rem]">

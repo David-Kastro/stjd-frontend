@@ -47,14 +47,20 @@ function JudgmentGuidelines({
               />
             </div>
             <div className="relative w-full lg:h-[27.95rem]">
-              <div className="absolute -bottom-32 right-0 lg:-right-10 lg:bottom-0 lg:left-0">
-                <Image
-                  src={Antiqueta}
-                  alt="Antiqueta"
-                  className="z-0 w-[7.875rem] lg:w-[28.8125rem]"
-                  draggable={false}
-                  priority
-                />
+              <div className="p-4">
+                <h2 className="text-lg font-semibold">Pautas do Dia</h2>
+                <ul className="mt-2 space-y-2">
+                  {['Pauta 1', 'Pauta 2', 'Pauta 3']
+                    .slice(0, 3)
+                    .map((pauta, index) => (
+                      <li
+                        key={index}
+                        className="rounded-md bg-gray-100 p-2 shadow-sm"
+                      >
+                        {pauta}
+                      </li>
+                    ))}
+                </ul>
               </div>
             </div>
           </div>

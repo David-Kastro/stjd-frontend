@@ -47,7 +47,12 @@ export default async function fetchApi<T>({
     const url = new URL(`${process.env.API_URL}/${endpoint}?${queryString}`)
     console.log('[API LOG] URL: ', url.toString())
 
-    const res = await fetch(url.toString())
+    const res = await fetch(url.toString(), {
+      next: {
+        revalidate: 3600,
+        tags: ['articles'],
+      },
+    })
     const data = await res.json()
 
     const meta = data.meta
@@ -75,7 +80,11 @@ export async function searchApi<T>({
       `https://app.stjd.com.br/api/fuzzy-search/search?query=${search}`,
     )
 
-    const res = await fetch(url.toString())
+    const res = await fetch(url.toString(), {
+      next: {
+        revalidate: 900, // 15 minutes
+      },
+    })
     const data = await res.json()
 
     if (data.error) {

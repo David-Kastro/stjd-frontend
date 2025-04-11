@@ -16,7 +16,7 @@ const rubik = Rubik({
 function Footer() {
   return (
     <div>
-      <div className="bg-[#000100]">
+      <div className="bg-[#005D8A]">
         <div className="border-t-[0.0625rem] border-[#B8B8B8] py-[1.7rem] italic lg:hidden">
           <p className="mx-auto max-w-[19.25rem] text-center text-[0.8125rem] text-[#B8B8B8]">
             Superior Tribunal de Justiça Deportiva de Futebol © Todos os
