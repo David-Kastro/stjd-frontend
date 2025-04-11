@@ -5,7 +5,7 @@ import React from 'react'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgScalle from '/public/images/bg-card-scale.svg'
 import fetchApi from '@/lib/strapi'
-import { Article, Edital, Member, Session } from '@/lib/types'
+import { Article, Edital, Session } from '@/lib/types'
 
 async function Home() {
   const [articles] = await fetchApi<Article[]>({
