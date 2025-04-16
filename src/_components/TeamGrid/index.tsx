@@ -119,8 +119,6 @@ function TeamGrid({
   const [openDialog, setOpenDialog] = React.useState(false)
   const [activeMember, setActiveMember] = React.useState<Member | null>(null)
 
-  console.log(openDialog)
-
   const getGrouppedMembersByRole = () => {
     return members.map((member) => {
       const splittedGroups = member.groups?.map((group) => {
@@ -220,8 +218,7 @@ function TeamGrid({
       ))}
       <DialogMemberBio
         activeMember={activeMember}
-        openDialog={false}
-        // openDialog={openDialog}
+        openDialog={openDialog}
         setOpenDialog={setOpenDialog}
       />
     </>

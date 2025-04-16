@@ -113,12 +113,12 @@ function Contato() {
       <div className="lg:container">
         <div className="pt-[3.7rem] lg:border-l-[2px] lg:pt-[6.25rem]">
           <ScaleAttorneys
-            title="Transparência"
+            title="Estatísticas"
             subtitle="Prestação de Contas"
             height="8.125rem"
             image={BgScalle}
             textbtn="Saiba Mais"
-            href="/transparencia-pretacao-contas"
+            href="/estatisticas"
           />
           <div className="mt-[3.30rem] bg-[#000] py-[3.87rem] lg:container lg:mt-[8rem] lg:bg-transparent lg:py-0">
             <div className="lg:pb-[7.94rem]">

@@ -31,7 +31,11 @@ function DialogMemberBio({ activeMember, openDialog, setOpenDialog }: Props) {
                     alt={`Retrato de ${activeMember.nome}`}
                     width={271}
                     height={267}
-                    className="size-full object-cover object-top"
+                    className="size-full object-cover object-top data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-800/40"
+                    data-loaded="false"
+                    onLoad={(event) => {
+                      event.currentTarget.setAttribute('data-loaded', 'true')
+                    }}
                   />
                 ) : (
                   <CustomImage
@@ -39,7 +43,11 @@ function DialogMemberBio({ activeMember, openDialog, setOpenDialog }: Props) {
                     alt={`Retrato de ${activeMember.nome}`}
                     width={271}
                     height={267}
-                    className="size-full object-cover object-top"
+                    className="size-full object-cover object-top data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-100/10"
+                    data-loaded="false"
+                    onLoad={(event) => {
+                      event.currentTarget.setAttribute('data-loaded', 'true')
+                    }}
                   />
                 )}
               </div>
