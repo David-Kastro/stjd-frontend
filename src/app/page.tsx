@@ -75,12 +75,12 @@ async function Home() {
       <div className="lg:container">
         <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pt-[4.94rem]">
           <ScaleAttorneys
-            title="Transparência"
+            title="Estatísticas"
             subtitle="Prestação de Contas"
             height="8.125rem"
             image={BgScalle}
             textbtn="Saiba Mais"
-            href="/transparencia-pretacao-contas"
+            href="/estatisticas"
           />
         </div>
       </div>

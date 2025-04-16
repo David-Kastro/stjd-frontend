@@ -181,12 +181,12 @@ export function GaleriasTemplate({
           <div className="mx-auto max-w-[100rem]">
             <hr className="my-[4.31rem] h-[0.125rem] bg-secondary" />
             <ScaleAttorneys
-              title="Transparência"
+              title="Estatísticas"
               subtitle="Prestação de Contas"
               height="8.125rem"
               image={BgScalle}
               textbtn="Saiba Mais"
-              href="/transparencia-pretacao-contas"
+              href="/estatisticas"
             />
           </div>
         </div>
