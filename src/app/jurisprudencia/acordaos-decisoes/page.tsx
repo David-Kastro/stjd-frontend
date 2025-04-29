@@ -10,7 +10,6 @@ async function AcordoesDecisoes({
 }) {
   const filters = {
     ...(await searchParams),
-    categoria: 'Acordãos',
   } as BasicFilters
 
   const query = await getBasicQuery(filters)
@@ -28,8 +27,6 @@ async function AcordoesDecisoes({
       },
     },
   })
-
-  console.log(docs, query)
 
   return <AcordoesDecisoesTemplate filters={filters} docs={docs} />
 }

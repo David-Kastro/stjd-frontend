@@ -17,6 +17,7 @@ export type BasicFilters = {
   id?: string
   documentId?: string
   slug?: string
+  numero_resolucao?: string
 }
 
 export async function getBasicQuery(
@@ -52,6 +53,9 @@ export async function getBasicQuery(
     ...(filters.documentId ? { documentId: filters.documentId } : {}),
     ...(filters.slug ? { slug: filters.slug } : {}),
     ...(filters.titulo ? { titulo: { $containsi: filters.titulo } } : {}),
+    ...(filters.numero_resolucao
+      ? { numero_resolucao: { $containsi: filters.numero_resolucao } }
+      : {}),
   }
 
   return queryFilters

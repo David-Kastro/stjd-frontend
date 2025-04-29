@@ -63,6 +63,12 @@ function Contato() {
                     type="study"
                   />
                   <CardContact
+                    number="(21) 3035-6214"
+                    title="Pleno"
+                    subtitle=" Manuela - manuela.silva@cbf.com.br"
+                    type="study"
+                  />
+                  <CardContact
                     number="(21) 3035-6205"
                     title="1ª Comissão"
                     subtitle=" André - andre.barbosa@cbf.com.br"
@@ -89,7 +95,7 @@ function Contato() {
                   <CardContact
                     number="(21) 3035-6203"
                     title="5ª Comissão"
-                    subtitle="Thomaz - thomaz.carvalho@cbf.com.br"
+                    subtitle="André - andre.barbosa@cbf.com.br"
                     type="personal"
                   />
                   <CardContact
