@@ -30,23 +30,23 @@ type Props = {
 }
 
 function EditaisTemplate({ filters, editais }: Props) {
-  const [editalActive, setEditalActive] = useState<number | null>(null)
+  const [editalActive, setEditalActive] = useState<string | null>(null)
 
   const [categoria, setCategoria] = useState('editais')
 
   const hasFilters = Object.values(filters).some((value) => !!value)
 
   const selectedEdital = useMemo(() => {
-    return editais.find((edital) => edital.id === editalActive)
+    return editais.find((edital) => edital.documentId === editalActive)
   }, [editalActive, editais])
 
   useEffect(() => {
     if (editais.length > 0) {
-      setEditalActive(editais[0].id)
+      setEditalActive(editais[0].documentId)
     }
   }, [editais])
 
-  const handleClickEdital = (editalId: number) => {
+  const handleClickEdital = (editalId: string) => {
     setEditalActive(editalId)
   }
 
@@ -174,8 +174,8 @@ function EditaisTemplate({ filters, editais }: Props) {
                         subtitle={edital.subtitulo}
                         description={`Data julgamento: ${dateTimeFormat(edital.data, false)}`}
                         type="function"
-                        handleClick={() => handleClickEdital(edital.id)}
-                        isActive={edital.id === editalActive}
+                        handleClick={() => handleClickEdital(edital.documentId)}
+                        isActive={edital.documentId === editalActive}
                       />
                     ))}
                   </div>

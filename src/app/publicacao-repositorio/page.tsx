@@ -14,7 +14,7 @@ async function PublicaoRepositorio() {
   const [publicationsData] = await fetchApi<Article[]>({
     endpoint: 'articles',
     query: {
-      sort: 'id:desc',
+      sort: 'data_publicacao:desc',
       populate: {
         imagem: {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],

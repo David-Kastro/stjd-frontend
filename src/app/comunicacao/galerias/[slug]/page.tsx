@@ -19,7 +19,7 @@ async function GaleriaPage({ params }: Props) {
   const [galerias] = await fetchApi<Galeria[]>({
     endpoint: 'galerias',
     query: {
-      sort: 'id:desc',
+      sort: 'createdAt:desc',
       fields: ['id', 'titulo', 'data', 'slug', 'lugar'],
       populate: ['imagens'],
       filters: {

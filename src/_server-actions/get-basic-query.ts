@@ -15,6 +15,7 @@ export type BasicFilters = {
   mes?: string
   tipo?: string
   id?: string
+  documentId?: string
   slug?: string
 }
 
@@ -48,6 +49,7 @@ export async function getBasicQuery(
     ...(start && end ? { data: { $gte: start, $lt: end } } : {}),
     ...(queryOverride || {}),
     ...(filters.id ? { id: filters.id } : {}),
+    ...(filters.documentId ? { documentId: filters.documentId } : {}),
     ...(filters.slug ? { slug: filters.slug } : {}),
     ...(filters.titulo ? { titulo: { $containsi: filters.titulo } } : {}),
   }

@@ -16,10 +16,10 @@ async function AcordoesDecisoes({
   const query = await getBasicQuery(filters)
 
   const [docs] = await fetchApi<Doc[]>({
-    endpoint: 'docs',
+    endpoint: 'decisions',
     query: {
-      sort: 'id:desc',
-      fields: ['id', 'titulo', 'subtitulo', 'tipo'],
+      sort: 'createdAt:desc',
+      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'categoria'],
       populate: ['documento'],
       filters: query,
       pagination: {
@@ -28,6 +28,8 @@ async function AcordoesDecisoes({
       },
     },
   })
+
+  console.log(docs, query)
 
   return <AcordoesDecisoesTemplate filters={filters} docs={docs} />
 }
