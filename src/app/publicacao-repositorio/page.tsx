@@ -75,12 +75,12 @@ async function PublicaoRepositorio() {
       <section>
         <div className="container relative border-l border-border pt-8 lg:pt-[6.19rem]">
           <ScaleAttorneys
-            title="Transparência"
+            title="Estatísticas"
             subtitle="Prestação de Contas"
             height="15.6875rem"
             image={BgEditais}
             textbtn="Saiba Mais"
-            href="/transparencia-pretacao-contas"
+            href="/estatisticas"
           />
         </div>
         <Members members={members} thinBorder />

@@ -94,7 +94,7 @@ function EditaisTemplate({ filters, editais }: Props) {
                   <SelectItem value="Processos">Processos</SelectItem>
                 </SelectContent>
               </Select>
-              <Select defaultValue={filters.ano} name="ano">
+              <Select defaultValue={filters.ano || undefined} name="ano">
                 <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[15rem]">
                   <SelectValue placeholder="Escolha o Ano" />
                 </SelectTrigger>
@@ -107,7 +107,7 @@ function EditaisTemplate({ filters, editais }: Props) {
                   <SelectItem value="2025">2025</SelectItem>
                 </SelectContent>
               </Select>
-              <Select defaultValue={filters.mes} name="mes">
+              <Select defaultValue={filters.mes || undefined} name="mes">
                 <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[8.875rem]">
                   <SelectValue placeholder="Mês" />
                 </SelectTrigger>
@@ -126,7 +126,7 @@ function EditaisTemplate({ filters, editais }: Props) {
                   <SelectItem value="12">Dezembro</SelectItem>
                 </SelectContent>
               </Select>
-              <Select defaultValue={filters.tipo} name="tipo">
+              <Select defaultValue={filters.tipo || undefined} name="tipo">
                 <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                   <SelectValue placeholder="Tipo" />
                 </SelectTrigger>

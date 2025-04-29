@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
 import CustomImage from '../CustomImage'
 import { Member } from '@/lib/types'
 import { MarkedContent } from '../marked-content'
+import { PresidentePlaceholder } from '../TeamGrid'
 
 interface Props {
   openDialog: boolean
@@ -31,16 +32,14 @@ function DialogMemberBio({ activeMember, openDialog, setOpenDialog }: Props) {
                     alt={`Retrato de ${activeMember.nome}`}
                     width={271}
                     height={267}
-                    className="size-full object-cover object-top"
+                    className="size-full object-cover object-top data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-800/40"
+                    data-loaded="false"
+                    onLoad={(event) => {
+                      event.currentTarget.setAttribute('data-loaded', 'true')
+                    }}
                   />
                 ) : (
-                  <CustomImage
-                    src={'/images/profile.jpg'}
-                    alt={`Retrato de ${activeMember.nome}`}
-                    width={271}
-                    height={267}
-                    className="size-full object-cover object-top"
-                  />
+                  <PresidentePlaceholder nome={activeMember.nome} />
                 )}
               </div>
             </div>

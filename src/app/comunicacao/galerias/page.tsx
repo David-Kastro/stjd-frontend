@@ -22,8 +22,6 @@ async function Galerias({
 
   const query = await getBasicQuery(filters)
 
-  console.log(query)
-
   const [galerias] = await fetchApi<Galeria[]>({
     endpoint: 'galerias',
     query: {

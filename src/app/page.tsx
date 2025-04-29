@@ -1,13 +1,11 @@
 import LatestNews from '@/_components/LatestNews'
-
-import Members from '@/_components/Members'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import Image from 'next/image'
 import React from 'react'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgScalle from '/public/images/bg-card-scale.svg'
 import fetchApi from '@/lib/strapi'
-import { Article, Edital, Member, Session } from '@/lib/types'
+import { Article, Edital, Session } from '@/lib/types'
 
 async function Home() {
   const [articles] = await fetchApi<Article[]>({
@@ -33,22 +31,6 @@ async function Home() {
       fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
       pagination: {
         pageSize: 10,
-        page: 1,
-      },
-    },
-  })
-
-  const [members] = await fetchApi<Member[]>({
-    endpoint: 'members',
-    query: {
-      populate: {
-        avatar: {
-          fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
-        },
-      },
-      sort: 'createdAt:asc',
-      pagination: {
-        pageSize: 4,
         page: 1,
       },
     },
@@ -93,16 +75,24 @@ async function Home() {
       <div className="lg:container">
         <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pt-[4.94rem]">
           <ScaleAttorneys
-            title="Transparência"
+            title="Estatísticas"
             subtitle="Prestação de Contas"
             height="8.125rem"
             image={BgScalle}
             textbtn="Saiba Mais"
-            href="/transparencia-pretacao-contas"
+            href="/estatisticas"
           />
         </div>
       </div>
-      <Members members={members} />
+      <div
+        className="my-8"
+        dangerouslySetInnerHTML={{
+          __html: `
+          <script src="https://static.elfsight.com/platform/platform.js" async></script>
+          <div class="elfsight-app-001bf463-f895-468b-b7bd-9e726f8abe70" data-elfsight-app-lazy></div>
+        `,
+        }}
+      ></div>
       <div className="bg-[#000] py-[3.87rem] lg:container lg:bg-transparent lg:py-0">
         <div className="border-[#B0B0B0] lg:border-l-[2px] lg:pb-[7.94rem]">
           <Image

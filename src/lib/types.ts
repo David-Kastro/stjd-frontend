@@ -90,3 +90,29 @@ export interface Galeria {
   lugar: string
   imagens: Image[]
 }
+
+export interface Process {
+  id: number
+  tipo: string
+  data: string
+  documento: Doc
+  titulo: string
+  subtitulo: string
+  relator?: string
+  procurador?: string
+  partes?: {
+    nome: string
+    tipo?: string
+  }[]
+}
+
+export interface ProcessFilters {
+  tipo?: string
+  dispositivo?: string
+  infracao?: string
+  relator?: string
+  procurador?: string
+  data?: string
+  name1?: string
+  name2?: string
+}
