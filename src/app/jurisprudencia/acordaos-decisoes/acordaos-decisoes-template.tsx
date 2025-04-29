@@ -75,7 +75,10 @@ function AcordoesDecisoesTemplate({ filters, docs }: Props) {
               action={`#pageFilters`}
               className="relative flex flex-wrap items-center gap-[0.69rem] px-[2.19rem] lg:flex-nowrap"
             >
-              <Select defaultValue={filters.categoria} name="categoria">
+              <Select
+                defaultValue={filters.categoria || undefined}
+                name="categoria"
+              >
                 <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[9.1875rem]">
                   <SelectValue placeholder="Categoria" />
                 </SelectTrigger>
@@ -84,7 +87,7 @@ function AcordoesDecisoesTemplate({ filters, docs }: Props) {
                   <SelectItem value="Decisões">Decisões</SelectItem>
                 </SelectContent>
               </Select>
-              <Select defaultValue={filters.ano} name="ano">
+              <Select defaultValue={filters.ano || undefined} name="ano">
                 <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[15rem]">
                   <SelectValue placeholder="Escolha o Ano" />
                 </SelectTrigger>
@@ -97,7 +100,7 @@ function AcordoesDecisoesTemplate({ filters, docs }: Props) {
                   <SelectItem value="2025">2025</SelectItem>
                 </SelectContent>
               </Select>
-              <Select defaultValue={filters.mes} name="mes">
+              <Select defaultValue={filters.mes || undefined} name="mes">
                 <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[8.875rem]">
                   <SelectValue placeholder="Mês" />
                 </SelectTrigger>
@@ -116,7 +119,7 @@ function AcordoesDecisoesTemplate({ filters, docs }: Props) {
                   <SelectItem value="12">Dezembro</SelectItem>
                 </SelectContent>
               </Select>
-              <Select defaultValue={filters.tipo} name="tipo">
+              <Select defaultValue={filters.tipo || undefined} name="tipo">
                 <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                   <SelectValue placeholder="Tipo" />
                 </SelectTrigger>

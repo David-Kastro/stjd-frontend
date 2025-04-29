@@ -24,7 +24,7 @@ async function Editais({
   const [editais] = await fetchApi<Edital[]>({
     endpoint: 'notices',
     query: {
-      sort: 'id:desc',
+      sort: 'createdAt:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
       populate: ['documento'],
       filters: query,

@@ -6,9 +6,10 @@ import { FileText } from 'lucide-react'
 interface CardLegislacaoProps {
   title: string
   subtitle: string
+  number?: string
 }
 
-function CardLegislacao({ title, subtitle }: CardLegislacaoProps) {
+function CardLegislacao({ title, subtitle, number }: CardLegislacaoProps) {
   return (
     <Card className="bg-card-legislacao group relative h-full w-full rounded-[0.61588rem] bg-cover transition-all hover:shadow-2xl lg:w-[9.62763rem]">
       <div className="absolute -left-[2px] top-6 h-[1.7925rem] w-[4.5px] rounded-full bg-secondary"></div>
@@ -20,7 +21,15 @@ function CardLegislacao({ title, subtitle }: CardLegislacaoProps) {
         <div className="mt-[1.16rem]">
           <CardTitle>
             <p className="text-center text-[0.7rem] font-normal leading-[1rem] text-[#2E2E2E]">
-              <span className="font-bold">{title}</span> <span>{subtitle}</span>
+              <span className="font-bold">{title}</span>
+              {number && (
+                <>
+                  <br />
+                  <span className="ml-1 font-medium">{number}</span>
+                </>
+              )}
+              <br />
+              <span>{subtitle}</span>
             </p>
           </CardTitle>
         </div>

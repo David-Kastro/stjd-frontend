@@ -29,7 +29,7 @@ function ListEditais({ editais }: { editais: Edital[] }) {
               subtitle={edital.subtitulo}
               description={`Data julgamento: ${dateTimeFormat(edital.data, false)}`}
               type="link"
-              path={`/processos/editais?id=${edital.id}`}
+              path={`/processos/editais?documentId=${edital.documentId}`}
             />
           ))}
         </div>

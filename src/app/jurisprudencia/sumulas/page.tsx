@@ -15,7 +15,7 @@ async function Sumulas({
   const [docs] = await fetchApi<Doc[]>({
     endpoint: 'docs',
     query: {
-      sort: 'id:desc',
+      sort: 'createdAt:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo'],
       populate: ['documento'],
       filters: query,

@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props) {
   const [[data]] = await fetchApi<Publication[]>({
     endpoint: 'articles',
     query: {
-      sort: 'id:desc',
+      sort: 'data_publicacao:desc',
       populate: {
         imagem: {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
@@ -49,7 +49,7 @@ async function Publicacao({ params }: Props) {
   const [[data]] = await fetchApi<Publication[]>({
     endpoint: 'articles',
     query: {
-      sort: 'id:desc',
+      sort: 'data_publicacao:desc',
       populate: {
         imagem: {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
@@ -68,7 +68,7 @@ async function Publicacao({ params }: Props) {
   const [newsData] = await fetchApi<Publication[]>({
     endpoint: 'articles',
     query: {
-      sort: 'id:desc',
+      sort: 'data_publicacao:desc',
       populate: {
         imagem: {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
@@ -85,9 +85,9 @@ async function Publicacao({ params }: Props) {
   })
 
   const [editais] = await fetchApi<Edital[]>({
-    endpoint: 'docs',
+    endpoint: 'notices',
     query: {
-      sort: 'id:desc',
+      sort: 'createdAt:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo'],
       filters: {
         categoria: 'Editais',
