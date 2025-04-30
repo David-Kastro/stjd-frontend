@@ -22,7 +22,7 @@ function Contato() {
                   </div>
                   <hr className="mt-[2.25rem] h-[0.125rem] bg-[#C2C2C2] lg:hidden" />
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d58802.816014127195!2d-43.21776394664166!3d-22.906878303032357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x997f607badf9bf%3A0x3d589ef1cabf9f0!2sSuperior%20Tribunal%20de%20Justi%C3%A7a%20Desportiva%20do%20Flamengo%2C%20Andar%20Centro%20-%20R.%20da%20Ajuda%2C%2035%20-%20Centro%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2020040-000!3m2!1d-22.906962699999998!2d-43.1764784!4m0!5e0!3m2!1spt-BR!2sbr!4v1739143783956!5m2!1spt-BR!2sbr"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d386.31189722542035!2d-43.18026925523466!3d-22.90455926423271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f5de8805c49%3A0x6774f318cc122301!2sR.%20Uruguaiana%2C%2055%20-%2010%C2%BA%20Andar%20-%20Centro%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2020050-094!5e0!3m2!1spt-PT!2sbr!4v1746028200595!5m2!1spt-PT!2sbr"
                     className="mt-[1.19rem] h-[32.0625rem] w-full rounded-[1.375rem] px-[0.5rem] lg:w-[60.5625rem] lg:px-0"
                     allowFullScreen
                     loading="lazy"
@@ -105,7 +105,7 @@ function Contato() {
                     type="personal"
                   />
                   <CardContact
-                    number="(21) 3035-6204"
+                    number="(21) 3035-6209"
                     title="Imprensa"
                     subtitle="Daniela - daniela.pinho@cbf.com.br"
                     type="press"

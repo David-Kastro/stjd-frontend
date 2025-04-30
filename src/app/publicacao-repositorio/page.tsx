@@ -21,7 +21,7 @@ async function PublicaoRepositorio() {
         },
       },
       filters: {
-        tipo: 'Notícia', // IMPORTANT: Change this to 'Publicação' to get the right data
+        tipo: 'Publicação',
       },
       pagination: {
         pageSize: 10,
