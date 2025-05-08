@@ -87,7 +87,7 @@ async function Noticia({ params }: Props) {
   const [editais] = await fetchApi<Edital[]>({
     endpoint: 'notices',
     query: {
-      sort: 'createdAt:desc',
+      sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo'],
       filters: {
         categoria: 'Editais',

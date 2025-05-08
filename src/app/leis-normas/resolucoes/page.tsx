@@ -17,7 +17,7 @@ async function Resolucoes({
   const [docs] = await fetchApi<Doc[]>({
     endpoint: 'resolutions',
     query: {
-      sort: 'createdAt:desc',
+      sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'numero_resolucao'],
       populate: ['documento'],
       filters: query,

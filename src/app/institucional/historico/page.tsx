@@ -93,7 +93,13 @@ const presidentes: Presidente[] = [
     periodoFim: 2020,
     foto: '/images/paulo-cesar.jpeg',
   },
-  { id: 21, nome: 'OTÁVIO NORONHA', periodoInicio: 2020, periodoFim: 2023 },
+  {
+    id: 21,
+    nome: 'OTÁVIO NORONHA',
+    periodoInicio: 2020,
+    periodoFim: 2023,
+    foto: '/images/otavio-noronha.jpeg',
+  },
   {
     id: 22,
     nome: 'JOSÉ PERDIZ DE JESUS ',

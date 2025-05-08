@@ -13,9 +13,9 @@ async function Sumulas({
   const query = await getBasicQuery(filters, { categoria: 'Súmulas' })
 
   const [docs] = await fetchApi<Doc[]>({
-    endpoint: 'docs',
+    endpoint: 'summaries',
     query: {
-      sort: 'createdAt:desc',
+      sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo'],
       populate: ['documento'],
       filters: query,

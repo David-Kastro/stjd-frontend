@@ -17,7 +17,7 @@ async function AcordoesDecisoes({
   const [docs] = await fetchApi<Doc[]>({
     endpoint: 'decisions',
     query: {
-      sort: 'createdAt:desc',
+      sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo', 'categoria'],
       populate: ['documento'],
       filters: query,

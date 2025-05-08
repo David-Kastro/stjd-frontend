@@ -25,7 +25,7 @@ async function Galerias({
   const [galerias] = await fetchApi<Galeria[]>({
     endpoint: 'galerias',
     query: {
-      sort: 'createdAt:desc',
+      sort: 'data:desc',
       fields: ['id', 'titulo', 'data', 'slug', 'lugar'],
       populate: ['imagens'],
       filters: query,

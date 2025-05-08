@@ -34,7 +34,7 @@ async function Noticias() {
   const [editais] = await fetchApi<Edital[]>({
     endpoint: 'notices',
     query: {
-      sort: 'createdAt:desc',
+      sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
       pagination: {
         pageSize: 10,

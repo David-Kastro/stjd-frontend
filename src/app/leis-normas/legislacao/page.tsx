@@ -15,10 +15,10 @@ async function Legislacao({
   const query = await getBasicQuery(filters)
 
   const [docs] = await fetchApi<Doc[]>({
-    endpoint: 'decisions',
+    endpoint: 'legislations',
     query: {
-      sort: 'createdAt:desc',
-      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'categoria'],
+      sort: 'data:desc',
+      fields: ['id', 'titulo', 'subtitulo'],
       populate: ['documento'],
       filters: query,
       pagination: {
