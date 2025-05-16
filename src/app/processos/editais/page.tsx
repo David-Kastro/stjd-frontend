@@ -4,6 +4,8 @@ import { Edital } from '@/lib/types'
 import { BasicFilters, getBasicQuery } from '@/_server-actions/get-basic-query'
 import { Metadata } from 'next'
 
+export const revalidate = 10
+
 export const metadata: Metadata = {
   title: 'Editais | STJD | Superior Tribunal de Justiça Desportiva',
   description: 'Editais do Superior Tribunal de Justiça Deportiva',

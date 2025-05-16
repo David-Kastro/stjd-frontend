@@ -7,6 +7,8 @@ type Props = {
   params: Promise<{ slug: string }>
 }
 
+export const revalidate = 10
+
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const [[data]] = await fetchApi<News[]>({

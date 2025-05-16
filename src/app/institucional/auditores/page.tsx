@@ -16,6 +16,8 @@ const orgaoCodes: Record<string, string> = {
   S: 'Suplentes',
 }
 
+export const revalidate = 900
+
 async function Auditores() {
   const [members] = await fetchApi<Member[]>({
     endpoint: 'members',

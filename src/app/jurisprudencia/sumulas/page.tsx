@@ -3,6 +3,8 @@ import { Doc } from '@/lib/types'
 import fetchApi from '@/lib/strapi'
 import SumulasTemplate from './sumulas-template'
 
+export const revalidate = 10
+
 async function Sumulas({
   searchParams,
 }: {

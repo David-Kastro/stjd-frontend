@@ -3,6 +3,8 @@ import LegislacaoTemplate from './legislacao-template'
 import { Doc } from '@/lib/types'
 import fetchApi from '@/lib/strapi'
 
+export const revalidate = 10
+
 async function Legislacao({
   searchParams,
 }: {

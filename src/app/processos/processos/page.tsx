@@ -3,6 +3,8 @@ import fetchApi from '@/lib/strapi'
 import { Process, ProcessFilters } from '@/lib/types'
 import ProcessosTemplate from './processos-template'
 
+export const revalidate = 10
+
 async function Processos({
   searchParams,
 }: {

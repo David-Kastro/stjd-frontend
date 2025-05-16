@@ -3,6 +3,8 @@ import AcordoesDecisoesTemplate from './acordaos-decisoes-template'
 import { Doc } from '@/lib/types'
 import fetchApi from '@/lib/strapi'
 
+export const revalidate = 10
+
 async function AcordoesDecisoes({
   searchParams,
 }: {

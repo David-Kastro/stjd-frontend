@@ -10,6 +10,8 @@ import Image from 'next/image'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import SearchPublicationSection from '@/_components/SearchPublicationSection'
 
+export const revalidate = 10
+
 async function PublicaoRepositorio() {
   const [publicationsData] = await fetchApi<Article[]>({
     endpoint: 'articles',

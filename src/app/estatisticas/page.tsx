@@ -13,6 +13,8 @@ type Acervo = {
   descricao: string
 }
 
+export const revalidate = 900
+
 async function Transparencia() {
   // const acervos = [
   //   {

@@ -11,6 +11,8 @@ import PublicationsCarousel from '@/_components/PublicationsCarousel'
 import ListEditais from '@/_components/ListEditais'
 import SearchNewsSection from '@/_components/SearchNewsSection'
 
+export const revalidate = 10
+
 async function Noticias() {
   const [newsData] = await fetchApi<News[]>({
     endpoint: 'articles',

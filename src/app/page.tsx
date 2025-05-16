@@ -7,6 +7,8 @@ import BgScalle from '/public/images/bg-card-scale.svg'
 import fetchApi from '@/lib/strapi'
 import { Article, Edital, Session } from '@/lib/types'
 
+export const revalidate = 10
+
 async function Home() {
   const [articles] = await fetchApi<Article[]>({
     endpoint: 'articles',

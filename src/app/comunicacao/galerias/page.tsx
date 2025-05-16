@@ -5,6 +5,8 @@ import fetchApi from '@/lib/strapi'
 import { Galeria } from '@/lib/types'
 import { Metadata } from 'next'
 
+export const revalidate = 900
+
 export const metadata: Metadata = {
   title: 'Galerias | STJD | Superior Tribunal de Justiça Desportiva',
   description: 'Galerias do Superior Tribunal de Justiça Deportiva',
