@@ -178,7 +178,7 @@ function JudgmentGuidelines({
                               </div>
                               <div>
                                 <Link
-                                  href={`/editais?documentId=${edital.documentId}`}
+                                  href={`/processos/editais?documentId=${edital.documentId}`}
                                   className="text-sm font-medium text-primary hover:underline"
                                 >
                                   Ver Edital
@@ -267,7 +267,7 @@ function JudgmentGuidelines({
 
                     <div>
                       <Link
-                        href={`/editais?documentId=${edital.documentId}`}
+                        href={`/processos/editais?documentId=${edital.documentId}`}
                         className="text-sm font-medium text-primary hover:underline"
                       >
                         Ver Edital
