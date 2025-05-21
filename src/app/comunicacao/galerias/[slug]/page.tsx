@@ -8,7 +8,7 @@ type Props = {
   params: Promise<{ slug: string }>
 }
 
-export const revalidate = 900
+export const revalidate = 10
 
 export const metadata: Metadata = {
   title: 'Galerias | STJD | Superior Tribunal de Justiça Desportiva',

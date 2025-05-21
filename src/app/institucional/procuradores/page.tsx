@@ -6,7 +6,7 @@ import { Member } from '@/lib/types'
 import fetchApi from '@/lib/strapi'
 import TeamGrid from '@/_components/TeamGrid'
 
-export const revalidate = 900
+export const revalidate = 10
 
 async function Procuradores() {
   const [members] = await fetchApi<Member[]>({

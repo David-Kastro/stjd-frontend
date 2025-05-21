@@ -116,3 +116,46 @@ export interface ProcessFilters {
   name1?: string
   name2?: string
 }
+
+// Add these types to your existing types.ts file
+
+export interface JurisprudenciaFilters {
+  acordao?: string
+  processo?: string
+  orgao?: string
+  classe?: string
+  relator?: string
+  revisor?: string
+  relatorDesignado?: string
+  dataJulgamento?: string
+  dataPublicacao?: string
+  pesquisa?: string
+  ano?: string
+}
+
+export interface Jurisprudencia {
+  id: number
+  orgao: string
+  titulo: string
+  subtitulo: string
+  data_julgamento: string
+  data_publicacao: string
+  numero_acordao: string
+  numero_processo: string
+  relator?: {
+    id: number
+    nome: string
+  }
+  revisor?: {
+    id: number
+    nome: string
+  }
+  relator_designado?: {
+    id: number
+    nome: string
+  }
+  documento?: {
+    url: string
+    name: string
+  }
+}

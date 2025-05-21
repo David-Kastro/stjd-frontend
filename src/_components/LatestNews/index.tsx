@@ -309,6 +309,7 @@ function LatestNews({
             status={status}
             onCountdownComplete={onCountdownComplete}
             releaseDate={nextSession?.data}
+            editais={editais}
           />
           <ListEditais editais={editais} />
         </div>

@@ -49,8 +49,7 @@ export default async function fetchApi<T>({
 
     const res = await fetch(url.toString(), {
       next: {
-        revalidate: 3600,
-        tags: ['articles'],
+        revalidate: 10,
       },
     })
     const data = await res.json()
@@ -82,7 +81,7 @@ export async function searchApi<T>({
 
     const res = await fetch(url.toString(), {
       next: {
-        revalidate: 900, // 15 minutes
+        revalidate: 10,
       },
     })
     const data = await res.json()

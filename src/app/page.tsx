@@ -6,6 +6,7 @@ import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgScalle from '/public/images/bg-card-scale.svg'
 import fetchApi from '@/lib/strapi'
 import { Article, Edital, Session } from '@/lib/types'
+import { startOfMonth, endOfMonth, format } from 'date-fns'
 
 export const revalidate = 10
 
@@ -26,11 +27,24 @@ async function Home() {
     },
   })
 
+  const currentDate = new Date()
+  const startDate = startOfMonth(currentDate)
+  const endDate = endOfMonth(currentDate)
+
+  // Format dates for Strapi query
+  const formattedStartDate = format(startDate, 'yyyy-MM-dd')
+  const formattedEndDate = format(endDate, 'yyyy-MM-dd')
+
   const [editais] = await fetchApi<Edital[]>({
     endpoint: 'notices',
     query: {
       sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
+      filters: {
+        data: {
+          $between: [formattedStartDate, formattedEndDate],
+        },
+      },
       pagination: {
         pageSize: 10,
         page: 1,
