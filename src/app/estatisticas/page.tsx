@@ -96,7 +96,7 @@ async function Transparencia() {
               <div className="flex items-center gap-[0.56rem] pl-[2.19rem] pt-[2rem]">
                 <Scale />
                 <p className="text-[1.25rem] font-bold leading-[1.23775rem]">
-                  Painéis Estáticos
+                  Painéis Estatísticos
                 </p>
               </div>
               <hr className="mt-[2.12rem] h-[0.125rem] border-[#BD995D] bg-[#BD995D]" />
