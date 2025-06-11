@@ -52,6 +52,18 @@ async function Home() {
     },
   })
 
+  const [lastEditais] = await fetchApi<Edital[]>({
+    endpoint: 'notices',
+    query: {
+      sort: 'data:desc',
+      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
+      pagination: {
+        pageSize: 10,
+        page: 1,
+      },
+    },
+  })
+
   const [todaySessions] = await fetchApi<Session[]>({
     endpoint: 'sessions',
     query: {
@@ -86,6 +98,7 @@ async function Home() {
         articles={articles}
         nextSession={nextSessions[0]}
         editais={editais}
+        lastEditais={lastEditais}
       />
       <hr className="w-fulll hidden h-[0.125rem] bg-[#B0B0B0] lg:block" />
       <div className="lg:container">

@@ -22,10 +22,12 @@ import Link from 'next/link'
 function LatestNews({
   articles,
   editais,
+  lastEditais,
   nextSession,
 }: {
   articles: Article[]
   editais: Edital[]
+  lastEditais: Edital[]
   nextSession?: Session
 }) {
   const [api, setApi] = useState<CarouselApi>()
@@ -311,7 +313,7 @@ function LatestNews({
             releaseDate={nextSession?.data}
             editais={editais}
           />
-          <ListEditais editais={editais} />
+          <ListEditais editais={lastEditais} />
         </div>
       </div>
     </div>
