@@ -42,7 +42,7 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
 
       <div>
         <div
-          className="scroll-custom-editais mx-auto mt-[1rem] flex max-h-[56vh] w-full justify-center overflow-y-scroll border border-gray-300 bg-white shadow-lg lg:max-w-[46rem] lg:p-2"
+          className="scroll-custom-editais mx-auto mt-[1rem] flex max-h-[56vh] w-full max-w-[20rem] justify-center overflow-y-scroll border border-gray-300 bg-white shadow-lg lg:max-w-[46rem] lg:p-2"
           onScroll={handleScroll}
         >
           <Document file={linkPdf} onLoadSuccess={onDocumentLoadSuccess}>

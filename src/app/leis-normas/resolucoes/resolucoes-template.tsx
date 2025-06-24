@@ -54,7 +54,9 @@ function Resolucoes({ filters, docs }: Props) {
   const [openDialog, setOpenDialog] = useState(false)
   const [docActive, setDocActive] = useState<number | null>(null)
   const [api, setApi] = useState<CarouselApi>()
+  const [apiDesk, setApiDesk] = useState<CarouselApi>()
   const [current, setCurrent] = useState(1)
+  const [currentDesk, setCurrentDesk] = useState(1)
 
   const hasFilters = Object.values(filters).some((value) => !!value)
 
@@ -73,6 +75,17 @@ function Resolucoes({ filters, docs }: Props) {
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
+  useEffect(() => {
+    if (!apiDesk) {
+      return
+    }
+
+    setCurrentDesk(apiDesk.selectedScrollSnap() + 1)
+
+    apiDesk.on('select', () => {
+      setCurrentDesk(apiDesk.selectedScrollSnap() + 1)
+    })
+  }, [apiDesk])
 
   useEffect(() => {
     if (docs.length > 0) {
@@ -89,6 +102,13 @@ function Resolucoes({ filters, docs }: Props) {
   }
   const handleNext = () => {
     api?.scrollNext()
+  }
+  const handlePreviousDesk = () => {
+    apiDesk?.scrollPrev()
+  }
+  const handleNextDesk = () => {
+    console.log('first')
+    apiDesk?.scrollNext()
   }
 
   const handleResetFilters = () => {
@@ -171,7 +191,7 @@ function Resolucoes({ filters, docs }: Props) {
       <div className="container">
         <div className="relative z-10 mx-auto mt-[2.6rem] max-w-[100.0625rem] lg:mt-[10rem]">
           <div className="hidden lg:block">
-            <Carousel setApi={setApi}>
+            <Carousel setApi={setApiDesk}>
               <CarouselContent className="pb-14">
                 {groupedLegislacoes.map((group, groupIndex) => (
                   <CarouselItem key={`group-${groupIndex}`}>
@@ -218,7 +238,7 @@ function Resolucoes({ filters, docs }: Props) {
             </Carousel>
           </div>
           <div className="mt-[2.5rem] flex flex-col items-center justify-center gap-[0.41rem] lg:pr-[2.5rem]">
-            <div className="flex justify-center gap-[0.41rem]">
+            <div className="flex justify-center gap-[0.41rem] lg:hidden">
               <button
                 onClick={handlePrevious}
                 className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1]"
@@ -232,8 +252,22 @@ function Resolucoes({ filters, docs }: Props) {
                 <ChevronLeft color="#A1A1A1" className="rotate-180" />
               </button>
             </div>
+            <div className="hidden justify-center gap-[0.41rem] lg:flex">
+              <button
+                onClick={handlePreviousDesk}
+                className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1]"
+              >
+                <ChevronLeft color="#A1A1A1" />
+              </button>
+              <button
+                onClick={handleNextDesk}
+                className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border-[1.929px] border-solid border-[#A1A1A1]"
+              >
+                <ChevronLeft color="#A1A1A1" className="rotate-180" />
+              </button>
+            </div>
             <p className="hidden text-center text-[0.9375rem] font-light leading-[1.23775rem] lg:block">
-              {current} / {groupedLegislacoes.length}
+              {currentDesk} / {groupedLegislacoes.length}
             </p>
             <p className="block text-center text-[0.9375rem] font-light leading-[1.23775rem] lg:hidden">
               {current} / {groupedLegislacoesMob.length}

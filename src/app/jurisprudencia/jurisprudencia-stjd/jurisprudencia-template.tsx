@@ -75,7 +75,7 @@ function JurisprudenciaTemplate({ filters, jurisprudencias }: Props) {
   return (
     <div>
       <div className="relative lg:mt-[9rem]">
-        <div className="absolute -left-20 -top-[48rem] z-0 hidden lg:block">
+        <div className="absolute -left-20 top-[60rem] z-0 hidden lg:block">
           <Image
             src={BgFundoMembers || '/placeholder.svg'}
             alt="BgFundoMembers"

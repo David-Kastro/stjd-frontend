@@ -56,7 +56,11 @@ function LatestNews({
     }
 
     // eslint-disable-next-line prettier/prettier
-    if ((new Date(nextSession.data)).getTime() - dateNow.getTime() < 1000 * 60 * 60 * 24) { // TODO: Pegar da configuração global
+    if (
+      new Date(nextSession.data).getTime() - dateNow.getTime() <
+      1000 * 60 * 60 * 24
+    ) {
+      // TODO: Pegar da configuração global
       return 'waiting'
     }
 
@@ -161,9 +165,9 @@ function LatestNews({
                             </h2>
                             <CustomImage
                               src={group.imagem.url}
-                              className="mt-[1.14rem] aspect-[2/1] rounded-[1.25rem] object-cover lg:mt-[2.88rem]"
+                              className="mt-[1.14rem] aspect-[2/1] w-full rounded-[1.25rem] object-cover lg:mt-[2.88rem]"
                               alt={group.imagem.name}
-                              width={200}
+                              width={5000}
                               height={100}
                             />
                             {/* <img

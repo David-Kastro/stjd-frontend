@@ -6,6 +6,8 @@ import BgFooter from '/public/images/bg-fundo-footer.svg'
 import { Rubik } from 'next/font/google'
 import { ArrowUp } from 'lucide-react'
 import { Button } from '../ui/button'
+import fetchApi from '@/lib/strapi'
+import { Doc, Edital } from '@/lib/types'
 
 // If loading a variable font, you don't need to specify the font weight
 const rubik = Rubik({
@@ -13,7 +15,46 @@ const rubik = Rubik({
   display: 'swap',
 })
 
-function Footer() {
+async function Footer() {
+  const [legislacao] = await fetchApi<Doc[]>({
+    endpoint: 'legislations',
+    query: {
+      sort: 'data:desc',
+      fields: ['id', 'titulo', 'subtitulo'],
+      populate: ['documento'],
+      pagination: {
+        pageSize: 14,
+        page: 1,
+      },
+    },
+  })
+  const [editais] = await fetchApi<Edital[]>({
+    endpoint: 'notices',
+    query: {
+      sort: 'data:desc',
+      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
+      populate: ['documento'],
+
+      pagination: {
+        pageSize: 9,
+        page: 1,
+      },
+    },
+  })
+  const [decisions] = await fetchApi<Doc[]>({
+    endpoint: 'decisions',
+    query: {
+      sort: 'data:desc',
+      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'categoria'],
+      populate: ['documento'],
+
+      pagination: {
+        pageSize: 8,
+        page: 1,
+      },
+    },
+  })
+  console.log('first', legislacao)
   return (
     <div>
       <div className="bg-[#005D8A]">
@@ -29,7 +70,7 @@ function Footer() {
           </div>
           <div className="w-full pt-[4rem]">
             <div className="relative mx-auto w-full max-w-[86.5625rem]">
-              <div className="flex">
+              <div className="flex justify-center">
                 <div>
                   <Link href={'/'}>
                     <p className="text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
@@ -48,62 +89,18 @@ function Footer() {
                       Legislação
                     </p>
                   </Link>
-
-                  <p className="mt-[1.3rem] text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    escala de procuradores 2024
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    lei geral do esporte - lei 14597
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    manipulação de competições
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    manual advogados - processo eletrônico
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    escala campeonato brasileiro feminino 2020
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    tabela de emolumentos
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    novo regimento interno do stjd
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    código brasileiro de justiça desportiva
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    cbjd - normas e legislação complementar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    legislação desportiva essencial 2015
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    regulamento antidoping
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    lei nº 9 615/08
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    código de ética stjd
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    regimento procuradoria
-                  </p>
+                  <div className="mt-[1.5rem]">
+                    {legislacao.map((leg) => (
+                      <Link
+                        href={`/leis-normas/legislacao?documentId=${leg.documentId}`}
+                        key={leg.id}
+                      >
+                        <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
+                          {leg.titulo}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
                 <div className="ml-[2.81rem]">
                   <Link href={'/processos/editais'}>
@@ -112,87 +109,31 @@ function Footer() {
                     </p>
                   </Link>
 
-                  <p className="mt-[1.3rem] text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    tribunal pleno
-                  </p>
+                  <div className="mt-[1.5rem]">
+                    {editais.map((leg) => (
+                      <Link
+                        href={`/processos/editais?documentId=${leg.documentId}`}
+                        key={leg.id}
+                      >
+                        <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
+                          {leg.subtitulo}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
 
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    1 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    2 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    3 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    4 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    5 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    comissão disciplinar feminina
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    comissão disciplinar extraordinária
-                  </p>
                   <Link href={'/jurisprudencia/jurisprudencia-stjd'}>
                     <p className="mt-[3.88rem] text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Jurisprudência
                     </p>
                   </Link>
-                </div>
-                <div className="ml-[4.19rem]">
                   <Link href={'/leis-normas/resolucoes'}>
-                    <p className="text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
-                      Resultados
-                    </p>
-                  </Link>
-
-                  <p className="mt-[1.3rem] text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    tribunal pleno
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    1 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    2 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    3 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    4 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    5 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    comissão disciplinar feminina
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    comissão disciplinar extraordinária
-                  </p>
-                  <Link href={'/resolucoes'}>
-                    <p className="mt-[3.88rem] text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
+                    <p className="mt-5 text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Resoluções
                     </p>
                   </Link>
                 </div>
+
                 <div className="ml-[3.88rem]">
                   <Link href={'/jurisprudencia/acordaos-decisoes'}>
                     <p className="text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
@@ -200,37 +141,18 @@ function Footer() {
                     </p>
                   </Link>
 
-                  <p className="mt-[1.3rem] text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    tribunal pleno
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    1 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    2 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    3 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    4 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    5 comissão disciplinar
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    comissão disciplinar feminina
-                  </p>
-
-                  <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
-                    comissão disciplinar extraordinária
-                  </p>
+                  <div className="mt-[1.5rem]">
+                    {decisions.map((leg) => (
+                      <Link
+                        href={`/jurisprudencia/acordaos-decisoes?documentId=${leg.documentId}`}
+                        key={leg.id}
+                      >
+                        <p className="text-[0.625rem] font-[200] uppercase leading-[1.8125rem] tracking-[0.025rem] text-[#fff]">
+                          {leg.subtitulo}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
                   <Link href={'/comunicacao/noticias'}>
                     <p className="mt-[3.88rem] text-[0.95769rem] font-bold leading-[0.95769rem] text-secondary">
                       Notícias
