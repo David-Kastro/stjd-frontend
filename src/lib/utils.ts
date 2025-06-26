@@ -26,9 +26,12 @@ export function dateTimeFormat(
 ) {
   const dateObj = parseDate(date)
 
+  const timeZone = 'America/Sao_Paulo'
+
   if (includeTime) {
     if (typeof includeTime === 'object') {
       return dateObj.toLocaleDateString('pt-BR', {
+        timeZone,
         day: '2-digit',
         month: includeTime.includeYear ? 'short' : 'long',
         year: includeTime.includeYear ? 'numeric' : undefined,
@@ -38,6 +41,7 @@ export function dateTimeFormat(
     }
 
     return dateObj.toLocaleDateString('pt-BR', {
+      timeZone,
       day: '2-digit',
       month: 'long',
       hour: '2-digit',
@@ -46,6 +50,7 @@ export function dateTimeFormat(
   }
 
   return dateObj.toLocaleDateString('pt-BR', {
+    timeZone,
     day: '2-digit',
     month: 'short',
     year: 'numeric',
