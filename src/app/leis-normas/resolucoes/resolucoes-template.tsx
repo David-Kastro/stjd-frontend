@@ -107,7 +107,6 @@ function Resolucoes({ filters, docs }: Props) {
     apiDesk?.scrollPrev()
   }
   const handleNextDesk = () => {
-    console.log('first')
     apiDesk?.scrollNext()
   }
 

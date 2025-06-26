@@ -92,6 +92,7 @@ async function Home() {
     return sessionEnd > new Date()
   })
 
+  console.log('oioi', nextSessions)
   return (
     <div>
       <LatestNews

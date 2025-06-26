@@ -54,7 +54,7 @@ async function Footer() {
       },
     },
   })
-  console.log('first', legislacao)
+
   return (
     <div>
       <div className="bg-[#005D8A]">
