@@ -96,12 +96,12 @@ function LatestNews({
   return (
     <div className="container lg:mt-[5rem]">
       <div className="flex flex-col gap-[3rem] border-[#B0B0B0] lg:flex-row lg:border-l-[2px]">
-        <div>
-          <div className="relative w-full rounded-[1.375rem] pb-[2.19rem] lg:ml-[4.69rem] lg:bg-[#E1E1E1] lg:pt-[2.56rem] xl:max-w-[40.1875rem] 2xl:max-w-[50.1875rem]">
+        <div className="lg:w-1/2 lg:pl-8 xl:pl-[4.69rem]">
+          <div className="w-full rounded-[1.375rem] pb-[2.19rem] lg:bg-[#E1E1E1] lg:pt-[2.56rem]">
             {status === 'online' && nextSession && (
               <>
-                <div className="relative lg:w-[50.1875rem]">
-                  <div className="absolute -left-20 top-56 w-[15.65488rem] lg:-left-16 lg:-top-10">
+                <div className="relative">
+                  <div className="absolute -top-10 z-10 flex w-full items-center justify-center lg:-left-0 lg:-top-32">
                     <LiveSessionCard
                       status={'online'}
                       onCountdownComplete={onCountdownComplete}
@@ -109,7 +109,7 @@ function LatestNews({
                     />
                   </div>
                   <iframe
-                    className="h-[14.8125rem] w-full lg:mt-[2.56rem] lg:h-[28.75rem]"
+                    className="mt-4 aspect-video w-full rounded-lg lg:mt-[2.56rem] lg:rounded-none"
                     src={nextSession.link}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

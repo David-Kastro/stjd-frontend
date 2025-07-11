@@ -121,7 +121,7 @@ function MenuTop() {
     return menu.pathname ? pathname === menu.pathname : false
   }
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 lg:z-50">
       <div className="hidden w-full bg-[#005D8A] lg:block">
         <div className="container flex items-center justify-end gap-[1.25rem] py-[0.78rem] pr-[2.56rem] text-[#fff] ~lg/2xl:~text-[0.75rem]/[0.95769rem] ~lg/2xl:~leading-[0.85rem]/[0.95769rem]">
           <a
