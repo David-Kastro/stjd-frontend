@@ -53,7 +53,7 @@ async function Procuradores() {
     <>
       <section>
         <CardTopPage
-          title="Procuradores"
+          title="Procuradoria de Justiça Desportiva"
           description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
           image={WoodenGavel}
           scrollTo="#members"
