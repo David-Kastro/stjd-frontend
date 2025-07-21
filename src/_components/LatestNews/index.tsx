@@ -208,8 +208,8 @@ function LatestNews({
             {articleHightlight && status !== 'online' && (
               <>
                 <div className="absolute -left-[2px] top-[6rem] h-[1rem] w-[2px] rounded-full bg-secondary lg:top-[8rem] lg:h-[2rem] lg:w-[5px]"></div>
-                <div className="mt-[1.62rem] rounded-[0.63938rem] bg-[#E1E1E1] px-[1.5rem] py-[1.5rem] lg:mt-0 lg:rounded-none lg:bg-transparent lg:px-[2.5rem] lg:py-0">
-                  <div className="absolute -right-2 -top-10 z-10 w-[15.65488rem] lg:hidden">
+                <div className="relative mt-[1.62rem] rounded-[0.63938rem] bg-[#E1E1E1] px-[1.5rem] py-[1.5rem] lg:mt-0 lg:rounded-none lg:bg-transparent lg:px-[2.5rem] lg:py-0">
+                  <div className="absolute -right-2 -top-10 z-10 w-[13rem] lg:hidden lg:w-[15.65488rem]">
                     <LiveSessionCard status={'offline'} />
                   </div>
                   {/* <div className="flex items-center gap-[0.56rem]">

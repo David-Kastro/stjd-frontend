@@ -30,15 +30,32 @@ const menus: MenuItem[] = [
     name: 'Institucional',
     paths: [
       {
-        name: 'Auditores',
-        pathname: '/institucional/auditores',
+        name: 'Pleno',
+        pathname: '/institucional/pleno',
       },
       {
-        name: 'Procuradores',
-        pathname: '/institucional/procuradores',
+        name: 'Comissões Disciplinares',
+        pathname: '/institucional/comissoes-disciplinares',
       },
       {
-        name: 'Histórico',
+        name: 'Procuradoria de Justiça Desportiva',
+        pathname: '/institucional/procuradoria-justica-desportiva',
+      },
+      // {
+      //   name: 'Defensoria de Justiça Desportiva',
+      //   pathname: '/institucional/defensoria-justica-desportiva',
+      // },
+      {
+        name: 'Corregedoria do STJD',
+        pathname: '/institucional/corregedoria-stjd',
+      },
+
+      {
+        name: 'Escola Nacional de Justiça Desportiva',
+        pathname: '/institucional/escola-nacional-justica-desportiva',
+      },
+      {
+        name: 'História',
         pathname: '/institucional/historico',
       },
     ],
