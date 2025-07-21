@@ -73,7 +73,7 @@ function CardTopPage({
               />
             </div>
             <div className="max-w-[44.125rem] px-[1.5rem] ~mt-6/0 lg:mt-0 lg:px-0 lg:pl-[2.25rem] lg:pt-[5.5rem]">
-              <h1 className="font-bold tracking-[0.03rem] ~text-[2.25rem]/[3rem] ~leading-[2.1875rem]/[2.5rem]">
+              <h1 className="font-bold tracking-[0.03rem] ~text-[2.25rem]/[3rem] ~leading-[2.1875rem]/[3.2rem]">
                 {title}
               </h1>
               <h2 className="mt-[0.81rem] ~text-[0.75rem]/[1rem] ~leading-[1.3125rem]/[1.6875rem]">

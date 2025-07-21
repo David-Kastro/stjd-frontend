@@ -53,6 +53,7 @@ async function Pleno() {
   }
 
   const teams = membersGrouped()
+  console.log('TP', teams)
 
   return (
     <>
