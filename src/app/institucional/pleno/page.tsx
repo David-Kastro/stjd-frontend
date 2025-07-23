@@ -60,7 +60,7 @@ async function Pleno() {
       <section>
         <CardTopPage
           title="Pleno"
-          description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
+          description="O Pleno, última instância da justiça desportiva brasileira, é composto por nove auditores: dois indicados pela CBF, dois pela OAB, dois indicados pela Federação Nacional dos Atletas Profissionais de Futebol (Fenapaf), dois indicados pelos Clubes brasileiros e um pelo sindicato dos árbitros (ANAF)."
           image={WoodenGavel}
           scrollTo="#members"
           imagePosition="topRight"

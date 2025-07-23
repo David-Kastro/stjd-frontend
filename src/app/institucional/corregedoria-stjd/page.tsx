@@ -78,7 +78,7 @@ async function Correge() {
       <section>
         <CardTopPage
           title="Corregedoria do STJD"
-          description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
+          description="A Corregedoria do STJD do Futebol é responsável por fiscalizar, controlar e corrigir as atividades dos  Tribunais Desportivos com a finalidade de garantir a legalidade, moralidade, transparência  e eficiência."
           image={WoodenGavel}
           scrollTo="#members"
           imagePosition="topRight"

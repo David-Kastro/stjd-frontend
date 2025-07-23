@@ -82,7 +82,7 @@ async function ComissoesDiciplinares() {
       <section>
         <CardTopPage
           title="Comissões Disciplinares"
-          description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
+          description="As Comissões Disciplinares julgam os processos em primeira instância, sendo o primeiro órgão a analisar as questões disciplinares no âmbito do STJD. Atualmente, o STJD do Futebol possui seis Comissões Disciplinares."
           image={WoodenGavel}
           scrollTo="#members"
           imagePosition="topRight"

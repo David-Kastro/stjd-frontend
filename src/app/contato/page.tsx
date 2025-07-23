@@ -59,49 +59,55 @@ function Contato() {
                   <CardContact
                     number="(21) 3035-6202"
                     title="Pleno"
-                    subtitle=" Aline - aline.pereira@cbf.com.br"
+                    subtitle=" Aline Pereira - pleno@stjd.org.br"
                     type="study"
                   />
                   <CardContact
                     number="(21) 3035-6214"
                     title="Pleno"
-                    subtitle=" Manuela - manuela.silva@cbf.com.br"
+                    subtitle=" Manuela Silva - pleno@stjd.org.br"
+                    type="study"
+                  />
+                  <CardContact
+                    number="(21) 3035-6214"
+                    title="Pleno"
+                    subtitle=" Manuela - Aline Pereira  e Manuela Silva"
                     type="study"
                   />
                   <CardContact
                     number="(21) 3035-6205"
                     title="1ª Comissão"
-                    subtitle=" André - andre.barbosa@cbf.com.br"
+                    subtitle=" André Barbosa - 1cd@stjd.org.br"
                     type="personal"
                   />
                   <CardContact
                     number="(21) 3035-6208"
                     title="2ª Comissão"
-                    subtitle="Anna - anna.alves@cbf.com.br"
+                    subtitle="Anna Alves - 2cd@stjd.org.br"
                     type="personal"
                   />
                   <CardContact
                     number="(21) 3035-6206"
                     title="3ª Comissão"
-                    subtitle="Julyane -  julyane.barros@cbf.com.br"
+                    subtitle="Julyane Barros - 3cd@stjd.org.br"
                     type="personal"
                   />
                   <CardContact
                     number="(21) 3035-6207"
                     title="4ª Comissão"
-                    subtitle="Gabriela - gabriela.moreira@cbf.com.br"
+                    subtitle="Gabriela Moreira - 4cd@stjd.org.br"
                     type="personal"
                   />
                   <CardContact
                     number="(21) 3035-6203"
                     title="5ª Comissão"
-                    subtitle="André - andre.barbosa@cbf.com.br"
+                    subtitle="André Barbosa - 5cd@stjd.org.br"
                     type="personal"
                   />
                   <CardContact
                     number="(21) 3035-6204"
                     title="6ª Comissão"
-                    subtitle="Cláudia - claudia.mercuri@cbf.com.br"
+                    subtitle="Cláudia Mercure - 6cd@stjd.org.br"
                     type="personal"
                   />
                   <CardContact
