@@ -81,7 +81,9 @@ async function Home() {
   })
 
   const nextSessions = todaySessions.filter((session) => {
-    const duracao = session.duracao.replace(/^(.*)\d{2}\.\d+$/, '$1')
+    const duracao = session.duracao
+      ? session.duracao.replace(/^(.*)\d{2}\.\d+$/, '$1')
+      : ''
     const duracaoMinutes =
       parseInt(duracao.split(':')[0]) * 60 + parseInt(duracao.split(':')[1])
 
