@@ -78,7 +78,7 @@ async function Correge() {
       <section>
         <CardTopPage
           title="Escola Nacional de Justiça Desportiva"
-          description="O Superior Tribunal de Justiça Desportiva do Futebol (STJD) é o órgão autônomo, previsto no Código Brasileiro de Justiça Desportiva, custeado pela Confederação Brasileira de Futebol (CBF), que discute as legalidades do futebol no Brasil e julga os acontecimentos do esporte."
+          description="Criada pelo STJD em 2014, a ENAJD como objetivo divulgar a Justiça Desportiva, promover cursos, palestras e publicações, além de buscar maior interação com os tribunais, federações, clubes e advogados."
           image={WoodenGavel}
           scrollTo="#members"
           imagePosition="topRight"
