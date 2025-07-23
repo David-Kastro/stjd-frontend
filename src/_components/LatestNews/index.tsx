@@ -227,7 +227,7 @@ function LatestNews({
                     <CarouselContent>
                       {articlesWithoutHighlight.map((group, groupIndex) => (
                         <CarouselItem key={groupIndex}>
-                          <>
+                          <Link href={`/comunicacao/noticias/${group.slug}`}>
                             <h1 className="w-full max-w-[40.1875rem] text-[1.29613rem] font-bold leading-[1.44013rem] tracking-[0.0225rem] lg:text-[2.25rem] lg:leading-[2.5rem]">
                               {group.headline}
                             </h1>
@@ -249,13 +249,10 @@ function LatestNews({
                             <div className="mt-[0.9rem] text-[0.75rem] leading-4 lg:mt-[1.94rem] lg:text-base">
                               <MarkedContent content={group.lead} />
                             </div>
-                            <Link
-                              href={`/comunicacao/noticias/${group.slug}`}
-                              className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:hidden"
-                            >
+                            <div className="ml-auto flex w-fit items-center gap-[0.56rem] bg-transparent text-[0.82363rem] font-bold leading-[1.23775rem] text-black hover:bg-transparent lg:hidden">
                               Veja mais <ChevronRight />
-                            </Link>
-                          </>
+                            </div>
+                          </Link>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
