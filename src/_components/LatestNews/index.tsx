@@ -1,9 +1,9 @@
 'use client'
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import {
   Carousel,
-  CarouselApi,
+  type CarouselApi,
   CarouselContent,
   CarouselItem,
 } from '@/_components/ui/carousel'
@@ -11,7 +11,7 @@ import {
 import CardNews from '../CardNews'
 
 import LiveSessionCard from '../LiveSessionCard'
-import { Article, Edital, Session } from '@/lib/types'
+import type { Article, Edital, Session } from '@/lib/types'
 import CustomImage from '../CustomImage'
 import { dateTimeFormat } from '@/lib/utils'
 import JudgmentGuidelines from '../JudgmentGuidelines'
@@ -23,16 +23,25 @@ function LatestNews({
   articles,
   editais,
   lastEditais,
-  nextSession,
+  nextSessions,
 }: {
   articles: Article[]
   editais: Edital[]
   lastEditais: Edital[]
-  nextSession?: Session
+  nextSessions: Session[]
 }) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [dateNow, setDateNow] = useState<Date>(new Date())
+  const [currentSessionIndex, setCurrentSessionIndex] = useState(0)
+
+  const sortedSessions = useMemo(() => {
+    return nextSessions.sort(
+      (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime(),
+    )
+  }, [nextSessions])
+
+  const currentSession = sortedSessions[currentSessionIndex]
 
   useEffect(() => {
     if (!api) {
@@ -47,25 +56,23 @@ function LatestNews({
   }, [api])
 
   const status = useMemo(() => {
-    if (!dateNow || !nextSession) {
+    if (!dateNow || !currentSession) {
       return 'offline'
     }
 
-    if (dateNow >= new Date(nextSession.data)) {
+    if (dateNow >= new Date(currentSession.data)) {
       return 'online'
     }
 
-    // eslint-disable-next-line prettier/prettier
     if (
-      new Date(nextSession.data).getTime() - dateNow.getTime() <
+      new Date(currentSession.data).getTime() - dateNow.getTime() <
       1000 * 60 * 60 * 24
     ) {
-      // TODO: Pegar da configuração global
       return 'waiting'
     }
 
     return 'offline'
-  }, [dateNow, nextSession])
+  }, [dateNow, currentSession])
 
   const articlesWithoutHighlight = useMemo(() => articles.slice(1), [articles])
 
@@ -93,35 +100,99 @@ function LatestNews({
     }, 500)
   }
 
+  const getTimeOnline = (sessionDate: string) => {
+    const sessionStart = new Date(sessionDate)
+    const now = new Date()
+    const diffMs = now.getTime() - sessionStart.getTime()
+
+    if (diffMs < 0) return null // Sessão ainda não começou
+
+    const diffMinutes = Math.floor(diffMs / (1000 * 60))
+    const diffHours = Math.floor(diffMinutes / 60)
+
+    if (diffHours > 0) {
+      return `${diffHours}h ${diffMinutes % 60}m`
+    } else {
+      return `${diffMinutes}m`
+    }
+  }
+
   return (
     <div className="container lg:mt-[5rem]">
       <div className="flex flex-col gap-[3rem] border-[#B0B0B0] lg:flex-row lg:border-l-[2px]">
         <div className="lg:w-1/2 lg:pl-8 xl:pl-[4.69rem]">
-          <div className="w-full rounded-[1.375rem] pb-[2.19rem] lg:bg-[#E1E1E1] lg:pt-[2.56rem]">
-            {status === 'online' && nextSession && (
+          <div className="w-full rounded-lg pb-[2.19rem] lg:bg-[#E1E1E1] lg:pt-[2.56rem]">
+            {status === 'online' && currentSession && (
               <>
                 <div className="relative">
-                  <div className="absolute -top-10 z-10 flex w-full items-center justify-center lg:-left-0 lg:-top-32">
+                  <div className="absolute -top-10 z-10 flex w-full items-center justify-center lg:-left-0 lg:-top-28">
                     <LiveSessionCard
                       status={'online'}
                       onCountdownComplete={onCountdownComplete}
-                      releaseDate={nextSession.data}
+                      releaseDate={currentSession.data}
                     />
                   </div>
+                  {sortedSessions.length > 1 && (
+                    <div className="px-4 pt-8 lg:pt-0">
+                      <div className="flex gap-2 overflow-x-auto">
+                        {sortedSessions.map((session, index) => {
+                          const isActive = index === currentSessionIndex
+                          const timeOnline =
+                            status === 'online'
+                              ? getTimeOnline(session.data)
+                              : null
+
+                          return (
+                            <button
+                              key={index}
+                              onClick={() => setCurrentSessionIndex(index)}
+                              className={`flex-shrink-0 rounded-xl border-2 p-3 transition-all duration-200 ${
+                                isActive
+                                  ? 'border-secondary bg-white shadow-md'
+                                  : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
+                              }`}
+                            >
+                              <div className="text-left">
+                                <div
+                                  className={`text-sm font-medium ${isActive ? 'text-blue-900' : 'text-gray-700'}}`}
+                                >
+                                  {session.titulo.length > 25
+                                    ? `${session.titulo.substring(0, 25)}...`
+                                    : session.titulo}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  {timeOnline && (
+                                    <>
+                                      <div className="flex items-center gap-1">
+                                        <div className="h-2 w-2 animate-pulse rounded-full bg-red-500"></div>
+                                        <span className="text-xs font-medium text-red-600">
+                                          {timeOnline}
+                                        </span>
+                                      </div>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
                   <iframe
-                    className="mt-4 aspect-video w-full rounded-lg lg:mt-[2.56rem] lg:rounded-none"
-                    src={nextSession.link}
+                    className="mt-4 aspect-video w-full rounded-lg lg:rounded-none"
+                    src={currentSession.link}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
                   ></iframe>
-                  <div className="mt-[3.6rem] px-[2.5rem] lg:mt-[1.44rem]">
-                    <p className="text-[0.73369rem] font-bold lg:text-[1.25rem]">
-                      {nextSession.titulo}
+                  <div className="-mt-2 rounded-b-lg bg-white px-4 pb-6 pt-10 lg:mt-[1.44rem] lg:bg-transparent lg:px-6 lg:pb-6 lg:pt-0">
+                    <p className="text-base font-bold lg:text-[1.25rem]">
+                      {currentSession.titulo}
                     </p>
-                    <p className="text-[0.51356rem] text-[#A1A1A1] lg:mt-[0.5rem] lg:text-[0.875rem]">
-                      {dateTimeFormat(nextSession.data)}
+                    <p className="text-xs text-[#A1A1A1] lg:mt-[0.5rem] lg:text-[0.875rem]">
+                      {dateTimeFormat(currentSession.data)}
                     </p>
                   </div>
                 </div>
@@ -171,7 +242,7 @@ function LatestNews({
                               height={100}
                             />
                             {/* <img
-                          src={group.imagem.url}
+                          src={group.imagem.url || "/placeholder.svg"}
                           className="rounded-[1.25rem] lg:mt-[2.88rem] mt-[1.14rem]"
                           alt="Image"
                         /> */}
@@ -218,7 +289,7 @@ function LatestNews({
                       Últimas notícias
                     </p>
                   </div> */}
-                  <h1 className="mt-[1.29rem] w-full max-w-[40.1875rem] text-[1.29613rem] font-bold leading-[1.44013rem] tracking-[0.01294rem] lg:mt-[2.94rem] lg:text-[2.25rem] lg:leading-[2.5rem] lg:tracking-[0.0225rem]">
+                  <h1 className="w-full max-w-[40.1875rem] text-[1.29613rem] font-bold leading-[1.44013rem] tracking-[0.01294rem] lg:text-[2.25rem] lg:leading-[2.5rem] lg:tracking-[0.0225rem]">
                     {articleHightlight.headline}
                   </h1>
                   <CustomImage
@@ -314,7 +385,7 @@ function LatestNews({
           <JudgmentGuidelines
             status={status}
             onCountdownComplete={onCountdownComplete}
-            releaseDate={nextSession?.data}
+            releaseDate={currentSession?.data}
             editais={editais}
           />
           <ListEditais editais={lastEditais} />

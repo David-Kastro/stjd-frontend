@@ -60,7 +60,7 @@ export interface Session {
   documentId: string
   titulo: string
   data: string
-  duracao: string
+  duracao: string | null
   link: string
   createdAt: string
   updatedAt: string

@@ -73,15 +73,12 @@ async function Home() {
           $startsWith: new Date().toISOString().split('T')[0],
         },
       },
-      pagination: {
-        pageSize: 1,
-        page: 1,
-      },
     },
   })
 
   const nextSessions = todaySessions.filter((session) => {
-    const duracao = session.duracao.replace(/^(.*)\d{2}\.\d+$/, '$1')
+    const sessionDuration = session.duracao || '04:00:00.000'
+    const duracao = sessionDuration.replace(/^(.*)\d{2}\.\d+$/, '$1')
     const duracaoMinutes =
       parseInt(duracao.split(':')[0]) * 60 + parseInt(duracao.split(':')[1])
 
@@ -92,12 +89,11 @@ async function Home() {
     return sessionEnd > new Date()
   })
 
-  console.log('oioi', nextSessions)
   return (
     <div>
       <LatestNews
         articles={articles}
-        nextSession={nextSessions[0]}
+        nextSessions={nextSessions}
         editais={editais}
         lastEditais={lastEditais}
       />
