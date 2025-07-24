@@ -1,10 +1,10 @@
-import CardContact from '@/_components/CardContact'
-import ScaleAttorneys from '@/_components/ScaleAttorneys'
-import { MapPin, Phone, Clock } from 'lucide-react'
-import React from 'react'
-import BgScalle from '/public/images/bg-card-scale.svg'
-import LogoBlack from '/public/images/logo-stjd-black.svg'
-import Image from 'next/image'
+import CardContact from "@/_components/CardContact";
+import ScaleAttorneys from "@/_components/ScaleAttorneys";
+import { MapPin, Phone, Clock } from "lucide-react";
+import React from "react";
+import BgScalle from "/public/images/bg-card-scale.svg";
+import LogoBlack from "/public/images/logo-stjd-black.svg";
+import Image from "next/image";
 
 function Contato() {
   return (
@@ -69,12 +69,6 @@ function Contato() {
                     type="study"
                   />
                   <CardContact
-                    number="(21) 3035-6214"
-                    title="Pleno"
-                    subtitle=" Manuela - Aline Pereira  e Manuela Silva"
-                    type="study"
-                  />
-                  <CardContact
                     number="(21) 3035-6205"
                     title="1ª Comissão"
                     subtitle=" André Barbosa - 1cd@stjd.org.br"
@@ -113,7 +107,7 @@ function Contato() {
                   <CardContact
                     number="(21) 3035-6209"
                     title="Imprensa"
-                    subtitle="Daniela - daniela.pinho@cbf.com.br"
+                    subtitle="Daniela Pinho - comunicacao@stjd.org.br"
                     type="press"
                   />
                 </div>
@@ -144,7 +138,7 @@ function Contato() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Contato
+export default Contato;
