@@ -107,7 +107,7 @@ function Contato() {
                   <CardContact
                     number="(21) 3035-6209"
                     title="Imprensa"
-                    subtitle="Daniela Pinho - comunicacao@stjd.org.br"
+                    subtitle="Daniela Pinho - comunicacao@stjd.org.br "
                     type="press"
                   />
                 </div>
