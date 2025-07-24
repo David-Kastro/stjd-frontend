@@ -1,10 +1,10 @@
-import CardContact from "@/_components/CardContact";
-import ScaleAttorneys from "@/_components/ScaleAttorneys";
-import { MapPin, Phone, Clock } from "lucide-react";
-import React from "react";
-import BgScalle from "/public/images/bg-card-scale.svg";
-import LogoBlack from "/public/images/logo-stjd-black.svg";
-import Image from "next/image";
+import CardContact from '@/_components/CardContact'
+import ScaleAttorneys from '@/_components/ScaleAttorneys'
+import { MapPin, Phone, Clock } from 'lucide-react'
+import React from 'react'
+import BgScalle from '/public/images/bg-card-scale.svg'
+import LogoBlack from '/public/images/logo-stjd-black.svg'
+import Image from 'next/image'
 
 function Contato() {
   return (
@@ -138,7 +138,7 @@ function Contato() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Contato;
+export default Contato
