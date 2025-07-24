@@ -101,7 +101,7 @@ function Contato() {
                   <CardContact
                     number="(21) 3035-6204"
                     title="6ª Comissão"
-                    subtitle="Cláudia Mercure - 6cd@stjd.org.br"
+                    subtitle="Cláudia Mercuri - 6cd@stjd.org.br"
                     type="personal"
                   />
                   <CardContact
