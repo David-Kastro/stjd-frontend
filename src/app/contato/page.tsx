@@ -93,7 +93,7 @@ function Contato() {
                     type="personal"
                   />
                   <CardContact
-                    number="(21) 3035-6203"
+                    number="(21) 3035-6205"
                     title="5ª Comissão"
                     subtitle="André Barbosa - 5cd@stjd.org.br"
                     type="personal"
