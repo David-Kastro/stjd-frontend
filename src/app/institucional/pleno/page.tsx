@@ -60,7 +60,7 @@ async function Pleno() {
       <section>
         <CardTopPage
           title="Pleno"
-          description="O Pleno, última instância da justiça desportiva brasileira, é composto por nove auditores: dois indicados pela CBF, dois pela OAB, dois indicados pela Federação Nacional dos Atletas Profissionais de Futebol (Fenapaf), dois indicados pelos Clubes brasileiros e um pelo sindicato dos árbitros (ANAF)."
+          description="O Pleno, última instância da justiça desportiva brasileira, é composto por nove auditores: dois indicados pela CBF, dois pela OAB, dois indicados pela Federação Nacional dos Atletas Profissionais de Futebol (Fenapaf), dois indicados pelos Clubes brasileiros e um pelos árbitros."
           image={WoodenGavel}
           scrollTo="#members"
           imagePosition="topRight"
