@@ -154,7 +154,7 @@ function MenuTop() {
             Alerta de Manipulação
           </a>
           <a
-            href="https://transparencia.stf.jus.br/extensions/corte_aberta/corte_aberta.html"
+            href="mailto:ouvidoria@stjd.org.br"
             className="border-r border-[#fff] pr-[1.25rem]"
           >
             Ouvidoria
