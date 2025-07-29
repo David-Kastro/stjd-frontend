@@ -33,7 +33,8 @@ async function Home() {
 
   // Format dates for Strapi query
   const formattedStartDate = format(startDate, 'yyyy-MM-dd')
-  const formattedEndDate = format(endDate, 'yyyy-MM-dd')
+  const formattedEndDate = format(endDate, 'yyyy-MM-dd') + 'T23:59:59'
+  console.log('formattedEndDate', formattedEndDate)
 
   const [editais] = await fetchApi<Edital[]>({
     endpoint: 'notices',
@@ -51,6 +52,8 @@ async function Home() {
       },
     },
   })
+
+  console.log('editais', editais)
 
   const [lastEditais] = await fetchApi<Edital[]>({
     endpoint: 'notices',
