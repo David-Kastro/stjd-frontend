@@ -2,9 +2,11 @@ import fetchApi from '@/lib/strapi'
 import { Edital, News } from '@/lib/types'
 import React from 'react'
 import Article from '@/_components/Article'
+import { BasicFilters, getBasicQuery } from '@/_server-actions/get-basic-query'
 
 type Props = {
   params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export const revalidate = 10
@@ -46,8 +48,12 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
-async function Noticia({ params }: Props) {
+async function Noticia({ params, searchParams }: Props) {
+  const searchParamsResolved = await searchParams
   const { slug } = await params
+  const filters = {
+    ...searchParamsResolved,
+  } as BasicFilters
   const [[data]] = await fetchApi<News[]>({
     endpoint: 'articles',
     query: {
@@ -66,6 +72,13 @@ async function Noticia({ params }: Props) {
       },
     },
   })
+  const query = await getBasicQuery(filters)
+  const finalFilters = {
+    ...query,
+    tipo: 'Notícia',
+  }
+
+  console.log('🚀 filtros finais enviados para API:', finalFilters)
 
   const [newsData] = await fetchApi<News[]>({
     endpoint: 'articles',
@@ -76,9 +89,7 @@ async function Noticia({ params }: Props) {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],
         },
       },
-      filters: {
-        tipo: 'Notícia',
-      },
+      filters: finalFilters,
       pagination: {
         pageSize: 10,
         page: 1,
@@ -102,7 +113,12 @@ async function Noticia({ params }: Props) {
   })
 
   return (
-    <Article articleData={data} editais={editais} readMoreData={newsData} />
+    <Article
+      filters={filters}
+      articleData={data}
+      editais={editais}
+      readMoreData={newsData}
+    />
   )
 }
 

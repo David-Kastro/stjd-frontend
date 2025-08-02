@@ -101,6 +101,8 @@ async function JurisprudenciaStj({
     },
   })
 
+  console.log('jurisprudencias', jurisprudencias)
+
   return (
     <JurisprudenciaTemplate
       jurisprudencias={jurisprudencias}

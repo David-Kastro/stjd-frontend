@@ -8,14 +8,17 @@ import LogoBlack from '/public/images/logo-stjd-black.svg'
 import { Edital, News, Publication } from '@/lib/types'
 import SearchPublicationSection from '../SearchPublicationSection'
 import { MarkedContent } from '../marked-content'
+import { BasicFilters } from '@/_server-actions/get-basic-query'
 
 interface Props {
   articleData: News | Publication
   readMoreData: News[] | Publication[]
   editais: Edital[]
+  filters?: BasicFilters
 }
 
-function Article({ articleData, editais, readMoreData }: Props) {
+function Article({ articleData, editais, readMoreData, filters }: Props) {
+  const hasFilters = Object.values(filters ?? {}).some((value) => !!value)
   return (
     <main className="mt-8 lg:mt-24">
       <section className="container flex flex-col items-stretch justify-center gap-5 border-l border-border lg:flex-row">
@@ -60,7 +63,7 @@ function Article({ articleData, editais, readMoreData }: Props) {
       <section className="container border-l border-border pb-16 pt-12">
         <hr className="mb-12 h-[0.125rem] rounded-full border-0 bg-secondary" />
         {articleData.tipo === 'Notícia' ? (
-          <SearchNewsSection />
+          <SearchNewsSection filters={filters || {}} hasFilters={hasFilters} />
         ) : (
           <SearchPublicationSection />
         )}

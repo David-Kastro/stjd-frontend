@@ -9,7 +9,7 @@ import {
 import { Article } from '@/lib/types'
 import React, { useEffect, useMemo, useState } from 'react'
 import CardNews from '../CardNews'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, FileSearch2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface Props {
@@ -46,6 +46,8 @@ function PublicationsCarousel({
     return result
   }, [articles])
 
+  console.log('first groupedArticles', groupedArticles)
+
   const handlePrevious = () => {
     api?.scrollPrev()
   }
@@ -64,6 +66,18 @@ function PublicationsCarousel({
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
+
+  if (groupedArticles.length === 0) {
+    return (
+      <div className="mt-[1.5rem] flex h-[20rem] flex-col items-center justify-center gap-[0.75rem]">
+        <FileSearch2 size={76} strokeWidth={1} className="opacity-65" />
+        <h1 className="text-[1.25rem] font-medium">
+          Nenhuma Notícia por aqui.. 🤔
+        </h1>
+        <p>Tente novamente com outros filtros ou volte mais tarde.</p>
+      </div>
+    )
+  }
 
   return (
     <>

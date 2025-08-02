@@ -19,7 +19,7 @@ import {
 import BgScalle from '/public/images/bg-card-scale.svg'
 
 import { ChevronLeft, Search, X } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import { Galeria } from '@/lib/types'
@@ -40,6 +40,20 @@ export function GaleriasTemplate({
   galerias: Galeria[]
   filters: BasicFilters
 }) {
+  const [formData, setFormData] = useState({
+    ano: filters.ano || 'todos',
+    mes: filters.mes || 'todos',
+    titulo: filters.titulo || '',
+  })
+
+  // Atualiza o estado quando os filtros mudam (útil para navegação back/forward)
+  useEffect(() => {
+    setFormData({
+      ano: filters.ano || 'todos',
+      mes: filters.mes || 'todos',
+      titulo: filters.titulo || '',
+    })
+  }, [filters.ano, filters.mes, filters.titulo])
   const grupoGaleria = chunkArray(galerias, 10)
   const [api, setApi] = useState<CarouselApi>()
 
@@ -58,6 +72,30 @@ export function GaleriasTemplate({
     }
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const formDataObj = new FormData(form)
+
+    // Remove campos vazios da URL
+    const params = new URLSearchParams()
+
+    const ano = formDataObj.get('ano') as string
+    const mes = formDataObj.get('mes') as string
+    const titulo = formDataObj.get('titulo') as string
+
+    if (ano && ano !== 'todos') params.set('ano', ano)
+    if (mes && mes !== 'todos') params.set('mes', mes)
+    if (titulo && titulo.trim() !== '') params.set('titulo', titulo.trim())
+
+    const queryString = params.toString()
+    const url = queryString
+      ? `/comunicacao/galerias?${queryString}#pageFilters`
+      : '/comunicacao/galerias#pageFilters'
+
+    window.location.href = url
+  }
+
   return (
     <div>
       <div className="container mt-4 lg:mt-[7.95rem]">
@@ -69,14 +107,21 @@ export function GaleriasTemplate({
             </div>
             <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
             <form
-              action={`/comunicacao/galerias#pageFilters`}
+              onSubmit={handleSubmit}
               className="relative flex flex-wrap items-center gap-[0.69rem] px-[2.19rem]"
             >
-              <Select defaultValue={filters.ano} name="ano">
-                <SelectTrigger className="h-[3.75rem] w-[15rem] rounded-[0.8125rem]">
+              <Select
+                value={formData.ano}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, ano: value }))
+                }
+                name="ano"
+              >
+                <SelectTrigger className="h-[3.75rem] w-full rounded-[0.8125rem] lg:w-[15rem]">
                   <SelectValue placeholder="Escolha o Ano" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="todos">Todos os anos</SelectItem>
                   <SelectItem value="2020">2020</SelectItem>
                   <SelectItem value="2021">2021</SelectItem>
                   <SelectItem value="2022">2022</SelectItem>
@@ -85,11 +130,18 @@ export function GaleriasTemplate({
                   <SelectItem value="2025">2025</SelectItem>
                 </SelectContent>
               </Select>
-              <Select defaultValue={filters.mes} name="mes">
-                <SelectTrigger className="h-[3.75rem] w-[8.875rem] rounded-[0.8125rem]">
+              <Select
+                value={formData.mes}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, mes: value }))
+                }
+                name="mes"
+              >
+                <SelectTrigger className="h-[3.75rem] w-full rounded-[0.8125rem] lg:w-[8.875rem]">
                   <SelectValue placeholder="Mês" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="todos">Todos os meses</SelectItem>
                   <SelectItem value="01">Janeiro</SelectItem>
                   <SelectItem value="02">Fevereiro</SelectItem>
                   <SelectItem value="03">Março</SelectItem>
@@ -108,8 +160,11 @@ export function GaleriasTemplate({
               <div className="w-full max-w-[22.375rem]">
                 <Input
                   name="titulo"
-                  defaultValue={filters.titulo}
+                  value={formData.titulo}
                   placeholder="Pesquisar por nome"
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, titulo: e.target.value }))
+                  }
                   className="h-[3.75rem] w-full rounded-[0.8125rem]"
                 />
               </div>
