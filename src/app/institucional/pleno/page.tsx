@@ -53,7 +53,6 @@ async function Pleno() {
   }
 
   const teams = membersGrouped()
-  console.log('TP', teams)
 
   return (
     <>
@@ -74,7 +73,7 @@ async function Pleno() {
         <h1 className="h1 relative before:absolute before:inset-y-0 before:left-[-1rem] before:my-auto before:h-[90%] before:w-[5px] before:rounded-full before:bg-secondary lg:before:left-[-1.05rem]">
           Membros
         </h1>
-        <div className="mt-24">
+        <div className="lg:mt-24">
           <TeamGrid teamsData={teams} splitGroupMembersByRole />
         </div>
       </section>
@@ -93,7 +92,7 @@ async function Pleno() {
           <div className="pb-[7.94rem]">
             <Image src={LogoBlack} alt="LogoBlack" className="mx-auto" />
           </div>
-          <div className="absolute -left-20 bottom-0">
+          <div className="absolute -left-20 bottom-0 hidden lg:block">
             <Image src={BgFundoMembers} alt="BgFundoMembers" />
           </div>
         </div>

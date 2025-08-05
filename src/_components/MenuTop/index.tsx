@@ -259,11 +259,15 @@ function MenuTop() {
         <hr className="-mt-[2px] h-[0.125rem] bg-border" />
       </nav>
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent side="left">
+        <SheetContent side="left" className="overflow-y-auto">
           <SheetHeader>
-            <SheetTitle>Menu</SheetTitle>
+            <SheetTitle>
+              <Link href={'/'} onClick={() => setOpen(false)}>
+                <Image src={Logo} alt="Logo" className="w-32" />
+              </Link>
+            </SheetTitle>
           </SheetHeader>
-          <nav className="mt-5 flex flex-col gap-4">
+          <nav className="mt-5 flex flex-col gap-4 pb-4">
             {menus.map((menu, index) => (
               <div key={index}>
                 {menu.pathname ? (
@@ -320,6 +324,53 @@ function MenuTop() {
                 )}
               </div>
             ))}
+            <Link
+              href="https://cbf.com.br/"
+              target="_blank"
+              className={`block rounded p-2 text-lg font-medium ${
+                pathname === 'contato'
+                  ? 'font-bold text-[#006A9E]'
+                  : 'hover:bg-gray-100'
+              }`}
+              onClick={() => setOpen(false)}
+            >
+              CBF
+            </Link>
+            <Link
+              href="https://www.contatoseguro.com.br/pt/cbfcontramanipulacao/"
+              target="_blank"
+              className={`block rounded p-2 text-lg font-medium ${
+                pathname === 'contato'
+                  ? 'font-bold text-[#006A9E]'
+                  : 'hover:bg-gray-100'
+              }`}
+              onClick={() => setOpen(false)}
+            >
+              Alerta de Manipulação
+            </Link>
+            <Link
+              href="mailto:ouvidoria@stjd.org.br"
+              target="_blank"
+              className={`block rounded p-2 text-lg font-medium ${
+                pathname === 'contato'
+                  ? 'font-bold text-[#006A9E]'
+                  : 'hover:bg-gray-100'
+              }`}
+              onClick={() => setOpen(false)}
+            >
+              Ouvidoria
+            </Link>
+            <Link
+              href="/contato"
+              className={`block rounded p-2 text-lg font-medium ${
+                pathname === '/contato'
+                  ? 'font-bold text-[#006A9E]'
+                  : 'hover:bg-gray-100'
+              }`}
+              onClick={() => setOpen(false)}
+            >
+              Contato
+            </Link>
           </nav>
         </SheetContent>
       </Sheet>

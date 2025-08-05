@@ -16,14 +16,14 @@ function DialogMemberBio({ activeMember, openDialog, setOpenDialog }: Props) {
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       {activeMember && (
-        <DialogContent className="max-h-[90vh] bg-[#E1E1E1] px-16 py-[3.19rem]">
+        <DialogContent className="max-h-[90vh] bg-[#E1E1E1] py-[3.19rem] lg:px-16">
           <DialogHeader className="flex flex-row items-center gap-[1.37rem]">
             <DialogTitle className="flex w-full items-center justify-center gap-[0.625rem] text-[1.34694rem] font-bold text-secondary">
               {activeMember.cargo}
               <hr className="-mb-1 grow border-b border-secondary" />
             </DialogTitle>
           </DialogHeader>
-          <div className="flex items-start gap-8">
+          <div className="flex flex-col items-start lg:flex-row lg:gap-8">
             <div>
               <div className="mb-6 h-[267px] w-[271px] cursor-pointer overflow-hidden rounded-[0.625rem]">
                 {activeMember.avatar?.url ? (
@@ -43,7 +43,7 @@ function DialogMemberBio({ activeMember, openDialog, setOpenDialog }: Props) {
                 )}
               </div>
             </div>
-            <div className="scroll-custom-editais flex max-h-[55vh] max-w-3xl flex-col gap-4 overflow-y-auto pb-4 pr-4 pt-8">
+            <div className="scroll-custom-editais flex max-h-[30vh] max-w-3xl flex-col gap-4 overflow-y-auto pb-4 pr-4 pt-8 lg:max-h-[55vh]">
               <div className="flex flex-col gap-1">
                 <h2 className="text-base font-bold uppercase leading-[121%] text-[#3A3A3C]">
                   {activeMember.nome}
