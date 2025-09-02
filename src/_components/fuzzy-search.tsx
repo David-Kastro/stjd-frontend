@@ -17,6 +17,8 @@ const links: Record<string, string> = {
   jurisprudences: '/jurisprudencia/jurisprudencia-stjd',
   processes: '/processos/processos',
   resolutions: '/leis-normas/resolucoes',
+  'conteudo-stjds': '/conteudo/stjd',
+  'conteudo-e-stjds': '/conteudo/e-stjd',
 }
 
 // Atualizar a tipagem para suportar diferentes categorias e imagens
@@ -25,16 +27,19 @@ type BaseItem = {
   documentId?: string
   slug?: string
   titulo?: string
+  content_name?: string
   headline?: string
   subtitulo?: string
   tipo?: string
   data?: string
   data_publicacao?: string
   createdAt?: string
+  criado_em?: string
   updatedAt?: string
   publishedAt?: string | null
   descricao?: string
   lead?: string
+  codigo_processo?: string
 }
 
 type Image = {
@@ -122,7 +127,18 @@ export default function FuzzySearch() {
 
     Object.entries(results).forEach(([category, items]) => {
       if (items.length > 0) {
-        filtered[category] = items
+        filtered[category] = items.map((item) => ({
+          ...item,
+          titulo:
+            item.titulo ||
+            item.headline ||
+            item.content_name?.replace(/([^.]*)\..*/, '$1'),
+          subtitulo:
+            item.subtitulo ||
+            (item.codigo_processo
+              ? `Código do processo: ${item.codigo_processo}`
+              : undefined),
+        }))
       }
     })
 
@@ -137,7 +153,7 @@ export default function FuzzySearch() {
         className="cursor-pointer rounded-md p-2 hover:bg-muted"
       >
         <Link
-          href={`${links[category]}/${item.slug || item.id}`}
+          href={`${links[category]}/${item.slug || item.documentId}`}
           className="flex flex-col gap-1"
         >
           <div className="font-medium">{item?.titulo || item?.headline}</div>
@@ -190,6 +206,11 @@ export default function FuzzySearch() {
             {item.data && !item.data_publicacao && (
               <span>{new Date(item.data).toLocaleDateString('pt-BR')}</span>
             )}
+            {!!item.criado_em && (
+              <span>
+                {new Date(item.criado_em).toLocaleDateString('pt-BR')}
+              </span>
+            )}
           </div>
         </Link>
       </div>
@@ -205,6 +226,8 @@ export default function FuzzySearch() {
       jurisprudences: 'Jurisprudências',
       processes: 'Processos',
       resolutions: 'Resoluções',
+      'conteudo-stjds': 'Conteúdo STJDS',
+      'conteudo-e-stjds': 'Conteúdo E-STJDS',
     }
 
     return (

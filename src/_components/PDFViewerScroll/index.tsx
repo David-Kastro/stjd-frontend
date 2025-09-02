@@ -3,6 +3,8 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import { Button } from '../ui/button'
+import { ExternalLink } from 'lucide-react'
+import Link from 'next/link'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
 
@@ -48,12 +50,26 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
           <Document file={linkPdf} onLoadSuccess={onDocumentLoadSuccess}>
             {Array.from(new Array(numPages), (_, index) => (
               <div key={`page_${index + 1}`} className="mb-4">
-                <Page
-                  pageNumber={index + 1}
-                  scale={1.0}
-                  renderTextLayer={false}
-                  renderAnnotationLayer={false}
-                />
+                {/* Mobile: width 320px */}
+                <div className="block sm:hidden">
+                  <Page
+                    pageNumber={index + 1}
+                    width={290}
+                    scale={1}
+                    renderTextLayer={false}
+                    renderAnnotationLayer={false}
+                  />
+                </div>
+                {/* Tablet: width 640px */}
+                <div className="hidden sm:block">
+                  <Page
+                    pageNumber={index + 1}
+                    width={640}
+                    scale={1}
+                    renderTextLayer={false}
+                    renderAnnotationLayer={false}
+                  />
+                </div>
               </div>
             ))}
           </Document>
@@ -65,6 +81,18 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
             </Button>
           </a>
         </div>
+      </div>
+
+      {/* Floating button for mobile - only visible on mobile devices */}
+      <div className="fixed bottom-6 right-6 z-50 sm:hidden">
+        <Link href={linkPdf} target="_blank">
+          <Button
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 p-0 shadow-lg hover:bg-blue-700"
+            title="Visualizar em outra guia"
+          >
+            <ExternalLink className="h-6 w-6 text-white" />
+          </Button>
+        </Link>
       </div>
     </div>
   )

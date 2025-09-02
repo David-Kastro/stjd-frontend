@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, ExternalLink } from 'lucide-react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import { Doc } from '@/lib/types'
@@ -81,7 +81,28 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
           file={doc.documento.url}
           onLoadSuccess={onDocumentLoadSuccess}
         >
-          <Page className="flex justify-center" pageNumber={pageNumber} />
+          {/* Mobile: width 320px */}
+          <div className="block sm:hidden">
+            <Page
+              className="flex justify-center"
+              pageNumber={pageNumber}
+              width={290}
+              scale={1}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+            />
+          </div>
+          {/* Tablet: width 640px */}
+          <div className="hidden sm:block">
+            <Page
+              className="flex justify-center"
+              pageNumber={pageNumber}
+              width={640}
+              scale={1}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+            />
+          </div>
         </Document>
       </div>
       <div className="mx-auto mt-[1rem] flex w-[9.0625rem] justify-center gap-[0.41rem] lg:hidden">
@@ -103,6 +124,18 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
           Fazer Download
         </Button>
       </Link>
+
+      {/* Floating button for mobile - only visible on mobile devices */}
+      <div className="fixed bottom-6 right-6 z-50 sm:hidden">
+        <Link href={doc.documento.url} target="_blank">
+          <Button
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 p-0 shadow-lg hover:bg-blue-700"
+            title="Visualizar em outra guia"
+          >
+            <ExternalLink className="h-6 w-6 text-white" />
+          </Button>
+        </Link>
+      </div>
     </div>
   )
 }

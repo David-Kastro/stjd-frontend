@@ -159,3 +159,34 @@ export interface Jurisprudencia {
     name: string
   }
 }
+
+export interface ConteudoESTJD {
+  codigo_processo: string
+  content_name: string
+  content_url: string
+  createdAt: string
+  criado_em: string
+  documentId: string
+  id: number
+  legacy_id: string
+  pagina: number
+  parte_relacionada: string
+  processo_id: string
+  publishedAt: string | null
+  tipo_documento: string
+  updatedAt: string
+}
+
+export interface ConteudoSTJD {
+  autor: string
+  caminho: string
+  conteudo_url: string
+  createdAt: string
+  criado_em: string
+  documentId: string
+  documento_id: string
+  id: number
+  publishedAt: string | null
+  titulo: string
+  updatedAt: string
+}

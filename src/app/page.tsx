@@ -6,7 +6,7 @@ import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgScalle from '/public/images/bg-card-scale.svg'
 import fetchApi from '@/lib/strapi'
 import { Article, Edital, Session } from '@/lib/types'
-import { startOfMonth, endOfMonth, format } from 'date-fns'
+import { startOfMonth, endOfMonth, format, addDays } from 'date-fns'
 
 export const revalidate = 10
 
@@ -33,7 +33,9 @@ async function Home() {
 
   // Format dates for Strapi query
   const formattedStartDate = format(startDate, 'yyyy-MM-dd')
-  const formattedEndDate = format(endDate, 'yyyy-MM-dd') + 'T23:59:59'
+  // endDate + 5 dias
+  const formattedEndDate =
+    format(addDays(endDate, 5), 'yyyy-MM-dd') + 'T23:59:59'
 
   const [editais] = await fetchApi<Edital[]>({
     endpoint: 'notices',

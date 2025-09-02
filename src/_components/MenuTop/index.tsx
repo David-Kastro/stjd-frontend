@@ -41,10 +41,10 @@ const menus: MenuItem[] = [
         name: 'Procuradoria de Justiça Desportiva',
         pathname: '/institucional/procuradoria-justica-desportiva',
       },
-      // {
-      //   name: 'Defensoria de Justiça Desportiva',
-      //   pathname: '/institucional/defensoria-justica-desportiva',
-      // },
+      {
+        name: 'Suplentes',
+        pathname: '/institucional/suplentes',
+      },
       {
         name: 'Corregedoria do STJD',
         pathname: '/institucional/corregedoria-stjd',
