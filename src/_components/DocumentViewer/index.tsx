@@ -151,7 +151,7 @@ const DocumentViewer: React.FC<DocumentViewerProps> = ({
             {!error && (
               <div className="overflow-hidden rounded-lg border border-gray-200 bg-white p-2 shadow-sm sm:p-4">
                 <Document
-                  file={contentUrl}
+                  file={`/api/proxy-pdf?url=${contentUrl}`}
                   onLoadSuccess={onDocumentLoadSuccess}
                   onLoadError={onDocumentLoadError}
                   className="flex w-full justify-center"

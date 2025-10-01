@@ -78,7 +78,7 @@ const PDFViewer = ({ doc }: PDFViewerProps) => {
         style={{ border: '1px solid #ccc', display: 'inline-block' }}
       >
         <Document
-          file={doc.documento.url}
+          file={`/api/proxy-pdf?url=${doc.documento.url}`}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           {/* Mobile: width 320px */}

@@ -47,7 +47,10 @@ const PDFViewerScroll = ({ linkPdf }: PDFViewerProps) => {
           className="scroll-custom-editais mx-auto mt-[1rem] flex max-h-[56vh] w-full max-w-[20rem] justify-center overflow-y-scroll border border-gray-300 bg-white shadow-lg lg:max-w-[46rem] lg:p-2"
           onScroll={handleScroll}
         >
-          <Document file={linkPdf} onLoadSuccess={onDocumentLoadSuccess}>
+          <Document
+            file={`/api/proxy-pdf?url=${linkPdf}`}
+            onLoadSuccess={onDocumentLoadSuccess}
+          >
             {Array.from(new Array(numPages), (_, index) => (
               <div key={`page_${index + 1}`} className="mb-4">
                 {/* Mobile: width 320px */}
