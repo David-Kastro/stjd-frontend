@@ -12,7 +12,7 @@ async function Sumulas({
 }) {
   const filters = (await searchParams) as BasicFilters
 
-  const query = await getBasicQuery(filters, { categoria: 'Súmulas' })
+  const query = await getBasicQuery(filters)
 
   const [docs] = await fetchApi<Doc[]>({
     endpoint: 'summaries',

@@ -55,8 +55,6 @@ async function Processos({
     },
   })
 
-  console.log('processos', processos)
-
   return <ProcessosTemplate processos={processos} filters={filters} />
 }
 

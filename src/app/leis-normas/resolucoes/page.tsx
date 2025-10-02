@@ -24,7 +24,7 @@ async function Resolucoes({
       populate: ['documento'],
       filters: query,
       pagination: {
-        pageSize: 200,
+        pageSize: 42,
         page: 1,
       },
     },
