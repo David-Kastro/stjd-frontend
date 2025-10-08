@@ -17,6 +17,7 @@ const links: Record<string, string> = {
   jurisprudences: '/jurisprudencia/jurisprudencia-stjd',
   processes: '/processos/processos',
   resolutions: '/leis-normas/resolucoes',
+  decisions: '/jurisprudencia/acordaos-decisoes',
   'conteudo-stjds': '/conteudo/stjd',
   'conteudo-e-stjds': '/conteudo/e-stjd',
 }
@@ -57,12 +58,11 @@ type SearchResults = {
 
 // Atualizar o mock de dados para incluir a categoria galleries com imagens
 const fetchSearchResults = async (query: string) => {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 800))
-
   const search = await searchApi<SearchResults>({
     search: query,
   })
+
+  console.log(search)
 
   return search
 }
@@ -226,6 +226,7 @@ export default function FuzzySearch() {
       jurisprudences: 'Jurisprudências',
       processes: 'Processos',
       resolutions: 'Resoluções',
+      decisions: 'Decisões',
       'conteudo-stjds': 'Conteúdo STJDS',
       'conteudo-e-stjds': 'Conteúdo E-STJDS',
     }
