@@ -27,6 +27,10 @@ async function JurisprudenciaStj({
     ]
   }
 
+  if (filters.documentId) {
+    query.documentId = { $eq: filters.documentId }
+  }
+
   // Handle year filter
   if (filters.ano) {
     // Assuming ano is a field or we can filter by year part of a date

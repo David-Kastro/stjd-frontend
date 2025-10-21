@@ -122,10 +122,12 @@ export interface ProcessFilters {
 export interface JurisprudenciaFilters {
   pesquisa?: string
   ano?: string
+  documentId?: string
 }
 
 export interface Jurisprudencia {
   id: number
+  documentId: string
   orgao: string
   titulo: string
   subtitulo: string

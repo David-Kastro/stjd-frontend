@@ -11,7 +11,7 @@ import {
 import CardNews from '../CardNews'
 
 import LiveSessionCard from '../LiveSessionCard'
-import type { Article, Edital, Session } from '@/lib/types'
+import type { Article, Edital, Session, Jurisprudencia } from '@/lib/types'
 import CustomImage from '../CustomImage'
 import { dateTimeFormat } from '@/lib/utils'
 import JudgmentGuidelines from '../JudgmentGuidelines'
@@ -22,12 +22,12 @@ import Link from 'next/link'
 function LatestNews({
   articles,
   editais,
-  lastEditais,
+  lastJurisprudencia,
   nextSessions,
 }: {
   articles: Article[]
   editais: Edital[]
-  lastEditais: Edital[]
+  lastJurisprudencia: Jurisprudencia[]
   nextSessions: Session[]
 }) {
   const [api, setApi] = useState<CarouselApi>()
@@ -385,7 +385,7 @@ function LatestNews({
             releaseDate={currentSession?.data}
             editais={editais}
           />
-          <ListEditais editais={lastEditais} />
+          <ListEditais editais={lastJurisprudencia} />
         </div>
       </div>
     </div>
