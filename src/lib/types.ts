@@ -120,15 +120,6 @@ export interface ProcessFilters {
 // Add these types to your existing types.ts file
 
 export interface JurisprudenciaFilters {
-  acordao?: string
-  processo?: string
-  orgao?: string
-  classe?: string
-  relator?: string
-  revisor?: string
-  relatorDesignado?: string
-  dataJulgamento?: string
-  dataPublicacao?: string
   pesquisa?: string
   ano?: string
 }

@@ -14,58 +14,16 @@ async function JurisprudenciaStj({
   // Construct Strapi-compatible filters
   const query: Record<string, any> = {}
 
-  // Handle basic text filters with case-insensitive contains
-  if (filters.acordao) {
-    query.numero_acordao = { $containsi: filters.acordao }
-  }
-
-  if (filters.processo) {
-    query.numero_processo = { $containsi: filters.processo }
-  }
-
-  if (filters.orgao) {
-    query.orgao = { $eq: filters.orgao }
-  }
-
-  if (filters.classe) {
-    query.classe = { $eq: filters.classe }
-  }
-
-  // Handle related entities
-  if (filters.relator) {
-    query.relator = {
-      nome: { $containsi: filters.relator },
-    }
-  }
-
-  if (filters.revisor) {
-    query.revisor = {
-      nome: { $containsi: filters.revisor },
-    }
-  }
-
-  if (filters.relatorDesignado) {
-    query.relator_designado = {
-      nome: { $containsi: filters.relatorDesignado },
-    }
-  }
-
-  // Handle date filters
-  if (filters.dataJulgamento) {
-    query.data_julgamento = { $eq: filters.dataJulgamento }
-  }
-
-  if (filters.dataPublicacao) {
-    query.data_publicacao = { $eq: filters.dataPublicacao }
-  }
-
-  // Handle content search
+  // Handle single text search across all fields
   if (filters.pesquisa) {
-    // Search in multiple fields
     query.$or = [
       { titulo: { $containsi: filters.pesquisa } },
       { subtitulo: { $containsi: filters.pesquisa } },
       { numero_acordao: { $containsi: filters.pesquisa } },
+      { numero_processo: { $containsi: filters.pesquisa } },
+      { relator: { nome: { $containsi: filters.pesquisa } } },
+      { revisor: { nome: { $containsi: filters.pesquisa } } },
+      { relator_designado: { nome: { $containsi: filters.pesquisa } } },
     ]
   }
 
