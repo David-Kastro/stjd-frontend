@@ -93,10 +93,7 @@ function JurisprudenciaTemplate({ filters, jurisprudencias }: Props) {
                       name="pesquisa"
                       defaultValue={filters.pesquisa}
                     />
-                    <Select
-                      defaultValue={filters.ano || undefined}
-                      name="ano"
-                    >
+                    <Select defaultValue={filters.ano || undefined} name="ano">
                       <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
                         <SelectValue placeholder="Escolha o Ano" />
                       </SelectTrigger>

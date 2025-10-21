@@ -38,7 +38,8 @@ async function AcordoesDecisoes({
 
   // Handle year and month filters
   const filterYear = filters.ano && filters.ano !== 'todos' ? filters.ano : null
-  const filterMonth = filters.mes && filters.mes !== 'todos' ? filters.mes : null
+  const filterMonth =
+    filters.mes && filters.mes !== 'todos' ? filters.mes : null
 
   let start = filterYear ? `${filterYear}-01-01` : null
   let end = filterYear ? `${Number(filterYear) + 1}-01-01` : null

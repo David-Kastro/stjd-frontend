@@ -21,6 +21,7 @@ import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import { Doc } from '@/lib/types'
 import { Input } from '@/_components/ui/input'
+import { DocumentEmptyState } from '@/_components/empty-states/documents'
 
 type AcordoesFilters = {
   pesquisa?: string
@@ -28,7 +29,6 @@ type AcordoesFilters = {
   ano?: string
   mes?: string
 }
-import { DocumentEmptyState } from '@/_components/empty-states/documents'
 
 type Props = {
   filters: AcordoesFilters

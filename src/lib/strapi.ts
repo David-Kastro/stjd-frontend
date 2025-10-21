@@ -75,7 +75,7 @@ export async function searchApi<T>({
   search,
   filters,
 }: {
-  search: string,
+  search: string
   filters?: {
     contentType: string[]
   }
