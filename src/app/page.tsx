@@ -15,6 +15,11 @@ async function Home() {
     endpoint: 'articles',
     query: {
       sort: 'data_publicacao:desc',
+      filters: {
+        data_publicacao: {
+          $lte: new Date().toISOString(),
+        },
+      },
       populate: {
         imagem: {
           fields: ['name', 'url', 'width', 'height', 'size', 'mime'],

@@ -34,6 +34,9 @@ async function Noticias({
   const finalFilters = {
     ...query,
     tipo: 'Notícia',
+    data_publicacao: {
+      $lte: new Date().toISOString(),
+    },
   }
 
   console.log('🚀 filtros finais enviados para API:', finalFilters)

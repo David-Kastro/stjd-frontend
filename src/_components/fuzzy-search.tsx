@@ -62,8 +62,6 @@ const fetchSearchResults = async (query: string) => {
     search: query,
   })
 
-  console.log(search)
-
   return search
 }
 

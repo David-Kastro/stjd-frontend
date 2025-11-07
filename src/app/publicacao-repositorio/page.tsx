@@ -24,6 +24,9 @@ async function PublicaoRepositorio() {
       },
       filters: {
         tipo: 'Publicação',
+        data_publicacao: {
+          $lte: new Date().toISOString(),
+        },
       },
       pagination: {
         pageSize: 10,

@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import React from 'react'
 import ScaleAttorneys from '../ScaleAttorneys'
@@ -7,6 +8,7 @@ import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import CustomImage from '../CustomImage'
 import { Member } from '@/lib/types'
 import { PresidentePlaceholder } from '../TeamGrid'
+import DialogMemberBio from '../DialogMemberBio'
 
 export type AttorneysTeam = {
   id?: number
@@ -16,6 +18,14 @@ export type AttorneysTeam = {
 }
 
 function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
+  const [openDialog, setOpenDialog] = React.useState(false)
+  const [activeMember, setActiveMember] = React.useState<Member | null>(null)
+
+  const handleMemberClick = (member: Member) => {
+    setActiveMember(member)
+    setOpenDialog(true)
+  }
+
   return (
     <>
       <section>
@@ -31,7 +41,10 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                     Equipe
                   </h3>
                   <div className="flex h-full w-full flex-col items-center justify-center">
-                    <div className="mb-6 h-[165px] w-[167px] overflow-hidden rounded-[0.625rem]">
+                    <div
+                      className="mb-6 h-[165px] w-[167px] cursor-pointer overflow-hidden rounded-[0.625rem]"
+                      onClick={() => handleMemberClick(team.leader)}
+                    >
                       {team.leader?.avatar ? (
                         <CustomImage
                           src={team.leader.avatar?.url || ''}
@@ -51,10 +64,16 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                       )}
                     </div>
                     <div>
-                      <p className="text-base font-bold text-secondary">
+                      <p
+                        className="cursor-pointer text-base font-bold text-secondary"
+                        onClick={() => handleMemberClick(team.leader)}
+                      >
                         {team.leader.cargo}
                       </p>
-                      <h4 className="max-w-44 text-lg font-bold uppercase leading-[121%] text-[#3A3A3C]">
+                      <h4
+                        className="max-w-44 cursor-pointer text-lg font-bold uppercase leading-[121%] text-[#3A3A3C]"
+                        onClick={() => handleMemberClick(team.leader)}
+                      >
                         {team.leader.nome}
                       </h4>
                     </div>
@@ -64,7 +83,10 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                   <div className="mx-auto grid max-w-3xl grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-2 md:justify-items-center lg:grid-cols-3 lg:gap-x-16 lg:gap-y-4">
                     {team.equipes.map((member) => (
                       <div className="w-full" key={member.id}>
-                        <div className="mb-4 h-[140px] w-[140px] overflow-hidden rounded-[0.625rem] lg:mb-6 lg:h-[165px] lg:w-[165px]">
+                        <div
+                          className="mb-4 h-[140px] w-[140px] cursor-pointer overflow-hidden rounded-[0.625rem] lg:mb-6 lg:h-[165px] lg:w-[165px]"
+                          onClick={() => handleMemberClick(member)}
+                        >
                           {member?.avatar ? (
                             <CustomImage
                               src={member.avatar?.url || ''}
@@ -78,7 +100,10 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
                           )}
                         </div>
                         <div className="flex flex-col gap-1">
-                          <p className="max-w-48 text-base font-bold uppercase leading-[121%] text-[#3A3A3C]">
+                          <p
+                            className="max-w-48 cursor-pointer text-base font-bold uppercase leading-[121%] text-[#3A3A3C]"
+                            onClick={() => handleMemberClick(member)}
+                          >
                             {member.nome}
                           </p>
                         </div>
@@ -111,6 +136,11 @@ function TeamBoard({ teamsData }: { teamsData: AttorneysTeam[] }) {
           </div>
         </div>
       </section>
+      <DialogMemberBio
+        activeMember={activeMember}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+      />
     </>
   )
 }
