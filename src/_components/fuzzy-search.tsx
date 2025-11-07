@@ -151,7 +151,10 @@ export default function FuzzySearch() {
         className="cursor-pointer rounded-md p-2 hover:bg-muted"
       >
         <Link
-          href={links[category] + (item.slug ? `/${item.slug}` : `?documentId=${item.documentId}`)}
+          href={
+            links[category] +
+            (item.slug ? `/${item.slug}` : `?documentId=${item.documentId}`)
+          }
           className="flex flex-col gap-1"
         >
           <div className="font-medium">{item?.titulo || item?.headline}</div>
