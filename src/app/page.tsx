@@ -5,7 +5,7 @@ import React from 'react'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgScalle from '/public/images/bg-card-scale.svg'
 import fetchApi from '@/lib/strapi'
-import { Article, Edital, Session } from '@/lib/types'
+import { Article, Edital, Session, Jurisprudencia } from '@/lib/types'
 import { startOfMonth, endOfMonth, format, addDays } from 'date-fns'
 
 export const revalidate = 10
@@ -59,11 +59,21 @@ async function Home() {
     },
   })
 
-  const [lastEditais] = await fetchApi<Edital[]>({
-    endpoint: 'notices',
+  const [lastJurisprudencia] = await fetchApi<Jurisprudencia[]>({
+    endpoint: 'jurisprudences',
     query: {
-      sort: 'data:desc',
-      fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],
+      sort: 'data_julgamento:desc',
+      fields: [
+        'id',
+        'orgao',
+        'titulo',
+        'subtitulo',
+        'data_julgamento',
+        'data_publicacao',
+        'numero_acordao',
+        'numero_processo',
+      ],
+      populate: ['documento', 'relator', 'revisor', 'relator_designado'],
       pagination: {
         pageSize: 10,
         page: 1,
@@ -102,7 +112,7 @@ async function Home() {
         articles={articles}
         nextSessions={nextSessions}
         editais={editais}
-        lastEditais={lastEditais}
+        lastJurisprudencia={lastJurisprudencia}
       />
       <hr className="w-fulll hidden h-[0.125rem] bg-[#B0B0B0] lg:block" />
       <div className="lg:container">

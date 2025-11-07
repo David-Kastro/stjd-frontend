@@ -20,11 +20,18 @@ import Image from 'next/image'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgFundoMembers from '/public/images/bg-fundo-members.svg'
 import { Doc } from '@/lib/types'
-import { BasicFilters } from '@/_server-actions/get-basic-query'
+import { Input } from '@/_components/ui/input'
 import { DocumentEmptyState } from '@/_components/empty-states/documents'
 
+type AcordoesFilters = {
+  pesquisa?: string
+  categoria?: string
+  ano?: string
+  mes?: string
+}
+
 type Props = {
-  filters: BasicFilters
+  filters: AcordoesFilters
   docs: Doc[]
 }
 
@@ -75,6 +82,12 @@ function AcordoesDecisoesTemplate({ filters, docs }: Props) {
               action={`#pageFilters`}
               className="relative flex flex-wrap items-center gap-[0.69rem] px-[2.19rem] lg:flex-nowrap"
             >
+              <Input
+                placeholder="Pesquisar em título e subtítulo..."
+                className="h-[3.75rem] rounded-[0.8125rem] lg:w-[22.5625rem]"
+                name="pesquisa"
+                defaultValue={filters.pesquisa}
+              />
               <Select
                 defaultValue={filters.categoria || undefined}
                 name="categoria"
@@ -117,17 +130,6 @@ function AcordoesDecisoesTemplate({ filters, docs }: Props) {
                   <SelectItem value="10">Outubro</SelectItem>
                   <SelectItem value="11">Novembro</SelectItem>
                   <SelectItem value="12">Dezembro</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select defaultValue={filters.tipo || undefined} name="tipo">
-                <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
-                  <SelectValue placeholder="Tipo" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Comissão Disciplinar">
-                    Comissão Disciplinar
-                  </SelectItem>
-                  <SelectItem value="Tribunal Pleno">Tribunal Pleno</SelectItem>
                 </SelectContent>
               </Select>
               {hasFilters && (

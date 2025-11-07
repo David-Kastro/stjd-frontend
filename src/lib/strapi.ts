@@ -54,6 +54,8 @@ export default async function fetchApi<T>({
     })
     const data = await res.json()
 
+    console.log('[API LOG] Response: ', data)
+
     const meta = data.meta
     const items = data.data as T
 
@@ -71,12 +73,16 @@ export default async function fetchApi<T>({
 
 export async function searchApi<T>({
   search,
+  filters,
 }: {
   search: string
+  filters?: {
+    contentType: string[]
+  }
 }): Promise<T | null> {
   try {
     const url = new URL(
-      `https://app.stjd.com.br/api/fuzzy-search/search?query=${search}`,
+      `https://app.stjd.com.br/api/fuzzy-search/search?query=${search}${filters?.contentType ? `&filters[contentTypes]=${filters?.contentType.join(',')}` : ''}`,
     )
 
     const res = await fetch(url.toString(), {

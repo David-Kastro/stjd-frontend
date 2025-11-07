@@ -3,7 +3,7 @@
 import CardTopPage from '@/_components/CardTopPage'
 import { useEffect, useMemo, useState } from 'react'
 import Estatua from '/public/images/lupa-juris.png'
-import { Search, ChevronLeft, CalendarIcon, X } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import {
   Select,
   SelectContent,
@@ -18,12 +18,6 @@ import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import Image from 'next/image'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgScalle from '/public/images/bg-card-processo.svg'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/_components/ui/popover'
-import { Calendar } from '@/_components/ui/calendar'
 import type { Jurisprudencia, JurisprudenciaFilters } from '@/lib/types'
 import CardEdital from '@/_components/CardEdital'
 import { dateTimeFormat } from '@/lib/utils'
@@ -36,19 +30,8 @@ type Props = {
 }
 
 function JurisprudenciaTemplate({ filters, jurisprudencias }: Props) {
-  const [openAdvanced, setOpenAdvanced] = useState(false)
   const hasFilters = Object.values(filters).some((value) => !!value)
   const [isActive, setIsActive] = useState<number | null>(null)
-  const [date, setDate] = useState<Date | undefined>(
-    filters.dataJulgamento
-      ? new Date(filters.dataJulgamento as string)
-      : undefined,
-  )
-  const [publicationDate, setPublicationDate] = useState<Date | undefined>(
-    filters.dataPublicacao
-      ? new Date(filters.dataPublicacao as string)
-      : undefined,
-  )
 
   const selected = useMemo(() => {
     return jurisprudencias.find(
@@ -92,315 +75,55 @@ function JurisprudenciaTemplate({ filters, jurisprudencias }: Props) {
           <div id="pageFilters" className="container">
             <div className="mx-auto max-w-[100rem]">
               <div className="rounded-[1.375rem] bg-[#E1E1E1] pb-[1.5rem] pt-[1.44rem]">
-                {!openAdvanced ? (
-                  <>
-                    <div className="flex items-center justify-center gap-[0.56rem] px-[2.19rem] lg:justify-start">
-                      <Search />
-                      <h1 className="text-[1.25rem] font-bold">
-                        Consultar Jurisprudências
-                      </h1>
-                    </div>
-                    <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
-                    <form
-                      action={`/jurisprudencia/jurisprudencia-stjd#pageFilters`}
-                      className="flex w-full flex-col gap-[0.56rem] px-[2.19rem]"
-                    >
-                      <div className="mt-[0.5rem] flex flex-wrap items-end gap-[0.56rem]">
-                        <Select
-                          defaultValue={filters.pesquisa || undefined}
-                          name="pesquisa"
-                        >
-                          <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[22.5625rem]">
-                            <SelectValue placeholder="Pesquise aqui" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="acordao">Acordão</SelectItem>
-                            <SelectItem value="ementa">Ementa</SelectItem>
-                            <SelectItem value="conteudo">Conteúdo</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <Select
-                          defaultValue={filters.ano || undefined}
-                          name="ano"
-                        >
-                          <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
-                            <SelectValue placeholder="Escolha o Ano" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="2020">2020</SelectItem>
-                            <SelectItem value="2021">2021</SelectItem>
-                            <SelectItem value="2022">2022</SelectItem>
-                            <SelectItem value="2023">2023</SelectItem>
-                            <SelectItem value="2024">2024</SelectItem>
-                            <SelectItem value="2025">2025</SelectItem>
-                          </SelectContent>
-                        </Select>
-
-                        <Button
-                          type="button"
-                          onClick={() => setOpenAdvanced(true)}
-                          className="ml-[1.75rem] h-[3.75rem] w-[15.375rem] bg-transparent text-[1.25rem] font-bold text-[#BD995D] hover:bg-transparent"
-                        >
-                          Pesquisa avançada
-                        </Button>
-                        {hasFilters && (
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            onClick={handleResetFilters}
-                          >
-                            <X />
-                            Limpar Filtros
-                          </Button>
-                        )}
-                        <Button
-                          type="submit"
-                          className="h-[3.75rem] w-full rounded-[4.625rem] text-[1.25rem] lg:ml-auto lg:w-[15.375rem]"
-                        >
-                          Pesquisar
-                        </Button>
-                      </div>
-                    </form>
-                  </>
-                ) : (
-                  <>
-                    <div className="flex items-center gap-[0.56rem] px-[2.19rem]">
+                <div className="flex items-center justify-center gap-[0.56rem] px-[2.19rem] lg:justify-start">
+                  <Search />
+                  <h1 className="text-[1.25rem] font-bold">
+                    Consultar Jurisprudências
+                  </h1>
+                </div>
+                <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
+                <form
+                  action={`/jurisprudencia/jurisprudencia-stjd#pageFilters`}
+                  className="flex w-full flex-col gap-[0.56rem] px-[2.19rem]"
+                >
+                  <div className="mt-[0.5rem] flex flex-wrap items-end gap-[0.56rem]">
+                    <Input
+                      placeholder="Pesquisar em todos os campos..."
+                      className="h-[3.75rem] w-full rounded-[0.8125rem] lg:w-[22.5625rem]"
+                      name="pesquisa"
+                      defaultValue={filters.pesquisa}
+                    />
+                    <Select defaultValue={filters.ano || undefined} name="ano">
+                      <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14.5625rem]">
+                        <SelectValue placeholder="Escolha o Ano" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="2020">2020</SelectItem>
+                        <SelectItem value="2021">2021</SelectItem>
+                        <SelectItem value="2022">2022</SelectItem>
+                        <SelectItem value="2023">2023</SelectItem>
+                        <SelectItem value="2024">2024</SelectItem>
+                        <SelectItem value="2025">2025</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {hasFilters && (
                       <Button
-                        className="bg-transparent p-0 hover:bg-transparent"
-                        onClick={() => setOpenAdvanced(false)}
+                        type="button"
+                        variant="ghost"
+                        onClick={handleResetFilters}
                       >
-                        <ChevronLeft className="text-black" />
+                        <X />
+                        Limpar Filtros
                       </Button>
-                      <h1 className="text-[1.13263rem] font-bold lg:text-[1.25rem]">
-                        Consultar Jurisprudências
-                      </h1>
-                    </div>
-                    <hr className="my-[1.5rem] h-[0.125rem] bg-[#C2C2C2]" />
-                    <form
-                      action={`/jurisprudencia/jurisprudencia-stjd#pageFilters`}
-                      className="px-[2.19rem]"
+                    )}
+                    <Button
+                      type="submit"
+                      className="h-[3.75rem] w-full rounded-[4.625rem] text-[1.25rem] lg:ml-auto lg:w-[15.375rem]"
                     >
-                      <h2 className="mb-[1.79rem] text-[1.25rem] font-bold text-secondary lg:text-[1.67094rem]">
-                        Pesquisa avançada
-                      </h2>
-                      <div className="mt-[0.5rem] flex flex-wrap items-end gap-[1.5rem]">
-                        <div className="w-full max-w-[23.375rem]">
-                          <Input
-                            placeholder="Número do acordão"
-                            className="h-[3.75rem] w-full rounded-[0.8125rem]"
-                            name="acordao"
-                            defaultValue={filters.acordao}
-                          />
-                        </div>
-                        <div className="w-full max-w-[22.25rem]">
-                          <Input
-                            placeholder="Número do processo"
-                            className="h-[3.75rem] w-full rounded-[0.8125rem]"
-                            name="processo"
-                            defaultValue={filters.processo}
-                          />
-                        </div>
-                        <Select
-                          defaultValue={filters.orgao || undefined}
-                          name="orgao"
-                        >
-                          <SelectTrigger className="h-[3.75rem] w-[22.5625rem] rounded-[0.8125rem]">
-                            <SelectValue placeholder="Órgão" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Tribunal Pleno">
-                              Tribunal Pleno
-                            </SelectItem>
-                            <SelectItem value="Comissão Disciplinar">
-                              Comissão Disciplinar
-                            </SelectItem>
-                            <SelectItem value="Procuradoria">
-                              Procuradoria
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <Select
-                          defaultValue={filters.pesquisa || undefined}
-                          name="pesquisa"
-                        >
-                          <SelectTrigger className="h-[3.75rem] w-[22.5625rem] rounded-[0.8125rem]">
-                            <SelectValue placeholder="Pesquise aqui" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="acordao">Acordão</SelectItem>
-                            <SelectItem value="ementa">Ementa</SelectItem>
-                            <SelectItem value="conteudo">Conteúdo</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <Select
-                          defaultValue={filters.classe || undefined}
-                          name="classe"
-                        >
-                          <SelectTrigger className="h-[3.75rem] w-[23.0625rem] rounded-[0.8125rem]">
-                            <SelectValue placeholder="Classe" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Recurso">Recurso</SelectItem>
-                            <SelectItem value="Denúncia">Denúncia</SelectItem>
-                            <SelectItem value="Mandado de Garantia">
-                              Mandado de Garantia
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="mt-[1.5rem] flex flex-wrap items-end gap-[1.5rem]">
-                        <Select
-                          defaultValue={filters.relator || undefined}
-                          name="relator"
-                        >
-                          <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14rem]">
-                            <SelectValue placeholder="Relator (a)" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {/* This would ideally be populated from an API call */}
-                            <SelectItem value="Relator 1">Relator 1</SelectItem>
-                            <SelectItem value="Relator 2">Relator 2</SelectItem>
-                            <SelectItem value="Relator 3">Relator 3</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <Select
-                          defaultValue={filters.revisor || undefined}
-                          name="revisor"
-                        >
-                          <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[14rem]">
-                            <SelectValue placeholder="Revisor (a)" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Revisor 1">Revisor 1</SelectItem>
-                            <SelectItem value="Revisor 2">Revisor 2</SelectItem>
-                            <SelectItem value="Revisor 3">Revisor 3</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <Select
-                          defaultValue={filters.relatorDesignado || undefined}
-                          name="relatorDesignado"
-                        >
-                          <SelectTrigger className="h-[3.75rem] rounded-[0.8125rem] lg:w-[16.6875rem]">
-                            <SelectValue placeholder="Relator (a) Designado (a)" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Relator Designado 1">
-                              Relator Designado 1
-                            </SelectItem>
-                            <SelectItem value="Relator Designado 2">
-                              Relator Designado 2
-                            </SelectItem>
-                            <SelectItem value="Relator Designado 3">
-                              Relator Designado 3
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <div className="w-full max-w-[22.5625rem]">
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant={'outline'}
-                                className="h-[3.75rem] w-full rounded-[0.8125rem]"
-                              >
-                                {date
-                                  ? dateTimeFormat(date.toISOString(), false)
-                                  : 'Data de Julgamento'}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent
-                              className="w-auto p-0"
-                              align="start"
-                            >
-                              <Calendar
-                                mode="single"
-                                selected={date}
-                                onSelect={(date) => {
-                                  setDate(date)
-                                  if (date) {
-                                    const input =
-                                      document.createElement('input')
-                                    input.type = 'hidden'
-                                    input.name = 'dataJulgamento'
-                                    input.value = date.toISOString()
-                                    document.forms[0].appendChild(input)
-                                  }
-                                }}
-                                disabled={(date) =>
-                                  date > new Date() ||
-                                  date < new Date('1900-01-01')
-                                }
-                                initialFocus
-                              />
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                        <div className="w-full max-w-[22.5625rem]">
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant={'outline'}
-                                className="h-[3.75rem] w-full rounded-[0.8125rem]"
-                              >
-                                {publicationDate
-                                  ? dateTimeFormat(
-                                      publicationDate.toISOString(),
-                                      false,
-                                    )
-                                  : 'Data de Publicação'}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent
-                              className="w-auto p-0"
-                              align="start"
-                            >
-                              <Calendar
-                                mode="single"
-                                selected={publicationDate}
-                                onSelect={(date) => {
-                                  setPublicationDate(date)
-                                  if (date) {
-                                    const input =
-                                      document.createElement('input')
-                                    input.type = 'hidden'
-                                    input.name = 'dataPublicacao'
-                                    input.value = date.toISOString()
-                                    document.forms[0].appendChild(input)
-                                  }
-                                }}
-                                disabled={(date) =>
-                                  date > new Date() ||
-                                  date < new Date('1900-01-01')
-                                }
-                                initialFocus
-                              />
-                            </PopoverContent>
-                          </Popover>
-                        </div>
-                      </div>
-                      <div className="mt-[1.85rem] flex justify-end lg:mt-[4.19rem]">
-                        {hasFilters && (
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            onClick={handleResetFilters}
-                            className="mr-4"
-                          >
-                            <X />
-                            Limpar Filtros
-                          </Button>
-                        )}
-                        <Button
-                          type="submit"
-                          className="h-[3.75rem] w-full rounded-[4.625rem] text-[1.25rem] lg:w-[15.375rem]"
-                        >
-                          Pesquisar
-                        </Button>
-                      </div>
-                    </form>
-                  </>
-                )}
+                      Pesquisar
+                    </Button>
+                  </div>
+                </form>
               </div>
               {jurisprudencias.length === 0 ? (
                 <DocumentEmptyState />
