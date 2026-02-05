@@ -29,6 +29,7 @@ const presidentes: Presidente[] = [
     nome: 'MOACYR FERREIRA DA SILVA',
     periodoInicio: 1969,
     periodoFim: 1978,
+    foto: '/images/moacyr-ferreira.png',
   },
   { id: 6, nome: 'ROBERTO MACHADO DE BUSTAMANTE', periodoInicio: 1979 },
   {
@@ -43,7 +44,12 @@ const presidentes: Presidente[] = [
     periodoInicio: 1981,
     periodoFim: 1983,
   },
-  { id: 9, nome: 'MOACYR FERREIRA DA SILVA', periodoInicio: 1984 },
+  {
+    id: 9,
+    nome: 'MOACYR FERREIRA DA SILVA',
+    periodoInicio: 1984,
+    foto: '/images/moacyr-ferreira.png',
+  },
   {
     id: 10,
     nome: 'CARLOS HENRIQUE DE CARVALHO SARAIVA',
@@ -62,9 +68,16 @@ const presidentes: Presidente[] = [
     nome: 'MOACYR FERREIRA DA SILVA',
     periodoInicio: 1990,
     periodoFim: 1994,
+    foto: '/images/moacyr-ferreira.png',
   },
   { id: 15, nome: 'LUIZ ZVEITER', periodoInicio: 1995, periodoFim: 2005 },
-  { id: 16, nome: 'RUBENS APPROBATO', periodoInicio: 2005, periodoFim: 2012 },
+  {
+    id: 16,
+    nome: 'RUBENS APPROBATO',
+    periodoInicio: 2005,
+    periodoFim: 2012,
+    foto: '/images/rubens-approbato.png',
+  },
   {
     id: 17,
     nome: 'FLAVIO ZVEITER',
