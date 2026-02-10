@@ -63,7 +63,7 @@ function ScaleAttorneys({
           draggable={false}
         />
       </div>
-      <Link href={href} className="">
+      <Link href={href} className="relative z-10">
         <Button className="mt-[0.86rem] h-[2.81019rem] w-full max-w-[15.375rem] rounded-[4.625rem] bg-[#000100] px-[3.12rem] py-[0.7rem] font-bold text-[#FFFFFF] lg:mt-0 lg:h-[3.75rem] lg:py-[0.94rem]">
           <p className="text-[0.93675rem] leading-[0.92756rem] lg:text-[1.25rem] lg:leading-normal">
             {textbtn}
