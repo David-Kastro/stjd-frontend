@@ -45,7 +45,6 @@ export default async function fetchApi<T>({
 
     const queryString = qs.stringify(query)
     const url = new URL(`${process.env.API_URL}/${endpoint}?${queryString}`)
-    console.log('[API LOG] URL: ', url.toString())
 
     const res = await fetch(url.toString(), {
       next: {
@@ -54,10 +53,10 @@ export default async function fetchApi<T>({
     })
     const data = await res.json()
 
-    console.log('[API LOG] Response: ', data)
-
     const meta = data.meta
     const items = data.data as T
+
+    console.log(data.error)
 
     if (data.error) {
       throw new Error(JSON.stringify(data.error))

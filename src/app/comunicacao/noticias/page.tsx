@@ -19,17 +19,12 @@ async function Noticias({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const searchParamsResolved = await searchParams
-  console.log('🔍 searchParams recebidos:', searchParamsResolved)
 
   const filters = {
     ...searchParamsResolved,
   } as BasicFilters
 
-  console.log('🎯 filters processados:', filters)
-
   const query = await getBasicQuery(filters)
-
-  console.log('⚙️ query do getBasicQuery:', query)
 
   const finalFilters = {
     ...query,
@@ -38,8 +33,6 @@ async function Noticias({
       $lte: new Date().toISOString(),
     },
   }
-
-  console.log('🚀 filtros finais enviados para API:', finalFilters)
 
   const [newsData] = await fetchApi<News[]>({
     endpoint: 'articles',
@@ -57,8 +50,6 @@ async function Noticias({
       },
     },
   })
-
-  console.log('📊 dados retornados:', newsData)
 
   return <NoticiasTemplate filters={filters} newsData={newsData} />
 }

@@ -212,6 +212,42 @@ body {
   @apply font-semibold;
 }
 
+.marked ul {
+  @apply list-disc pl-6;
+}
+
+.marked ol {
+  @apply list-decimal pl-6;
+}
+
+.marked li {
+  @apply pb-2;
+}
+
+.marked blockquote {
+  @apply border-l-4 border-secondary pl-4 italic text-[#444] pb-0 mb-4;
+}
+
+.marked blockquote p {
+  @apply pb-0;
+}
+
+.marked hr {
+  @apply my-4 h-[2px] border-0 bg-border;
+}
+
+.marked code {
+  @apply rounded bg-[#f0f0f0] px-1 py-0.5 text-sm;
+}
+
+.marked pre {
+  @apply rounded bg-[#f0f0f0] p-4;
+}
+
+.marked pre code {
+  @apply bg-transparent p-0;
+}
+
 
 .card-painel {
   filter: drop-shadow(2.903px 2.903px 2.903px rgba(0, 0, 0, 0.10));

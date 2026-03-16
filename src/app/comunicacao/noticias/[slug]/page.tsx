@@ -1,5 +1,5 @@
 import fetchApi from '@/lib/strapi'
-import { Edital, News } from '@/lib/types'
+import { News } from '@/lib/types'
 import React from 'react'
 import Article from '@/_components/Article'
 import { BasicFilters, getBasicQuery } from '@/_server-actions/get-basic-query'
@@ -78,8 +78,6 @@ async function Noticia({ params, searchParams }: Props) {
     tipo: 'Notícia',
   }
 
-  console.log('🚀 filtros finais enviados para API:', finalFilters)
-
   const [newsData] = await fetchApi<News[]>({
     endpoint: 'articles',
     query: {
@@ -97,26 +95,11 @@ async function Noticia({ params, searchParams }: Props) {
     },
   })
 
-  const [editais] = await fetchApi<Edital[]>({
-    endpoint: 'notices',
-    query: {
-      sort: 'data:desc',
-      fields: ['id', 'titulo', 'subtitulo', 'tipo'],
-      filters: {
-        categoria: 'Editais',
-      },
-      pagination: {
-        pageSize: 10,
-        page: 1,
-      },
-    },
-  })
-
   return (
     <Article
       filters={filters}
       articleData={data}
-      editais={editais}
+      editais={[]}
       readMoreData={newsData}
     />
   )

@@ -5,8 +5,6 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
     const pdfUrl = searchParams.get('url')
 
-    console.log('pdfUrl', pdfUrl)
-
     if (!pdfUrl) {
       return NextResponse.json(
         { error: 'URL parameter is required' },

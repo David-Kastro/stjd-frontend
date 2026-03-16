@@ -58,7 +58,6 @@ async function Correge() {
     return Object.keys(orgaoCodes)
       .map((key) => {
         const group = members.filter((member) => member.orgao.startsWith(key))
-        console.log('group', group)
         if (!group.length) {
           return null
         }

@@ -67,8 +67,6 @@ export async function NoticiasTemplate({
     },
   })
 
-  console.log('filters', filters)
-
   return (
     <main className="mt-8 lg:mt-24">
       <section className="container flex flex-col gap-8 border-l border-border px-4 lg:px-16">

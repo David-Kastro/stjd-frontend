@@ -46,8 +46,6 @@ function PublicationsCarousel({
     return result
   }, [articles])
 
-  console.log('first groupedArticles', groupedArticles)
-
   const handlePrevious = () => {
     api?.scrollPrev()
   }
