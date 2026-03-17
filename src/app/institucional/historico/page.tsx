@@ -40,7 +40,6 @@ const presidentes: Presidente[] = [
     nome: 'MAX GOMES DE PAIVA',
     periodoInicio: 1955,
     periodoFim: 1969,
-    foto: '/images/luiz-zveiter.jpg',
   },
   {
     id: 5,
@@ -88,7 +87,13 @@ const presidentes: Presidente[] = [
     periodoFim: 1994,
     foto: '/images/moacyr-ferreira.png',
   },
-  { id: 15, nome: 'LUIZ ZVEITER', periodoInicio: 1995, periodoFim: 2005 },
+  {
+    id: 15,
+    nome: 'LUIZ ZVEITER',
+    periodoInicio: 1995,
+    periodoFim: 2005,
+    foto: '/images/luiz-zveiter.jpg',
+  },
   {
     id: 16,
     nome: 'RUBENS APPROBATO',
