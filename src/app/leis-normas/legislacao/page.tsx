@@ -23,10 +23,10 @@ async function Legislacao({
       fields: ['id', 'titulo', 'subtitulo'],
       populate: ['documento'],
       filters: query,
-      pagination: {
-        pageSize: 10,
-        page: 1,
-      },
+      // pagination: {
+      //   pageSize: 10,
+      //   page: 1,
+      // },
     },
   })
 
