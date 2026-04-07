@@ -93,6 +93,7 @@ function Legislacao({ filters, docs }: Props) {
                 <SelectItem value="2023">2023</SelectItem>
                 <SelectItem value="2024">2024</SelectItem>
                 <SelectItem value="2025">2025</SelectItem>
+                <SelectItem value="2026">2026</SelectItem>
               </SelectContent>
             </Select>
             {hasFilters && (
@@ -112,9 +113,9 @@ function Legislacao({ filters, docs }: Props) {
         </div>
       </div>
       <div className="container">
-        <div className="relative z-10 mt-[2.69rem] lg:mt-[10rem]">
+        <div className="relative z-10 mt-[2.69rem] lg:mt-[6rem]">
           <div className="absolute right-0 z-0 hidden h-full w-[2px] bg-[#BFBFBF] lg:block"></div>
-          <div className="scroll-custom-editais relative mx-auto -mr-[5px] flex h-[32rem] flex-wrap justify-center gap-x-[2rem] gap-y-[2rem] overflow-y-auto pb-14 lg:h-[28rem] lg:gap-x-[3.93rem] lg:gap-y-[2.56rem]">
+          <div className="scroll-custom-editais relative mx-auto -mr-[5px] flex h-[36rem] flex-wrap justify-center gap-x-[2rem] gap-y-[2rem] overflow-y-auto pb-14 lg:h-[36rem] lg:gap-x-[3.93rem] lg:gap-y-[2.56rem] py-4">
             {docs.map((doc, index) => (
               <button
                 className="w-[9rem] lg:w-auto"
@@ -157,7 +158,7 @@ function Legislacao({ filters, docs }: Props) {
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent className="max-w-[23rem] bg-[#E1E1E1] lg:max-h-[90vh] lg:max-w-[60rem] lg:py-[3.19rem]">
           <DialogHeader className="flex flex-col items-center gap-[1.37rem] lg:flex-row">
-            <DialogTitle className="whitespace-nowrap text-[#2E2E2E] lg:text-[1.64356rem]">
+            <DialogTitle className="break-words max-w-[32rem] text-[#2E2E2E] lg:text-[1.64356rem] lg:leading-[2rem]">
               {selectedDoc?.titulo}
             </DialogTitle>
             <div className="relative w-full">

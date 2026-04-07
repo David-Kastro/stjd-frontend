@@ -86,6 +86,7 @@ function SumulasTemplate({ filters, docs }: Props) {
                   <SelectItem value="2023">2023</SelectItem>
                   <SelectItem value="2024">2024</SelectItem>
                   <SelectItem value="2025">2025</SelectItem>
+                  <SelectItem value="2026">2026</SelectItem>
                 </SelectContent>
               </Select>
               <Select defaultValue={filters.mes} name="mes">
