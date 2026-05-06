@@ -23,13 +23,16 @@ import { Edital } from '@/lib/types'
 import { DocumentEmptyState } from '@/_components/empty-states/documents'
 import { BasicFilters } from '@/_server-actions/get-basic-query'
 import { dateTimeFormat } from '@/lib/utils'
+import Pagination from '@/_components/Pagination'
 
 type Props = {
   filters: BasicFilters
   editais: Edital[]
+  currentPage: number
+  pageCount: number
 }
 
-function EditaisTemplate({ filters, editais }: Props) {
+function EditaisTemplate({ filters, editais, currentPage, pageCount }: Props) {
   const [editalActive, setEditalActive] = useState<string | null>(null)
 
   const [categoria, setCategoria] = useState('editais')
@@ -187,6 +190,13 @@ function EditaisTemplate({ filters, editais }: Props) {
                 {selectedEdital && <PDFViewer doc={selectedEdital} />}
               </div>
             </div>
+          )}
+          {editais.length > 0 && (
+            <Pagination
+              currentPage={currentPage}
+              pageCount={pageCount}
+              hash="pageFilters"
+            />
           )}
         </div>
       </div>

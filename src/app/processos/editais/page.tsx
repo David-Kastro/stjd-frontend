@@ -12,18 +12,24 @@ export const metadata: Metadata = {
   keywords: ['stjd', 'editais stjd', 'edital stjd'],
 }
 
+const PAGE_SIZE = 10
+
 async function Editais({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const filters = {
-    ...(await searchParams),
-  } as BasicFilters
+  const resolvedSearchParams = await searchParams
+  const filters = resolvedSearchParams as BasicFilters
 
   const query = await getBasicQuery(filters)
 
-  const [editais] = await fetchApi<Edital[]>({
+  const paginaParam = Array.isArray(resolvedSearchParams.pagina)
+    ? resolvedSearchParams.pagina[0]
+    : resolvedSearchParams.pagina
+  const currentPage = Math.max(1, Number(paginaParam) || 1)
+
+  const [editais, meta] = await fetchApi<Edital[]>({
     endpoint: 'notices',
     query: {
       sort: 'data:desc',
@@ -31,13 +37,22 @@ async function Editais({
       populate: ['documento'],
       filters: query,
       pagination: {
-        pageSize: 10,
-        page: 1,
+        pageSize: PAGE_SIZE,
+        page: currentPage,
       },
     },
   })
 
-  return <EditaisTemplate filters={filters} editais={editais} />
+  const pageCount = meta?.pagination?.pageCount ?? 1
+
+  return (
+    <EditaisTemplate
+      filters={filters}
+      editais={editais}
+      currentPage={currentPage}
+      pageCount={pageCount}
+    />
+  )
 }
 
 export default Editais
