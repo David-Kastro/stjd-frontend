@@ -32,6 +32,19 @@ export type Member = {
   updatedAt: string
 }
 
+export type Presidente = {
+  id: number
+  documentId: string
+  nome: string
+  periodoInicio: number
+  periodoFim?: number
+  foto?: Image
+  ordem?: number
+  publishedAt: string
+  createdAt: string
+  updatedAt: string
+}
+
 export interface Article {
   id: number
   documentId: string
