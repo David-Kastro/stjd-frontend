@@ -156,13 +156,13 @@ function Legislacao({ filters, docs }: Props) {
         </div>
       </div>
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="max-w-[23rem] bg-[#E1E1E1] lg:max-h-[90vh] lg:max-w-[60rem] lg:py-[3.19rem]">
-          <DialogHeader className="flex flex-col items-center gap-[1.37rem] lg:flex-row">
-            <DialogTitle className="max-w-[32rem] break-words text-[#2E2E2E] lg:text-[1.64356rem] lg:leading-[2rem]">
+        <DialogContent className="flex max-h-[92vh] max-w-[23rem] flex-col gap-3 overflow-hidden bg-[#E1E1E1] px-4 py-5 lg:max-h-[94vh] lg:max-w-[60rem] lg:px-8 lg:py-[1.5rem]">
+          <DialogHeader className="flex shrink-0 flex-col items-center gap-[1.37rem] lg:flex-row lg:gap-4">
+            <DialogTitle className="max-w-[32rem] break-words text-[#2E2E2E] lg:text-[1.375rem] lg:leading-[1.75rem]">
               {selectedDoc?.titulo}
             </DialogTitle>
             <div className="relative w-full">
-              <p className="absolute -top-2 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E] lg:-top-5">
+              <p className="absolute -top-2 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E] lg:-top-4">
                 Prévia do documento
               </p>
               <hr className="mt-5 w-full border border-[#BD995D] bg-[#BD995D] lg:mt-0" />

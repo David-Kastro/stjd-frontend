@@ -35,10 +35,17 @@ async function Pleno() {
     },
   })
 
+  // Membros sem `prioridade` definida vão para o fim da lista
+  const byPrioridade = (a: Member, b: Member) =>
+    (a.prioridade ?? Number.MAX_SAFE_INTEGER) -
+    (b.prioridade ?? Number.MAX_SAFE_INTEGER)
+
   const membersGrouped = () => {
     return Object.keys(orgaoCodes)
       .map((key) => {
-        const group = members.filter((member) => member.orgao.startsWith(key))
+        const group = members
+          .filter((member) => member.orgao.startsWith(key))
+          .sort(byPrioridade)
 
         if (!group.length) {
           return null

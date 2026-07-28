@@ -64,6 +64,27 @@ function Resolucoes({ filters, docs }: Props) {
     return docs.find((doc) => doc.id === docActive)
   }, [docActive, docs])
 
+  // O ano vem do número da resolução (ex.: "002/2023"), com fallback para a data
+  const selectedDocYear = useMemo(() => {
+    if (!selectedDoc) {
+      return null
+    }
+
+    const yearFromNumero = selectedDoc.numero_resolucao?.split('/')[1]?.trim()
+
+    if (yearFromNumero && /^\d{4}$/.test(yearFromNumero)) {
+      return yearFromNumero
+    }
+
+    if (!selectedDoc.data) {
+      return null
+    }
+
+    const year = new Date(selectedDoc.data).getFullYear()
+
+    return Number.isNaN(year) ? null : String(year)
+  }, [selectedDoc])
+
   useEffect(() => {
     if (!api) {
       return
@@ -203,7 +224,7 @@ function Resolucoes({ filters, docs }: Props) {
                         >
                           <CardLegislacao
                             title={doc.titulo}
-                            number={(doc as any).numero_resolucao as string}
+                            number={doc.numero_resolucao}
                             subtitle={doc.subtitulo}
                           />
                         </button>
@@ -303,13 +324,16 @@ function Resolucoes({ filters, docs }: Props) {
         </div>
       </div>
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="max-w-[23rem] bg-[#E1E1E1] lg:max-h-[90vh] lg:max-w-[60rem] lg:py-[3.19rem]">
-          <DialogHeader className="flex flex-col items-center gap-[1.37rem] lg:flex-row">
-            <DialogTitle className="w-full max-w-[23.75rem] text-[#2E2E2E] lg:text-[1.64356rem]">
-              {selectedDoc?.titulo} <span className="font-light">2024</span>{' '}
+        <DialogContent className="flex max-h-[92vh] max-w-[23rem] flex-col gap-3 overflow-hidden bg-[#E1E1E1] px-4 py-5 lg:max-h-[94vh] lg:max-w-[60rem] lg:px-8 lg:py-[1.5rem]">
+          <DialogHeader className="flex shrink-0 flex-col items-center gap-[1.37rem] lg:flex-row lg:gap-4">
+            <DialogTitle className="w-full max-w-[23.75rem] text-[#2E2E2E] lg:text-[1.375rem]">
+              {selectedDoc?.titulo}{' '}
+              {selectedDocYear && (
+                <span className="font-light">{selectedDocYear}</span>
+              )}
             </DialogTitle>
             <div className="relative w-full">
-              <p className="absolute -top-2 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E] lg:-top-5">
+              <p className="absolute -top-2 right-0 text-end text-[0.79181rem] font-light text-[#2E2E2E] lg:-top-4">
                 Prévia do documento
               </p>
               <hr className="mt-5 w-full border border-[#BD995D] bg-[#BD995D] lg:mt-0" />

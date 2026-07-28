@@ -27,6 +27,7 @@ export type Member = {
   associacao: string
   cargo: string
   bio: string
+  prioridade?: number | null
   avatar?: Image
   createdAt: string
   updatedAt: string
@@ -87,6 +88,7 @@ export interface Doc {
   tipo: string
   data: string
   categoria: string
+  numero_resolucao?: string
   documento: File
   createdAt: string
   updatedAt: string

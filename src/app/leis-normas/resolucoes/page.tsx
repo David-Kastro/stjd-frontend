@@ -20,7 +20,7 @@ async function Resolucoes({
     endpoint: 'resolutions',
     query: {
       sort: 'data:desc',
-      fields: ['id', 'titulo', 'subtitulo', 'numero_resolucao'],
+      fields: ['id', 'titulo', 'subtitulo', 'numero_resolucao', 'data'],
       populate: ['documento'],
       filters: query,
       pagination: {
