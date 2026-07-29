@@ -24,7 +24,7 @@ async function Procuradores() {
     },
   })
 
-  const attorneyLeader = members[0]
+  const attorneyLeader = members?.[0]
 
   const [teams] = await fetchApi<AttorneysTeam[]>({
     endpoint: 'teams',
@@ -70,7 +70,12 @@ async function Procuradores() {
         </h1>
         <div className="mt-8 lg:mt-24">
           <TeamGrid
-            teamsData={[{ title: 'Procuradoria', members: [attorneyLeader] }]}
+            teamsData={[
+              {
+                title: 'Procuradoria',
+                members: attorneyLeader ? [attorneyLeader] : [],
+              },
+            ]}
             hideDividers
           />
           <TeamBoard teamsData={teams} />
