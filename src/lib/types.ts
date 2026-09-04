@@ -37,8 +37,8 @@ export type Contato = {
   id: number
   numero: string
   tipo: string
-  nome_responsavel: string
-  email_responsavel: string
+  nome_responsavel?: string | null
+  email_responsavel?: string | null
 }
 
 export type Global = {

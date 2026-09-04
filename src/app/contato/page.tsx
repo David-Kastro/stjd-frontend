@@ -26,6 +26,11 @@ const contatoType = (tipo: string): ContatoCardType => {
 
 const contatoTitle = (tipo: string) => tipo.replace(/^[A-Z]+\s*-\s*/, '')
 
+const contatoSubtitle = (contato: ContatoType) =>
+  [contato.nome_responsavel, contato.email_responsavel]
+    .filter(Boolean)
+    .join(' - ') || undefined
+
 async function Contato() {
   const [global] = await fetchApi<Global | null>({
     endpoint: 'global',
@@ -87,7 +92,7 @@ async function Contato() {
                       key={contato.id}
                       number={contato.numero}
                       title={contatoTitle(contato.tipo)}
-                      subtitle={`${contato.nome_responsavel} - ${contato.email_responsavel}`}
+                      subtitle={contatoSubtitle(contato)}
                       type={contatoType(contato.tipo)}
                     />
                   ))}
