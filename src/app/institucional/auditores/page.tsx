@@ -53,14 +53,19 @@ async function Auditores() {
             return acc
           }, [])
 
-          const subgroups = subgroupNames.map((subgroupName) => {
-            return {
-              title: subgroupName,
-              members: group.filter((member) =>
-                member.orgao.includes(subgroupName),
-              ),
-            }
-          })
+          const subgroupOrder = (name: string) =>
+            Number(name.match(/^(\d+)/)?.[1] ?? Number.MAX_SAFE_INTEGER)
+
+          const subgroups = subgroupNames
+            .sort((a, b) => subgroupOrder(a) - subgroupOrder(b))
+            .map((subgroupName) => {
+              return {
+                title: subgroupName,
+                members: group.filter((member) =>
+                  member.orgao.includes(subgroupName),
+                ),
+              }
+            })
 
           return {
             title: orgaoCodes[key],
