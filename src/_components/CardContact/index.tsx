@@ -1,8 +1,10 @@
 import { GraduationCap, Home, User, MicVocal } from 'lucide-react'
 import React from 'react'
 
+export type ContatoCardType = 'general' | 'personal' | 'study' | 'press'
+
 interface CardContactProps {
-  type: 'general' | 'personal' | 'study' | 'press'
+  type: ContatoCardType
   number: string
   title: string
   subtitle?: string

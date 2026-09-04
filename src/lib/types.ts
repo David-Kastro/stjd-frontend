@@ -33,6 +33,26 @@ export type Member = {
   updatedAt: string
 }
 
+export type Contato = {
+  id: number
+  numero: string
+  tipo: string
+  nome_responsavel: string
+  email_responsavel: string
+}
+
+export type Global = {
+  id: number
+  documentId: string
+  alerta_sessao: number
+  expediente: string
+  endereco_link_maps: string
+  endereco_texto: unknown
+  contatos?: Contato[]
+  createdAt: string
+  updatedAt: string
+}
+
 export type Presidente = {
   id: number
   documentId: string

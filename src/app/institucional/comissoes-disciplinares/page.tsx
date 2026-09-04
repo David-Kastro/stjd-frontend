@@ -82,7 +82,7 @@ async function ComissoesDiciplinares() {
       <section>
         <CardTopPage
           title="Comissões Disciplinares"
-          description="As Comissões Disciplinares julgam os processos em primeira instância, sendo o primeiro órgão a analisar as questões disciplinares no âmbito do STJD. Atualmente, o STJD do Futebol possui seis Comissões Disciplinares."
+          description="As Comissões Disciplinares julgam os processos em primeira instância, sendo o primeiro órgão a analisar as questões disciplinares no âmbito do STJD. Atualmente, o STJD do Futebol possui sete Comissões Disciplinares."
           image={WoodenGavel}
           scrollTo="#members"
           imagePosition="topRight"

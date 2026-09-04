@@ -1,12 +1,43 @@
-import CardContact from '@/_components/CardContact'
+import CardContact, { ContatoCardType } from '@/_components/CardContact'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
 import { MapPin, Phone, Clock } from 'lucide-react'
 import React from 'react'
 import BgScalle from '/public/images/bg-card-scale.svg'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import Image from 'next/image'
+import fetchApi from '@/lib/strapi'
+import { Contato as ContatoType, Global } from '@/lib/types'
 
-function Contato() {
+export const revalidate = 10
+
+const contatoType = (tipo: string): ContatoCardType => {
+  const prefix = tipo.split('-')[0].trim()
+  switch (prefix) {
+    case 'G':
+      return 'general'
+    case 'P':
+      return 'study'
+    case 'IMP':
+      return 'press'
+    default:
+      return 'personal'
+  }
+}
+
+const contatoTitle = (tipo: string) => tipo.replace(/^[A-Z]+\s*-\s*/, '')
+
+async function Contato() {
+  const [global] = await fetchApi<Global | null>({
+    endpoint: 'global',
+    query: {
+      populate: {
+        contatos: true,
+      },
+    },
+  })
+
+  const contatos: ContatoType[] = global?.contatos ?? []
+
   return (
     <div>
       <div className="container mt-[1.13rem] lg:mt-[5.64rem]">
@@ -51,65 +82,15 @@ function Contato() {
                   <p className="text-[1.25rem] font-bold">Contatos:</p>
                 </div>
                 <div className="mt-[1.19rem] flex flex-col gap-[0.75rem]">
-                  <CardContact
-                    number="(21) 3035-6200"
-                    title="Geral"
-                    type="general"
-                  />
-                  <CardContact
-                    number="(21) 3035-6202"
-                    title="Pleno"
-                    subtitle=" Aline Pereira - pleno@stjd.org.br"
-                    type="study"
-                  />
-                  <CardContact
-                    number="(21) 3035-6214"
-                    title="Pleno"
-                    subtitle=" Manuela Silva - pleno@stjd.org.br"
-                    type="study"
-                  />
-                  <CardContact
-                    number="(21) 3035-6205"
-                    title="1ª Comissão"
-                    subtitle=" André Barbosa - 1cd@stjd.org.br"
-                    type="personal"
-                  />
-                  <CardContact
-                    number="(21) 3035-6208"
-                    title="2ª Comissão"
-                    subtitle="Anna Alves - 2cd@stjd.org.br"
-                    type="personal"
-                  />
-                  <CardContact
-                    number="(21) 3035-6206"
-                    title="3ª Comissão"
-                    subtitle="Julyane Barros - 3cd@stjd.org.br"
-                    type="personal"
-                  />
-                  <CardContact
-                    number="(21) 3035-6207"
-                    title="4ª Comissão"
-                    subtitle="Gabriela Moreira - 4cd@stjd.org.br"
-                    type="personal"
-                  />
-                  <CardContact
-                    number="(21) 3035-6206"
-                    title="5ª Comissão"
-                    subtitle="Julyane Barros - 5cd@stjd.org.br"
-                    type="personal"
-                  />
-                  <CardContact
-                    number="(21) 3035-6204"
-                    title="6ª Comissão"
-                    subtitle="Cláudia Mercuri - 6cd@stjd.org.br"
-                    type="personal"
-                  />
-                  <CardContact
-                    number="(21) 3035-6209"
-                    title="Imprensa"
-                    subtitle="Daniela Pinho - comunicacao@stjd.org.br "
-                    type="press"
-                  />
+                  {contatos.map((contato) => (
+                    <CardContact
+                      key={contato.id}
+                      number={contato.numero}
+                      title={contatoTitle(contato.tipo)}
+                      subtitle={`${contato.nome_responsavel} - ${contato.email_responsavel}`}
+                      type={contatoType(contato.tipo)}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
