@@ -1,11 +1,11 @@
-import { marked } from 'marked'
+import { contentToHtml } from '@/lib/content-html'
 
 export function MarkedContent({ content }: { content: string }) {
   return (
     <div
       className="marked"
       suppressHydrationWarning
-      dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+      dangerouslySetInnerHTML={{ __html: contentToHtml(content) }}
     />
   )
 }
