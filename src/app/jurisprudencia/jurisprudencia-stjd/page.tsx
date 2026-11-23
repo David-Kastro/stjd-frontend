@@ -1,4 +1,4 @@
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor } from '@/lib/strapi'
 import type { Jurisprudencia, JurisprudenciaFilters } from '@/lib/types'
 import JurisprudenciaTemplate from './jurisprudencia-template'
 
@@ -9,7 +9,8 @@ async function JurisprudenciaStj({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const filters = (await searchParams) as JurisprudenciaFilters
+  const resolvedSearchParams = await searchParams
+  const filters = resolvedSearchParams as JurisprudenciaFilters
 
   // Construct Strapi-compatible filters
   const query: Record<string, any> = {}
@@ -42,6 +43,7 @@ async function JurisprudenciaStj({
 
   const [jurisprudencias] = await fetchApi<Jurisprudencia[]>({
     endpoint: 'jurisprudences',
+    cache: cacheModeFor(resolvedSearchParams),
     query: {
       sort: 'data_julgamento:desc',
       fields: [

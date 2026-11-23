@@ -1,4 +1,4 @@
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor } from '@/lib/strapi'
 import EditaisTemplate from './editais-template'
 import { Edital } from '@/lib/types'
 import { BasicFilters, getBasicQuery } from '@/_server-actions/get-basic-query'
@@ -31,6 +31,7 @@ async function Editais({
 
   const [editais, meta] = await fetchApi<Edital[]>({
     endpoint: 'notices',
+    cache: cacheModeFor(resolvedSearchParams),
     query: {
       sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo', 'data'],

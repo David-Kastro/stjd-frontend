@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import LogoBlack from '/public/images/logo-stjd-black.svg'
 import BgScalle from '/public/images/bg-card-scale.svg'
-import fetchApi from '@/lib/strapi'
+import fetchApi, { nowTruncatedToMinute } from '@/lib/strapi'
 import { Article, Edital, Session, Jurisprudencia } from '@/lib/types'
 import { startOfMonth, endOfMonth, format, addDays } from 'date-fns'
 
@@ -17,7 +17,7 @@ async function Home() {
       sort: 'data_publicacao:desc',
       filters: {
         data_publicacao: {
-          $lte: new Date().toISOString(),
+          $lte: nowTruncatedToMinute(),
         },
       },
       populate: {

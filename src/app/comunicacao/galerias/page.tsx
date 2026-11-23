@@ -1,7 +1,7 @@
 import React from 'react'
 import { GaleriasTemplate } from './galerias-template'
 import { BasicFilters, getBasicQuery } from '@/_server-actions/get-basic-query'
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor } from '@/lib/strapi'
 import { Galeria } from '@/lib/types'
 import { Metadata } from 'next'
 
@@ -18,14 +18,16 @@ async function Galerias({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
+  const resolvedSearchParams = await searchParams
   const filters = {
-    ...(await searchParams),
+    ...resolvedSearchParams,
   } as BasicFilters
 
   const query = await getBasicQuery(filters)
 
   const [galerias] = await fetchApi<Galeria[]>({
     endpoint: 'galerias',
+    cache: cacheModeFor(resolvedSearchParams),
     query: {
       sort: 'data:desc',
       fields: ['id', 'titulo', 'data', 'slug', 'lugar'],

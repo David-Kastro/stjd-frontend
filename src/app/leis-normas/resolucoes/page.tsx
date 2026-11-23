@@ -1,7 +1,7 @@
 import { BasicFilters, getBasicQuery } from '@/_server-actions/get-basic-query'
 import ResolucoesTemplate from './resolucoes-template'
 import { Doc } from '@/lib/types'
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor } from '@/lib/strapi'
 
 export const revalidate = 10
 
@@ -10,14 +10,16 @@ async function Resolucoes({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
+  const resolvedSearchParams = await searchParams
   const filters = {
-    ...(await searchParams),
+    ...resolvedSearchParams,
   } as BasicFilters
 
   const query = await getBasicQuery(filters)
 
   const [docs] = await fetchApi<Doc[]>({
     endpoint: 'resolutions',
+    cache: cacheModeFor(resolvedSearchParams),
     query: {
       sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'numero_resolucao', 'data'],

@@ -1,5 +1,5 @@
 import React from 'react'
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor } from '@/lib/strapi'
 import { Process, ProcessFilters } from '@/lib/types'
 import ProcessosTemplate from './processos-template'
 
@@ -10,7 +10,8 @@ async function Processos({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const filters = (await searchParams) as ProcessFilters
+  const resolvedSearchParams = await searchParams
+  const filters = resolvedSearchParams as ProcessFilters
 
   const query = {
     ...(filters.tipo ? { tipo: filters.tipo } : {}),
@@ -35,6 +36,7 @@ async function Processos({
 
   const [processos] = await fetchApi<Process[]>({
     endpoint: 'processes',
+    cache: cacheModeFor(resolvedSearchParams),
     query: {
       sort: 'data:desc',
       fields: [

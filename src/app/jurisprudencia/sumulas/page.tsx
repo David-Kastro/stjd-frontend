@@ -1,6 +1,6 @@
 import { BasicFilters, getBasicQuery } from '@/_server-actions/get-basic-query'
 import { Doc } from '@/lib/types'
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor } from '@/lib/strapi'
 import SumulasTemplate from './sumulas-template'
 
 export const revalidate = 10
@@ -10,12 +10,14 @@ async function Sumulas({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const filters = (await searchParams) as BasicFilters
+  const resolvedSearchParams = await searchParams
+  const filters = resolvedSearchParams as BasicFilters
 
   const query = await getBasicQuery(filters)
 
   const [docs] = await fetchApi<Doc[]>({
     endpoint: 'summaries',
+    cache: cacheModeFor(resolvedSearchParams),
     query: {
       sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo'],

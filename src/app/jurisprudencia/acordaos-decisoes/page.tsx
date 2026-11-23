@@ -1,6 +1,6 @@
 import AcordoesDecisoesTemplate from './acordaos-decisoes-template'
 import { Doc } from '@/lib/types'
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor } from '@/lib/strapi'
 
 export const revalidate = 10
 
@@ -16,8 +16,9 @@ async function AcordoesDecisoes({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
+  const resolvedSearchParams = await searchParams
   const filters = {
-    ...(await searchParams),
+    ...resolvedSearchParams,
   } as AcordoesFilters
 
   // Construct Strapi-compatible filters
@@ -61,6 +62,7 @@ async function AcordoesDecisoes({
 
   const [docs] = await fetchApi<Doc[]>({
     endpoint: 'decisions',
+    cache: cacheModeFor(resolvedSearchParams),
     query: {
       sort: 'data:desc',
       fields: ['id', 'titulo', 'subtitulo', 'tipo', 'categoria'],

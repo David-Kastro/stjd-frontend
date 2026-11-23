@@ -1,7 +1,7 @@
 import React from 'react'
 import { NoticiasTemplate } from './noticias-template'
 import { BasicFilters, getBasicQuery } from '@/_server-actions/get-basic-query'
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor, nowTruncatedToMinute } from '@/lib/strapi'
 import { News } from '@/lib/types'
 import { Metadata } from 'next'
 
@@ -30,12 +30,13 @@ async function Noticias({
     ...query,
     tipo: 'Notícia',
     data_publicacao: {
-      $lte: new Date().toISOString(),
+      $lte: nowTruncatedToMinute(),
     },
   }
 
   const [newsData] = await fetchApi<News[]>({
     endpoint: 'articles',
+    cache: cacheModeFor(searchParamsResolved),
     query: {
       sort: 'data_publicacao:desc',
       populate: {

@@ -1,7 +1,7 @@
 import PublicationsCarousel from '@/_components/PublicationsCarousel'
 import PublicationsHighligthCarousel from '@/_components/PublicationsHighligthCarousel'
 import ScaleAttorneys from '@/_components/ScaleAttorneys'
-import fetchApi from '@/lib/strapi'
+import fetchApi, { nowTruncatedToMinute } from '@/lib/strapi'
 import { Article, Member } from '@/lib/types'
 import React from 'react'
 import BgEditais from '/public/images/bg-card-editais.svg'
@@ -25,7 +25,7 @@ async function PublicaoRepositorio() {
       filters: {
         tipo: 'Publicação',
         data_publicacao: {
-          $lte: new Date().toISOString(),
+          $lte: nowTruncatedToMinute(),
         },
       },
       pagination: {

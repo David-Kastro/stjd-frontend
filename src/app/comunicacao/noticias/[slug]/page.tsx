@@ -1,4 +1,4 @@
-import fetchApi from '@/lib/strapi'
+import fetchApi, { cacheModeFor } from '@/lib/strapi'
 import { News } from '@/lib/types'
 import React from 'react'
 import Article from '@/_components/Article'
@@ -80,6 +80,7 @@ async function Noticia({ params, searchParams }: Props) {
 
   const [newsData] = await fetchApi<News[]>({
     endpoint: 'articles',
+    cache: cacheModeFor(searchParamsResolved),
     query: {
       sort: 'data_publicacao:desc',
       populate: {
