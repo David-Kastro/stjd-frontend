@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import CustomImage from '../CustomImage'
 import { dateTimeFormat } from '@/lib/utils'
-import { contentToHtml } from '@/lib/content-html'
+import { contentToText } from '@/lib/content-html'
 
 interface Props {
   image: string
@@ -38,11 +38,9 @@ function CardNews({ image, title, date, textContent, href }: Props) {
           <h2 className="text-[0.875rem] text-secondary">
             {dateTimeFormat(date)}
           </h2>
-          <p
-            className="line-clamp-3 text-[0.8125rem] lg:line-clamp-2 lg:text-base lg:leading-[1.6875rem]"
-            suppressHydrationWarning
-            dangerouslySetInnerHTML={{ __html: contentToHtml(textContent) }}
-          />
+          <p className="line-clamp-3 text-[0.8125rem] lg:line-clamp-2 lg:text-base lg:leading-[1.6875rem]">
+            {contentToText(textContent)}
+          </p>
         </div>
       </div>
     </Link>
